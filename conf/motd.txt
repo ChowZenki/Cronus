@@ -1,0 +1,3 @@
+//O limite de linhas é 128. Caso necessite de mais, modifique a linha MOTD_LINE_SIZE em pc.c
+
+Bem-vindo(a) ao Cronus-Emulator! Caso encontre algum erro reporte-o em nosso fórum!
