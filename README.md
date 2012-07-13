@@ -4,7 +4,7 @@ Cronus-Emulator
 * Portal: (http://portal.cronus-emulator.com/)
 * Forum: (http://forum.cronus-emulator.com/)
 
-Caso tenha dúvidas procure ajuda no forum, qualquer bug favor reportar [aqui](https://github.com/Cronus-Emulator/Cronus-Emulator/issues).
+Caso tenha dúvidas procure ajuda no forum, qualquer bug favor reportar [aqui](https://github.com/Cronus-Emulator/Cronus/issues).
 
 
 Agradecimentos
