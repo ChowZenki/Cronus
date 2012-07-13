@@ -1,5 +1,5 @@
 #!/bin/bash
-# Atalho para funções Maya-Commander - http://Maya-Emulator.com [Raizen]
+# Atalho para funções Cronus-Commander - http://Cronus-Emulator.com [Raizen]
 case $1 in
 	'recompilar') chmod 777 configure ; ./configure ;
 make clean ; make sql;;
@@ -7,7 +7,7 @@ make clean ; make sql;;
 make clean ; make sql;;
 	'atualizarsistema') yum update -y ; yum upgrade -y ; apt-get 
 update -y ;;
-	'versao') echo "A versão atual do maya-commander é 1.0" ;;
+	'versao') echo "A versão atual do cronus-commander é 1.0" ;;
 	'ligar') exec ./login-server_sql & exec ./char-server_sql & exec 
 ./map-server_sql & ;;
 	'desligar') killall map-server_sql char-server_sql login-server_sql ;;
@@ -18,11 +18,11 @@ são unicamente para ajudar o usuário na utilização de comandos via
 shell.
 Para utilizar este script, basta que através do ssh acesse seu emulador 
 e digite:
-./maya-commander PARAMETRO_DE_USO
+./cronus-commander PARAMETRO_DE_USO
 Para ver os parâmetros disponíveis digite:
-./maya-commander comandos
+./cronus-commander comandos
 Caso tenha qualquer dúvida sobre este sistema, abra um tópico de suporte 
-em http://maya-emulator.com/forum";;
+em http://forum.cronus-emulator.com/";;
 	*) echo "Os parâmetros válidos são: 
 ligar|desligar|reiniciar|compilar|recompilar|versao|atualizarsistema|atualizaremulador." 
 ;;

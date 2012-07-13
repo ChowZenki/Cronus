@@ -34,7 +34,6 @@ Equipe
 
 ### Desenvolvedores Script/DB
 - J4ND3RS0N		- Janderson
-- LyDe			- Luiz Fernando
 - Schrwaizer 	- Thiago Schrwaizer
 - Spike			- Igor
 - Wolf SF		- João Vitor
