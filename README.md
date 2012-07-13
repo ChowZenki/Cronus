@@ -22,17 +22,19 @@ Equipe
 - JAF			- João Angelo
 
 ### Coordenadores
-- Dreaming		- Matheus
+- Cainho		- Caio Matheus
 - Roberto		- Roberto
 - Raizen		- Carlos
 
-### Desenvolvedores
+### Desenvolvedores Core
 - Axl			- José Goís
-- Cainho		- Caio Matheus
-- J4ND3RS0N		- Janderson
-- LyDe			- Luiz Fernando
 - Otonii		- Leandro Otoni
 - Sicks 		- Bruno
-- Spike			- Igor
-- Schrwaizer 	- Thiago Schrwaizer
 - Takyia Genji	- Raphael
+
+### Desenvolvedores Script/DB
+- J4ND3RS0N		- Janderson
+- LyDe			- Luiz Fernando
+- Schrwaizer 	- Thiago Schrwaizer
+- Spike			- Igor
+- Wolf SF		- João Vitor
