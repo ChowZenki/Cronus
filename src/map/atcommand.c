@@ -3902,6 +3902,15 @@ ACMD_FUNC(reloadbattleconf)
 	||  prev_config.item_drop_treasure_max != battle_config.item_drop_treasure_max
 	||  prev_config.base_exp_rate          != battle_config.base_exp_rate
 	||  prev_config.job_exp_rate           != battle_config.job_exp_rate
+	||  prev_config.max_aspd               != battle_config.max_aspd
+	||  prev_config.max_third_aspd         != battle_config.max_third_aspd
+	||  prev_config.max_hp                 != battle_config.max_hp
+	||  prev_config.max_sp                 != battle_config.max_sp
+	||  prev_config.max_parameter          != battle_config.max_parameter
+	||  prev_config.max_baby_parameter     != battle_config.max_baby_parameter
+	||  prev_config.max_def                != battle_config.max_def
+	||  prev_config.max_third_parameter    != battle_config.max_third_parameter
+	||  prev_config.max_baby_third_parameter != battle_config.max_baby_third_parameter
 	)
   	{	// Exp or Drop rates changed.
 		mob_reload(); //Needed as well so rate changes take effect.
