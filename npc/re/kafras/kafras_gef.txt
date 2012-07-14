@@ -1,72 +1,60 @@
-//===== rAthena Script =======================================
-//= Geffen Kafras
-//===== By: =========================
-//= rAthena Dev Team
-//===== Current Version: ===================
-//= 2.5
-//===== Compatible With: =====================
-//= rAthena 1.0
-//===== Description: ============================================
-//= Description of argument settings for callfunc "F_Kafra".
-//=  arg(0): When set at 0 the default Kafra message is displayed.
-//=    When set to 1 the Niflhiem Kafra message is displayed.
-//=    When set to 2 the Guild Kafra message is displayed. 
-//=  arg(1): Set to 1 to disable teleport menu option. Otherwise set to 0.
-//=  arg(2): Set to 1 to disable info menu.  Otherwise set to 0.
-//=  arg(3): Cost of Storage service
-//=  arg(4): Cost of Rent a Pushcart service
-//===== Additional Comments: ==========================================
-//= v1.1 Now using functions :)
-//= v2.1b Minor changes to function calls. Using arguments.
-//= This version uses arrays .[kobra_k88]
-//= 2.2 New warps and prices [Evera]
-//= 2.3 Can't save outside city [Evera]
-//= 2.4 Updated function calls with new arguments. [L0ne_W0lf]
-//=	Added unique Kafra Welcome messages.
-//=	Removed North and West Kafra
-//= 2.5 Fixed Kafra NPC names. [L0ne_W0lf]
-//=====================================================================
+//====================================================================
+//          _________                                                  
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
+//           \______  /|__|   \____/|___|  /____//____  >              
+//                  \/                   \/           \/               
+//                                                               
+//====================== Cronus Script ===============================
+//= Kafras de Geffen
+//===== Por: =========================================================
+//= Dojo
+//===== Versão Atual: ================================================
+//= 1.1
+//===== Compatível com: ==============================================
+//= Cronus GIT
+//===== Descrição: ===================================================
+//= Kafras da Cidade de Geffen
+//===== Comentários Adicionais: ======================================
+//= 1.0 Primeira Versão [Dojo]
+//= 1.1 Adicionados diálogos oficiais do bRO [Schrwaizer]
+//====================================================================
 
-
-// South =====================================
-geffen,120,62,0	script	Kafra Employee::kaf_geffen	115,{
+//=== Sul ====================================================
+geffen,120,62,0	script	Funcionária Kafra::kaf_geffen	115,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSetGef";
-	mes "[Kafra Employee]";
-	mes "Welcome~!";
-	mes "The Kafra Services";
-	mes "are always on your side.";
-	mes "So how can I help you?";
+	mes "[Kafra Recepcionista]";
+	mes "Bem-vindo à Corporação Kafra, nós sempre estamos ao seu lado.";
+	mes "Em que posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,0,30,750;
 
 	M_Save:
 		savepoint "geffen",119,40;
-		callfunc "F_KafEnd",0,1,"in the city of Geffen";
+		callfunc "F_KafEnd",0,1,"na cidade de Geffen";
 }
 
-// East ==============================================
-geffen,203,123,2	script	Kafra Employee::geffen2	114,{
+//=== Oeste ==================================================
+geffen,203,123,2	script	Funcionária Kafra::geffen2	114,{
 	cutin "kafra_04",2;
 	callfunc "F_KafSetGef";
-	mes "[Kafra Employee]";
-	mes "Welcome!";
-	mes "The Kafra Corporation";
-	mes "will always support the";
-	mes "adventurers of Rune-Midgard";
-	mes "with its excellent service. So";
-	mes "what can I do for you today?";
+	mes "[Kafra Recepcionista]";
+	mes "Bem-vindo à Corporação Kafra, nós sempre estamos ao seu lado.";
+	mes "Em que posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,0,30,750;
 
 	M_Save:
 		savepoint "geffen",200,124;
-		callfunc "F_KafEnd",0,1,"in the city of Geffen";
+		callfunc "F_KafEnd",0,1,"na cidade de Geffen";
 }
 
 
-// Function: Sets variables for Geffen Kafras -------------------
+//=== Função: Definir variáveis para Kafras de Geffen.
+//============================================================
 function	script	F_KafSetGef	{
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
-	setarray @wrpD$[0], "Prontera", "Al De Baran", "Orc Dungeon", "Mjolnir Dead Pit";
+	setarray @wrpD$[0], "Prontera", "Al De Baran", "Vila dos Orcs", "Mina de Carvão";
 	setarray @wrpP[0], 1200, 1200, 1200, 1700;
 	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
 	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];
