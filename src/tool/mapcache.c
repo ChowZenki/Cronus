@@ -18,7 +18,11 @@
 #define NO_WATER 1000000
 
 char grf_list_file[256] = "conf/grf-files.txt";
-char map_list_file[256] = "db/map_index.txt";
+#ifdef RENEWAL
+char map_list_file[256] = "db/re/map_index.txt";
+#else
+char map_list_file[256] = "db/pre-re/map_index.txt";
+#endif
 char map_cache_file[256] = "db/map_cache.dat";
 int rebuild = 0;
 

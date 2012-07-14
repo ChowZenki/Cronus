@@ -1,16 +1,14 @@
-//===== rAthena Script ======================================= 
-//= Moscovia Quests
-//===== By: ================================================== 
+//===== Cronus Script ======================================== 
+//= Quests de Moscóvia
+//===== Por: ================================================= 
 //= Kisuka
-//===== Current Version: ===================================== 
-//= 1.9
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Quests for Moscovia.
-//= The Moving Island, Help Mikhail, Acorn Exchange,
-//= Banish Winter, Shafka Hat, Koshei the Immortal.
-//===== Additional Comments: ================================= 
+//===== Versão: ============================================== 
+//= 1.8eA
+//===== Compatível com: ====================================== 
+//= Cronus SVN
+//===== Descrição: =========================================== 
+//= As quests de Moscóvia
+//===== Comentários adicionais: ============================== 
 //= 1.0 First version. [Kisuka]
 //= 1.1 Small fixes on The Moving Island. [Kisuka]
 //= 1.2 Fixed a "player not attached" error. [brianluau]
@@ -20,7 +18,6 @@
 //= 1.6 Added 'tides' to Ibanoff & Fixed time check for Marozka. [Kisuka]
 //= 1.7 Fixes on donpcevents and fixed some left over aegis stuff. [Kisuka]
 //= 1.8 Fixed some condition checks. [Gepard]
-//= 1.9 Corrected NPC counting mobs for the wrong NPC. (bugreport:4736) [L0ne_W0lf]
 //============================================================ 
 
 //============================================================================
@@ -549,7 +546,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {
+		else if (gettime(3) >= 18 && gettime(3) < 21) {	
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -632,7 +629,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {
+		else if (gettime(3) >= 18 && gettime(3) < 21) {	
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -819,7 +816,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {
+		else if (gettime(3) >= 18 && gettime(3) < 21) {	
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -898,7 +895,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {
+		else if (gettime(3) >= 18 && gettime(3) < 21) {	
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -3399,7 +3396,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 				close;
 			}
 			mes "[Aged Stranger]";
-			mes "To bring the Csar here and show him";
+			mes "To bring the Csar here and mes him";
 			mes "everything?!? It's difficult...";
 			next;
 			mes "[Aged Stranger]";
@@ -3564,7 +3561,7 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 			mes "have.";
 			next;
 			mes "[Aged Stranger]";
-			mes "If you show this to the good Csar,";
+			mes "If you mes this to the good Csar,";
 			mes "he can believe your story about the";
 			mes "island. Everything is going to be";
 			mes "well.";
@@ -4566,7 +4563,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 					mes "[Prime Minister Dmitree]";
 					mes "Even though I regard as your effort for the time so, award you. Take it and go out.";
 					getitem 12702,1;
-					getexp 50000,0;
+					getexp 500000,0;
 					set mos_whale_edq,39;
 					close;
 				}
@@ -4594,7 +4591,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 				mes "[Prime Minister Dmitree]";
 				mes "Even though I regard as your effort for the time so, award you. Take it.";
 				getitem 12702,1;
-				getexp 70000,0;
+				getexp 700000,0;
 				set mos_whale_edq,40;
 				close;
 			}else{
@@ -4678,13 +4675,13 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 				mes "in his palace. I will reward your";
 				mes "efforts, in the name of the Csar.";
 				getitem 617,1;
-				getexp 120000,0;
+				getexp 1200000,0;
 				set mos_whale_edq,41;
 				close;
 			}else{
 				mes "[Csar Alexsay III]";
 				mes "But you... Where do you keep the";
-				mes "instrument which you are to show me?";
+				mes "instrument which you are to mes me?";
 				next;
 				mes "[Csar Alexsay III]";
 				mes "Don't you need to be holding the instrument, in order to play it???";
@@ -5118,7 +5115,7 @@ OnDisable:
 	end;
 
 OnMyMobDead:
-	if (mobcount("mosk_ship","Baehideun4#ship::OnMyMobDead") < 1) {
+	if (mobcount("mosk_ship","Baehideun1#ship::OnMyMobDead") < 1) {
 		set $@mos1_edq,0;
 		mes "[Mr. Ibanoff]";
 		mes "Now that all the monsters are gone,";
@@ -5267,7 +5264,7 @@ mosk_in,144,279,5	script	Gallina#mos	959,{
 		mes "Well, now I have to get to work!";
 		mes "I'll make you my hotcakes someday. Please visit me later";
 		set mos_swan,100;
-		getexp 100000,0;
+		getexp 1000000,0;
 		close;
 	}else{
 		mes "[Gallina]";
@@ -8425,7 +8422,7 @@ mosk_in,217,45,0	script	#book_russia	111,{
 		mes "who wants to run backward.";
 		mes "This first stage should be complete.";
 		mes "Just after this stage, the mixture";
-		mes "will barely show any alteration.";
+		mes "will barely mes any alteration.";
 		mes "After this, you must add the liquid";
 		mes "that aids all life and stir 20 times.";
 		mes "At this point you will certainly";
@@ -8515,7 +8512,7 @@ mosk_in,217,45,0	script	#book_russia	111,{
 			mes "who wants to run backward.";
 			mes "This first stage should be complete.";
 			mes "Just after this stage, the mixture";
-			mes "will barely show any alteration.";
+			mes "will barely mes any alteration.";
 			mes "After this, you must add the liquid";
 			mes "that aids all life and stir 20 times.";
 			mes "At this point you will certainly";
@@ -8555,7 +8552,7 @@ mosk_in,217,45,0	script	#book_russia	111,{
 		mes "who wants to run backward.";
 		mes "This first stage should be complete.";
 		mes "Just after this stage, the mixture";
-		mes "will barely show any alteration.";
+		mes "will barely mes any alteration.";
 		mes "After this, you must add the liquid";
 		mes "that aids all life and stir 20 times.";
 		mes "At this point you will certainly";
@@ -8706,8 +8703,8 @@ mosk_in,221,43,0	script	#bowl	111,{
 				set mos_nowinter,17;
 				close;
 			}
-			if (.@nankai == 3)
-				break;
+		if (.@nankai == 3) {
+			}
 		}
 		specialeffect EF_BUBBLE;
 		mes "-The liquid has been changed";
@@ -8865,8 +8862,8 @@ mosk_in,221,43,0	script	#bowl	111,{
 				specialeffect EF_POISONATTACK;
 				close;
 			}
-			if (.@nankai == 7)
-				break;
+		if (.@nankai == 7) {
+			}
 		}
 		mes "-I am sure that the book told me";
 		mes "to wait for some time.-";
@@ -9049,13 +9046,13 @@ mosk_in,221,43,0	script	#bowl	111,{
 			case 4:
 				if (.@maho == 12) {
 					mes "-It seems that the work is over.";
-					mes "I need to show this to Baba Yaga.-";
+					mes "I need to mes this to Baba Yaga.-";
 					set mos_nowinter,18;
 					specialeffect EF_GASPUSH;
 					close;
 				}else{
 					mes "-It seems that the work is over.";
-					mes "I need to show this to Baba Yaga.-";
+					mes "I need to mes this to Baba Yaga.-";
 					specialeffect EF_POISONATTACK;
 					set mos_nowinter,17;
 					close;
@@ -10578,7 +10575,7 @@ mosk_dun01,167,160,3	script	Gray Wolf#rus03	972,{
 		mes "So, what do you want me to do?";
 		next;
 		mes "[Gray Wolf]";
-		mes "This isn't a good place to talk. Get on my back, I will show you something.";
+		mes "This isn't a good place to talk. Get on my back, I will mes you something.";
 		next;
 		mes "- He turns his back to me -";
 		mes "- I jump up and suddenly -";
@@ -11043,31 +11040,31 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 				getitem 12098,1;
 			}
 			if (BaseLevel < 56) {
-				getexp 1300,350;
+				getexp 13000,3500;
 			}
 			else if (BaseLevel > 55 && BaseLevel < 61) {
-				getexp 2460,615;
+				getexp 24600,6150;
 			}
 			else if (BaseLevel > 60 && BaseLevel < 66) {
-				getexp 4242,1061;
+				getexp 42420,10605;
 			}
 			else if (BaseLevel > 65 && BaseLevel < 71) {
-				getexp 6489,1622;
+				getexp 64892,16223;
 			}
 			else if (BaseLevel > 70 && BaseLevel < 76) {
-				getexp 16491,4123;
+				getexp 164908,41227;
 			}
 			else if (BaseLevel > 75 && BaseLevel < 81) {
-				getexp 27629,6907;
+				getexp 276292,69073;
 			}
 			else if (BaseLevel > 80 && BaseLevel < 86) {
-				getexp 34041,8510;
+				getexp 340408,85102;
 			}
 			else if (BaseLevel > 85 && BaseLevel < 91) {
-				getexp 41846,10462;
+				getexp 418460,104615;
 			}
-			else if (BaseLevel > 90 && BaseLevel < 150) {
-				getexp 88814,22204;
+			else if (BaseLevel > 90 && BaseLevel < 99) {
+				getexp 888140,222035;
 			}
 			else {
 				getitem 617,1;
@@ -11346,7 +11343,7 @@ moscovia,178,127,0	script	The Blacksmith#rus06	63,{
 			mes "And don't forget to wear these!";
 			delitem 999,25;
 			set rhea_rus_main,8;
-			if (BaseClass == Job_Merchant || BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Archer || BaseClass == Job_Ninja || BaseClass == Job_Gunslinger) {
+			if (BaseClass == Job_Merchant || BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Archer) {
 				getitem 2429,1;
 				close;
 			}else {
@@ -11781,31 +11778,31 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 				set rhea_rus_ring,10;
 				getitem 7877,1;
 				if (BaseLevel < 56) {
-					getexp 470,0;
+					getexp 4700,0;
 				}
 				else if (BaseLevel > 55 && BaseLevel < 61) {
-					getexp 615,0;
+					getexp 6150,0;
 				}
 				else if (BaseLevel > 60 && BaseLevel < 66) {
-					getexp 1061,0;
+					getexp 10605,0;
 				}
 				else if (BaseLevel > 65 && BaseLevel < 71) {
-					getexp 1622,0;
+					getexp 16223,0;
 				}
 				else if (BaseLevel > 70 && BaseLevel < 76) {
-					getexp 4123,0;
+					getexp 41227,0;
 				}
 				else if (BaseLevel > 75 && BaseLevel < 81) {
-					getexp 6907,0;
+					getexp 69073,0;
 				}
 				else if (BaseLevel > 80 && BaseLevel < 86) {
-					getexp 8510,0;
+					getexp 85102,0;
 				}
 				else if (BaseLevel > 85 && BaseLevel < 91) {
-					getexp 10462,0;
+					getexp 104615,0;
 				}
 				else if (BaseLevel > 90 && BaseLevel < 99) {
-					getexp 22204,0;
+					getexp 222035,0;
 				}
 				else {
 					getitem 607,1;
@@ -12071,7 +12068,7 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				mes "... I hated her. My father... father loved only her! He didn't talk to me, only to her!";
 				next;
 				mes "[Ryubaba]";
-				mes "I asked her to show me the ring. But, she wouldn't let me see it. She always got on my nerves! Stupid girl!";
+				mes "I asked her to mes me the ring. But, she wouldn't let me see it. She always got on my nerves! Stupid girl!";
 				next;
 				mes "["+ strcharinfo(0) +"]";
 				mes "She was your sister! How can you speak like that!?";
@@ -12138,31 +12135,31 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				set rhea_rus_ring,9;
 				getitem 7877,1;
 				if (BaseLevel < 56) {
-					getexp 470,0;
+					getexp 4700,0;
 				}
 				else if (BaseLevel > 55 && BaseLevel < 61) {
-					getexp 615,0;
+					getexp 6150,0;
 				}
 				else if (BaseLevel > 60 && BaseLevel < 66) {
-					getexp 1061,0;
+					getexp 10605,0;
 				}
 				else if (BaseLevel > 65 && BaseLevel < 71) {
-					getexp 1622,0;
+					getexp 16223,0;
 				}
 				else if (BaseLevel > 70 && BaseLevel < 76) {
-					getexp 4123,0;
+					getexp 41227,0;
 				}
 				else if (BaseLevel > 75 && BaseLevel < 81) {
-					getexp 6907,0;
+					getexp 69073,0;
 				}
 				else if (BaseLevel > 80 && BaseLevel < 86) {
-					getexp 8510,0;
+					getexp 85102,0;
 				}
 				else if (BaseLevel > 85 && BaseLevel < 91) {
-					getexp 10462,0;
+					getexp 104615,0;
 				}
 				else if (BaseLevel > 90 && BaseLevel < 99) {
-					getexp 22204,0;
+					getexp 222035,0;
 				}
 				else{
 					getitem 607,1;
@@ -15898,7 +15895,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 1) {
-					cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+					cutin "Æ÷¸µÄ«µå",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15911,13 +15908,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "Æ÷¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "¿£Á©¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "°í½ºÆ®¸µÄ«µå",4;
 					}
 					emotion 0;
 					emotion 23,1;
@@ -15939,7 +15936,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 2) {
-					cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+					cutin "¿£Á©¸µÄ«µå",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15952,13 +15949,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "Æ÷¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "¿£Á©¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "°í½ºÆ®¸µÄ«µå",4;
 					}
 					emotion 0;
 					emotion 23,1;
@@ -15980,7 +15977,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 3) {
-					cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
+					cutin "°í½ºÆ®¸µÄ«µå",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15993,13 +15990,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "Æ÷¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "¿£Á©¸µÄ«µå",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
+						cutin "°í½ºÆ®¸µÄ«µå",4;
 					}
 					emotion 0;
 					emotion 23,1;

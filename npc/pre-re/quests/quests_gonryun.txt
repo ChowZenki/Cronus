@@ -1,11 +1,11 @@
-//===== rAthena Script ======================================= 
+//===== eAthena Script ======================================= 
 //= Quest NPCs related to Gonryun
 //===== By: ==================================================
 //= KarLaeda
 //===== Current Version: ===================================== 
 //= 1.2
 //===== Compatible With: ===================================== 
-//= rAthena SVN
+//= eAthena SVN
 //===== Description: ========================================= 
 //= [Aegis Conversion]
 //= Broken Sword Quest (Kept old mechanics)
@@ -2866,7 +2866,7 @@ geffen_in,71,112,2	script	Blacksmith#SaYumMoon	731,{
 				mes "I need to take a look at it first";
 				mes "to find out whether I can repair it or not.";
 				next;
-				mes "^0000FFYou show the pieces of the";
+				mes "^0000FFYou mes the pieces of the";
 				mes "broken sword to Aumgarl.";
 				mes "....................";
 				mes "Aumgarl took a careful look";
@@ -3700,7 +3700,7 @@ OnTouch:
 		end;
 	}
 	end;
-}
+}					
 
 // Lost Knife
 //============================================================ 

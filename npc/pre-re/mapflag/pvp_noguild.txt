@@ -1,7 +1,7 @@
-//===== rAthena Script =======================================
+//===== eAthena Script =======================================
 //= Map flags that disable guilds on pvp grounds. 
 //===== By: ==================================================
-//= rAthena Dev Team
+//= eAthena Dev Team
 //= v 1.1
 //===== Current Version: =====================================
 

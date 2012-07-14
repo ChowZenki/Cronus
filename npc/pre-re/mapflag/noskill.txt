@@ -1,7 +1,7 @@
-//===== rAthena Script =======================================
+//===== eAthena Script =======================================
 //= Map flags that disable skills on a map
 //===== By: ==================================================
-//= rAthena Dev Team
+//= eAthena Dev Team
 //= 1.0 [L0ne_W0lf]
 //= 1.1 Added additional maps. [L0ne_W0lf]
 //===== Current Version: =====================================

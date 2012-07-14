@@ -1,37 +1,34 @@
-//===== rAthena Script ======================================= 
-//= Quest NPCs related to Izlude
-//===== By: ================================================== 
-//= Evera and The rAthena Dev Team
-//= L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 1.1
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Edgar's Offer:
-//= - [Aegis conversion]
-//= - Variables in use: MISC_QUEST (Bit 16)
-//===== Additional Comments: ================================= 
+//===== Cronus Script ========================================
+//= Quests de Izlude.
+//===== Por: ================================================= 
+//= SoulBlaker
+//===== Versão Atual: ======================================== 
+//= 1.1b CR / 1.1 eA
+//===== Compatibilidade: ===================================== 
+//= Cronus
+//===== Descrição: ===========================================
+//= [Aegis conversion]
+//= Vars em  uso: MISC_QUEST (Bit 16)
+//===== Comentários Adicional: =============================== 
 //= 1.0 Initial release [Evera]
 //= 1.1 Updated to 10.3 standard. [L0ne_W0lf]
+//= 1.1a Traduzido o npc baseado no bRO. [SoulBlaker]
+//= 1.1b Revisão do script, em conforme ao bRo [Asus]
 //============================================================
 
-// Edgar's Offer
+// Edgar
 //============================================================
 izlude,182,186,2	script	Edgar#izlude	49,{
 	if (MISC_QUEST & 16) {
 		mes "[Edgar]";
-		mes "So are you heading to Alberta again? Let me give you the same discount and only charge 250 Zeny, just like the last time.";
-		mes "How's that sound?";
+		mes "Então que ir para Alberta de novo? Vou cobrá-lo 250 Zenys como da última vez.";
+		mes "Que tal?";
 		next;
-		if (select("Alrighty~!:Why are you being so nice to me?!") == 1) {
+		if (select("Certo:Por que está sendo tão gentil comigo?") == 1) {
 			if (Zeny < 250) {
 				mes "[Edgar]";
-				mes "Um...";
-				mes "This isn't";
-				mes "enough money.";
-				mes "Why don't you go";
-				mes "get some more cash?";
+				mes "Você não tem dinheiro suficiente!";
+				mes "Vá conseguir mais.";
 				close ;
 			}
 			set zeny,zeny-250;
@@ -39,46 +36,58 @@ izlude,182,186,2	script	Edgar#izlude	49,{
 			end;
 		}
 		mes "[Edgar]";
-		mes "It's just the way I am. That, and your devilish smile reminds me of my beloved blond haired son who left home years ago to become a Sailor on his own ship. Bless his soul, wherever he is.";
+		mes "É apenas o meu jeito de ser. Isso, e seu sorriso malicioso me faz lembrar de meu amado filho de cabelos loiros, que saiu de casa há anos para virar um marinheiro em seu próprio barco. Abençoada seja sua alma, onde estiver.";
 		close;
 	}
 	mes "[Edgar]";
-	mes "My town, Izlude,  is connected to Alberta by the harbor in the West. There is so much traffic between us, I almost become an Albertian.  Hehehe~";
+	mes "Minha cidade, Izlude, está";
+	mes "conectada a Alberta pelo";
+	mes "ancoradouro a Oeste. Há muito";
+	mes "tráfego entre as cidades, então eu";
+	mes "quase sou de Alberta e não de Izlude. Hehehe.";
+	mes "Eu conheço muito bem aquele sujeito";
+	mes "Phelix de Alberta, aquele cara é";
+	mes "muito exigente, então é sem almoço grátis com ele.";
 	next;
 	mes "[Edgar]";
-	mes "There's this guy I know pretty well, Phelix, who lives in Alberta. That guy is really stingy... He charges for everything!";
+	mes "Mas ele é um cara legal, ele gosta";
+	mes "de ajudar aos outros. Ele tem um";
+	mes "grande coração, ele te ajudará";
+	mes "bastante se você atender as";
+	mes "condições que ele pede.";
 	next;
 	mes "[Edgar]";
-	mes "But he's really a nice guy and likes helping other people. He has a good heart and will give you his support if you meet his price.";
+	mes "Ultimamente as pessoas de Alberta";
+	mes "dizem que ele vem ajudando pessoas";
+	mes "que lhe trazem uma grande";
+	mes "quantidade de Jellopys ou algo";
+	mes "parecido.. se vocês estiver com o";
+	mes "bolso vazio, é melhor dar uma";
+	mes "olhada no que ele quer.";
 	next;
-	mes "[Edgar]";
-	mes "Lately, people in Alberta say that he is really trying to help folks and that his demand for Jellopies is just a coverup.  Well, you should take a look at what he has to offer.";
-	next;
-	if (select("Can you tell me how to get to Alberta?:End Conversation") == 1) {
+	if (select("Pode me dizer o caminho para Alberta?:Fim da conversa") == 1) {
 		mes "[Edgar]";
-		mes "Huh? Well, you can use your feet and just walk.  But if you have money, I'd like to suggest that you take a ship.";
+		mes "Como? Você pode ir andando, mas se";
+		mes "você tiver dinheiro eu sugiro que";
+		mes "você pegue um barco.";
 		next;
-		if (select("Okay, gotcha.:But I'm sick of walking and I'm broke!") == 1) {
+		if (select("Ok entendi.:Cansado de andar e sem dinheiro.") == 1 ) {
 			mes "[Edgar]";
-			mes "Alrighty, take care~";
+			mes "Tudo bem, cuide-se...";
 			close;
 		}
 		mes "[Edgar]";
-		mes "Okay...";
-		mes "You don't want to walk AND you've got no cash, but you still want to go there? Oh geez...";
+		mes "Cansado de andar e sem dinheiro?";
+		mes "Meu amigo..";
+		mes "Certo, certo, como capitão do navio";
+		mes "eu posso te levar a um preço menor, 250 Zeny.";
 		next;
-		mes "[Edgar]";
-		mes "Fine fine. Me, being the captain of a ship, can afford to bring you there at a lower price. How does 250 Zeny sound?";
-		next;
-		if (select("Alrighty~!:Bah, what a rip off!!") == 1) {
+		if (select("Legal!!!:Que extorsão!!") == 1) {
 			set MISC_QUEST,MISC_QUEST | 16;
 			if (Zeny < 250) {
 				mes "[Edgar]";
-				mes "Um...";
-				mes "This isn't";
-				mes "enough money.";
-				mes "Go and get";
-				mes "some more.";
+				mes "Mas você não tem dinheiro o";
+				mes "suficiente! Vá conseguir mais.";
 				close;
 			}
 			set zeny,zeny-250;
@@ -86,13 +95,13 @@ izlude,182,186,2	script	Edgar#izlude	49,{
 			end;
 		}
 		mes "[Edgar]";
-		mes "Boy oh boy,";
-		mes "if you think";
-		mes "that's a rip off...";
+		mes "Garoto, ah Garoto,";
+		mes "se você acha melhor";
+		mes "vá dar uma volta...";
 		close;
 	}
 	mes "[Edgar]";
-	mes "Yeah, alright.";
-	mes "See you later~";
+	mes "Yeah, tudo bem.";
+	mes "Vejo você por aí~";
 	close;
 }

@@ -1,40 +1,14 @@
-//===== rAthena Script ======================================= 
-//= Nameless Island Quests
-//===== By: ================================================== 
+//===== Cronus Script ========================================
+//= Quests da Ilha Esquecida (Nameless Island)
+//===== Por: =================================================
 //= L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 2.2a
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Collection of Nameless Island Quests
-//= Nameless Island:
-//= - Quest to gain access to Nameless Island and dungeon.
-//= - Variable in use: aru_monas  (Max: 26)
-//= Peace for Arunafeltz:
-//- - Help to keep peace between Arunafeltz and Midgard.
-//= - Variable in use: aru_em (Max: 23)
-//= Muff's Loan:
-//- - Help Muff clear his Debt and get his collateral back.
-//= - prerequisite Quest to "Broken Diamond"
-//= - Variable in use: diamond_edq (Max: 14)
-//= Broken Diamond:
-//- - Help Ibrahim retrieve his stolen diamond.
-//= - prerequisite Quest to "Unlucky Emerald"
-//= - Variable in use: diamond_edq (Max: 26)
-//= Z-Gang Quest:
-//- - Help to aprehend the infamous Z-Gang.
-//= - Variable in use: zdan_edq (Max: 19)
-//= Unlucky Emerald:
-//- - Help a treasure hunter from Prontera get home, and 
-//=   learn the origins of the Unlucky Emerald.
-//= - Variable in use: treasure_nd (Max: 12)
-//= - Variable in use: jewel_nd (Max: 31)
-//= Rogue Guild Investigation Assistance:
-//- - Assist the Rogue Guild with their investigations.
-//= - Variable in use: rumour_nd (Max: 22)
-//===== Additional Comments: ================================= 
+//===== Versão Atual: ========================================
+//= 2.0CR/2.1eA
+//===== Compatível Com: ======================================
+//= Cronus
+//===== Descrição: ===========================================
+//= Quests da Ilha Esquecida
+//===== Comentários Adicionais: ==============================
 //= 1.0 First version. [L0ne_W0lf]
 //= 1.1 Made quest accessable to "Failed" gaebolg quest. [L0ne_W0lf]
 //= 1.1a Touch up to other Gaebolg fail-points. [L0ne_W0lf]
@@ -55,80 +29,82 @@
 //= 1.9 Fixed mapwarp warping to disabled map. [L0ne_W0lf]
 //= 2.0 Removed duplicate dialog. [L0ne_W0lf]
 //= 2.1 Fixed a race condition blocking progress. [brianluau]
-//= 2.2 Added quest log entries for:
-//=     - Muff's Loan
-//=     - Broken Diamond
-//=     - Z-Gang Quest
-//= 2.2a Fixed a few job constant typos. [Euphy]
-//============================================================ 
-
-// Nameless Island and Cursed Monestary Access Quest
+// --
+//= 1.6 Traduzido script de acordo com eAthena [Dynasty/ Lord]
+//= 1.7 Convertido do Venus para o Cronus. [Protimus]
+//= 1.8 Corrigido séris de erros e reestruturado. [Protimus]
+//= 1.9 Correção das gramaticas. [PaTriX e Protimus]
+//= 1.9a Revisado script e atualizado. [SoulBlaker]
+//= 1.9b Adicionado controle de peso do personagem. [LEOzinn]
+//= 2.0 Atualizado de acordo com o eAthena [Keoy]
 //============================================================
+
 airplane_01,95,61,3	script	QuestTrigger#Aru	-1,3,3,{
 	end;
 
-OnTouch:
-	if ((prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) && (aru_monas < 1)) {
-		hideoffnpc "Agent#Aru";
+OnTouch:	
+	if ((prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) && (aru_monas < 1))
+	{
+		hideoffnpc "Agente#Aru";
 		mes "[????]";
-		mes "Are you "+strcharinfo(0)+"?";
-		mes "I've been waiting for you.";
-		mes "^6B8E23Priest Bamph^000000 is expecting";
-		mes "your arrival at ^6B8E23Prontera";
-		mes "Church^000000. Please visit him";
-		mes "as soon as you can.";
+		mes "Você é "+strcharinfo(0)+"?";
+		mes "Eu tenho-o esperado.";
+		mes "^6B8E23Padre Bamph^000000 está esperando";
+		mes "sua chegada na ^6B8E23Igreja de";
+		mes "Prontera^000000. Por favor visite-o";
+		mes "assim que você puder.";
 		close2;
 		set aru_monas,1;
-		hideonnpc "Agent#Aru";
+		hideonnpc "Agente#Aru";
 	}
 	end;
 }
 
-airplane_01,95,61,3	script	Agent#Aru	899,5,5,{
-	end;
-
+airplane_01,95,61,3	script	Agente#Aru	899,5,5,{
+		end;
+	
 OnInit:
-	hideonnpc "Agent#Aru";
+	hideonnpc "Agente#Aru";
 	end;
 }
 
-cmd_in02,174,89,7	script	Ordinary Man#pc1	97,{
+cmd_in02,174,89,7	script	Homem Ordinário#pc1	97,{
 	if (aru_monas < 2) {
 		mes "[Larjes]";
-		mes "Damn it, I lost again!";
-		mes "This game is rigged!";
-		mes "No matter what I try,";
-		mes "I can never seem to win!";
-		mes "But Comodo Hold 'Em";
-		mes "is so... It's so addicting!";
+		mes "Amaldiçoado seja, eu perdi novamente!";
+		mes "Este jogo vicia!";
+		mes "Não importa o que eu tente,";
+		mes "Eu nunca consigo ganhar!";
+		mes "Mas Comodo tem influenciado";
+		mes "isto... É tão viciante!";
 		close;
 	}
 	else if (aru_monas == 2) {
 		mes "[Larjes]";
-		mes "Argh, I lost at this game";
-		mes "so many times that I've";
-		mes "completely lost track!";
-		mes "I've got to win sometime...";
+		mes "Argh, eu perdi tantas";
+		mes "vezes nesse jogo que";
+		mes "eu já perdi até o caminho!";
+		mes "Algum dia eu conseguirei ganhar...";
 		next;
-		select("Excuse me.");
+		select("Com licença.");
 		mes "[Larjes]";
 		mes "Oh! Uh... Hmm...";
-		mes "How may I help you?";
+		mes "Como eu posso ajudá-lo?";
 		next;
-		select ("^6B8E23Priest Bamph^000000 sent me.");
+		select("^6B8E23Padre Bamph^000000 enviou-me.");
 		mes "[Larjes]";
-		mes "Oh, I see. I apologize";
-		mes "if my screaming and yelling";
-		mes "made you a bit uncomfortable.";
-		mes "I'm just here to kill some";
-		mes "time... I now see firsthand";
-		mes "that gambling is truly evil!";
+		mes "Oh, eu vejo. Desculpe-me";
+		mes "se meus gritos e berros";
+		mes "estavam lhe incomodando.";
+		mes "Eu estou apenas passando";
+		mes "tempo... Eu vejo, agora, como";
+		mes "jogos são, verdadeiramente, maus!";
 		next;
 		mes "[Larjes]";
-		mes "Er, would you come";
-		mes "over this way? I don't";
-		mes "want anyone else to";
-		mes "overhear us talking.";
+		mes "Er, você vê desta";
+		mes "maneira? Eu não quero";
+		mes "qualquer um bisbilhotando";
+		mes "nossa conversa.";
 		close2;
 		set aru_monas,3;
 		warp "cmd_in02",110,53;
@@ -136,148 +112,147 @@ cmd_in02,174,89,7	script	Ordinary Man#pc1	97,{
 	}
 	else {
 		mes "[Larjes]";
-		mes "What?! I lost again?";
-		mes "How does... How does";
-		mes "this game even work?!";
+		mes "O quê?! Eu perdi de novo?";
+		mes "Como faço... Como faço";
+		mes "para ganhar este jogo?!";
 		close;
 	}
 }
 
-cmd_in02,111,52,3	script	Ordinary Man#pc2	97,{
+cmd_in02,111,52,3	script	Homem Ordinário#pc2	97,{
 	if (aru_monas < 3) {
 		mes "[Larjes]";
-		mes "^666666*Sigh...*^000000";
-		mes "This isn't good at all.";
-		mes "I don't know what to do...";
+		mes "^666666*Suspiro...*^000000";
+		mes "Isto não é muito bom.";
+		mes "Eu não sei o que fazer...";
 		close;
 	}
 	else if (aru_monas == 3) {
 		mes "[Larjes]";
-		mes "Good, no one should be";
-		mes "able to hear us from here.";
-		mes "After I sent a message to";
-		mes "the place, I found some";
-		mes "new information that should";
-		mes "really help my investigation.";
+		mes "Bom, acho que aqui ninguém";
+		mes "poderá nos ouvir.";
+		mes "Depois que eu averiguei";
+		mes "o local, eu encontrei";
+		mes "algumas novas informações que";
+		mes "devem ajudar em minha investigação.";
 		next;
 		mes "[Larjes]";
-		mes "I learned that two details";
-		mes "about the night when that";
-		mes "high ranking man vanished.";
-		mes "Firstly, he left the guards for";
-		mes "a bit to meet a woman. It's";
-		mes "always a woman, isn't it?";
+		mes "Suponho dois detalhes";
+		mes "sobre a noite em que esse homem";
+		mes "alto desapareceu.";
+		mes "Primeiro, ele deixou alguns guardas";
+		mes "para encontrarem uma mulher. É";
+		mes "sempre uma mulher, não é?";
 		next;
 		mes "[Larjes]";
-		mes "Secondly, after he left to";
-		mes "meet that woman, some other";
-		mes "people came in, and then they";
-		mes "carried some really large";
-		mes "baggage with them when";
-		mes "they left to the west.";
+		mes "Segundo, depois que ele saiu para";
+		mes "encontrar essa mulher, algumas";
+		mes "outras pessoas entraram,";
+		mes "carregando algumas bagagens";
+		mes "grandes com eles, então";
+		mes "partiram para o oeste.";
 		next;
 		mes "[Larjes]";
-		mes "Those bags were so big,";
-		mes "it's suspicious. It seems";
-		mes "like some organization has";
-		mes "kidnapped him, and wants to";
-		mes "bring him west for some reason.";
+		mes "Aquelas malas eram grandes,";
+		mes "isto é muito suspeito. Parece";
+		mes "que alguma organização o seqüestrou";
+		mes "e o levaram para o oeste por";
+		mes "algum motivo.";
 		next;
-		select("Why to the west?");
+		select("Por que o Oeste?");
 		mes "[Larjes]";
-		mes "This is just a guess, but";
-		mes "I think whoever kidnapped";
-		mes "him are from ^2F4F2FArunafeltz^000000.";
-		mes "I'm prohibited from entering";
-		mes "Arunafeltz so I wasn't able";
-		mes "to investigate any further.";
+		mes "Esta é apenas uma suposição, mas";
+		mes "acho que o seqüestro veio";
+		mes "de ^2F4F2FArunafeltz^000000.";
+		mes "Eu estou proibido de entrar em";
+		mes "Arunafeltz, sendo assim eu";
+		mes "não posso investigar mais sobre isso.";
 		set aru_monas,4;
 		close;
 	}
 	else {
 		mes "[Larjes]";
-		mes "I gambled away";
-		mes "this much money?";
-		mes "How am I gonna pay";
-		mes "off all of this debt?!";
+		mes "Eu estou jogando";
+		mes "muito dinheiro fora?";
+		mes "Como eu irei pagar";
+		mes "todas essas dívidas?!";
 		close;
 	}
 }
 
-ra_in01,308,59,1	script	Waiter#Aru	930,{
+ra_in01,308,59,1	script	Garçom#Aru	930,{
 	if (aru_monas < 7) {
-		mes "[Waiter]";
-		mes "Welcome to";
-		mes "Rachel's Palate, one";
-		mes "of Rachel's finest and";
-		mes "most exquisite restraunts.";
+		mes "[Garçom]";
+		mes "Bem-vindo ao";
+		mes "Rachel Paladar, um";
+		mes "dos mais finos e requisitados";
+		mes "restaurantes de Rachel.";
 		if (aru_monas < 6) {
 			close;
 		}
 		if (aru_monas == 6) {
+			mes "[Garçom]";
+			mes "O que você gostaria de";
+			mes "pedir? Ou... Se eu não";
+			mes "estou enganado, você";
+			mes "veio aqui para algo mais?";
 			next;
-			mes "[Waiter]";
-			mes "What would you like";
-			mes "to order? Or... If I'm";
-			mes "not mistaken, you're";
-			mes "here for something else?";
-			next;
-			if (select("I'd like to order.:Yes, I've come for another reason.") == 1) {
-				mes "[Waiter]";
-				mes "Sure, no problem.";
-				mes "Did you come alone?";
+			if (select("Eu gostaria de pedir.:Sim, eu vim aqui por outro motivo.") == 1) {
+				mes "[Garçom]";
+				mes "Claro, sem problema.";
+				mes "Você veio sozinho?";
 				next;
-				select("Yes.");
-				mes "[Waiter]";
-				mes "Right this way.";
+				select("Sim.");
+				mes "[Garçom]";
+				mes "Endireite sua postura.";
 				close2;
 				set aru_monas,7;
 				warp "ra_in01",303,43;
 				end;
 			}
-			mes "[Waiter]";
-			mes "Hm, okay. Well, whatever";
-			mes "it is, I hope you enjoy your";
-			mes "stay at Rachel's Palate.";
+			mes "[Garçom]";
+			mes "Hm, ok. Bem, seja o que for,";
+			mes "eu espero que você aprecie sua";
+			mes "estadia no Rachel Paladar.";
 			close;
 		}
 	}
-	mes "[Waiter]";
-	mes "The food in this";
-	mes "restaurant is the";
-	mes "best in Rachel--no,";
-	mes "it is the best in all";
-	mes "of Arunafeltz!";
+	mes "[Garçom]";
+	mes "A comida deste";
+	mes "restaurante é a melhor";
+	mes "de Rachel--não,";
+	mes "é a melhor de toda";
+	mes "a Arunafeltz!";
 	close;
 }
 
-ra_in01,301,50,3	script	Normal-Looking Man	927,{
-	mes "[Normal-Looking Man]";
+ra_in01,301,50,3	script	Homem Encarando	927,{
+	mes "[Homem]";
 	mes "Mmm-Mmm!";
-	mes "I love the food in";
-	mes "this restaurant!";
-	mes "They don't serve";
-	mes "anything this this";
-	mes "good anywhere else!";
+	mes "Eu amo a comida";
+	mes "deste restaurante!";
+	mes "Eles não servem";
+	mes "coisas boas assim";
+	mes "em outros lugares!";
 	close;
 }
 
-ra_in01,301,52,3	script	Common-Looking Man	927,{
-	mes "[Common-Looking Man]";
-	mes "The food here isn't bad,";
-	mes "but my favorite restaurants";
-	mes "are over in Hugel. The food";
-	mes "over there is definitely best.";
+ra_in01,301,52,3	script	Homem Comum	927,{
+	mes "[Homem]";
+	mes "A comida aqui não é ruim,";
+	mes "mas meu restaurante favorito";
+	mes "fica em Hugel. A comida";
+	mes "de lá é, definitivamente, a melhor.";
 	close;
 }
 
-ra_in01,297,50,7	script	Suspicious-Looking Man	926,{
-	mes "[Suspicious-Looking Man]";
-	mes "Each dish has its own";
-	mes "unique taste that you must";
-	mes "learn to relish. Of course,";
-	mes "unhealthy junk food is the";
-	mes "exception to this rule.";
+ra_in01,297,50,7	script	Homem Procurando	926,{
+	mes "[Homem]";
+	mes "Cada prato tem seu próprio";
+	mes "gosto original que você deve";
+	mes "aprender a apreciá-lo. Naturalmente,";
+	mes "os lixos de comida insalubres são";
+	mes "uma excessão a esta regra.";
 	close;
 }
 
@@ -285,149 +260,151 @@ ra_in01,301,43,0	script	#Aru_conv	-1,3,3,{
 	end;
 
 OnTouch:
-	if (checkweight(907,200) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+	if (checkweight(907,200) == 0)
+	{
+		mes "^3355FFEspere um segundo!";
+		mes "Neste momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor, volte depois";
+		mes "de usar os Serviços da Kafra";
+		mes "para guardar alguns itens.^000000";
 		close;
 	}
 	if (aru_monas == 7) {
-		mes "[Waiter]";
-		mes "What would you like to order?";
-		mes "Our special today is Fried";
-		mes "Veins Stripe Stickleback";
-		mes "since we received some";
-		mes "high quality fish from Veins";
-		mes "just this morning.";
+		mes "[Garçom]";
+		mes "O quê você quereria pedir?";
+		mes "Nosso prato do dia é";
+		mes "Espinhelas de Peixe Fritas de Veins,";
+		mes "nós recebemos alguns peixes,";
+		mes "de alta qualidade, vindos de Veins,";
+		mes "nesta manhã.";
 		next;
-		select("...Yes, that sounds good.");
-		mes "[Waiter]";
-		mes "Excellent choice.";
-		mes "Just to let you know,";
-		mes "that dish is ^9932CD3,000 zeny^000000.";
-		mes "I'll be right back.";
+		select("...Sim, parece ser bom.");
+		mes "[Garçom]";
+		mes "Excelente escolha.";
+		mes "Este prato custará,";
+		mes "^9932CD3,000 zenys^000000.";
+		mes "Eu o trarei assim que voltar.";
 		next;
-		mes "^3355FFThe waiter took your";
-		mes "order, and left to go to";
-		mes "the kitchen. You decide to";
-		mes "eavesdrop on the people";
-		mes "talking at the next table";
-		mes "while you're waiting.^000000";
+		mes "^3355FFO garçom anota";
+		mes "seu pedido e vai em direção";
+		mes "à cozinha. Você decide";
+		mes "catar a conversa das pessoas";
+		mes "da mesa próxima a sua enquanto";
+		mes "você está esperando.^000000";
 		next;
-		mes "[Husky Male Voice]";
+		mes "[Voz Masculina Roca]";
 		mes "...............................";
-		mes "I really saw it, the greatest";
-		mes "fish in the world! Last time";
-		mes "I went to Veins, I glimpsed";
-		mes "the Veins Golden Stripe";
-		mes "Stickleback! It's true!";
+		mes "Eu realmente vi o maior peixe";
+		mes "do mundo! A última vez";
+		mes "que eu fui em Veins, eu vi";
+		mes "uma espinhela com listras";
+		mes "douradas! É verdade!";
 		next;
-		mes "[Gloomy Male Voice]";
-		mes "So were you able to taste";
-		mes "that Veins Golden Stripe";
-		mes "Stickleback juice?";
+		mes "[Voz Masculina Sombria]";
+		mes "Como você poderia provar";
+		mes "a suculenta espinhela listrada";
+		mes "de veins?";
 		next;
-		mes "[Average Male Voice]";
-		mes "Aw man, if I did, that";
-		mes "would've been a once";
-		mes "in a lifetime experience!";
-		mes "Veins Golden Stripe";
-		mes "Sticklebacks are only";
-		mes "caught once a decade!";
+		mes "[Voz Masculina Média]";
+		mes "Espera cara, se você viu,";
+		mes "isso seria uma expêriencia";
+		mes "única da sua vida!";
+		mes "Espinhelas douradas com";
+		mes "listras aparecem somente";
+		mes "um vez a cada década!";
 		next;
-		mes "[Husky Male Voice]";
-		mes "Oh yeah, that juice is";
-		mes "incredible. My voice even";
-		mes "changed after I drank it!";
-		mes "It was just... So profound.";
+		mes "[Voz Masculina Rústica]";
+		mes "Oh sim, esse suco é realmente";
+		mes "incrível. Minha voz mudou";
+		mes "depois que eu a bebi!";
+		mes "Isto foi... tão bom.";
 		next;
-		mes "[Average Male Voice]";
-		mes "Oh! So that's why";
-		mes "you sound different.";
+		mes "[Voz Masculina Média]";
+		mes "Oh! Então é por isso";
+		mes "que você falou diferente.";
 		next;
-		mes "[Gloomy Male Voice]";
-		mes "How did you get to drink";
-		mes "such rare juice? I mean,";
-		mes "there must be tons of people";
-		mes "in line with reservations,";
-		mes "just waiting to drink it!";
+		mes "[Voz Masculina Média]";
+		mes "Como você conseguiu beber";
+		mes "este suco raro? Quero dizer,";
+		mes "deve haver milhares de pessoas";
+		mes "esperando para";
+		mes "beber este suco!";
 		next;
-		mes "[Husky Male Voice]";
-		mes "I got damn lucky: I went";
-		mes "to this tavern in Veins, and";
-		mes "overheard that ^DB7093a group of";
-		mes "smugglers were arrested";
-		mes "by the guards at the";
-		mes "southeast beach^000000.";
+		mes "[Voz Masculina Rústica]";
+		mes "Eu dei sorte: Fui para";
+		mes "uma taverna em Veins, e";
+		mes "ouvi, por acaso, que ^DB7093um grupo";
+		mes "de traficantes foram presos,";
+		mes "pelos guardas, ao";
+		mes "sudeste da praia^000000.";
 		next;
-		mes "[Husky Male Voice]";
-		mes "Then I started thinking:";
-		mes "maybe the smugglers were";
-		mes "fishing. So I checked the";
-		mes "beach to see if I could";
-		mes "find their fishing boat.";
+		mes "[Voz Masculina Rústica]";
+		mes "Então eu comecei a pensar:";
+		mes "Talvez os contrabandistas";
+		mes "estavam pescando. Assim";
+		mes "fui a praia verificar e encontrei";
+		mes "barco de pesca deles.";
 		next;
-		mes "[Average Male Voice]";
-		mes "Man, you must be obsessed";
-		mes "with food. I mean, how else";
-		mes "would you figure out that the";
-		mes "smugglers were illegally";
-		mes "fishing so quickly?";
+		mes "[Voz Masculina Média]";
+		mes "Cara, você estava obcecado";
+		mes "por essa comida. Quer dizer,";
+		mes "que você descobriu tão rápido";
+		mes "que os contrabandistas foram";
+		mes "pegos por que estavam pescando?";
 		next;
-		mes "[Husky Male Voice]";
-		mes "Ha, I guess you're right!";
-		mes "Anyway, there was only one";
-		mes "fishing boat, and the guards";
-		mes "were inspecting it. I was about";
-		mes "to turn back in disappointment";
-		mes "but then... I saw a fisherman!";
+		mes "[Voz Masculina Rústica]";
+		mes "Ah, acho que você está certo!";
+		mes "De qualquer forma, havia apenas";
+		mes "um barco de pesca, e os guardas";
+		mes "o confiscaram. Eu estava";
+		mes "desapontado, quase voltando atrás,";
+		mes "mas então... Eu vi um pescador!";
 		next;
-		mes "[Husky Male Voice]";
-		mes "Out of the corner of my eye,";
-		mes "I saw him bringing in his";
-		mes "catch for the day, Veins";
-		mes "Golden Strip Stickleback!";
-		mes "I bought all of his fish";
-		mes "right then and there.";
+		mes "[Voz Masculina Rústica]";
+		mes "Eu vi de canto de olho,";
+		mes "ele levando a captura do dia,";
+		mes "um peixe com espinhela com";
+		mes "listras douradas!";
+		mes "Eu comprei todos os";
+		mes "seus peixes e sai de lá.";
 		next;
-		mes "[Gloomy Male Voice";
-		mes "Boy, were you lucky.";
-		mes "And you never hestitate";
-		mes "to splurge when it comes";
-		mes "to food, do you? Heh heh~";
+		mes "[Voz Masculina Sombria]";
+		mes "Garoto, você tem sorte.";
+		mes "E você nunca exitou,";
+		mes "qual foi a sua reação quando";
+		mes "você encontrou essa comida? Heh heh~";
 		next;
-		mes "[Husky Male Voice]";
-		mes "Oh, that wasn't even a";
-		mes "splurge. I'm sure you guys";
-		mes "would do the same thing";
-		mes "if you were in my situation.";
-		mes "I'm just grateful that I was";
-		mes "able to taste such rare fish.";
+		mes "[Voz Masculina Rústica]";
+		mes "Oh, aquilo foi como uma";
+		mes "surpresa. Eu estou certo";
+		mes "que vocês, no meu lugar,";
+		mes "fariam a mesma coisa.";
+		mes "Eu estou grato de puder";
+		mes "saborear esse peixe raro.";
 		next;
 		mes "^3355FF...............................";
-		mes "Then, the men started";
-		mes "to compliment each other.^000000";
+		mes "Em seguida, os homens começam";
+		mes "a se comprimentarem.^000000";
 		next;
-		mes "[Waiter]";
-		mes "Ah, here's your Fried";
-		mes "Veins Stripe Stickleback.";
-		mes "Please enjoy your meal.";
-		next;
-		mes "["+strcharinfo(0)+"]";
-		mes "^ff0000Veins^000000, huh? I might want";
-		mes "to check that place one";
-		mes "of these days to see if";
-		mes "I can find more of this fish.";
+		mes "[Garçom]";
+		mes "Ah, aqui estão suas";
+		mes "Espinhelas de Peixe Fritas de Veins.";
+		mes "Por favor, aprecie sua refeição.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Whoa, this fish tastes...";
-		mes "I've never tasted anything";
-		mes "like it! It's almost like";
-		mes "a dessert. God, it's good!";
-		if (Zeny >= 3000) {
+		mes "^ff0000Veins^000000, huh? Eu posso";
+		mes "verificar este lugar qualquer dia";
+		mes "desses, talvez eu possa ver";
+		mes "e saber mais sobre esse tal peixe.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Nossa, que peixe bom...";
+		mes "Eu nunca tinha comido algo";
+		mes "tão bom como isto! É quase";
+		mes "uma sobremesa. Deus, é bom!";
+		if (Zeny >= 3000)
+		{
 			set Zeny,Zeny-3000;
 			getitem 12052,4; //Vit_Dish02
 		}
@@ -437,933 +414,931 @@ OnTouch:
 	end;
 }
 
-ve_in,78,314,5	script	Magistrate#Aru	945,{
+ve_in,78,314,5	script	Magistrado#Aru	945,{
 	if (aru_monas < 8) {
 		mes "[Al Hamad]";
-		mes "Argh! Why must this";
-		mes "happen to me, especially";
-		mes "just when I'm about to";
-		mes "retire! A-ah! My ulcer...";
-		mes "Just all of a sudden, it--!";
+		mes "Argh! Por que isso está";
+		mes "acontecendo comigo, justamente";
+		mes "quando estou para me aposentar.";
+		mes "A-ah! Minha úlcera...";
+		mes "Isso é tão imprevisto--!";
 		close;
 	}
 	else if (aru_monas == 8) {
 		mes "[Al Hamad]";
-		mes "Man, this is probably";
-		mes "the biggest hassle of my";
-		mes "career. Why does this have";
-		mes "to happen now? Retirement";
-		mes "is so close, yet so far.";
+		mes "Cara, este é o maior aborrecimento";
+		mes "de toda a minha grande carreira.";
+		mes "Porque isso está acontecendo";
+		mes "comigo? Logo agora que minha";
+		mes "aposentadoria está tão próxima.";
 		next;
-		select("Are you in trouble?");
+		select("Qual o seu problema?");
 		mes "[Al Hamad]";
-		mes "Huh? You don't look like";
-		mes "you're from around here.";
-		mes "Listen, I appreciate your";
-		mes "concern, but I'm really not";
-		mes "comfortable talking to complete";
-		mes "strangers about my problems.";
+		mes "Hum? Você me parece";
+		mes "que não mora aqui.";
+		mes "Ouça, eu aprecio sua preocupação";
+		mes "comigo, mas eu realmente não";
+		mes "me sinto confortável conversando";
+		mes "com estranhos sobre meus problemas.";
 		set aru_monas,9;
 		close;
 	}
 	else if (aru_monas == 9) {
 		mes "[Al Hamad]";
-		mes "Unless you've got special";
-		mes "business here, you're not";
-		mes "allowed to enter this place.";
-		mes "We're here to keep the public";
-		mes "peace, and letting anyone";
-		mes "in here will cause trouble.";
+		mes "A menos que você tenha um negócio";
+		mes "especial aqui, você não será";
+		mes "permitido de entrar neste lugar.";
+		mes "Nós estamos aqui para manter a paz";
+		mes "pública, se eu deixar alguém entrar";
+		mes "aqui, irei causar problemas.";
 		close;
-	}
+	}	
 	else if (aru_monas == 10) {
 		mes "[Al Hamad]";
-		mes "I thought I told you";
-		mes "that you weren't allowed";
-		mes "to come in here. Why do";
-		mes "you keep coming back?";
+		mes "Eu acho que já falei";
+		mes "com você, você não está";
+		mes "permitido para entrar aqui. Porque você";
+		mes "insiste em voltar?";
 		next;
-		if (select("I'm sorry.:I want to know about the smugglers.") == 1) {
+		if (select("Me Desculpe.:Eu quero saber sobre os contrabandistas.") == 1) {
 			mes "[Al Hamad]";
-			mes "It's fine. Just leave,";
-			mes "and don't come back";
-			mes "unless you've got a";
-			mes "really good reason.";
+			mes "Que bom. Saia";
+			mes "e não volte mais,";
+			mes "a menos que você tenha,";
+			mes "realmente, uma boa razão.";
 			close;
 		}
 		mes "[Al Hamad]";
-		mes "Hey, how'd you find out";
-		mes "about the smugglers? Did";
-		mes "word spread around town?";
-		mes "Well, I'm sorry, but I can't";
-		mes "disclose any details about";
-		mes "an ongoing investigation.";
+		mes "Ei, como você descobriu";
+		mes "sobre os contrabandistas? Esta";
+		mes "palavra se propagou ao redor da cidade?";
+		mes "Bem, me desculpe, mas eu não posso";
+		mes "revelar nenhum detalhe sobre";
+		mes "uma investigação em andamento.";
 		next;
 		mes "[Al Hamad]";
-		mes "^9370DBIf you insist on learning";
-		mes "more, then you'd need to";
-		mes "bring me a written order";
-		mes "from a higher ranking officer.^000000";
-		mes "Oh, and you're prohibited";
-		mes "asking anyone else, so behave.";
+		mes "^9370DBSe você insistir em saber";
+		mes "mais, então você precisará me";
+		mes "trazer uma ordem escrita";
+		mes "de algum superior.^000000";
+		mes "Ah, e você está proibido de me perguntar";
+		mes "mais algumas coisa, então comporte-se.";
 		set aru_monas,11;
 		close;
 	}
 	else if (aru_monas == 11) {
 		mes "[Al Hamad]";
-		mes "I don't blame you for";
-		mes "being curious, but getting";
-		mes "involved when you're not";
-		mes "supposed to will just cause";
-		mes "trouble. Be careful, got it?";
+		mes "Eu não te culpo por ser";
+		mes "curioso, mas se envolver";
+		mes "em coisas que você não está,";
+		mes "irá causar, somente, problemas.";
+		mes "Tome cuidado, OK?";
 		close;
 	}
 	else if (aru_monas == 13) {
 		mes "[Al Hamad]";
-		mes "Huh, that's weird. You're not";
-		mes "even a citizen of Arunafeltz,";
-		mes "but somehow you know such";
-		mes "a high ranking priest. Alright,";
-		mes "I guess I can tell you more";
-		mes "about our investigation.";
+		mes "Wow, isto é estranho. Você nem";
+		mes "mesmo é um cidadão de Arunafeltz,";
+		mes "mas por alguma razão você sabe tanto";
+		mes "quanto o sumo sacerdote. Bem,";
+		mes "eu acho que posso dizer-lhe algo";
+		mes "sobre nossa investigação.";
 		next;
 		mes "[Al Hamad]";
-		mes "I should let you know that";
-		mes "what I tell you might not be";
-		mes "worth all that trouble. This";
-		mes "information probably isn't";
-		mes "as valuable as you think.";
+		mes "Eu devo informá-lo que o que";
+		mes "tenho a dizer não é";
+		mes "muito importante. Esta";
+		mes "informação, provavelmente, não";
+		mes "é tão valiosa o quanto você pensa.";
 		next;
 		mes "[Al Hamad]";
-		mes "The smugglers we caught are";
-		mes "the worst kind of scoundrels:";
-		mes "they deal in human trafficking, but we caught them this time when they";
-		mes "were crossing the ocean. Their background info is pretty typical.";
+		mes "Os contrabandistas que nós pegamos são";
+		mes "os piores tipos de salafrários:";
+		mes "Eles negociam humanos, mas nós os pegamos quando";
+		mes "estavam cruzando o oceano. A técnica deles é bem típica.";
 		next;
 		mes "[Al Hamad]";
-		mes "Let's see... They kidnapped";
-		mes "some man from Comodo.";
-		mes "That's a place in the southwest";
-		mes "part of Rune-Midgarts. Anyway,";
-		mes "the smugglers thought he'd be";
-		mes "wealthy, so they set a trap.";
+		mes "Deixe-me ver... Eles seqüestraram";
+		mes "um homem de Comodo,";
+		mes "que é situado a sudoeste e";
+		mes "que separa Rune Midgard. De qualquer maneira,";
+		mes "os contrabandistas pensaram que ele era";
+		mes "rico, então eles fizeram uma armadilha.";
 		next;
 		mes "[Al Hamad]";
-		mes "They lured him away from his";
-		mes "guards by sending a woman,";
-		mes "but when they captured him,";
-		mes "they found that he was not only";
-		mes "rich, he was also a high ranked";
-		mes "official of Rune-Midgarts.";
+		mes "Eles o atraíram para longe dos";
+		mes "guardas que despachavam uma mulher,";
+		mes "mas quando eles o capturaram,";
+		mes "eles acharam que ele, não só era";
+		mes "rico, mas também um oficial";
+		mes "de Rune Midgard.";
 		next;
 		mes "[Al Hamad]";
-		mes "That's when they got sloppy:";
-		mes "they were so scared that the";
-		mes "kingdom's troops might pursue";
-		mes "them that they crossed the";
-		mes "ocean that we patrol. That's";
-		mes "where we caught them.";
+		mes "Logo eles se amedrontaram:";
+		mes "eles estavam tão assustados que as";
+		mes "tropas do reino poderiam encontrá-los";
+		mes "quando eles estariam cruzando";
+		mes "o oceano que nós patrulhamos. Aí é";
+		mes "onde nós os pegamos.";
 		next;
 		mes "[Al Hamad]";
-		mes "What I don't understand is";
-		mes "why they were so scared.";
-		mes "I mean, they mainly deal";
-		mes "in human trafficking so...";
-		mes "Kidnapping an official isn't";
-		mes "that big a difference, is it?";
+		mes "O que eu não entendo é";
+		mes "o por quê de eles estarem tão assustados.";
+		mes "Eu quero dizer, eles";
+		mes "contrabandeiam humanos assim...";
+		mes "Seqüestrar um funcionário não faz";
+	        mes "uma grande diferença, não é?";
 		next;
 		mes "[Al Hamad]";
-		mes "We contacted the temple,";
-		mes "and reported the smugglers,";
-		mes "our investigation, and the";
-		mes "high ranking man from the";
-		mes "Rune-Midgarts kingdom.";
+		mes "Entramos em contato com o templo";
+		mes "e nos informamos sobre os contrabandistas,";
+		mes "nossa investigação e o";
+		mes "oficial do reino de";
+		mes "Rune Midgard.";
 		next;
 		mes "[Al Hamad]";
-		mes "Then, some people from";
-		mes "the temple interrupted our";
-		mes "investigation, took away the";
-		mes "smugglers before we finished";
-		mes "our interrogations, and we";
-		mes "haven't seen them since.";
+		mes "Então, algumas pessoas do";
+		mes "templo interromperam nossas";
+		mes "investigações, levaram os";
+		mes "contrabandistas antes de terminarmos";
+		mes "nossos interrogatórios e nós";
+		mes "não mais os vemos desde então.";
 		next;
 		mes "[Al Hamad]";
-		mes "I asked an acquaintance that";
-		mes "works at the temple, but he";
-		mes "doesn't know what's going";
-		mes "on either. The ^32CD32Rune-Midgarts";
-		mes "official^000000 has gone missing too.";
-		mes "It's all very frustrating.";
+		mes "Eu perguntei a um conhecido que";
+		mes "trabalha no templo, mas ele";
+		mes "tampouco sabe o que está";
+		mes "acontecendo. O ^32CD32oficial de";
+		mes "Rune Midgard^000000 também não sabe.";
+		mes "É tudo muito frustrante.";
 		next;
 		mes "[Al Hamad]";
-		mes "That happens to be all";
-		mes "I know. Does this mean";
-		mes "we have to capture the";
-		mes "smugglers again? I don't";
-		mes "know what's going on...";
+		mes "Isso é tudo que eu sei";
+		mes "que aconteceu. Isso não";
+		mes "significa que devemos captarar";
+		mes "os contrabandistas novamente! Eu não";
+		mes "sei qual vai ser...";
 		next;
 		mes "[Al Hamad]";
-		mes "Even if I could make headway";
-		mes "into the investigation, I've";
-		mes "been ordered to stop by upper";
-		mes "management. It looks like";
-		mes "this case is more trouble";
-		mes "than it's worth to them?";
+		mes "Mesmo se eu pudesse investigar";
+		mes "sobre isso, os meus superiores";
+		mes "ordenariam que eu parasse.";
+		mes "Este caso parece ser tão";
+		mes "difícil assim para que eles";
+		mes "não possam resolver?";
 		next;
 		mes "[Al Hamad]";
-		mes "I don't want to be involved";
-		mes "in this anymore. I should be";
-		mes "retired already! If you want to";
-		mes "learn more, your only choice";
-		mes "would be to find out on your";
-		mes "own. Fat chance, right?";
+		mes "Eu não quero mais me envolver";
+		mes "nisso. Eu já deveria ter me";
+		mes "aposentado! Se você quiser";
+		mes "saber mais sobre isso, você";
+		mes "vai ter que descobrir por";
+		mes "conta própria. Grande chance, certo?";
 		set aru_monas,14;
 		close;
 	}
 	else if (aru_monas >= 14) {
 		mes "[Al Hamad]";
-		mes "I've suffered enough";
-		mes "already! Why can't this";
-		mes "case just be done?!";
+		mes "Eu já tenho sofrido o";
+		mes "bastante! Porque isso";
+		mes "não pode ser feito?!";
 		close;
 	}
 }
 
-ve_in,81,296,3	script	Soldier#Aru	946,{
+ve_in,81,296,3	script	Soldado#Aru	946,{
 	if (aru_monas < 9) {
 		mes "[Himus]";
-		mes "Huh. The magistrate";
-		mes "still seems pretty upset";
-		mes "over the case that happened";
-		mes "at least a few months ago...";
+		mes "Huh. O magistrado";
+		mes "ainda parece um bonito contraditor";
+		mes "em cima do caso que aconteceu,";
+		mes "pelo menos alguns meses atrás...";
 		close;
 	}
 	else if (aru_monas == 9) {
 		mes "[Himus]";
-		mes "Hm? Oh, the magistrate";
-		mes "gave you the brush-off?";
-		mes "Well, he hasn't really been";
-		mes "himself ever since we arrested";
-		mes "those ^32CD32smugglers coming from";
-		mes "the south^000000 a few months ago.";
+		mes "Hm? Oh, o magistrado";
+		mes "lhe deu a objeção?";
+		mes "Bem, ele realmente não foi";
+		mes "desde quando nós prendemos";
+		mes "esses ^32CD32contrabandistas vindos";
+		mes "do sul^000000 a alguns meses atrás.";
 		next;
 		mes "[Himus]";
-		mes "Once we reported the arrest";
-		mes "to the temple, the pope's";
-		mes "soldiers came and took the";
-		mes "smugglers away. We have no";
-		mes "clue what happened to them";
-		mes "or where they even are now.";
+		mes "Uma vez nós informamos a apreensão";
+		mes "para o templo, os soldados do";
+		mes "papa vieram e levaram os";
+		mes "contrabandistas. Nós não sabemos";
+		mes "o que aconteceu com eles";
+		mes "ou onde eles estão agora.";
 		next;
 		mes "[Himus]";
-		mes "It might not seem like";
-		mes "a big deal to you, but";
-		mes "the magistrate is pretty";
-		mes "meticulous, and he hates";
-		mes "it when people interfere";
-		mes "with his job, you know?";
+		mes "O que poderia não parecer";
+		mes "uma transação grande para você, mas";
+		mes "o magistrado está muito";
+		mes "cauteloso e ele odeia";
+		mes "isso, das pessoas interferirem";
+		mes "no trabalho dele, você sabe?";
 		next;
-		select("Who are the smugglers?");
+		select("Quem são os contrabandistas?");
 		mes "[Himus]";
-		mes "Well, I don't really know.";
-		mes "Maybe the magistrate would";
-		mes "know if he was able to finish";
-		mes "interrogating the smugglers.";
-		mes "I'm not sure if he did since the smugglers were taken away.";
+		mes "Bem, eu realmente não sei.";
+		mes "Talvez o magistrado viesse";
+		mes "a saber se ele pudesse terminar";
+		mes "de interrogar os contrabandistas.";
 		set aru_monas,10;
 		close;
 	}
 	else if (aru_monas == 10) {
 		mes "[Himus]";
-		mes "The magistrate is about";
-		mes "to retire, so I hope he can";
-		mes "finally quit work and just";
-		mes "forget about this whole";
-		mes "business. He does nothing";
-		mes "but stress out about it!";
+		mes "O magistrado está para";
+		mes "se aposentar, assim eu espero que ele";
+		mes "possa deixar, finalmente, o trabalho";
+		mes "e que possa esquecer um pouco";
+		mes "deste negócio. Ele está muito";
+		mes "tenso com isso!";
 		close;
 	}
 	else {
 		mes "[Himus]";
-		mes "Nice day, isn't it?";
-		close;
+		mes "Ótimo dia, não acha?";
+		close;		
 	}
 }
 
 ra_temple,165,57,5	script	Niren#ss	915,{
 	if (checkweight(907,200) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+		mes "^3355FFEspere um segundo!";
+		mes "Neste momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor, volte depois";
+		mes "de usar os Serviços da Kafra";
+		mes "para guardar alguns itens.^000000";
 		close;
 	}
 	cutin "ra_gwoman",2;
-	mes "[High Priestess Niren]";
-	mes "So you wanted to talk to me?";
-	mes "I'm pretty tired right now, but";
-	mes "I can spare a moment or two.";
-	mes "What would you like to ask?";
+	mes "[Suma Sacerdotiza Niren]";
+	mes "Bem, você quer conversar comigo?";
+	mes "Eu estou muito cansada agora, mas";
+	mes "eu posso agüentar um minuto ou dois.";
+	mes "O que você deseja perguntar?";
 	next;
-	switch(select("Ask About Veins Smugglers:As About Zhed")) {
+	switch(select("Perguntar sobre os contrabandistas de Veins:Sobre Zhed")) {
 	case 1:
 		if (aru_monas == 12) {
 			mes "[Niren]";
-			mes "Veins smugglers...";
-			mes "Would you explain";
-			mes "exactly what you mean";
-			mes "by Veins smugglers?";
+			mes "Contrabandistas de Veins...";
+			mes "Me explique, exatamente...";
+			mes "o que você quer dizer com";
+			mes "contrabandistas de Veins?";
 			next;
 			mes "[Niren]";
-			mes "Oh, them. Yes, I know";
-			mes "a little bit about them.";
-			mes "I'm afraid that I can't really";
-			mes "disclose certain information";
-			mes "about them since they're";
-			mes "a classified case...";
+			mes "Oh, eles. Sim, eu sei";
+			mes "um pouco sobre eles.";
+			mes "Eu tenho medo que eu, realmente,";
+			mes "descubra certa informação";
+			mes "sobre eles, desde que eles são";
+			mes "um caso classificado...";
 			next;
 			mes "[Niren]";
-			mes "I'm afraid that I cannot give you information about them easily";
-			mes "as they mean a lot to us.";
+			mes "Eu tenho medo que eu não lhe possa dar, facilmente, informação sobre";
+			mes "como eles querem dizer muito a nós.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Actually, I was curious";
-			mes "about who they kidnapped.";
+			mes "De fato, eu estou curioso";
+			mes "sobre quem eles seqüestraram.";
 			next;
 			mes "[Niren]";
-			mes "Oh, well, I suppose";
-			mes "I can tell you more";
-			mes "about their captive.";
-			mes "But first, I'd like to";
-			mes "ask you for a favor.";
+			mes "Oh, bem, eu suponho";
+			mes "que eu posso lhe falar mais";
+			mes "sobre o prisioneiro deles.";
+			mes "Mas primeiro, eu gostaria";
+			mes "de te pedir um favor.";
 			next;
-			select("Accept:Do Not Refuse");
+			select("Aceitar:Não, recusar");
 			mes "[Niren]";
-			mes "When we realized the";
-			mes "kind of hostage the";
-			mes "smugglers captured, we";
-			mes "didn't know what to do with";
-			mes "him. We've had too many";
-			mes "internal problems to handle...";
-			next;
-			mes "[Niren]";
-			mes "Still, we felt that we";
-			mes "could use him in our plan,";
-			mes "so we held him in a secret";
-			mes "place whose location is only";
-			mes "known to a few people. But";
-			mes "then... We lost all contact.";
+			mes "Quando nós percebemos o";
+			mes "tipo de refém que os";
+			mes "contrabandistas capturaram, nós";
+			mes "não soubemos o que fazer com";
+			mes "ele. Nós tivemos muitos";
+			mes "problemas internos para controlar...";
 			next;
 			mes "[Niren]";
-			mes "We sent investigators, but";
-			mes "we still have no idea what";
-			mes "happened. All they found was";
-			mes "a message left by one survivor:";
-			mes "''They're all demons.'' The";
-			mes "hostage is probably dead.";
+			mes "Mas nós sentíamos que";
+			mes "poderiamos usar ele em nosso plano,";
+			mes "então nós o escondemos em";
+			mes "um local cujo conhecimento";
+			mes "abrange algumas pessoas. Mas";
+			mes "então... Nós perdemos todo o contato.";
 			next;
 			mes "[Niren]";
-			mes "He may have been a high";
-			mes "ranking official, but we";
-			mes "were too preoccupied";
-			mes "with other matters. In fact,";
-			mes "I haven't gotten the chance";
-			mes "to think of what do with him...";
+			mes "Nós enviamos investigadores, mas";
+			mes "nós ainda não temos nenhuma idéia do que";
+			mes "aconteceu. Tudo que eles acharam foi";
+			mes "uma mensagem enviada por um sobrevivente";
+			mes "''Eles são todos uns demônios'' O";
+			mes "refém foi, provavelmente, morto.";
 			next;
 			mes "[Niren]";
-			mes "I want to ask you to";
-			mes "go to that place, and";
-			mes "figure out what happened";
-			mes "there, and if that high ranking";
-			mes "official from Rune-Midgarts is";
-			mes "still alive. I doubt it, but...";
+			mes "Ele pode ter sido um oficial";
+			mes "de alto nível, mas nós";
+			mes "estavamos muito preocupados";
+			mes "com outros assuntos. Na realidade,";
+			mes "eu não parei para pensar o";
+			mes "que fazer com ele...";
 			next;
 			mes "[Niren]";
-			mes "The investigators we employ";
-			mes "in our temple usually pale";
-			mes "in comparison to you foreign";
-			mes "adventurers, so I have faith";
-			mes "that you can do it. Still,";
-			mes "it'll be quite dangerous.";
+			mes "Eu quero lhe pedir,";
+			mes "vá para aquele lugar,";
+			mes "entenda o que aconteceu";
+			mes "lá e veja se aquele oficial";
+			mes "de Rune Midgard está";
+			mes "vivo. Eu duvido disso, mas...";
 			next;
 			mes "[Niren]";
-			mes "If you can do this, I'll";
-			mes "tell you the location of";
-			mes "that place: we usually call";
-			mes "it the monastery. It used to";
-			mes "be an actual monastery, but we";
-			mes "use it to hold captives now.";
+			mes "Os investigadores que contratamos em";
+			mes "nosso templo, normalmente, são fracos";
+			mes "em comparação a você, estrangeiro";
+			mes "aventureiro, assim eu tenho fé";
+			mes "que você pode fazer isto. Ainda,";
+			mes "será bastante perigoso.";
 			next;
 			mes "[Niren]";
-			mes "I'm sorry, but I can't tell";
-			mes "you anything else about that";
-			mes "old place. It's located to the";
-			mes "southwest of Veins across the";
-			mes "sea. You should be able to find";
-			mes "a boat at South Veins Beach.";
+			mes "Se você puder fazer isto, eu vou";
+			mes "lhe dizer a localização daquele";
+			mes "lugar que nós, normalmente, chamamos";
+			mes "de monastério... É um";
+			mes "monastério atual, mas é";
+			mes "utilizado como prisão.";
 			next;
 			mes "[Niren]";
-			mes "However... Never mind.";
-			mes "I'd like to help you more,";
-			mes "but I'd be compromising my";
-			mes "position. I'm sorry. Please";
-			mes "come back and tell me if";
-			mes "you learn anything there.";
+			mes "Eu sinto muito, mas eu não posso contar";
+			mes "a você qualquer outra coisa sobre esse";
+			mes "lugar velho. É localizado ao";
+			mes "sudoeste de Veins pelo";
+			mes "mar. Você vai achar um barco";
+			mes "ao Sul da praia de Veins.";
+			next;
+			mes "[Niren]";
+			mes "Porém... Não importa.";
+			mes "Eu gostaria de ajudar mais,";
+			mes "mas eu estaria comprometendo minha";
+			mes "posição. Eu sinto muito. Por favor,";
+			mes "volte e me diga se você";
+			mes "achar qualquer coisa lá."; 
 			set aru_monas,13;
 			next;
 			mes "[Niren]";
-			mes "I'll send a message to the";
-			mes "magistrate of Veins. If you";
-			mes "talk to him, he'll provide you";
-			mes "with some useful information";
-			mes "for your journey. Good luck.";
+			mes "Eu enviarei uma mensagem para o";
+			mes "magistrado de Veins. Se você";
+			mes "falar com ele, ele o proverá";
+			mes "com um pouco de informação útil";
+			mes "para sua viagem. Boa sorte.";
 			close2;
 		}
 		else if (aru_monas < 18) {
 			mes "[Niren]";
-			mes "Going to the monastery";
-			mes "isn't the problem: coming";
-			mes "back here alive will probably";
-			mes "be the real challenge for you.";
+			mes "Ir para o monastério";
+			mes "não é o problema, mas sim";
+			mes "voltar de lá que é o";
+			mes "maior desafio para você.";
 			next;
 			mes "[Niren]";
-			mes "We can't send any troops";
-			mes "there until we understand";
-			mes "what they'd be confronting";
-			mes "there. That's why we need";
-			mes "you to investigate the area.";
+			mes "Nós não podemos enviar nenhuma tropa";
+			mes "para lá até que nós entendamos";
+			mes "o que eles estariam confrontando";
+			mes "lá. Isso é por que nós precisamos";
+			mes "de você para investigar a área.";
 			close2;
 		}
 		else if (aru_monas < 25) {
 			mes "[Niren]";
-			mes "Still investigating the";
-			mes "monastery? Perhaps if";
-			mes "you found any records";
-			mes "left behind by one of";
-			mes "the residents over there...";
+			mes "Ainda investigando o";
+			mes "monastério? Talvez se você";
+			mes "achar qualquer registro,";
+			mes "irão lhe ajudar antes que os";
+			mes "habitantes de lá hajam...";
 			close2;
 		}
 		else if (aru_monas == 25) {
 			if (countitem(7755) < 1) {
 				mes "[Niren]";
-				mes "Still investigating the";
-				mes "monastery? Perhaps if";
-				mes "you found any records";
-				mes "left behind by one of";
-				mes "the residents over there...";
+				mes "Ainda investigando o";
+				mes "monastério? Talvez se você";
+				mes "achar qualquer registro,";
+				mes "irão lhe ajudar antes que os";
+				mes "habitantes de lá hajam...";
 				close2;
 			}
 			else {
 				mes "[Niren]";
-				mes "You found this journal";
-				mes "in the monastery? Perfect.";
-				mes "Let me read it, and see";
-				mes "what we can learn...";
+				mes "Você achou este diário";
+				mes "no monastério? Perfeito.";
+				mes "Deixe-me ler isto e ver";
+				mes "o que nós podemos saber...";
 				next;
 				mes "[Niren]";
-				mes "Hmm, this sounds really";
-				mes "bad. This is tragic, especially";
-				mes "we kept so many important";
-				mes "people over there. I'll request";
-				mes "to dispatch troops there right";
-				mes "away. Something must be done.";
+				mes "Hmm, isto realmente soa";
+				mes "ruim. Isto é trágico, principalmente,";
+				mes "porque nós mantivemos tantas pessoas";
+				mes "importantes lá. Eu pedirei";
+				mes "para enviar as tropas para";
+				mes "la. Algo deve ser feito.";
 				next;
 				mes "[Niren]";
-				mes "There are too many problems";
-				mes "we have to confront now, but";
-				mes "this monastery issue needs";
-				mes "top priority. We won't be able";
-				mes "to handle it if another threat";
-				mes "comes from that place.";
+				mes "Há muitos problemas que";
+				mes "nós temos que confrontar agora, mas";
+				mes "estas necessidades de assunto de monastério";
+				mes "são prioridades.  Nós não seremos capazes";
+				mes "de controlar isto se outra ameaça";
+				mes "vier daquele lugar.";
 				delitem 7755,1; //Research_Note
 				set aru_monas,26;
-				getexp 50000,0;
+				getexp 500000,0;
 				close2;
 			}
 		}
 		else {
 			mes "[Niren]";
-			mes "I suppose that Arunafeltz";
-			mes "and Rune-Midgarts will be too";
-			mes "busy with their own internal";
-			mes "issues to commit to war.";
-			mes "High Priest Zhed will be";
-			mes "glad to know about this.";
+			mes "Eu suponho que Arunafeltz";
+			mes "e Rune-Midgard também se";
+			mes "prepararão para essa guerra";
+			mes "acontecer. O Sumo-Sacerdote";
+			mes "Zhed ficará contente em";
+			mes "saber sobre isto.";
 			close2;
 		}
 		break;
 	case 2:
 		if (aru_em < 10) {
-			mes "[High Priestess Niren]";
-			mes "I'm sorry...";
-			mes "I really don't want";
-			mes "to think about Zhed";
-			mes "right now. He's just...";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu sinto muito...";
+			mes "Eu, realmente, não quero";
+			mes "pensar em Zhed";
+			mes "agora. Ele somente é...";
 			close2;
 		}
 		else if (aru_em == 10) {
-			mes "[High Priestess Niren]";
-			mes "You wanted to ask me about";
-			mes "Beken--High Priest Zhed?";
-			mes "I can't do anything for him.";
-			mes "He dug his own grave by";
-			mes "allowing you into the";
-			mes "holy ground, didn't he?";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Você quis me perguntar sobre";
+			mes "Beken--Sumo-Sacerdote Zhed?";
+			mes "Eu não posso fazer nada.";
+			mes "Ele cavou a própria sepultura";
+			mes "e foi deixado no chão";
+			mes "santo, não foi?";
 			next;
-			mes "[High Priestess Niren]";
-			mes "I thought I warned you";
-			mes "before to stay out of trouble.";
-			next;
-			mes "["+strcharinfo(0)+"]";
-			mes "I'm not here to discuss";
-			mes "that. But I happened to";
-			mes "hear that you're the only";
-			mes "person that can help him now.";
-			next;
-			mes "[High Priestess Niren]";
-			mes "...............................";
-			mes "...............................";
-			mes "...............................";
-			next;
-			mes "[High Priestess Niren]";
-			mes "It's true that Zhed and";
-			mes "I used to work well together,";
-			mes "but we no longer share the";
-			mes "same dream. You'd better find";
-			mes "someone else. Unlike him,";
-			mes "I actually want a war.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu acho que eu o adverti";
+			mes "antes para ele ficar fora de dificuldade.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Weren't you guys friends?";
-			mes "Besides, you don't seem as";
-			mes "aggressive as those other";
-			mes "hard liner priests.";
+			mes "Eu não estou aqui para discutir";
+			mes "isso. Mas acontece que";
+			mes "dizem que você é uma das únicas";
+			mes "pessoas que podem o ajudar agora.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Aggressive? Hmpf. If you";
-			mes "take a good look at those";
-			mes "moderates, you'll see that";
-			mes "they oppose war, but they're";
-			mes "also totally corrupt. In fact, they committed worse atrocities!";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "...............................";
+			mes "...............................";
+			mes "...............................";
 			next;
-			mes "[High Priestess Niren]";
-			mes "The moderates conducted";
-			mes "inhumane testing on living";
-			mes "creatures, even humans!";
-			mes "And Zhed and I... Could do";
-			mes "nothing but pray to Freya.";
-			mes "Only war can this this chaos!";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "É verdade que Zhed e";
+			mes "eu trabalhávamos bem juntos,";
+			mes "mas nós já não compartilhamos o";
+			mes "mesmo sonho. Você acharia melhor";
+			mes "outra pessoa. Ao contrário dele,";
+			mes "eu na verdade quero uma guerra.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "We need to start all";
-			mes "over again. I can't help";
-			mes "Zhed. Please leave...";
+			mes "["+strcharinfo(0)+"]";
+			mes "Vocês não eram amigos?";
+			mes "Além de você não parecer";
+			mes "agressivo como esses outros";
+			mes "padres linha-dura.";
 			next;
-			mes "^3355FFIt doesn't look like";
-			mes "you can change High";
-			mes "Priestess Niren's mind.";
-			mes "For now, you'd better talk";
-			mes "to High Priest Zhed.^000000";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Agressivo? Hmpf. Se você";
+			mes "dar uma olhada nesses";
+			mes "moderadores, você verá que";
+			mes "eles opõem guerra, mas eles são";
+			mes "também totalmente corruptos. Na";
+			mes "realidade eles cometeram atrocidades piores!";
+			next;
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Os moderadores que o acompanham";
+			mes "realizam testes em criaturas,";
+			mes "e até mesmo humanos!";
+			mes "Devemos rezar a Freya!";
+			mes "Só mesmo a guerra se";
+			mes "compara a este caos!";
+			next;
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Nós precisamos começar tudo";
+			mes "novamente. Eu não posso ajudar";
+			mes "Zhed. Por favor, vá embora...";
+			next;
+			mes "^3355FFSe não parecer";
+			mes "você pode mudar a mente da";
+			mes "Suma Sacerdotiza Niren.";
+			mes "Pare agora, é melhor você falar";
+			mes "com o Sumo Sacerdote Zhed.^000000";
 			set aru_em,11;
 			close2;
 		}
 		else if ((aru_em == 11) || (aru_em == 12)) {
-			mes "[High Priestess Niren]";
-			mes "I already told you";
-			mes "how I feel about Zhed.";
-			mes "We were wrong all along...";
-			mes "This time, war is the answer.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu já lhe contei";
+			mes "sinto muito sobre Zhed.";
+			mes "Nós estávamos desde o princípio errados...";
+			mes "A guerra tem que acontecer.";
 			close2;
 		}
 		else if (aru_em == 13) {
-			mes "[High Priestess Niren]";
-			mes "I already told you";
-			mes "how I feel about Zhed.";
-			mes "We were wrong all along...";
-			mes "This time, war is the answer.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu já lhe contei";
+			mes "sinto muito sobre Zhed.";
+			mes "Nós estávamos desde o princípio errados...";
+			mes "A guerra tem que acontecer.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Fine. If you're so sure";
-			mes "of yourself, then you won't";
-			mes "mind reading this letter";
-			mes "from High Priest Zhed.";
+			mes "Bem, se você está tão seguro";
+			mes "assim, então você não vai";
+			mes "prestar atenção à leitura desta carta";
+			mes "do Sumo Sacerdote Zhed.";
 			next;
-			mes "^3355FFNiren angrily grabbed the";
-			mes "letter, ripped the envelope";
-			mes "open, and began to read his";
-			mes "message. Her stern face slowly";
-			mes "softened as she slowly scanned";
-			mes "what Zhed had to tell her.^000000";
+			mes "^3355FFNiren agarrou a carta furiosamente,";
+			mes "rasgou o envelope aberto,";
+			mes "e começou a ler a mensagem dele.";
+			mes "A face dura dela amoleceu lentamente";
+			mes "como se analizando as palavras";
+			mes "que Zhed lhe falou lentamente.^000000";
 			next;
-			mes "[High Priestess Niren]";
+			mes "[Suma Sacerdotiza Niren]";
 			mes ".................";
 			mes ".................";
 			mes ".................";
 			next;
-			mes "[High Priestess Niren]";
-			mes "That Zhed... He always";
-			mes "did have a way with words.";
-			mes "I suppose the old saying is";
-			mes "true: the pen truly is mightier";
-			mes "than the sword. *Sigh...*";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Que Zhed... Ele sempre";
+			mes "teve afinidade com palavras.";
+			mes "Eu suponho que a velha declaração é";
+			mes "verdade, a caneta, verdadeiramente, é mais poderosa";
+			mes "que a espada. *Suspiro...*";
 			next;
 			mes "[Sippie]";
-			mes "High Priestess";
-			mes "Niren? Are you okay?";
+			mes "Suma Sacerdotiza";
+			mes "Niren? Você está bem?";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Oh, I'm fine,";
-			mes "thank you. I guess";
-			mes "I'm just a little tired.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Oh, eu estou bem,";
+			mes "obrigado. Eu acho";
+			mes "que estou um pouco cansada.";
 			next;
-			mes "[High Priestess Niren]";
+			mes "[Suma Sacerdotiza Niren]";
 			mes "...............................";
-			mes "I have to admit, there's truth";
-			mes "in what Zhed's saying. We";
-			mes "have a duty to protect our";
-			mes "people, the pope, our holy";
-			mes "ground. But I need to think...";
+			mes "Eu tenho que admitir, é verdade";
+			mes "o que Zhed está dizendo. Nós";
+			mes "temos um dever, proteger nossas";
+			mes "pessoas, o papa, nosso chão";
+			mes "santo. Mas eu preciso pensar...";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Would you give me some";
-			mes "time to myself? I'll let you";
-			mes "know once I've made a decision.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Você gostaria de me dar alguns";
+			mes "minutos? Eu lhe direi";
+			mes "quando eu tomar uma decisão.";
 			set aru_em,14;
 			close2;
 		}
 		else if (aru_em == 14) {
 			if (rand(1,10) == 1) {
-				mes "[High Priestess Niren]";
+				mes "[Suma Sacerdotiza Niren]";
 				mes "...................";
 				mes "...................";
 				mes "...................";
 				emotion e_dots;
 				next;
 				mes "[Sippie]";
-				mes "High Priestess Niren,";
-				mes "you must be really tired.";
-				mes "You look pale for some reason.";
+				mes "Suma Sacerdotiza Niren,";
+				mes "você deve estar realmente cansada.";
+				mes "Você parece pálida por alguma razão.";
 				emotion 19;
 				next;
-				mes "[High Priestess Niren]";
-				mes "I do feel rather drained.";
-				mes "I don't know why I've been";
-				mes "holding on to this hatred for";
-				mes "so long. I guess I can finally";
-				mes "just cast it to the winds...";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Eu me sinto bastante escoada.";
+				mes "Eu não sei por que eu fui";
+				mes "segurar este ódio por tanto";
+				mes "tempo. Eu acho que posso, finalmente,";
+				mes "por para fora este ódio.";
 				next;
-				mes "[High Priestess Niren]";
-				mes "Adventurer...";
-				mes "What was your name?";
-				next;
-				mes "["+strcharinfo(0)+"]";
-				mes "My name is "+strcharinfo(0)+".";
-				next;
-				mes "[High Priestess Niren]";
-				mes "Adventurer...";
-				mes "You had the chance to talk";
-				mes "with our pope once, but I doubt";
-				mes "you'll be able to do so again";
-				mes "^3311FFin private^000000. You'll definitely";
-				mes "need our help for that end.";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Aventureiro...";
+				mes "Qual era seu nome?";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Does this mean that";
-				mes "you've decided to work";
-				mes "with Zhed again?";
+				mes "Meu nome é "+strcharinfo(0)+".";
 				next;
-				mes "^3355FFNiren quietly nodded";
-				mes "her head, and then";
-				mes "resumed talking.^000000";
-				next;
-				mes "[High Priestess Niren]";
-				mes "I'm still not sure if";
-				mes "I can join him in the long";
-				mes "run. I mean, talking to the";
-				mes "pope might not result in";
-				mes "anything, actually. But";
-				mes "it's still worth a try.";
-				next;
-				mes "[High Priestess Niren]";
-				mes "However, I've never";
-				mes "doubted Zhed's dedication";
-				mes "to Arunafeltz. He deserves";
-				mes "another chance from me.";
-				next;
-				mes "[High Priestess Niren]";
-				mes "Our pope is always surrounded ";
-				mes "by priests and followers sent";
-				mes "by High Priest Vildt. He always";
-				mes "manages to keep his eyes and";
-				mes "ears on her. We need to get";
-				mes "those spies away somehow...";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Aventureiro...";
+				mes "Você teve a chance para falar";
+				mes "com nosso papa uma vez, mas eu duvido";
+				mes "que você poderá fazer isso denovo";
+				mes "^3311FFem privacidade^000000. Você, definitivamente,";
+				mes "precisa de nossa ajuda para isso.";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "What can we do";
-				mes "about them, then?";
+				mes "Isso significa que";
+				mes "você decidiu trabalhar com";
+				mes "o Zhed denovo?";
 				next;
-				mes "[High Priestess Niren]";
-				mes "For now, just approach";
-				mes "the pope as if you just";
-				mes "wanted to leisurely chat.";
-				mes "While you're doing that,";
-				mes "try to gather information";
-				mes "from the priests around her.";
+				mes "^3355FFNiren acenou com a";
+				mes "cabeça, e então";
+				mes "retomaram falando.^000000";
+				next;
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Eu ainda não estou segura se";
+				mes "eu posso o unir no longo dessa";
+				mes "corrida. Eu quero dizer, enquanto falando do";
+				mes "papa poderia não resultar em";
+				mes "nada, de fato. Mas";
+				mes "ainda vale uma tentativa.";
+				next;
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Porém, eu nunca";
+				mes "duvidei da dedicação de Zhed";
+				mes "para Arunafeltz. Ele merece";
+				mes "outra chance de mim.";
+				next;
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Nosso papa sempre é rodeado";
+				mes "pelos padres e seguidores enviados";
+				mes "pelo Padre Vildt. Ele sempre";
+				mes "consegue manter os olhos dele e";
+				mes "orelhas nela. Nós precisamos deixar";
+				mes "esses espiões de fora de alguma maneira..."; 
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Sure thing. You";
-				mes "can count on me!";
+				mes "O que nós podemos fazer";
+				mes "em relação a eles, então?";
+				next;
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Agora, aproxime-se";
+				mes "do papa como se você não";
+				mes "quisesse nada. Enquanto";
+				mes "isso, tente colher";
+				mes "informações dos padres";
+				mes "ao redor dele.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "Claro, você pode contar comigo!";
 				emotion e_no1,1;
 				set aru_em,15;
 				close2;
 			}
 			else {
-				mes "[High Priestess Niren]";
-				mes "Ugh, this is giving me";
-				mes "a headache. There's";
-				mes "too much to consider...";
-				mes "Too much at stake here...";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Argh, isto está me dando";
+				mes "uma dor de cabeça. Há";
+				mes "muito em jogo aqui...";
 				close2;
 			}
 		}
 		else if (aru_em == 15) {
-			mes "[High Priestess Niren]";
-			mes "Just approach the pope";
-			mes "for a chat, and see what";
-			mes "you can learn from the";
-			mes "other priests around her.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Há pouco chegou o papa para uma";
+			mes "conversa, veja o que você";
+			mes "pode colher dos outros";
+			mes "sacerdotes, ao redor dele.";
 			close2;
 		}
 		else if (aru_em == 16) {
-			mes "[High Priestess Niren]";
-			mes "How is the pope?";
-			mes "I haven't had the chance";
-			mes "to meet her recently, so...";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Como o papa é?";
+			mes "Eu ainda não tive a oportunidade";
+			mes "de conhecê-lo, pessoalmente, então...";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Well, she doesn't seem";
-			mes "very well, just like the";
-			mes "last time I saw her. I didn't";
-			mes "learn anything about all those";
-			mes "priests. Just that they've been";
-			mes "working in the temple non-stop.";
+			mes "Bem, ela não parece muito bem,";
+			mes "a última vez que eu a vi ela estava igual.";
+			mes "Eu não aprendi nada sobre";
+			mes "esses sacerdotes. Recentemente eles";
+			mes "têm trabalhado continuamente";
+			mes "no templo.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Yes, they've been by her";
-			mes "side twenty-fours a day.";
-			mes "It's been like that for years.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Sim, eles estão trabalhando";
+			mes "24 horas por dia.";
+			mes "É tem sido assim durante anos.";
 			next;
 			emotion e_wah;
 			mes "[Sippie]";
-			mes "Oh, High Priestess Niren,";
-			mes "I love working for you, but";
-			mes "sometimes I wish I could leave";
-			mes "just to see my family. Even";
-			mes "just once a year would be nice.";
+			mes "Oh, Suma Sacerdotiza Niren,";
+			mes "Eu amo trabalhar pra você, mas";
+			mes "as vezes eu desejaria ver como";
+			mes "estão meus familiares, mesmo que";
+			mes "fosse uma vez por ano seria agradável.";
 			next;
 			emotion 5;
-			mes "[High Priestess Niren]";
+			mes "[Suma Sacerdotiza Niren]";
 			mes "...............................";
-			mes "You're absolutely right.";
-			mes "That gives me an idea.";
+			mes "Você está, absolutamente, certo.";
+			mes "Isto me deu uma idéia.";
 			next;
 			emotion 2;
 			mes "[Sippie]";
-			mes "Huh? What is it?";
+			mes "Huh? O que é?";
 			next;
-			mes "[High Priestess Niren]";
-			mes "You all need a vacation.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Todos vocês precisam de umas férias.";
 			next;
-			mes "[High Priestess Niren]";
+			mes "[Suma Sacerdotiza Niren]";
 			mes ""+strcharinfo(0)+".";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "Yes?";
+			mes "Sim?";
 			next;
-			mes "[High Priestess Niren]";
-			mes "I should reward everyone";
-			mes "in the Sky Garden for their";
-			mes "contribution. However,";
-			mes "they were hired by Vildt,";
-			mes "so I can't directly give them";
-			mes "leave for vacation. Hmm...";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu deveria recompensar todos do";
+			mes "Jardim do Céu pela contribuição deles.";
+			mes "Porém, eles foram contratados por Vildt,";
+			mes "assim eu não posso os deixar, ";
+			mes "diretamente, de férias.";
+			mes "Hmm...";
 			next;
-			mes "[High Priestess Niren]";
+			mes "[Suma Sacerdotiza Niren]";
 			mes "Sippie...";
-			mes "I'll need a pen";
-			mes "and some paper.";
+			mes "Eu precisarei de uma caneta";
+			mes "e um pedaço de papel.";
 			next;
 			mes "[Sippie]";
-			mes "Yes, ma'am.";
-			mes "There you go!";
+			mes "Sim.";
+			mes "Lá você vai!";
 			cutin "ra_gwoman",255;
 			next;
-			mes "^3355FF*Scribble Scribble*^000000";
-			mes "^3355FF*Scribble Scribble*^000000";
-			mes "^3355FF*Scribble Scribble*^000000";
-			mes "^3355FF*Scribble Scribble*^000000";
+			mes "^3355FF*Rabisco rabisco*^000000";
+			mes "^3355FF*Rabisco rabisco*^000000";
+			mes "^3355FF*Rabisco rabisco*^000000";
+			mes "^3355FF*Rabisco rabisco*^000000";
 			next;
 			cutin "ra_gwoman",2;
-			mes "[High Priestess Niren]";
-			mes "I administered a blessing";
-			mes "for a child from a native";
-			mes "family, and they were very";
-			mes "grateful since most of the";
-			mes "priests shun the natives.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu administrei uma bênção";
+			mes "para uma criança de uma família nativa,";
+			mes "e eles agradeciam desde que";
+			mes "a maioria dos sacerdotes";
+			mes "evitem os nativos.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "It turns out that this";
-			mes "child is gifted at forgery.";
-			mes "She doesn't like being too";
-			mes "close to other people, but";
-			mes "that's beside the point.";
-			mes "Here, take this letter.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Se mostra que esta criança";
+			mes "é uma grande falsificadora.";
+			mes "Ela não gosta, também, de estar";
+			mes "perto de outras pessoas, mas";
+			mes "isso é fora do assunto.";
+			mes "Aqui, leve esta carta.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Ah, and take this file that";
-			mes "contains a sample of Vildt's";
-			mes "handwriting. Bring them to";
-			mes "a girl named Ishmael in a";
-			mes "village in North Rachel.";
-			mes "I hope she'll help us...";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Ah, e leva este arquivo que contém";
+			mes "uma amostra da letra de Vildt.";
+			mes "Leve-os para uma menina";
+			mes "chamada Ishmael que mora";
+			mes "ao norte da vila de Rachel.";
+			mes "Eu espero que ela nos ajude...";
 			set aru_em,17;
 			getitem 7343,1; //File02
 			close2;
 		}
 		else if (aru_em == 17) {
-			mes "[High Priestess Niren]";
-			mes "Please deliver my letter";
-			mes "and that file to Ishmael in";
-			mes "North Rachel. Hopefully,";
-			mes "she can use her talents";
-			mes "to help us out.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Por favor entregue minha carta";
+			mes "e aquele arquivo a Ishmael ao";
+			mes "Norte de Rachel. Esperançosamente,";
+			mes "ela pode usar os talentos dela";
+			mes "para nos ajudar.";
 			close2;
 		}
 		else if (aru_em == 19) {
 			if (countitem(7343) > 0) {
-				mes "[High Priestess Niren]";
-				mes "Have you met with Ishmael?";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Você encontrou Ishmael?";
 				next;
-				mes "^3355FFYou handed Niren the";
-				mes "file forged by Ishmael.^000000";
+				mes "^3355FFVocê entrega a Niren";
+				mes "um arquivo falsificado por Ishmael.^000000";
 				next;
 				emotion e_bzz;
-				mes "[High Priestess Niren]";
-				mes "Perfect! This forgery is";
-				mes "so well done, I'm sure";
-				mes "that even Vildt won't be";
-				mes "know if he wrote it or not.";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Perfeito! Esta falsificação";
+				mes "ficou ótima, estou seguro";
+				mes "que Vildt não saberá";
+				mes "quem escreveu isto ou não.";
 				next;
-				mes "[High Priestess Niren]";
+				mes "[Suma Sacerdotiza Niren]";
 				mes ""+strcharinfo(0)+"...";
-				mes "I'm going to use this to";
-				mes "send the priests and followers";
-				mes "on vacation. Then me and Zhed";
-				mes "can talk to the pope without";
-				mes "any unecessary interruptions.";
+				mes "Eu vou usar isto e enviar";
+				mes "para todos os sacerdotes e";
+				mes "seguidores de ferias. Então eu e Zhed";
+				mes "poderemos falar com o papa";
+				mes "sem interrupções desnecessárias.";
 				next;
-				mes "[High Priestess Niren]";
-				mes "I really don't want to burden";
-				mes "our pope with what Zhed and I";
-				mes "have to say... But that's much";
-				mes "preferable to doing nothing";
-				mes "and experiencing the downfall";
-				mes "of our beloved Arunafeltz.";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Eu não quero incomodar o";
+				mes "papa com o que eu e Zhed";
+				mes "temos a dizer... Mas é muito";
+				mes "melhor isso do que não fazermos nada";
+				mes "e experimentar a queda de nossa ";
+				mes "amada Arunafeltz.";
 				next;
-				mes "[High Priestess Niren]";
-				mes "Sippie, please";
-				mes "deliver this vacation";
-				mes "approval to the priests and";
-				mes "followers in the Sky Garden.";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Sippie, por favor entregue";
+				mes "esta aprovação de férias";
+				mes "aos sacerdotes e seguidores";
+				mes "no Jardim do Céu.";
 				next;
 				mes "[Sippie]";
-				mes "Yes, ma'am!";
+				mes "Sim, irei!";
 				next;
-				mes "[High Priestess Niren]";
+				mes "[Suma Sacerdotiza Niren]";
 				mes ""+strcharinfo(0)+",";
-				mes "please go back to Zhed,";
-				mes "and let him know everything";
-				mes "is ready. Then I want you to";
-				mes "meet us in the ^3131FFSky Garden^000000.";
+				mes "por favor volte para Zhed,,";
+				mes "e o deixe saber que tudo está pronto.";
+				mes "Então eu quero que você ";
+				mes "nos encontre no ^3131FFJardim do Céu^000000.";
 				next;
 				mes "["+strcharinfo(0)+"]";
-				mes "Yes!";
+				mes "Sim!";
 				next;
-				mes "[High Priestess Niren]";
-				mes "We need to hurry and";
-				mes "do this before High";
-				mes "Priest Vildt realizes";
-				mes "what we are doing.";
+				mes "[Suma Sacerdotiza Niren]";
+				mes "Nós precisamos nos apressar";
+				mes "fazer isso antes que o sumo";
+				mes "Vildt saiba do que estamos";
+				mes "fazendo.";
 				delitem 7343,1; //File02
 				set aru_em,20;
 				close2;
 			}
 			else {
-				mes "^3131FFYou seem to have";
-				mes "misplaced Ishmael's file.^000000";
+				mes "^3131FFVocê parece ter perdido";
+				mes "o arquivo de Ishmael.^000000";
 				close2;
 			}
 		}
 		else if ((aru_em == 20) || (aru_em == 21)) {
-			mes "[High Priestess Niren]";
-			mes "Please hurry back";
-			mes "to High Priest Zhed.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Por favor se apresse";
+			mes "e encontre sacerdote Zhed.";
 			close2;
 		}
 		else if (aru_em == 22) {
-			mes "[High Priestess Niren]";
-			mes "I'm so proud of our pope!";
-			mes "Did you hear her wonderful";
-			mes "speech? Well, I should say";
-			mes "those are the words of Freya,";
-			mes "but... Well, you know. Hohoho!";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu estou tão orgulhoso de nosso papa!";
+			mes "Você ouviu as palavras maravilhosas dela?";
+			mes "Bem, eu deveria dizer que essas";
+			mes "são as palavras de Freya, mas... ";
+			mes "Bem, você sabe. Hohoho!";
 			next;
-			mes "[High Priestess Niren]";
-			mes "Our priests may have acted";
-			mes "selfishly, but they are still";
-			mes "committed to Arunafeltz's";
-			mes "welfare. Things should";
-			mes "change for the better now.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Nossos sacerdotes podem";
+			mes "ter agido estranhamente, mas eles ainda estão empenhados";
+			mes "estão empenhados com o bem-estar";
+			mes "de Arunafeltz. As coisas devem mudar";
+			mes "para melhor de agora em diante.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "I'm ashamed that I strayed";
-			mes "from the path of peace and";
-			mes "almost endangered my country.";
-			mes "I'm glad Zhed brought me back";
-			mes "my senses. From now on, I'll";
-			mes "repent for my sins with Zhed.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu estou envergonhado que";
+			mes "eu vaguei pelo caminho de";
+			mes "paz e quase arriscando meu país.";
+			mes "Eu e Zhed estamos contentes em alegrar";
+			mes "meus senses. De agora em diante, eu me";
+			mes "arrependerei para meus pecados como Zhed.";
 			next;
-			mes "[High Priestess Niren]";
-			mes "I hope the goddess can";
-			mes "forgive me. Ah, and you";
-			mes "should know that Zhed is";
-			mes "waiting for you. Why don't";
-			mes "you go see him now?";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Eu espero que a deusa possa";
+			mes "me perdoar. Ah, e você";
+			mes "deveria saber que Zhed está";
+			mes "esperando por você.";
+			mes "Por que você não vai o ver agora?";
 			next;
-			mes "^3355FFNiren softly smiles";
-			mes "at you, and you realize";
-			mes "that it's the first time";
-			mes "that you've seen that";
-			mes "expression on her face.^000000";
+			mes "^3355FFNiren, suavemente, sorri ";
+			mes "a você e você percebe ";
+			mes "que é a primeira vez que  ";
+			mes "você viu aquela expressão";
+			mes "no rosto dela.^000000";
 			set aru_em,23;
-			getexp 100000,0;
+			getexp 1000000,0;
 			close2;
 		}
 		else if (aru_em > 21) {
-			mes "[High Priestess Niren]";
-			mes "Thanks to you and";
-			mes "Bekento, I think I've";
-			mes "finally found my way.";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Graças a você e";
+			mes "Bekento, penso eu que";
+			mes "eu achei meu modo finalmente.";
 			close2;
 		}
 		else {
-			mes "[High Priestess Niren]";
-			mes "I'm sorry...";
-			mes "I really don't want";
-			mes "to think about Zhed";
-			mes "right now. He's just...";
+			mes "[Suma Sacerdotiza Niren]";
+			mes "Me desculpe...";
+			mes "Eu realmente não quero";
+			mes "pensar agora em Zhed";
+			mes "Ele era realmente...";
 			close2;
 		}
 	}
@@ -1372,32 +1347,35 @@ ra_temple,165,57,5	script	Niren#ss	915,{
 }
 
 ve_in,239,115,1	script	Drunkard#Aru	943,{
-	if (aru_monas < 14) {
+	if (aru_monas < 14)
+	{
 		mes "[Drunkard]";
-		mes "Man, I feel great! Hah hah!";
-		mes "Hey, gimme one more drink!";
+		mes "Cara, eu me sinto grandioso! Hah hah!";
+		mes "Ei, traga-me mais bebida!";
 		close;
 	}
-	if (aru_monas == 14) {
-		if (rachel_camel == 25) {
+	if (aru_monas == 14)
+	{
+		if (rachel_camel == 25)
+		{
 			mes "[Drunkard]";
-			mes "So--*Hic* What I was...";
-			mes "Oog, dizzy... I say sayin',";
-			mes "that guy that ^32CD32snuck out to";
-			mes "sea on a boat^000000? You know";
-			mes "*Hic* why he came back";
-			mes "so early? You won't believe it!";
+			mes "Então--*Hic* O que eu era...";
+			mes "Oog, atordoado...  Eu digo agora,";
+			mes "o por que do sujeito ^32CD32fugir para o mar";
+			mes "em um barco^000000? Você sabe";
+			mes "*Hic* por que ele voltou tão";
+			mes "cedo? Você não acreditará nisso!";
 			next;
 			mes "[Drunkard]";
 			mes "Hah hah! He--*Hic*";
-			mes "He thought he saw a ^DBDB70ghost^000000!";
+			mes "Ele pensa que viu um ^DBDB70fantasma^000000!";
 			mes "Bwah hah hah! Oooog... Hey...";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "That's right!";
-			mes "Maybe I should check";
-			mes "on ^32CD32Kurdi's father since";
-			mes "he's a fisherman^000000";
+			mes "Isso está certo!";
+			mes "Talvez eu deva conferir";
+			mes "o ^32CD32pai de Kurdi já que ele";
+			mes "é um pescador^000000";
 			set aru_monas,15;
 			close;
 		}
@@ -1408,243 +1386,237 @@ ve_in,239,115,1	script	Drunkard#Aru	943,{
 			close;
 		}
 	}
-	else {
-		mes "[Drunkard]";
-		mes "Why?! Why can't I take";
-		mes "my boat out to sea? I hafta";
-		mes "catch fish to make a living!";
-		mes "What, they expect me to starve";
-		mes "to death or something?! Huh?!";
-		close;
-	}
 }
 
-ve_fild07,125,128,0	script	Boat#Aru	111,{
+ve_fild07,125,128,0	script	Barco#Aru	111,{
 	if (aru_monas < 16) {
-		mes "^3355FFThis boat seems to ";
-		mes "be in decent condition.";
-		mes "Who could its owner be?^000000";
+		mes "^3355FFEste barco está em boas ";
+		mes "condições.";
+		mes "Quem poderia ser o dono dele?^000000";
 		close;
 	}
 	if (aru_monas == 16) {
-		mes "^3355FFThis must be the boat that";
-		mes "Karyn was talking about.";
-		mes "It seems to be in pretty";
-		mes "good shape. Now, the";
-		mes "monastery should be";
-		mes "southwest from here...^000000";
+		mes "^3355FFEste deve ser o barco que";
+		mes "Karyn estava falando.";
+		mes "Parece estar em perfeito";
+		mes "estado. Agora,";
+		mes "o monastério deve";
+		mes "ser a sudoeste daqui...^000000";
 		next;
-		hideoffnpc "Secret Agent#Aru";
+		hideoffnpc "Agente Secreto#Aru";
 		next;
 		mes "[Larjes]";
-		mes "Long time no see,";
+		mes "Depois de muito olhar,";
 		mes ""+strcharinfo(0)+".";
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Larjes!";
 		next;
 		mes "[Larjes]";
-		mes "I had a tough time following";
-		mes "you, you know? I actually";
-		mes "almost lost you once. You";
-		mes "must be wondering why";
-		mes "I'm here. If you'll listen,";
-		mes "I'll explain everything.";
+		mes "Eu tive um tempo difícil com";
+		mes "você, você sabe? Eu realmente";
+		mes "quase perdi uma vez. Você";
+		mes "deve estar se perguntando o que";
+		mes "estou fazendo aqui. Se você tiver";
+		mes "tempo eu posso te contar.";
 		next;
 		mes "[Larjes]";
-		mes "According to our investigation, Arunafeltz is definitely involved";
-		mes "in this case. We've been watching you since you're somehow related";
-		mes "to that high ranked official from Arunafeltz. I apologize for that.";
+		mes "De acordo com nossa investigação, Arunafeltz está, definitivamente, envolvida neste caso. ";
+		mes "Nós temos o observado desde que você está relacionado de alguma maneira com aquele";
+		mes "funcionário de Arunafeltz. Eu me desculpo por isso.";
 		next;
 		mes "[Larjes]";
-		mes "This is an international";
-		mes "incident, so to prevent any";
-		mes "intel leaks to Arunafeltz,";
-		mes "we've had to be much stricter";
-		mes "with securing and protecting";
-		mes "all information for this case.";
+		mes "Este é um incidente internacional,";
+		mes "assim para prevenir qualquer vazamento";
+		mes "de inteligência de Arunafeltz,";
+		mes "nós tivemos que ser muito rígidos";
+		mes "para afiançar e proteger toda a";
+		mes "informação deste caso.";
 		next;
 		mes "[Larjes]";
-		mes "Anyway, I've decided to";
-		mes "reveal myself to you since";
-		mes "I'm the only one that can help";
-		mes "you right now. You're thinking";
-		mes "of using that boat, aren't you?";
+		mes "De qualquer maneira, eu decidi";
+		mes "me revelar a você desde que";
+		mes "eu sou o único que pode o";
+		mes "ajudar agora. Você está";
+		mes "pensando em usar aquele barco, não é??";
 		next;
 		mes "[Larjes]";
-		mes "If you don't have the skills,";
-		mes "knowledge, and preparation";
-		mes "to sail those waters ahead,";
-		mes "you'll probably wreck the";
-		mes "boat. You'll make it if you're lucky but... That's a lot of luck.";
+		mes "Se você não tiver as habilidades,";
+		mes "conhecimento e preparação para";
+		mes "velejar essas águas à frente,";
+		mes "provavelmente, você destruirá o barco.";
+		mes "Você fará isto se você tiver sorte mas... muita sorte mesmo.";
 		next;
 		mes "[Larjes]";
-		mes "I'll help you sail this";
-		mes "boat to get where you're";
-		mes "going. But if you fail, there's";
-		mes "a chance you might have to";
-		mes "sail this boat on your own if I'm not here. So, you ready to go?";
+		mes "Eu lhe ajudarei a velejar este barco";
+		mes "para você chegar onde quiser.";
+		mes "Mas se você falhar, há uma chance de você";
+		mes "ter que velejar sozinho e eu não estarei";
+		mes "mais aqui. Sendo assim, você está pronto para ir?";
 		next;
-		switch(select("Yes, I'm ready.:Give me more time.")) {
+		switch(select("Sim, eu estou pronto.:Me dê mais tempo.")) {
 		case 1:
 			mes "[Larjes]";
-			mes "Alright, let's go.";
-			mes "Hold on to something:";
-			mes "this will probably be";
-			mes "a pretty rocky ride...";
+			mes "Certo vamos lá.";
+			mes "Se agarre a algo:";
+			mes "este, provavelmente, será";
+			mes "um passeio bem rochoso...";
 			set aru_monas,17;
 			close2;
-			hideonnpc "Secret Agent#Aru";
+			hideonnpc "Agente Secreto#Aru";
 			warp "nameless_i",257,217;
 			end;
 		case 2:
 			mes "[Larjes]";
-			mes "Alright. Just let me know";
-			mes "whenever you're ready.";
+			mes "Certo. Quando estiver";
+			mes "pronto me avise.";
 			close;
 		}
 	}
 	if (aru_monas < 20) {
-		mes "^3355FFThis is the boat that";
-		mes "can take you to the";
-		mes "monastery.^000000";
+		mes "^3355FFEste é o barco ";
+		mes "que pode o levar .";
+		mes "ao monastério.^000000";
 		next;
-		switch(select("Go to Monastery:Cancel")) {
+		switch(select("Ir para o Monastério:Cancelar")) {
 		case 1:
-			mes "^3355FFYou set sail for";
-			mes "the monastery...^000000";
-			close2;
-			warp "nameless_i",257,217;
-			end;
-		case 2:
-			mes "^3355FFYou decide to";
-			mes "stay ashore.^000000";
-			close;
-		}
-	}
-	else {
-		mes "^3355FFThis is the boat that";
-		mes "can take you to the";
-		mes "monastery.^000000";
-		next;
-		switch(select("Go to Monastery:Cancel")) {
-		case 1:
-			mes "^3355FFYou set sail for";
-			mes "the monastery...^000000";
+			mes "^3355FFVocê fixa a vela";
+			mes "para o monastério...^000000";
 			close2;
 			warp "nameless_n",257,217;
 			end;
 		case 2:
-			mes "^3355FFYou decide to";
-			mes "stay ashore.^000000";
+			mes "^3355FFVocê decide ficar";
+			mes "na praia.^000000";
+			close;
+		}
+	}
+	else {
+		mes "^3355FFEste é o barco ";
+		mes "que pode levar-lo .";
+		mes "ao monastério.^000000";
+		next;
+		switch(select("Ir para o Monastério:Cancelar")) {
+		case 1:
+			mes "^3355FFVocê fixa a vela";
+			mes "para o monastério...^000000";
+			close2;
+			warp "nameless_n",257,217;
+			end;
+		case 2:
+			mes "^3355FFVocê decide ficar";
+			mes "na praia.^000000";
 			close;
 		}
 	}
 }
 
-ve_fild07,128,130,1	script	Secret Agent#Aru	97,{
+ve_fild07,128,130,1	script	Agente Secreto#Aru	97,{
 	if (aru_monas == 16) {
 		mes "[Larjes]";
-		mes "Are you ready to go";
-		mes "aboard? I'll help you";
-		mes "sail to that monastery,";
-		mes "but if you fail while you're";
-		mes "there, I might not be here";
-		mes "when you come back.";
+		mes "Você está pronto subir a bordo";
+		mes "Eu lhe ajudarei a velejar àquele monastério,";
+		mes "mas se você falha quando";
+		mes "você estiver lá, eu poderei";
+		mes "não estar aqui quando";
+		mes "você voltar.";
 		next;
-		switch(select("Yes, I'm ready.:Give me more time.")) {
+		switch(select("Sim, eu estou pronto.:Me dê mais um tempo.")) {
 		case 1:
 			mes "[Larjes]";
-			mes "Alright, let's go.";
-			mes "Hold on to something:";
-			mes "this will probably be";
-			mes "a pretty rocky ride...";
+			mes "Certo vamos lá.";
+			mes "Se agarre a algo:";
+			mes "este, provavelmente, será";
+			mes "um passeio bem rochoso...";
 			set aru_monas,17;
 			close2;
-			hideonnpc "Secret Agent#Aru";
+			hideonnpc "Agente Secreto#Aru";
 			warp "nameless_i",257,217;
 			end;
 		case 2:
 			mes "[Larjes]";
-			mes "Alright. Just let me know";
-			mes "whenever you're ready.";
+			mes "Certo. Quando estiver";
+			mes "pronto me avise.";
 			close;
 		}
 	}
 	end;
 
 OnInit:
-	hideonnpc "Secret Agent#Aru";
+	hideonnpc "Agente Secreto#Aru";
 	end;
 }
 
 nameless_i,259,218,3	script	Larjes#Aru	97,{
 	if(aru_monas < 18) {
 		mes "[Larjes]";
-		mes "I don't like this place.";
-		mes "You'd be better be careful";
-		mes "around here with those weird";
-		mes "creatures running around.";
+		mes "Eu não gosto deste lugar.";
+		mes "Você deve tomar cuidado";
+		mes "pois está cheio de criaturas";
+		mes "aqui ao redor.";
 		close;
-	}
-	else if (aru_monas > 24) {
+	} else
+	if( aru_monas > 24 )
+	{
 		mes "[Larjes]";
-		mes "Good, you're back";
-		mes "I know that there's still";
-		mes "things on this island that";
-		mes "you want to investigate,";
-		mes "but did you want to leave";
-		mes "this place for a while?";
+		mes "Que bom, você está de volta";
+		mes "Eu sei que ainda têm coisas";
+		mes "nessa ilha que";
+		mes "você quer investigar,";
+		mes "mas você queria sair daqui";
+		mes "por um tempo?";
 		next;
-		if(select("Yes:No")==1) {
+		if(select("Sim:Não")==1)
+		{
 			mes "[Larjes]";
-			mes "Alight, let's go.";
+			mes "Ok, vamos la.";
 			close2;
 			warp "ve_fild07",130,130;
 			end;
 		}
 		mes "[Larjes]";
-		mes "Alright, but becareful.";
-		mes "Those creatures almost";
-		mes "got you once, you know.";
+		mes "Então ta, mas tenha cuidado.";
+		mes "Essas criaturas quase te";
+		mes "pegaram uma vez, você sabe.";
 		close;
 	}
 	else {
 		mes "[Larjes]";
-		mes "Did you still want to";
-		mes "investigate the island?";
+		mes "Você ainda quer";
+		mes "investigar a ilha?";
 		next;
-		if (select("No:Yes") == 1) {
+		if(select("Sim:Não")==1)
+		{
 			mes "[Larjes]";
-			mes "Alright, let's go.";
+			mes "Ok, vamos la.";
 			close2;
 			warp "ve_fild07",130,130;
 			end;
 		}
 		mes "[Larjes]";
-		mes "Alright, but be careful.";
-		mes "Those creatures almost";
-		mes "got you once, you know.";
+		mes "Então ta, mas tenha cuidado.";
+		mes "Essas criaturas quase te";
+		mes "pegaram uma vez, você sabe.";
 		close;
 	}
 }
 
-nameless_i,212,184,0	script	#aru_clue1	-1,2,3,{
+nameless_i,212,184,0	script	#aru_clue1	-1,4,3,{
 	end;
 
 OnTouch:
 	if (aru_monas == 17) {
-		mes "^3355FFThe village is totally";
-		mes "silent, as if all life had";
-		mes "abandoned it. You look";
-		mes "around and see that something";
-		mes "was here a few hours ago, but";
-		mes "it's somewhere else now.^000000";
+		mes "^3355FFA aldeia está totalmente calada,";
+		mes "como se toda a vida tivesse";
+		mes "a abandonado. Você dá uma";
+		mes "olhada e vê que algo estava aqui ";
+		mes "algumas horas atrás, mas está em";
+		mes "outro lugar agora.^000000";
 		next;
-		mes "^3355FFWhatever it was,";
-		mes "it definitely wasn't";
-		mes "human. What kind of";
-		mes "creature could it be?^000000";
+		mes "^3355FFPode ser qualquer coisa,";
+		mes "mas, definitivamente, não é";
+		mes "humano. Que tipo de criatura";
+		mes "poderia ser?^000000";
 		close;
 	}
 	end;
@@ -1655,11 +1627,11 @@ nameless_in,21,176,0	script	#aru_clue2	-1,2,2,{
 
 OnTouch:
 	if (aru_monas == 17) {
-		mes "^3355FFThere are traces of";
-		mes "humans around here,";
-		mes "along with some kind";
-		mes "of creature that you";
-		mes "can't clearly identify.^000000";
+		mes "^3355FFHá rastros de humanos";
+		mes "ao redor daqui,";
+		mes "junto com alguma amável";
+		mes "que você não pode ";
+		mes "identificar claramente.^000000";
 		close;
 	}
 	end;
@@ -1670,55 +1642,55 @@ nameless_i,129,218,0	script	#aru_clue3	-1,4,3,{
 
 OnTouch:
 	if (aru_monas == 17) {
-		mes "^3355FFA strange scent strikes";
-		mes "you as you enter this field of";
-		mes "grass. A few ^32CD32animal corpses^3355FF";
-		mes "are strewn around the ground.^000000";
+		mes "^3355FFUm cheiro estranho";
+		mes "o rodeia, ao entrar neste campo";
+		mes "gramado. Um exército de ^32CD32corpos de animais^3355FF";
+		mes "estão jogados por todo o chão.^000000";
 		close;
 	}
 	end;
 }
 
-nameless_i,127,207,0	script	Dead Crow#Aru	111,{
+nameless_i,127,207,0	script	Corvo Morto#Aru	111,{
 	if (aru_monas < 17) { 
-		mes "^3355FFThere is a dead crow on the ground.";
+		mes "^3355FFHá um corvo morto no chão.";
 		close;
 	}
 	else if (aru_monas == 17) {
-		mes "^3355FFThe sight of this ^32CD32dead";
-		mes "crow^3355FF makes you feel";
-		mes "uneasy for some reason.^000000";
+		mes "^3355FFVer este ^32CD32corvo";
+		mes "morto^3355FF por alguma razão";
+		mes "lhe deixa aliviado.^000000";
 		next;
-		if (select("Ignore:Investigate") == 1) {
-			mes "^3355FFYou decide not to touch";
-			mes "the animal's carcass.^000000";
+		if (select("Ignorar:Investigar") == 1) {
+			mes "^3355FFVocê decide não tocar";
+			mes "na carcaça do animal.^000000";
 			close;
 		}
-		mes "^3355FFYou notice some grass sap";
-		mes "on the crow's beak, so it";
-		mes "must have been nibbling on";
-		mes "some grass. Some feathers";
-		mes "are missing, revealing";
-		mes "scaly, snake-like skin.^000000";
+		mes "^3355FFVocê nota um pouco de seiva";
+		mes "de grama no bico do corvo";
+		mes "assim ele deve ter lambusado.";
+		mes "um pouco de grama. Algumas penas";
+		mes "foram perdidas, revelando";
+		mes "escamas, como pele de cobra.^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Wait...";
-		mes "Did this grass...?";
+		mes "Espere..";
+		mes "Feito esta grama...?";
 		next;
-		mes "^3355FFThis grass must be the";
-		mes "main ingredient of the";
-		mes "poison used to kill the";
-		mes "Gaebolg family princes.^000000";
+		mes "^3355FFEsta grama deve ser o ingrediente";
+		mes "principal usado para";
+		mes "o veneno que Gaebolg";
+		mes "usava para matar os príncipes.^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Looks like I just hit";
-		mes "the jackpot. Huh?";
-		mes "Someone behi--";
+		mes "Um olhar como uma";
+		mes "batida de um jackpot. Huh?";
+		mes "Alguém está aqui--";
 		next;
-		mes "^3355FFA sharp, throbbing pain";
-		mes "assails the back of your";
-		mes "head as you fall into";
-		mes "unconsciousness...^000000";
+		mes "^3355FFAlguém por";
+		mes "trás de você o golpeia";
+		mes "e em um piscar de olhos";
+		mes "você está inconciênte...^000000";
 		close2;
 		set aru_monas,18;
 		warp "nameless_in",15,60;
@@ -1735,8 +1707,8 @@ OnTouch:
 		warp "nameless_in",12,41;
 		end;
 	}
-	mes "^3355FFThe door won't budge:";
-	mes "you can't go through.^000000";
+	mes "^3355FFA porta não se move:";
+	mes "você não pode sair.^000000";
 	close;
 }
 
@@ -1747,71 +1719,70 @@ OnTouch:
 	if (aru_monas == 18) {
 		disablenpc "aru_warp";
 		sc_start2 SC_Blind,600000,0,10000;
-		mes "^3355FFThe pressure on your";
-		mes "stomach and the blood";
-		mes "rushing to your head tells";
-		mes "you someone is carrying you";
-		mes "over his shoulder. He stops,";
-		mes "and you hear a faint voice.^000000";
+		mes "^3355FFA pressão no seu";
+		mes "estômago e o sangue";
+		mes "indo para sua cabeça dizem a";
+		mes "você que alguém o está carregando";
+		mes "em seu ombro. Ele para";
+		mes "e você escuta uma voz fraca.^000000";
 		next;
-		mes "^3355FFThe faint voice steadily";
-		mes "grows stronger and more";
-		mes "distinct--someone's calling";
-		mes "your name. You feel cold water";
-		mes "trickle through your lips, and";
-		mes "then you regain your senses.^000000";
+		mes "^3355FFEssa voz cresce constantemente";
+		mes "mais forte e mais";
+		mes "distinta--alguém está te chamando.";
+		mes "Você sente água fria descendo";
+		mes "pelos seus lábios, e";
+		mes "seus sentidos retornam.^000000";
 		sc_end SC_BLIND;
 		next;
 		hideoffnpc "Larjes#Aru2";
-		mes "That was too close.";
-		mes "For a second there,";
-		mes "I thought I lost you.";
+		mes "Essa foi perto.";
+		mes "Durante um segundo,";
+		mes "achei que tinha perdido você.";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Larjes...? What...";
-		mes "What happened?";
-		mes "Ugh, my head...";
+		mes "Larjes...? O que...";
+		mes "O que aconteceu?";
+		mes "Ugh, minha cabeça...";
 		next;
 		mes "[Larjes]";
-		mes "Try not to move for a while.";
-		mes "I had a bad feeling waiting";
-		mes "for you on the boat. Lucky";
-		mes "thing. When I found you,";
-		mes "these strange creatures";
-		mes "were savagely attacking you!";
+		mes "Tente não se mover por enquanto.";
+		mes "Eu tive um mal pressentimento";
+		mes "e fiquei esperando por você no";
+		mes "barco. Sorte sua,";
+		mes "quando o encontrei, criaturas";
+		mes "selvagens estavam para lhe atacar!";
 		next;
 		mes "[" +strcharinfo(0)+ "]";
-		mes "You saved me?";
-		mes "Thank you. Do you";
-		mes "happen to know what";
-		mes "those creatures were?";
+		mes "Você me salvou?";
+		mes "Obrigado. Você";
+		mes "sabe o que eram";
+		mes "aquelas criaturas?";
 		next;
 		mes "[Larjes]";
-		mes "No clue. They looked";
-		mes "like humans, but... They";
-		mes "definitely weren't. Once";
-		mes "I killed them, they all";
-		mes "turned into sand.";
+		mes "Nenhuma pista. Eles se";
+		mes "pareceram com humanos, mas...";
+		mes "Eles, definitivamente, não eram.";
+		mes "Quando eu os matei todos eles";
+		mes "se transformaram em areia.";
 		next;
 		hideoffnpc "Creature#Aru";
-		emotion e_omg,1;
 		emotion e_omg;
 		mes "[Larjes]";
 		mes "?!?!?!!!!!";
 		next;
 		mes "[" +strcharinfo(0)+ "]";
 		mes "!!!!?!?!!!!!!";
-		mes "Isn't... Isn't that...?";
+		mes "Não é... Não é isto..?";
 		next;
 		mes "[Larjes]";
-		mes "It seems it's just like the";
-		mes "creatures that kidnapped";
-		mes "you, but... I wonder why";
-		mes "he's not attacking us.";
+		mes "Ele se parece com as outras";
+		mes "criaturas que o seqüestraram";
+		mes "mas... Eu desejo saber";
+		mes "por que ele não me atacou.";
 		next;
 		mes "[" +strcharinfo(0)+ "]";
-		mes "I guess you'll have to go";
-		mes "right up to him and ask.";
+		mes "Eu acho que você deve";
+		mes "encontrá-lo, certo? E falar com ele.";
 		set aru_monas,19;
 		close;
 	}
@@ -1819,34 +1790,34 @@ OnTouch:
 
 nameless_in,13,58,6	script	Larjes#Aru2	97,{
 	mes "[Larjes]";
-	mes "Be careful. That guy";
-	mes "looks pretty dangerous.";
+	mes "Tenha cuidado. Aquele sujeito";
+	mes "parece bem perigoso.";
 	close;
 }
 
-nameless_in,13,53,0	script	Creature#Aru	1864,{
+nameless_in,13,53,0	script	Criatura#Aru	1864,{
 	end;
 
 OnInit:
-	hideonnpc "Creature#Aru";
-	end;
-
-OnMyMobDead:
-	enablenpc "aru_warp";
+	hideonnpc "Criatura#Aru";
 	end;
 }
 
 nameless_in,13,53,0	script	#Aru_Trigger2	-1,3,1,{
 	end;
 
+OnMyMobDead:
+	hideoffnpc "aru_warp";
+	end;
+
 OnTouch:
 	if (aru_monas == 19 && !@mymobcount) {
-		mes "[???????]";
+		mes "[?????]";
 		mes "Grrr~!!!";
 		close2;
-		hideonnpc "Creature#Aru";
+		hideonnpc "Criatura#Aru";
 		set @mymobcount,1;
-		monster "nameless_in",13,53,"Zombie",1864,1,"Creature#Aru::OnMyMobDead";
+		monster "nameless_in",13,53,"Zumbi",1864,1,"#Aru_Trigger2::OnMyMobDead";
 		end;
 	}
 	end;
@@ -1874,19 +1845,19 @@ OnTouch:
 	if(aru_monas == 20) {
 		hideoffnpc "Larjes#Aru3";
 		mes "[" +strcharinfo(0)+ "]";
-		mes "What the hell...!?";
+		mes "O que é isso inferno..!?";
 		next;
 		mes "[Larjes]";
-		mes "So... This is the";
-		mes "island's true nature.";
+		mes "Assim... Esta é a verdadeira";
+		mes "natureza desta ilha.";
 		next;
 		mes "[Larjes]";
-		mes "Someone like me won't";
-		mes "survive long in a place";
-		mes "like this. I'm going to wait";
-		mes "for you in the boat. Learn";
-		mes "what you need to learn, and";
-		mes "then come back safe, "+strcharinfo(0)+".";
+		mes "Alguém como eu não sobreviveria";
+		mes "muito tempo em um lugar como";
+		mes "este. Eu vou esperar por você";
+		mes "no barco. Aprenda o que você";
+		mes "veio aqui aprender e";
+		mes "depois volte em segurança, "+strcharinfo(0)+".";
 		set aru_monas,21;
 		hideonnpc "Larjes#Aru3";
 		close;
@@ -1905,169 +1876,166 @@ OnInit:
 nameless_n,259,218,3	script	Larjes#Boat1	97,{
 	if ((aru_monas == 23) && (countitem(7726))) {
 		mes "[Larjes]";
-		mes "I don't believe it...";
-		mes "That guy was Tristam III?!";
-		mes "This explains a lot, I suppose.";
-		mes "I'll report this along with the";
-		mes "voucher. So Arunafeltz was";
-		mes "behind that poison grass too.";
+		mes "Eu não acredito nisto...";
+		mes "Aquele sujeito era Tristam III?!";
+		mes "Isto explica muito, eu suponho.";
+		mes "Eu informarei isto ao vale.";
+		mes "Assim Arunafeltz também estava";
+		mes "atrás daquela grama de veneno.";
 		next;
 		mes "[Larjes]";
-		mes "I'm shocked over this";
-		mes "whole debacle. I'm sure";
-		mes "the Rune-Midgarts royal family";
-		mes "will be in an uproar over this.";
-		mes "To think that we're involved";
-		mes "in something this huge...";
+		mes "Eu estou chocado com este";
+		mes "desabamento. Estou seguro";
+		mes "que a família real de Rune-Midgard";
+		mes "ficará em alvoroço por causa disso.";
+		mes "Acho que nós estamos muito";
+		mes "envolvidos nisso...";
 		next;
 		mes "[Larjes]";
-		mes "Anyway, we better get...";
-		mes "This is huge!";
+		mes "De qualquer maneira, nós melhoramos...";
+		mes "Isto é enorme!";
 		set aru_monas,24;
 		delitem 7726,1; //Token_Of_King
-		getexp 100000,0;
+		getexp 1000000,0;
 		close;
 	}
 	mes "[Larjes]";
-	mes "ï¿½Did you still want to";
-	mes "investigate the island?";
+	mes "Você ainda quer";
+	mes "investigar a ilha?";
 	next;
-	if(select("No:yes")==1) {
+	if(select("Não:Sim")==1) {
 		mes "[Larjes]";
-		mes "Alright, let's go.";
+		mes "Certo, vamos lá.";
 		close2;
 		warp "ve_fild07",130,130;
 		end;
 	}
 	mes "[Larjes]";
-	mes "Alright, but becareful.";
-	mes "Those creatures almost";
-	mes "got you once, you know.";
+	mes "Certo, mas tome cuidado.";
+	mes "Essas criaturas quase o pegaram";
+	mes "uma vez, você sabe.";
 	close;
 }
 
-abbey02,224,70,0	script	Book#Aru	111,{
-	if (checkweight(7766,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+abbey02,224,70,0	script	Livro#Aru	111,{
+	if (checkweight(7766,1) == 0)
+	{
+		mes "^3355FFEspere um segundo!";
+		mes "Neste momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor, volte depois";
+		mes "de usar os Serviços da Kafra";
+		mes "para guardar alguns itens.^000000";
 		close;
 	}
-	if (aru_monas < 21) {
-		mes "^3355FFIt's just a bunch";
-		mes "of old, moldy books.^000000";
+	if (aru_monas < 21 || aru_monas > 21)
+	{
+		mes "^3355FFHá livros velhos espalhados";
+		mes "aqui por toda parte.^000000";
 		close;
 	}
-	else if (aru_monas == 21) {
-		mes "^3355FFThere's a book stained";
-		mes "with blood amongst all";
-		mes "these old, moldy books.^000000";
-		next;
-		if(select("Examine Book:Ignore")==1) {
-			Readbook 7755,1;
-			getitem 7755,1; // Reasearch_Note
-			set aru_monas,22;
-			close;
-		}
-		mes "^3355FFThat book was probably";
-		mes "worthless to you anyway.^000000";
+	mes "^3355FFHá um livro manchado com";
+	mes "sangue entre todos estes livros";
+	mes "velhos, mofados.^000000";
+	next;
+	if(select("Examinar o livro:Ignorar")==1) {
+		//OpenBook 7755;
+		set aru_monas,22;
+		getitem 7755,1; // Reasearch_Note
 		close;
 	}
-	else {
-		mes "^3355FFThere are old books";
-		mes "scattered all over here.^000000";
-		close;
-	}
+	mes "^3355FFEste livro, provavelmente, será";
+	mes "útil a você de qualquer maneira.^000000";
+	close;
 }
 
-abbey03,232,233,4	script	Man#Aru	956,{
+abbey03,232,233,4	script	Homem#Aru	956,{
 	if (aru_monas < 22) {
-		mes "^3355FFYou find a man lying on";
-		mes "the floor, wearing torn";
-		mes "yet luxurious clothing.";
-		mes "He doesn't seem to be";
-		mes "breathing at all...^000000.";
+		mes "^3355FFVocê encontra um homem";
+		mes "atirado no chão, enquanto usa roupas";
+		mes "luxuosas rasgadas.";
+		mes "Ele não parece estar";
+		mes "respirando...^000000.";
 		next;
-		mes "^3355FFHe's dead.^000000";
+		mes "^3355FFEle está morto.^000000";
 		close;
 	}
-	if (aru_monas == 22) {
-		mes "^3355FFYou find a man lying on";
-		mes "the floor, wearing torn";
-		mes "yet luxurious clothing.";
-		mes "He doesn't seem to be";
-		mes "breathing at all...^000000.";
+	if (aru_monas == 22)
+	{
+		mes "^3355FFVocê encontra um homem";
+		mes "atirado no chão, enquanto usa roupas";
+		mes "luxuosas rasgadas.";
+		mes "Ele não parece estar";
+		mes "respirando...^000000.";
 		next;
-		mes "^3355FFYou bring your ears more";
-		mes "closely to his mouth: it";
-		mes "seems that he really is";
-		mes "still barely alive.^000000";
+		mes "^3355FFVocê coloca sua orelha";
+		mes "perto da boca dele: e";
+		mes "parece que ele ainda está";
+		mes "vivo.^000000";
 		next;
-		if (select("Touch Him:Ignore Him") == 1) {
+		if (select("Tocá-lo:Ignorá-lo") == 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "This man...";
-			mes "He's so familiar";
-			mes "for some reason.";
+			mes "Este homem...";
+			mes "Ele me parece familiar";
+			mes "por algum motivo.";
 			next;
-			mes "^3355FFAs you touch him, the";
-			mes "man suddenly jumps";
-			mes "up with a crazed yowl.^000000";
+			mes "^3355FFQuando você o toca,";
+			mes "o homem salta de repente";
+			mes "com um uivo louco.^000000";
 			initnpctimer;
-			hideonnpc "Man#Aru";
-			monster "abbey03",232,232,"Dead King",1875,1,"Man#Aru::OnMyMobDead";
+			hideonnpc "Homem#Aru";
+			monster "abbey03",232,232,"Rei Morto",1875,1,"Homem#Aru::OnMyMobDead";
 			close;
 		}
-		mes "^3355FFYou don't feel";
-		mes "comfortable enough";
-		mes "to touch this man.^000000";
+		mes "^3355FFVocê não se sente";
+		mes "confortável o bastante para";
+		mes "tocar neste homem.^000000";
 		close;
 	}
 	if (aru_monas > 22) {
-		mes "^3355FFHe's dead... Now...^000000";
+		mes "^3355FFEste homem está morto... Agora...^000000";
 		close;
 	}
 
 OnMyMobDead:
 	stopnpctimer;
-	hideoffnpc "Dead Man#Aru";
-	donpcevent "Dead Man#Aru::OnEnable";
+	hideoffnpc "Homem Morto#Aru";
+	donpcevent "Homem Morto#Aru::OnEnable";
 	end;
 
 OnTimer300000:
 	stopnpctimer;
-	hideonnpc "Dead Man#Aru";
-	hideoffnpc "Man#Aru";
+	hideonnpc "Homem Morto#Aru";
+	hideoffnpc "Homem#Aru";
 	end;
 }
 
-abbey03,232,232,4	script	Dead Man#Aru	956,{
-	if (checkweight(7766,1) == 0) {
-		mes "^3355FFWait a second!";
-		mes "Right now, you're carrying";
-		mes "too many things with you.";
-		mes "Please come back after";
-		mes "using the Kafra Service";
-		mes "to store some of your items.^000000";
+abbey03,232,232,4	script	Homem Morto#Aru	956,{
+	if (checkweight(7766,1) < 0)
+	{
+		mes "^3355FFEspere um segundo!";
+		mes "Neste momento, você está carregando";
+		mes "muitas coisas com você.";
+		mes "Por favor, volte depois";
+		mes "de usar os Serviços da Kafra";
+		mes "para guardar alguns itens.^000000";
 		close;
 	}
 	if (aru_monas == 22) {
-		mes "^3355FFYou have no idea why";
-		mes "this dead man is moving";
-		mes "around, so you decided to";
-		mes "examine him. In his jacket,";
-		mes "you find a shining medal...^000000";
+		mes "^3355FFVocê não faz idéia de";
+		mes "por que este homem morto";
+		mes "estar aqui, então você decide";
+		mes "examiná-lo. Dentro da jaqueta,";
+		mes "dele você encontra uma medalha...^000000";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "This medal...";
-		mes "This means that";
-		mes "this man is...!";
+		mes "Está medalha...";
+		mes "Isso significa";
+		mes "que este homem é...!";
 		set aru_monas,23;
 		getitem 7726,1; //Token_of_King
-		hideonnpc "Dead Man#Aru";
-		hideoffnpc "Man#Aru";
+		hideonnpc "Homem Morto#Aru";
+		hideoffnpc "Homem#Aru";
 		stopnpctimer;
 		close;
 	}
@@ -2078,50 +2046,50 @@ OnEnable:
 	end;
 
 OnInit:
-	hideonnpc "Dead Man#Aru";
+	hideonnpc "Homem Morto#Aru";
 	end;
 }
 
 ra_temple,168,54,3	script	Sippie#ss	917,{
 	mes "[Sippie]";
-	mes "Now I finally have some";
-	mes "time to take a break.";
-	mes "Too many followers are";
-	mes "crowding High Priestess";
-	mes "Niren, and they're giving";
-	mes "me so much work to do!";
+	mes "Finalmente tenho um";
+	mes "tempo para um intervalo.";
+	mes "Muitos fiéis estão se reunindo";
+	mes "para falar com a Sacerdotisa";
+	mes "Niren, isso está me dando";
+	mes "muito trabalho!";
 	if (aru_em < 11) {
 		close;
 	}
 	else if (aru_em == 11) {
 		next;
 		mes "[Sippie]";
-		mes "Excuse me, but are you";
-		mes "a friend of our pope?";
-		mes "I think I saw you talk";
-		mes "to her a while ago...";
+		mes "Com licença, mas você";
+		mes "é amigo do nosso papa?";
+		mes "Eu acho que eu vi você";
+		mes "falando com ela a um tempo atrás...";
 		next;
 		mes "[Sippie]";
-		mes "I don't understand why";
-		mes "High Priestess Niren wants";
-		mes "to go to war. I actually think";
-		mes "that in her heart, she doesn't";
-		mes "want it. She's sweet and kind";
-		mes "once you get to know her.";
+		mes "Eu não entendo por que";
+		mes "a Sacerdotisa Niren quer ir para guerra.";
+		mes "Eu na verdade penso que no";
+		mes "coração dela, ela não quer isto.";
+		mes "Ela é doce desde que você";
+		mes "conheça ela.";
 		next;
 		mes "[Sippie]";
-		mes "She loves children...";
-		mes "She's like a mother to";
-		mes "all the kids in Arunafeltz.";
-		mes "She even brought our pope to";
-		mes "Rachel when she was a baby,";
-		mes "raising her like her own child.";
+		mes "Ela ama as crianças...";
+		mes "Ela é como uma mãe para";
+		mes "todas as crianças de Arunafeltz.";
+		mes "Ela foi nosso papa até mesmo em";
+		mes "Rachel quando era apenas um bebê,";
+		mes "que a eleva como a própria criança dela.";
 		next;
 		mes "[Sippie]";
-		mes "If you didn't know she";
-		mes "was our pope, it'd be easy";
-		mes "to mistake her for High";
-		mes "Priestess Niren's daughter.";
+		mes "Se você não soubesse";
+		mes "que ela é nosso papa, seria";
+		mes "fácil confundi-la com a filha da";
+		mes "Sacerdotisa Niren.";
 		close;
 	}
 	else {
@@ -2129,6 +2097,7 @@ ra_temple,168,54,3	script	Sippie#ss	917,{
 	}
 }
 
+// Traduzir apartir daqui
 // Peace to the Arunafeltz
 //============================================================
 moc_ruins,77,167,4	script	Foreign Merchant#aru1	880,5,5,{
@@ -2512,7 +2481,7 @@ ra_temin,103,151,7	script	Female Follower#em	917,{
 		mes "High Priestess Niren must";
 		mes "be in Cheshrumnir Garden.";
 		mes "You should try to talk to her";
-		mes "before the crowds show up.";
+		mes "before the crowds mes up.";
 		close;
 	}
 	else if (aru_em > 21) {
@@ -2770,7 +2739,7 @@ OnTouch:
 		mes "Your Eminence...";
 		mes "I hope you understand";
 		mes "that I've tried my best";
-		mes "to only show you what is";
+		mes "to only mes you what is";
 		mes "beautiful in this world...";
 		next;
 		cutin "ra_bishop",2;
@@ -3164,7 +3133,6 @@ comodo,224,187,3	script	Muff	86,{
 					mes "wallet, I'll make sure";
 					mes "to repay you. Please";
 					mes "help me if you can!";
-					setquest 3100;
 					set diamond_edq,1;
 					close;
 				case 2:
@@ -3266,7 +3234,6 @@ comodo,224,187,3	script	Muff	86,{
 			mes "but I really need my bond";
 			mes "of debt to get my collateral";
 			mes "back from that Belder.";
-			setquest 3100;
 			set diamond_edq,1;
 			close;
 		case 2:
@@ -3348,7 +3315,6 @@ comodo,224,187,3	script	Muff	86,{
 			mes "him to restore my bond of";
 			mes "debt. I'll be waiting for";
 			mes "you right here, okay?";
-			changequest 3102,3103;
 			set diamond_edq,6;
 			close;
 		case 2:
@@ -3380,7 +3346,6 @@ comodo,224,187,3	script	Muff	86,{
 			mes "him to restore my bond of";
 			mes "debt. I'll be waiting for";
 			mes "you right here, okay?";
-			changequest 3102,3103;
 			set diamond_edq,6;
 			close;
 		case 2:
@@ -3418,7 +3383,6 @@ comodo,224,187,3	script	Muff	86,{
 		mes "You've done well, my friend.";
 		mes "Here, please take these as";
 		mes "a meager reward for your help.";
-		completequest 3109;
 		set diamond_edq,14;
 		getitem 603,1; //Old_Blue_Box
 		getitem 608,4; //Seed_Of_Yggdrasil
@@ -3598,7 +3562,6 @@ cmd_fild01,55,160,0	script	Heap of Earth	844,{
 			mes "little thing. Now what?";
 			mes "I dropped it! I have to";
 			mes "try to dig it up again...";
-			changequest 3100,3101;
 			set diamond_edq,2;
 			close;
 		case 2:
@@ -3623,7 +3586,6 @@ cmd_fild01,55,160,0	script	Heap of Earth	844,{
 		mes "Well, I've done all";
 		mes "I can for now. I should";
 		mes "bring this back to Muff.";
-		changequest 3101,3102;
 		set diamond_edq,4;
 		close;
 	}
@@ -3789,7 +3751,6 @@ izlude_in,110,64,3	script	Dorian	878,2,2,{
 						mes "explain how you can";
 						mes "repair the Mystic";
 						mes "Dryer de Elegance.";
-						changequest 3103,3104;
 						set diamond_edq,9;
 						close;
 					}
@@ -3944,7 +3905,6 @@ izlude_in,110,64,3	script	Dorian	878,2,2,{
 			delitem 999,5; //Steel
 			delitem 723,2; //Cardinal_Jewel
 			delitem 716,5; //Red_Gemstone
-			changequest 3104,3105;
 			set diamond_edq,10;
 			mes "[Dorian]";
 			mes "I expect you to fail";
@@ -4089,7 +4049,6 @@ izlude_in,110,64,3	script	Dorian	878,2,2,{
 		mes "Elegance? That's expected:";
 		mes "I didn't really design it for the^FFFFFF ^000000 common user in mind. Well,";
 		mes "why don't you try it again?";
-		erasequest 3106;
 		set diamond_edq,10;
 		close;
 	}
@@ -4107,8 +4066,6 @@ izlude_in,110,64,3	script	Dorian	878,2,2,{
 		mes "is insert the damaged";
 		mes "document and press the";
 		mes "switch. Simple, yes?";
-		erasequest 3106;
-		changequest 3105,3108;
 		set diamond_edq,13;
 		next;
 		mes "[Dorian]";
@@ -4224,7 +4181,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 					mes "The joint is broken...";
 					mes "You should go back";
 					mes "to Dorian for help.^000000";
-					setquest 3106;
 					set diamond_edq,11;
 					close;
 				}
@@ -4262,7 +4218,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 					mes "^3355FFYou should tell Dorian";
 					mes "first so that you can";
 					mes "use this machine.^000000";
-					setquest 3107;
 					set diamond_edq,12;
 					close;
 				}
@@ -4286,7 +4241,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 							mes "before coming to a sudden";
 							mes "stop. That was the wrong";
 							mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-							setquest 3106;
 							set diamond_edq,11;
 							close;
 						case 1:
@@ -4312,7 +4266,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 								mes "before coming to a sudden";
 								mes "stop. That was the wrong";
 								mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-								setquest 3106;
 								set diamond_edq,11;
 								close;
 							}
@@ -4338,7 +4291,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 							mes "before coming to a sudden";
 							mes "stop. That was the wrong";
 							mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-							setquest 3106;
 							set diamond_edq,11;
 							close;
 						case 2:
@@ -4364,7 +4316,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 								mes "before coming to a sudden";
 								mes "stop. That was the wrong";
 								mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-								setquest 3106;
 								set diamond_edq,11;
 								close;
 							}
@@ -4389,7 +4340,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 							mes "before coming to a sudden";
 							mes "stop. That was the wrong";
 							mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-							setquest 3106;
 							set diamond_edq,11;
 							close;
 						case 3:
@@ -4415,7 +4365,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 								mes "before coming to a sudden";
 								mes "stop. That was the wrong";
 								mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-								setquest 3106;
 								set diamond_edq,11;
 								close;
 							}
@@ -4441,7 +4390,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 							mes "before coming to a sudden";
 							mes "stop. That was the wrong";
 							mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-							setquest 3106;
 							set diamond_edq,11;
 							close;
 						case 4:
@@ -4467,7 +4415,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 								mes "before coming to a sudden";
 								mes "stop. That was the wrong";
 								mes "switch. You'd better ask Dorian... ^FFFFFF ^000000";
-								setquest 3106;
 								set diamond_edq,11;
 								close;
 							}
@@ -4506,7 +4453,6 @@ izlude_in,113,66,0	script	Strange Machine	111,{
 		mes "So this is the original";
 		mes "bond of debt that Muff";
 		mes "lost? It looks... Perfect!";
-		changequest 3108,3109;
 		getitem 7722,1; //Debt_Note
 		close;
 	}
@@ -4632,7 +4578,6 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 					mes "Well, I'll be right";
 					mes "here. I hope you come";
 					mes "back with some good news.";
-					setquest 3110;
 					set diamond_edq,15;
 					close;
 				case 2:
@@ -4646,7 +4591,7 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 					close;
 				}
 			case 2:
-				if ((BaseJob == Job_Novice) || (BaseJob == Job_SuperNovice)) {
+				if ((BaseJob == Job_Novice) || (BaseJob == Job_Supernovice)) {
 					mes "[Ibrahim]";
 					mes "So it's true...";
 					mes "People say you're";
@@ -4664,7 +4609,7 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 					mes "for someone smart and strong.";
 					close;
 				}
-				else if (BaseClass == Job_Crusader) {
+				else if (BaseClass == CRUSADER) {
 					mes "[Ibrahim]";
 					mes "Heh, so you really";
 					mes "are one of those holy";
@@ -4695,7 +4640,7 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 					mes "really spoke highly of you.";
 					close;
 				}
-				else if (BaseClass == Job_Alchemist) {
+				else if (BaseClass == Job_Alcehmist) {
 					mes "[Ibrahim]";
 					mes "I know a guy who knows";
 					mes "a guy in the Alchemist Guild.";
@@ -4739,7 +4684,7 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 					mes "like an angel...";
 					close;
 				}
-				else if (BaseClass == Job_Dancer) {
+				else if (BaseClass == Job_dancer) {
 					mes "[Ibrahim]";
 					mes "Is it really true?";
 					mes "I hear you dance";
@@ -4831,7 +4776,6 @@ moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 		mes "Well, I don't know if";
 		mes "it's enough for what you";
 		mes "did, but I hope you like it.";
-		completequest 3118;
 		set diamond_edq,26;
 		getitem 732,2; //Crystal_Jewel__
 		getitem 603,1; //Old_Blue_Box
@@ -5122,7 +5066,7 @@ alberta,102,80,3	script	Jhonnita	86,{
 			case 1:
 				mes "[Jhonnita]";
 				mes "It couldn't hurt to";
-				mes "show you my wares, but...";
+				mes "mes you my wares, but...";
 				mes "I doubt you can afford them.";
 				mes "Jewels aren't cheap, you know?";
 				next;
@@ -5389,7 +5333,6 @@ geffen,128,153,3	script	Leblo	883,{
 			mes "she'll give you my medicine...";
 			mes "I hope. Anyway, her name is";
 			mes "^0000FFWola^000000, and she's in Payon.";
-			changequest 3110,3111;
 			set diamond_edq,17;
 			close;
 		case 2:
@@ -5466,7 +5409,6 @@ geffen,128,153,3	script	Leblo	883,{
 		mes "learn more about the Z Gang.";
 		mes "Pretty useful info, huh?";
 		mes "Take care, my friend.";
-		changequest 3114,3115;
 		set diamond_edq,22;
 		close;
 	}
@@ -5662,7 +5604,6 @@ payon_in03,167,149,3	script	Wola	75,2,2,{
 		next;
 		mes "["+ strcharinfo(0) +"]";
 		mes "You... You got it.";
-		changequest 3111,3112;
 		set diamond_edq,19;
 		close;
 	}
@@ -5717,7 +5658,6 @@ payon_in03,167,149,3	script	Wola	75,2,2,{
 			mes "some medicine? I completely";
 			mes "forgot about that for a while.";
 			mes "What did you say exactly?";
-			changequest 3112,3113;
 			set diamond_edq,20;
 			next;
 			switch(select("Will you go out with me?:Leblo's back medicine?")) {
@@ -5783,7 +5723,6 @@ payon_in03,167,149,3	script	Wola	75,2,2,{
 				mes "be okay in my hands. I need";
 				mes "to get back to work: please";
 				mes "take care of yourself!";
-				changequest 3113,3114;
 				set diamond_edq,21;
 				close;
 			}
@@ -5871,7 +5810,6 @@ payon_in03,167,149,3	script	Wola	75,2,2,{
 			mes "be okay in my hands. I need";
 			mes "to get back to work: please";
 			mes "take care of yourself!";
-			changequest 3113,3114;
 			set diamond_edq,21;
 			close;
 		}
@@ -5890,6 +5828,7 @@ payon_in03,167,149,3	script	Wola	75,2,2,{
 	mes "Take care of yourself!";
 	close;
 
+//OnTouch2:
 OnTouch:
 	if (diamond_edq == 17) {
 		mes "[Wola]";
@@ -5996,7 +5935,6 @@ in_rogue,366,46,3	script	Rogue Investigator	828,{
 				mes "in Comodo. I doubt you'll";
 				mes "find anything there, but";
 				mes "you can go check it out. ";
-				changequest 3115,3116;
 				set diamond_edq,23;
 				close;
 			}
@@ -6068,7 +6006,6 @@ in_rogue,366,46,3	script	Rogue Investigator	828,{
 				mes "is a large warehouse in";
 				mes "Comodo where I doubt you'll";
 				mes "find anything. But who knows? ";
-				changequest 3115,3116;
 				set diamond_edq,23;
 				close;
 			}
@@ -6179,7 +6116,6 @@ cmd_in02,69,188,1	script	Small Safe	844,{
 		mes "sneak out of here, and";
 		mes "return this big diamond";
 		mes "to Ibrahim as soon as I can.";
-		changequest 3117,3118;
 		set diamond_edq,25;
 		close;
 	}
@@ -6239,7 +6175,6 @@ cmd_in02,80,189,0	script	Odd Switch#Switch2	844,{
 		next;
 		mes "^3355FF*Click Click*^000000";
 		next;
-		changequest 3116,3117;
 		set diamond_edq,24;
 		mes "[" + strcharinfo(0) + "]";
 		mes "That sound...!";
@@ -6285,7 +6220,6 @@ prontera,150,326,0	script	Wanted Notice#edq	111,{
 		mes "be rewarded with the Book";
 		mes "of Forbidden Mystery, one";
 		mes "of the kingdom's treasures.";
-		setquest 3119;
 		set zdan_edq,1;
 		close;
 	}
@@ -6317,7 +6251,7 @@ prontera,150,326,0	script	Wanted Notice#edq	111,{
 		mes "^0000ffCatfoii^000000 - Pet Cat";
 		next;
 		mes "====National Wanted Notice====";
-		mes "These infamous members";
+	mes "These infamous members";
 		mes "of the Z Gang are suspected";
 		mes "of stealing national treasure,";
 		mes "committing fraud, forgery,";
@@ -6379,7 +6313,6 @@ prontera,148,326,3	script	Chief Officer#edq	734,{
 		mes "Louis, Martha Hertizan a.k.a.";
 		mes "Martha, and Catfoii a.k.a.";
 		mes "Catfoii must be captured!";
-		changequest 3119,3120;
 		set zdan_edq,2;
 		close;
 	}
@@ -6553,9 +6486,8 @@ prontera,148,326,3	script	Chief Officer#edq	734,{
 		mes "be recorded in the annals";
 		mes "of Rune-Midgarts history.";
 		mes "Congratulations! ";
-		completequest 3134;
 		set zdan_edq,19;
-		getexp 100000,0;
+		getexp 1000000,0;
 		close;
 	}
 	mes "[Chief Officer]";
@@ -6617,7 +6549,6 @@ prt_in,168,18,1	script	Valdes	65,2,2,{
 			mes "5 bottles! Then... Maybe...";
 			mes "I'll tell you want you really";
 			mes "wanna know. Heh heh~ ^666666*Hic!*^000000";
-			changequest 3120,3121;
 			set zdan_edq,3;
 			close;
 		case 2:
@@ -6707,7 +6638,6 @@ prt_in,168,18,1	script	Valdes	65,2,2,{
 			mes "those Z Gang bastards.";
 			mes "^666666*Sigh*^000000 I think I'll go rest";
 			mes "a bit now. Good luck!";
-			changequest 3121,3122;
 			set zdan_edq,4;
 			close;
 		}
@@ -6801,7 +6731,6 @@ in_rogue,359,116,3	script	Marybell	747,{
 					mes "or not, I'm gonna continue";
 					mes "investigating the Z Gang for";
 					mes "the Rogue Guild and Valdes.";
-					changequest 3122,3123;
 					set zdan_edq,5;
 					break;
 				case 2:
@@ -6969,7 +6898,6 @@ in_rogue,359,116,3	script	Marybell	747,{
 					mes "and check it out. Good";
 					mes "luck finding those Z Gang";
 					mes "guys. And take care!";
-					changequest 3125,3126;
 					set zdan_edq,9;
 					close;
 				}
@@ -7035,7 +6963,7 @@ in_rogue,359,116,3	script	Marybell	747,{
 		mes "decoders in this kingdom.";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "Gooho Ahn?";
+		mes "Goohoo Ahn?";
 		mes "Why does it feel like";
 		mes "I should know that";
 		mes "name? It's so familiar...";
@@ -7049,16 +6977,15 @@ in_rogue,359,116,3	script	Marybell	747,{
 		mes "[Marybell]";
 		mes "Eh, that's not what's";
 		mes "important right now.";
-		mes "Would you talk to Gooho";
+		mes "Would you talk to Goohoo";
 		mes "Ahn and see what he found?";
-		changequest 3128,3129;
 		set zdan_edq,12;
 		close;
 	}
 	if ((zdan_edq > 11) && (zdan_edq < 14)) {
 		mes "[Marybell]";
 		mes "Hey, why don't you talk";
-		mes "to Gooho Ahn in Payon,";
+		mes "to Goohoo Ahn in Payon,";
 		mes "and ask if he finished";
 		mes "decoding that secret letter";
 		mes "from the Z Gang already?";
@@ -7066,7 +6993,7 @@ in_rogue,359,116,3	script	Marybell	747,{
 	}
 	if (zdan_edq == 14) {
 		mes "[Marybell]";
-		mes "Oh, Gooho decoded everything?";
+		mes "Oh, Goohoo decoded everything?";
 		mes "Let's see... Something about";
 		mes "the Book of Forbidden Mystery...^FFFFFF ^000000 Ah. There we go! The location";
 		mes "of the Z Gang's hideout!";
@@ -7095,7 +7022,6 @@ in_rogue,359,116,3	script	Marybell	747,{
 		mes "hunt them down separately, and";
 		mes "whoever finds 'em first gets";
 		mes "dibs on beating them up!";
-		changequest 3131,3132;
 		set zdan_edq,15;
 		close;
 	}
@@ -7245,7 +7171,6 @@ payon,244,62,3	script	Moonho Ahn	897,{
 			mes "some time to prep the";
 			mes "game? When you return,";
 			mes "we'll be ready to play~";
-			changequest 3123,3124;
 			set zdan_edq,6;
 			close;
 		}
@@ -7468,7 +7393,6 @@ payon,244,62,3	script	Moonho Ahn	897,{
 					mes "feels good to have";
 					mes "played with a worthy";
 					mes "opponent. Thank you~";
-					changequest 3124,3125;
 					set zdan_edq,7;
 					close;
 				}
@@ -7605,7 +7529,6 @@ payon,244,62,3	script	Moonho Ahn	897,{
 						mes "feels good to have";
 						mes "played with a worthy";
 						mes "opponent. Thank you~";
-						changequest 3124,3125;
 						set zdan_edq,7;
 						close;
 					}
@@ -7758,7 +7681,6 @@ payon,192,176,3	script	Gooho Ahn	903,{
 			mes "I need, I should be able";
 			mes "to decrypt the rest of";
 			mes "this secret Z Gang letter.";
-			changequest 3129,3130;
 			set zdan_edq,13;
 			close;
 		}
@@ -7861,7 +7783,6 @@ payon,192,176,3	script	Gooho Ahn	903,{
 			mes "^0000ffWeii arr prowd Z G gna^000000";
 			mes "^0000ffAynoen hwo sspotp uys^000000";
 			mes "^0000ffwlil eb kckide on htier ssa!^000000";
-			changequest 3130,3131;
 			set zdan_edq,14;
 			close;
 		}
@@ -7954,7 +7875,6 @@ moc_ruins,90,67,3	script	Suspicious Man#1	99,2,2,{
 		mes "an informer for the Z Gang.";
 		mes "He can't have gotten too far:";
 		mes "I have a chance to catch him!";
-		changequest 3126,3127;
 		set zdan_edq,10;
 		close;
 	}
@@ -8067,7 +7987,6 @@ moc_ruins,90,67,3	script	Suspicious Man#1	99,2,2,{
 		mes "I should head back to";
 		mes "Marybell, and see if she's";
 		mes "learned any new information.";
-		changequest 3127,3128;
 		set zdan_edq,11;
 		set $@zdan,0;
 		stopnpctimer;
@@ -8151,7 +8070,6 @@ OnTouch:
 		mes "an informer for the Z Gang.";
 		mes "He can't have gotten too far:";
 		mes "I have a chance to catch him!";
-		changequest 3126,3127;
 		set zdan_edq,10;
 		close;
 	}
@@ -8201,7 +8119,6 @@ moc_ruins,78,167,3	script	Suspicious Man#2	99,2,2,{
 		mes "an informer for the Z Gang.";
 		mes "He can't have gotten too far:";
 		mes "I have a chance to catch him!";
-		changequest 3126,3127;
 		set zdan_edq,10;
 		close;
 	}
@@ -8291,7 +8208,6 @@ moc_ruins,78,167,3	script	Suspicious Man#2	99,2,2,{
 		mes "I should head back to";
 		mes "Marybell, and see if she's";
 		mes "learned any new information.";
-		changequest 3127,3128;
 		set zdan_edq,11;
 		set $@zdan,0;
 		stopnpctimer;
@@ -8400,7 +8316,6 @@ OnTouch:
 		mes "an informer for the Z Gang.";
 		mes "He can't have gotten too far:";
 		mes "I have a chance to catch him!";
-		changequest 3126,3127;
 		set zdan_edq,10;
 		close;
 	}
@@ -8480,7 +8395,6 @@ moc_fild17,209,235,0	script	Odd Slab	111,4,4,{
 						mes "What th--?! What's";
 						mes "happening?! I'm being";
 						mes "sucked away somewhere!";
-						changequest 3132,3133;
 						set zdan_edq,16;
 						close2;
 						warp "z_agit",98,40;
@@ -8734,6 +8648,7 @@ OnInit:
 OnEnable:
 	enablenpc "#ZGuard";
 	initnpctimer;
+	set .MyMobCount,3;
 	monster "z_agit",97,78,"Catfoii's Guard",1479,1,"#ZGuard::OnMyMobDead";
 	monster "z_agit",98,79,"Catfoii's Guard",1479,1,"#ZGuard::OnMyMobDead";
 	monster "z_agit",96,81,"Catfoii's Guard",1523,1,"#ZGuard::OnMyMobDead";
@@ -8750,7 +8665,8 @@ Onreset:
 	end;
 
 OnMyMobDead:
-	if (mobcount("z_agit","#ZGuard::OnMyMobDead") < 1) {
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount < 1) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "You cowardly Z Gang!";
 		mes "Come out and surrender!";
@@ -8888,7 +8804,6 @@ z_agit,97,101,3	script	Louis	931,{
 		mes "But how did we lose?!";
 		close2;
 		getitem 7724,1; //Forbidden_Secret_Art
-		changequest 3133,3134;
 		set zdan_edq,18;
 		mapwarp "z_agit","moc_fild17",209,235;
 		set $@monster_zgang,0;
@@ -9011,7 +8926,6 @@ z_agit,99,101,3	script	Martha	101,{
 		mes "But how did we lose?!";
 		close2;
 		getitem 7724,1; //Forbidden_Secret_Art
-		changequest 3133,3134;
 		set zdan_edq,18;
 		mapwarp "z_agit","moc_fild17",209,235;
 		set $@monster_zgang,0;
@@ -9131,7 +9045,6 @@ z_agit,95,101,3	script	Catfoii	876,{
 		mes "But how did we lose?!";
 		close2;
 		getitem 7724,1; //Forbidden_Secret_Art
-		changequest 3133,3134;
 		set zdan_edq,18;
 		mapwarp "z_agit","moc_fild17",209,235;
 		set $@monster_zgang,0;
@@ -9424,7 +9337,7 @@ morocc,102,298,3	script	Man#zgang	98,{
 			mes "What? So you're the one";
 			mes "I was warned about! I've";
 			mes "been wondering when you'd";
-			mes "show up. Prepare to die!";
+			mes "mes up. Prepare to die!";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes "Umm... Excuse me?";
@@ -11071,30 +10984,30 @@ prontera,140,304,5	script	Old Soldier	901,{
 						next;
 					}
 					else if ((BaseLevel > 65) && (BaseLevel < 75)) {
-						getexp 5000,0;
-						next;
-					}
-					else if ((BaseLevel > 74) && (BaseLevel < 81)) {
-						getexp 18000,0;
-						next;
-					}
-					else if ((BaseLevel > 80) && (BaseLevel < 86)) {
-						getexp 36000,0;
-						next;
-					}
-					else if ((BaseLevel > 85) && (BaseLevel < 91)) {
 						getexp 50000,0;
 						next;
 					}
+					else if ((BaseLevel > 74) && (BaseLevel < 81)) {
+						getexp 180000,0;
+						next;
+					}
+					else if ((BaseLevel > 80) && (BaseLevel < 86)) {
+						getexp 360000,0;
+						next;
+					}
+					else if ((BaseLevel > 85) && (BaseLevel < 91)) {
+						getexp 500000,0;
+						next;
+					}
 					else if ((BaseLevel > 90) && (BaseLevel < 96)) {
-						getexp 80000,0;
+						getexp 800000,0;
 						next;
 					}
-					else if ((BaseLevel > 95) && (BaseLevel < 150)) {
-						getexp 100000,0;
+					else if ((BaseLevel > 95) && (BaseLevel < 99)) {
+						getexp 1000000,0;
 						next;
 					}
-					else if (BaseLevel == 150) {
+					else if (BaseLevel == 99) {
 						getitem 617,1; //Old_Violet_Box
 						next;
 					}
@@ -11142,30 +11055,30 @@ prontera,140,304,5	script	Old Soldier	901,{
 				next;
 			}
 			else if ((BaseLevel > 65) && (BaseLevel < 75)) {
-				getexp 5000,0;
-				next;
-			}
-			else if ((BaseLevel > 74) && (BaseLevel < 81)) {
-				getexp 8000,0;
-				next;
-			}
-			else if ((BaseLevel > 80) && (BaseLevel < 86)) {
-				getexp 15000,0;
-				next;
-			}
-			else if ((BaseLevel > 85) && (BaseLevel < 91)) {
-				getexp 20000,0;
-				next;
-			}
-			else if ((BaseLevel > 90) && (BaseLevel < 96)) {
-				getexp 40000,0;
-				next;
-			}
-			else if ((BaseLevel > 95) && (BaseLevel < 150)) {
 				getexp 50000,0;
 				next;
 			}
-			else if (BaseLevel == 150) {
+			else if ((BaseLevel > 74) && (BaseLevel < 81)) {
+				getexp 80000,0;
+				next;
+			}
+			else if ((BaseLevel > 80) && (BaseLevel < 86)) {
+				getexp 150000,0;
+				next;
+			}
+			else if ((BaseLevel > 85) && (BaseLevel < 91)) {
+				getexp 200000,0;
+				next;
+			}
+			else if ((BaseLevel > 90) && (BaseLevel < 96)) {
+				getexp 400000,0;
+				next;
+			}
+			else if ((BaseLevel > 95) && (BaseLevel < 99)) {
+				getexp 500000,0;
+				next;
+			}
+			else if (BaseLevel == 99) {
 				getitem 617,1; //Old_Violet_Box
 				next;
 			}

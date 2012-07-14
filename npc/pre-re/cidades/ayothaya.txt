@@ -1,164 +1,150 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
-//= NPCs referentes a cidade de Ayothaya
-//===== Por: =========================================================
-//= MasterOfMuppets; Axl
-//===== Versão Atual: ================================================
-//= 1.8
-//===== Compatível com: ==============================================
-//= Cronus GIT
-//===== Descrição: ===================================================
-//= NPCs referentes a cidade de Ayothaya
-//===== Comentários Adicionais: ======================================
-//= 1.8 Adicionado diálogos Oficiais do bRO. [Axl]
-//====================================================================
+//===== Cronus Script ========================================
+//= Cidade Ayotaya
+//===== Por: =================================================
+//= MasterOfMuppets
+//===== Versão Atual: ========================================
+//= 1.7b
+//===== Compatível com: ====================================== 
+//= eAthena SVN
+//===== Descrição: =========================================== 
+//= [Aegis Conversion]
+//= NPCs da Cidade de Ayotaya
+//===== Comentários Adicionais: ==============================
+//= 1.6 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.7 Fixed character's anme bugs [Lupus]
+//= 1.7a Script Traduzido para o pt_BR. [Lanter]
+//= 1.7b Revisão Geral do Script [Asus]
+//============================================================ 
 
-// Ayothaya NPC de teletransporte
+// Ayothaya Transportation NPC
 //============================================================ 
 alberta,247,42,3	script	Aibakthing#ayo	843,{
 	mes "[Aibakthing]";
-	mes "Hmm! Hahh! Hmm! Hahh!";
-	mes "Deixe-me apresentar a você minha cidade, Ayothaya";
-	mes "onde vive tudo o que é sagrado e misterioso!";
+	mes "Hoo! Hah! Hoo! Hah!";
+	mes "Deixe-me levá-lo à";
+	mes "um lugar distante e espiritual,";
+	mes "uma terra de mistérios exóticos,";
+	mes "minha Terra-Natal Ayothaya!";
 	next;
-	switch(select("fale-me sobre Ayothaya...:Ir para Ayothaya.:Cancelar.")) {
+	switch(select("Saber sobre Ayothaya.:Ir para Ayothaya.:Cancelar.")) {
 	case 1:
 		mes "[Aibakthing]";
-		mes "Nós, os Ayothayanos somos religiosos e";
-		mes "amamos a paz e a sinceridade.";
-		mes "Nós procuramos uma vida nobre e esplêndida.";
-		mes "Somos de natureza gentil, mas";
-               	mes "capazes de nos proteger quando é preciso.";
+		mes "Nós, moradores de Ayothaya, somos um povo devoto á sinceridade e à paz. Nos empenhamos em levar uma vida simples e viver em paz e harmonia com a natureza";
 		next;
 		mes "[Aibakthing]";
-		mes "A comida é especialmente boa.";
-		mes "Nosso prato mais tradicional é a Sopa Tailandesa";
-		mes "feita com limão, camarões e pimenta";
-		mes "que possui um sabor incrível com aroma único.";
-		mes "E sugiro que você prove-a em Ayothaya.";
+		mes "Nossa especiaria é mundialmente famosa. Nosso prato mais procurado é a Sopa Tailandesa feita com limão, camarões e pimenta que possui um sabor incrível com aroma único.";
 		next;
 		mes "[Aibakthing]";
-		mes "Na história de Ayothaya existe um fato terrível";
-		mes "que fala sobre uma criatura maligna";
-		mes "chamada 'Tigre Sa-mhing'";
-		mes "que, contam, devorava pessoas.";
+		mes "Para quem procura aventura, existe uma história antiga sobre o Tigre 'Sa-mhing', uma criturá má que assombra nossas Ruínas.";
 		next;
 		mes "[Aibakthing]";
-		mes "Hmm! Hah! Hmm! Hah!";
-		mes "Ninguém resiste a um convite tão tentador";
-		mes "a visitar uma área tão bela.";
-		mes "Você será bem-vind"+ sex ? "o":"a" +" a qualquer hora!";
+		mes "Hoo! Hahh! Hoo! Hahh!";
+		mes "Nenhum homem resiste em ";
+		mes "visitar essa terra linda.";
+		mes "Rune-Midgardianos são";
+		mes "sempre bem-vindos!";
 		close;
 	case 2:
 		mes "[Aibakthing]";
-		mes "Se você desejar visitar Ayothaya,";
-		mes "Pedirei uma humilde taxa de 10.000 zenys!";
-		mes "Hmm! Hah! Hmm! Hah!";
+		mes "Ah, você tem que pagar 10,000 Zeny";
+		mes "Se você quiser visitar Ayothaya.";
+		mes "Se você estiver pronto, nós podemos ir";
+		mes "agora~";
 		next;
-		mes "[Aibakthing]";
-		mes "Agora, você gostaria de visitar Ayothaya!?";
-		next;
-		if (select("Sim!!:Não.") == 1) {
+		if (select("Estou pronto, vamos lá!:Não.") == 1) {
 			if (Zeny > 9999) {
 				mes "[Aibakthing]";
-				mes "Hmm! Hah! Hmm! Hah!";
-				mes "Ah, minha cidade natal, Ayothaya...";
-				mes "Eu estou chegando!";
-				close;
+				mes "Hoo! Hah! Hoo! Hah!";
+				mes "Tire-nos daqui! Vamos para";
+				mes "Ayothaya!";
+				close2;
 				set zeny,zeny-10000;
 				warp "ayothaya",149,71;
 				end;
 			}
 			mes "[Aibakthing]";
-			mes "Como falei para você, sem a taxa de 10.000 zenys";
-			mes "você não poderá apreciar a beleza de Ayothaya.";
-			mes "Ao invés de mandar você para lá, vou";
-			mes "chutar o seu traseiro por me fazer gastar meu precioso tempo!";
+			mes "Lamento, mas você não tem 10,000 Zenys para viajar à Ayothaya. Mas o preço não é nada comparado as experiências que esperam por você!";
 			close;
 		}
 		mes "[Aibakthing]";
-		mes "Se todos sonham em viver em um lugar pacífico e belo, ";
-		mes "este lugar é Ayothaya, minha cidade!";
+		mes "Alguma vez você já sonhou";
+		mes "em um lugar extramamente lindo";
+		mes "com serenidade espiritual? Você";
+		mes "devia estar sonhando";
+		mes "com Ayothaya, meu amigo.";
 		close;
 	case 3:
 		mes "[Aibakthing]";
-		mes "Se todos sonham em viver em um lugar pacífico e belo, ";
-		mes "este lugar é Ayothaya, minha cidade!";
+		mes "Alguma vez você já sonhou";
+		mes "em um lugar extramamente lindo";
+		mes "com serenidade espiritual? Você";
+		mes "devia estar sonhando";
+		mes "com Ayothaya, meu amigo.";
 		close;
 	}
 }
 
 ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
 	mes "[Aibakthing]";
-	mes "Hmm! Hah! Hmm! Hah!";
-	mes "Então, você gostou de conhecer Ayothaya?";
-	mes "Gostou da Sopa Tailandesa? Já é hora de voltar para seu país!";
+	mes "Hoo! Hah! Hmm! Hah!";
+	mes "E então, gostou de Ayothaya? Você teve a chance de apreciar o sabor da Sopa Tailandesa? Quando estiver pronto, tenho que levá-lo de volta para casa.";
 	next;
-	if (select("Voltar para Alberta.:Cancelar.") == 1) {
+	if (select("Volta para Alberta.:Cancelar.") == 1) {
 		mes "[Aibakthing]";
-		mes "Estaremos aqui sempre para dar as boas-vindas.";
-		mes "Espero que possamos nos rever em breve!";
-		mes "Faça uma boa viagem!";
-		close;
+		mes "Você será bem vindo toda vez que vier á Ayothaya. Espero que possamos vê-lo novamente outra vez. Obrigado~";
+		close2;
 		warp "alberta",235,45;
 		end;
 	}
 	mes "[Aibakthing]";
-	mes "Ah, eu entendo porque você não quer deixar";
-	mes "um lugar tão belo como Ayothaya.";
-	mes "Não se preocupe, fique o tempo que precisar.";
+	mes "Oh sim. Eu entendo que é difícil sair de um lugar lindo como este. Não se preocupe";
+	mes "e não se apresse.";
 	close;
 }
 
-// Ayothaya NPCs
+// Generic Ayothaya NPCs
 //============================================================ 
 ayothaya,189,120,3	script	Jovem#Thang	843,{
 	mes "[Thang]";
-	mes "Temos um terrível prédio antigo.";
-	mes "Ninguém se atreve a chegar perto dele.";
+	mes "Há uma antiga e";
+	mes "terrível contrução em ";
+	mes "Ayothaya que ninguém";
+	mes "aqui tem coragem de se aproximar...";
 	next;
 	mes "[Thang]";
-	mes "No passado, alguns curiosos entraram no edifício,";
-	mes "apesar das histórias terríveis sobre ele.";
-	mes "E nunca voltaram.";
-	mes "Fico imaginando o que acontece lá dentro... ";
+	mes "No passado, muitas pessoas curiosas foram lá dentro apesar das histórias de terror e nunca mais retornaram. Todos querem saber que diabos poderia acontecer naquele lugar.";
 	next;
 	mes "[Thang]";
-	mes "Mas, se você quiser provar a sua coragem";
-	mes "para os outros, seria uma ótima idéia desafiar";
-	mes "um grande perigo... eu acho.";
+	mes "Entretando, se você quer provar sua coragem pros outros e confrontar o perigo lá dentro, pode ser um desafio digno para um aventureiro...";
+	mes "Eu acho.";
 	close;
 }
 	
-ayothaya,171,152,5	script	Menina#Lalitha	838,{
+ayothaya,171,152,5	script	Garota#Lalitha	838,{
 	set .@sit,rand(1,5);
 	if (.@sit > 0 && .@sit < 3) {
 		mes "[Lalitha]";
-		mes "Olá! Acredito que não nos conhecemos.";
-		mes "Você é de fora da cidade?";
-		mes "Ah, conheço todas as pessoas";
-		mes "que moram nesta vila.";
+		mes "Olá!";
+		mes "Não creio que";
+		mes "não nos encontramos antes.";
 		next;
 		mes "[Lalitha]";
-		mes "Hum... posso saber de onde você é?";
-		mes "Bem, tenho curiosidade sobre várias coisas do mundo exterior.";
-		mes "Como os vestidos e as jóias que as senhoras de outros países usam...";
+		mes "Você deve ser de";
+		mes "Rune-Midgard.";
+		mes "Afinal, conheço cada pessoa que mora nesta aldeia";
+		mes "Heh heh~";
 		next;
 		mes "[Lalitha]";
-		mes "Também fico querendo saber se os homens são bonitos...";
-		mes "Que tipo de canções existem em seu país?";
-		mes "Que tipo de garotas os homens gostam?";
-		mes "Hum... estou tão curiosa...";
+		mes "Hmm...";
+		mes "Posso perguntar de onde";
+		mes "você veio? Estou curiosa e gostaria de saber";
+		mes "um monte de coisas do mundo exterior.";
+		next;
+		mes "[Lalitha]";
+		mes "Sabe, quais vestidos e jóias que as garotas usam, o que os homens estão procurando, que tipo de músicas vocês gostam, que tipo de garotas que vocês, rapazes, procuram por lá...";
 		emotion e_what;
 		next;
-		mes "[" + strcharinfo(0) + "]";
+		mes "[" +strcharinfo(0)+ "]";
 		mes ".........";
 		next;
 		mes "[Lalitha]";
@@ -166,111 +152,165 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 		emotion e_swt;
 		next;
 		mes "[Lalitha]";
-		mes "OK, cuide-se.";
-		mes "E aproveite a viagem!";
+		mes "Ceerto~!";
+		mes "Tome cuidado e";
+		mes "aproveite sua viagem!";
 		close;
 	}
 	else if (.@sit > 2 && .@sit < 6) {
 		mes "[Lalitha]";
-		mes "Quando for a leste da vila,";
-		mes "chegará às ruínas que outrora eram um templo.";
-		mes "Agora são um ninho de monstros terríveis.";
+		mes "Quando você for para o leste dessa";
+		mes "aldeia, você chegará nas ruínas do antigo santuário.";
+		mes "Lá é um ninho cheio de monstros terríveis.";
 		next;
 		mes "[Lalitha]";
-		mes "Se você pretende se aventurar nas ruínas,";
-		mes "é melhor se preparar muito bem.";
+		mes "Se você quiser arriscar-se através dessas ruínas, é melhor se preparar";
+		mes "o quanto puder!";
 		next;
 		mes "[Lalitha]";
-		mes "Ah, queria saber onde está o meu príncipe amaldiçoado.";
+		mes "Ah...";
+		mes "Eu admiro onde";
+		mes "meu Cavaleiro Negro está~";
 		emotion e_lv;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Não quer dizer...";
+		mes "Cavaleiro com armadura";
+		mes "brilhante calvagando?";
+		next;
+		mes "[Lalitha]";
+		mes "Hmm...?";
+		mes "AH, bem...";
+		mes "Eu vou levá-los!";
+		mes "Hee hee~!";
 		close;
 	}
 	mes "[Lalitha]";
-	mes "Hã?!?";
-	mes "O que é...?";
+	mes "Hmm...?";
+	mes "Que foi?";
 	close;
 }
 	
-ayothaya,143,102,5	script	Velho#ayothaya	842,{
+ayothaya,143,102,5	script	Aldeão#ayothaya	842,{
 	mes "[Aldeão]";
-	mes "Hum hum... ";
-	mes "Hã?";
-	mes "Você deve ser de fora.";
-	mes "Hum hum... você perguntou para onde estou indo?";
-	mes "Estou indo pescar logo adiante.";
+	mes "Ummm.";
+	mes "Hmmmmm...";
+	mes "Ummmmm...?";
 	next;
 	mes "[Aldeão]";
-	mes "Hum... quer ouvir uma notícia interessante?";
-	mes "Estão dizendo que alguém encontrou um anel";
-	mes "dentro de um peixe que apanharam no pesqueiro!";
-	mes "Eu também já ouvi falar que várias pessoas encontraram";
-	mes "itens valiosos em peixes.";
+	mes "Você deve ser";
+	mes "um estranho.";
+	mes "Sim. Sim, certamente.";
 	next;
 	mes "[Aldeão]";
-	mes "Isso significa que, se tiver sorte,";
-	mes "poderá se tornar um milionário pescando aqui...";
-	mes "......hu hu hu...";
+	mes "Você perguntou";
+	mes "onde estou indo?";
+	mes "Estou indo pescar";
+	mes "logo alí. É o que";
+	mes "nós, velhos, fazemos: pescar.";
 	next;
 	mes "[Aldeão]";
-	mes "!? Ah... entrei para o mercado da pesca!";
-	mes "Nossa... peguei um caminho totalmente errado...";
-	mes "O pesqueiro é do outro lado.";
-	mes "Huhuhu, já que entrei para o mercado da pesca,";
-	mes "não seria uma má idéia dar uma olhada ao redor. Huhuhuhu.";
+	mes "Hmmm...";
+	mes "Você gostaria de ouvir";
+	mes "algo interessante? Eu soube que alguém achou um anel dentro de";
+	mes "um peixe que pegou na";
+	mes "pescaria diária.";
 	next;
 	mes "[Aldeão]";
-	mes "Ah, os produtos aquáticos desse mercado";
-	mes "são todos frescos e saborosos.";
-	mes "Você tem de experimentar pelo menos uma vez, senão pode se arrepender.";
-	mes "Huhu huhuhu...";
+	mes "Supostamente, há muitas histórias de pessoas que acharam itens valiosos dentro de peixes que pegavam lá.";
+	next;
+	mes "[Aldeão]";
+	mes "Se você for sortudo o bastante,";
+	mes "pode tornar-se";
+	mes "um milionário.";
+	mes "Heh heh heh~";
+	next;
+	mes "[Aldeão]";
+	mes "...!?";
+	mes "Ah, Eu vim de dentro do Mercado do Peixe! ^666666*Sigh*^000000 Parece que vim pelo caminho errado. O lugar da pesca é do outro lado da aldeia.";
+	next;
+	mes "[Aldeão]";
+	mes "Desde que estou aqui, não seria";
+	mes "uma má idéia olhar ao redor. Todos os frutos do mar deste mercado são frescos e deliciosos. Você irá se arrepender se não provar,";
+	mes "pelo menos uma vez";
 	close;
 }
 	
 ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
 	mes "[Kwan]";
-	mes "Ufa, está muito quente hoje.";
-	mes "Você deve ser de fora, né?";
-	mes "Vi muitos turistas aqui ultimamente.";
+	mes "OMFG, não está";
+	mes "taaaaaaanto calor hoje?";
 	next;
 	mes "[Kwan]";
-	mes "É melhor ser cuidados"+(Sex?"o":"a")+" quando viajar fora da vila.";
-	mes "Quando estiver fora, há as ruínas de um templo na floresta.";
-	mes "Devo avisá-lo de que é um lugar muito perigoso para uma simples visita.";
+	mes "Você deve ser";
+	mes "de Rune-Midgard, não é?";
+	mes "Tenho visto muitos turistas";
+	mes "vindo pra cá recentemente.";
 	next;
 	mes "[Kwan]";
-	mes "Ouvi dizer que, se você tiver uma espécie de amuleto, poderá entrar no templo sem problemas...";
+	mes "Seria bom você tomar cuidado, caso você for para o outro lado da aldeia. Não importa o que faça, não entre";
+	mes "nas ruínas do antigo santuário";
+	mes "na floresta.";
 	next;
 	mes "[Kwan]";
-	mes "Mas sugiro que não vá lá.";
-	mes "Espero que aproveite a sua viagem e não fique perambulando pelas áreas perigosas.";
+	mes "Aquele lugar é longe e";
+	mes "muito perigoso de se visitar. E ainda, Eu soube que se você tiver qualquer tipo de amuleto, você poderia ir pra lá com";
+	mes "um pouco menos de preocupação...";
+	next;
+	mes "[Kwan]";
+	mes "Bem, de qualquer forma, ainda é uma boa idéia ficar longe daquele lugar. Espero que você aproveite sua visita a Ayothaya, e mantenha-se em segurança";
 	close;
 }
 	
 ayothaya,214,142,5	script	Jovem#5ayothaya	843,{
-	mes "[Detzil]";
-	mes "Nós, homens jovens de Ayothaya, praticamos as tradicionais artes marciais para nos tornarmos mais fortes.";
+	mes "[Detzi]";
+	mes "Em Ayothaya, nós temos nossa própria Arte Marcial. Nós, os jovens desta aldeia, praticamos Arte Marcial, no intuito de tornar-se forte.";
 	next;
-	mes "[Detzil]";
-	mes "Por que você não aprende artes marciais?";
-	mes "Garanto que será de grande ajuda em sua viagem.";
+	mes "[Detzi]";
+	mes "Por quê não aprende nossa Arte Marcial? Garanto que te ajudará bastante nas suas viagens.";
 	close;
 }
 	
 ayothaya,241,264,5	script	Jovem#5ayothaya2	843,{
 	mes "[Eik]";
-	mes "Ei... você parece forte. Quer disputar comigo?";
+	mes "Ei...";
+	mes "Você parece bastante forte.";
+	mes "Você quer me desafiar";
+	mes "pra uma luta?";
 	next;
-	next;
-	if (select("Claro:Não") == 1) {
+	if (select("Claro!!:Neeeem!~") == 1) {
 		mes "[Eik]";
-		mes "Ei, ei, ei, estava brincando"+(Sex?", cara":"")+".";
-		mes "Não sou tão rude a ponto de começar uma briga com estranhos sem nenhum motivo.";
+		mes "Ow ow ow!";
+		mes "Só estava";
+		mes "brincando, cara!!";
+		next;
+		mes "[Eik]";
+		mes "Não sou tão rude de procurar briga com estranhos sem motivo!";
 		emotion e_wah;
 		close;
 	}
 	mes "[Eik]";
-	mes "O poder verdadeiro nasce de milhares de lutas.";
-	mes "Não tenha medo de lutar.";
+	mes "O Poder real é desenvolvido depois de milhares disputas com outras pessoas. Então, não tenha medo de lutar, tudo bem?";
 	emotion e_pif;
 	close;
 }
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 0.1 Added a Sailor NPC to get back to Alberta [ZoDIaC]
+//= 0.2 fixed coords, dialogues
+//= 0.3 Fixed Warp name, ayotaya doesn't exist, even though iRO 
+//= 	decided to call it Ayotaya, it really is Ayothaya, like 
+//=	that Yuno/Juno thing
+//= 0.4 Added the official warp npc for Ayothaya. [MasterOfMuppets]
+//= 1.0 Added most of the official npcs. The following quests were added: [MasterOfMuppets]
+//=     Tom Yum Goong quest, Holy Threads quest and Holier threads quest.
+//= 1.0a some checks, optimization [Lupus]
+//= 1.1 Missing delitem fixed by Poki#3 [Lupus]
+//= 1.1a Fixed a typo and clarified a comment at the bottom of the script [MasterOfMuppets]
+//= 1.2 Fixed exploits [Lupus]
+//= 1.3 Removed Duplicates [Silent]
+//= 1.4 Moved quests to quests/quests_ayothaya.txt [Evera]
+//= 1.5 Moved a few NPC's to quests/quests_ayothaya.txt [MasterOfMuppets]
+//============================================================

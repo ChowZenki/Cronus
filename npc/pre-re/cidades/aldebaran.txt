@@ -1,1096 +1,777 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
-//= NPCs referentes a cidade de Al De Baran
-//===== Por: =========================================================
-//= rAthena dev team; L0ne_W0lf
-//===== Versão Atual: ================================================
-//= 2.3
-//===== Compatível com: ==============================================
-//= Cronus GIT
-//===== Descrição: ===================================================
-//= NPCs referentes a cidade de Al De Baran
-//===== Comentários Adicionais: ======================================
-//= 2.4 Tradução PT-BR. [Antonio Carlos]
-//====================================================================
-
-// Al De Baran
+//===== Cronus Script ========================================
+//= Cidade de Al De Baran
+//===== Por: =================================================
+//= eAthena dev team; L0ne_W0lf
+//===== Versão Atual: ========================================
+//= 2.3b
+//===== Comentários Adicionais: ==============================
+//= v1.1 Added RS125 NPC.  Added another Kafra Reserve points agent.
+//= The 2nd reserve points agent is not complete yet.
+//= 1.2 Lottery input number fix [Lupus], 1.2a - label typo fixed
+//= 1.3 Gatekeeper's bug fixed (wrong check and wrong item ID 
+//=     for underground), fixed some typos [Lupus]
+//= 1.4 Fixed Typos & Spellcheck [massdriller]
+//= 1.5 Finally added the Special Reserve 2 Lotto 8))
+//=  with official prizes (80% official, 4-5 entries are made up)
+//=  also changed typo Orange Potions -> Red Potions [Lupus]
+//= 1.6 Fixed bug (missing label), optimized all menus [Lupus]
+//= 1.7 Fixed exploits [Lupus] 1.8 Removed Duplicates [Silent]
+//= 1.9 Fixed a bunch of typos with information from Crono/Hollengrhen [Evera]
+//= 1.9a Now Pavianne doesn't sell Kafra Passes. She refunds them [Lupus]
+//= 2.0	Re-made all the dialog-only NPCs with official dialogs.
+//=		Kafra and Clock Tower NPCs pending remake. [DZeroX]
+//= 2.01 removed all .GATs [Lupus]
+//= 2.1 Rescripted most NPCs to Aegis 10.3 standards. [L0ne_W0lf]
+//= 2.2 Corrected NPC names to fall within proper resctrictions. [L0ne_W0lf]
+//= 2.3 Fixed exploit with kafra pass
+//= 2.3a Traduzido. [Lich]
+//= 2.3b Revisado. [Mara]
 //============================================================
-aldebaran,113,70,4	script	Refinador#alde	48,{
-	mes "[Matias]";
-	mes "Eu morava em Geffen.";
-	mes "Me mudei para Al de Baran no último inverno.";
-	mes "Para trabalhar aqui...";
+
+aldebaran,113,70,4	script	Ferreiro Munster#alde	48,{
+	mes "[Munster]";
+	mes "Minha família morava em Geffen. Então eu acho que era natural que estudássemos forja, e eventualmente nos tornássemos Ferreiros. Então, finalmente nos mudamos para essa cidade,";
+	mes "Al De Baran.";
 	next;
-	if (select("Fale-me sobre ^3355FFRefino^000000:Sair") == 1) {
-		mes "[Matias]";
-		mes "Meu pai";
-		mes "foi um ferreiro muito famoso";
-		mes "em Geffen, que é conhecida pelos seus excelentes ferreiros.";
-		mes "Há pouco nos mudamos para cá, que é a cidade natal de minha mãe.";
+	if (select("Sobre ^3355FFRefinamento de Itens^000000:Sair") == 1) {
+		mes "[Munster]";
+		mes "Meu pai era um Ferreiro famoso em Geffen. Ele me ensinou muito sobre forjar equipamentos.";
 		next;
-		mes "[Matias]";
-		mes "Eu costumo ajudar meu pai.";
-		mes "Recentemente, tenho me dedicado a estudar";
-		mes "as probabilidades de aprimorar com sucesso...";
-		mes "levando em conta o nível das armas.";
+		mes "[Munster]";
+		mes "Uma das coisas fundamentais é que a probabilidade de sucesso ao refinar um item depende do nível da arma.";
 		next;
-		mes "[Matias]";
-		mes "Armas nível 1";
-		mes "podem ser aprimoradas com certeza de sucesso 7 vezes.";
-		mes "Armas nível 2 podem ser aprimoradas com sucesso certo até 6 vezes.";
-		mes "Armas nível 3";
-		mes "têm certeza de sucesso até 5 vezes.";
-		mes "E, quanto a armas nível 4,";
+		mes "[Munster]";
+		mes "Para armas de nível 1, você pode refinar até +7 sem correr o risco de quebrá-la. Armas de nível 2 podem ser refinadas até +6, enquanto as de nível 3 podem ser refinadas até +5 sem correr risco.";
 		next;
-		mes "[Matias]";
-		mes "o sucesso é certo até aproximadamente 4 vezes.";
-		mes "Para armaduras,";
-		mes "a certeza de sucesso vai até 4 vezes também.";
-		mes "Acima desses números, o estresse do metal é grande demais,";
-		mes "assim como a chance de falha no processo de aprimoramento.";
-		mes "E, em caso de falha, a peça simplesmente se quebra!!";
+		mes "[Munster]";
+		mes "Para armas de nível 4, você pode refinar até +4 sem muito risco. Para armaduras, você pode refinar até +4. Se o processo falhar, o equipamento será destruido!";
 		close;
 	}
-	mes "[Matias]";
-	mes "Eu sei que ainda não são muitos";
-	mes "que sabem onde fica a refinaria do meu pai...";
-	mes "Mas tenho esperança...";
-	mes "que um dia...";
-	mes "Meu pai vai ser muito famoso nessa cidade... Al de Baran.";
+	mes "[Munster]";
+	mes "Hmm...";
+	mes "Se puder, tente visitar a oficina do meu pai aqui em Al de Baran. Se me permite dizer, ele é um Ferreiro muito talentoso.";
 	close;
 }
 
-aldebaran,64,104,4	script	Sr Quattro#alde	55,{
-	mes "[Quattro]";
-	mes "Eu ouvi dizer...";
-	mes "que um famoso ferreiro de Geffen";
-	mes "chegou recentemente aqui em Al de Baran...";
+aldebaran,64,104,4	script	Homem Forjando#alde	55,{
+	mes "[Quatro]";
+	mes "Você ouviu falar que aquele Ferreiro famoso se mudou de Geffen para cá?";
 	next;
-	if (select("Fale-me sobre esse ferreiro famoso:Encerrar conversa.") == 1) {
-		mes "[Quattro]";
-		mes "pelo que eu soube...";
-		mes "O aumento no dano de uma arma proporcionado pelo aprimoramento,";
-		mes "varia de maneira significativa...";
-		mes "de acordo com o nível da própria arma...";
+	if (select("Ferreiro Famoso?:Encerrar conversa") == 1) {
+		mes "[Quatro]";
+		mes "Pelo o que eu ouvi, ele é um daqueles Ferreiros que consegue refinar armas e armaduras. Quando uma arma é refinada o seu ataque é aumentado.";
 		next;
-		mes "[Quattro]";
-		mes "Para armas nível 1, o aumento é de 2 por nível de refino.";
-		mes "Para armas nível 2, o aumento é de 3.";
-		mes "Nível 3, é de 5!";
-		mes "E para nível 4, chega a 7!!!";
+		mes "[Quatro]";
+		mes "Para cada nível de refinamento, a força de ataque é aumentada em 2 para armas de nível 1. Para armas de nível 2, a força de ataque aumenta em 3.";
+		next;
+		mes "[Quatro]";
+		mes "Para armas de nível 3, são adicionados 5 na força de ataque para cada nível de refinamento. Para armas nível 4, são adicionados 7 na força de ataque.";
 		close;
 	}
-	mes "[Quattro]";
-	mes "A esposa dele está doente, de cama...";
-	mes "Ela precisa tomar remédios diariamente...";
-	mes "Feitos de ervas que crescem perto de Al de Baran...";
-	mes "O filho dele é muito diligente.";
-	mes "Ajuda muito o pai no trabalho...";
-	mes "Tenho certeza que ele vai crescer para se tornar um grande ferreiro!";
+	mes "[Quatro]";
+	mes "Essa família de ferreiros vive aqui desde que a sua esposa ficou doente e fraca. Por causa dessa doença, ela precisa de ervas medicinais que crescem perto de Al De Baran.";
+	next;
+	mes "[Quatro]";
+	mes "Eles também têm um filho prestativo que está sempre ajudando nos négocios da família. Tenho certeza que o menino vai se tornar um bom Ferreiro, assim como o Pai.";
 	close;
 }
 
-aldebaran,49,93,4	script	Miguel#alde	83,{
-	mes "[Miguel]";
-	mes "Você sabia disso?";
-	mes "Existem armas nível 4!";
-	mes "E eu achava que o máximo era nível 3...!";
+aldebaran,49,93,4	script	Jovem#alde	83,{
+	mes "[Miller]";
+	mes "As armas de nível 4 não são legais?!";
+	mes "Eu não consigo acreditar como armas";
+	mes "tão poderosas existem!";
 	next;
-	mes "[Miguel]";
-	mes "Mas existem armas raras que são nível 4";
-	mes "que não podem ser compradas em lojas.";
-	mes "Elas só podem ser encontradas matando monstros muito fortes";
-	mes "...é muito difícil conseguir...";
-	mes "Mas elas realmente existem...";
+	mes "[Miller]";
+	mes "Bem, elas raramente são vistas no mercado, mas Monstros Chefes têm uma chance pequena de derrubar elas se você for capaz de matar um.";
 	close;
 }
 
-aldebaran,81,61,4	script	Catadora de Mariscos#ald	101,{
-	mes "[Jose]";
-	mes "Eu adoro...";
-	mes "catar mariscos na praia.";
+aldebaran,81,61,4	script	Catadora de Conchas#ald	101,{
+	mes "[Joanne]";
+	mes "Eu gosto de colecionar conchas do mar. É muito relaxante e divertido~";
 	next;
-	if (select("Catar mariscos?:Sair.") == 1) {
-		mes "[Jose]";
-		mes "Se olhar na água empoçada na areia";
-		mes "você vai ver vários buraquinhos";
-		mes "que soltam bolhas.";
-		mes "Se você cavar ali...";
-		mes "você vai encontrar mariscos enterrados! Quase sempre é assim...";
-		mes "Tente, que você vai ver!";
+	if (select("Catar Conchas?:Finalizar Conversa") == 1) {
+		mes "[Joanne]";
+		mes "Quando você ver bolhas saindo da areia, ou de poças de lama, tente cavar um pouco. Você provavelmente vai encontrar conchas enterradas!";
 		next;
-		mes "[Jose]";
-		mes "Mas, cuidado...";
-		mes "Existe uma espécie que tem conchas muito, muito duras...";
-		mes "Eles são muito violentos...";
-		mes "Você deve evitar de tocá-los...";
-		mes "Eles não são agressivos, a não ser que você toque neles...!";
+		mes "[Joanne]";
+		mes "Você já ouviu falar";
+		mes "de Ambernite?";
+		mes "Aquela concha monstro";
+		mes "é bem dura~";
 		next;
-		mes "[Jose]";
-		mes "Eles são chamados de Ambernites.";
-		mes "Vivem na praia que fica";
-		mes "Ao sul de Prontera...";
-		mes "Cuidado para não tocar neles...";
-		mes "Eles são muito perigosos!";
+		mes "[Joanne]";
+		mes "É normalmente vista na praia perto da província à oeste de Prontera. Se você atacar uma sem estar preparado, você poderá estar em apuros.";
 		next;
-		mes "[Jose]";
-		mes "São horríveis... Ick...";
-	close;
+		mes "[Joanne]";
+		mes "Ambernite é";
+		mes "muito forte!";
+		mes "Então tome cuidado!";
+		close;
 	}
-	mes "[Jose]";
-	mes "Quem sabe, um dia, você vai conseguir provar";
-	mes "os populares e deliciosos... mariscos das cavernas..!";
-	mes "Eu sei que é um pouco perigoso...";
-	mes "Mas você não acha que vale o risco...?";
+	mes "[Joanne]";
+	mes "Ambernite é";
+	mes "muito forte!";
+	mes "Então tome cuidado!";
 	close;
 }
 
-aldebaran,46,129,4	script	Panamá#alde	97,{
-	mes "[Panamá]";
-	mes "Al de Baran é uma cidade conhecida...";
-	mes "Muito famosa em Rune-Midgard";
-	mes "principalmente pelos seus canais...";
-	mes "Sim! Muito conhecida!";
+aldebaran,46,129,4	script	Cara dos Canais#alde	97,{
+	mes "[Panama]";
+	mes "Al De Baran é conhecida mundialmente como a Cidade dos Canais. Os canais realmente dão um toque sofisticado e romântico a nossa cidade.";
 	next;
-	switch(select("Por que os canais?:Sair.")) {
+	switch(select("Sobre os Canais:Finalizar Conversa")) {
 	case 1:
-		mes "[Panamá]";
-		mes "Um canal é...";
-		mes "como um rio";
-		mes "usado para irrigação, navegação de barcos,";
-		mes "e, também, para distribuição de água.";
-		mes "Mas é artificial!";
+		mes "[Panama]";
+		mes "Bem, um canal é um lugar criado para a água passar normalmente usado para";
+		mes "embarcações, ou irrigações.";
 		next;
-		mes "[Panamá]";
-		mes "Normalmente, um canal é ";
-		mes "usado como via de transporte.";
-		mes "A maioria dos canais são feitos por escavação.";
-		mes "Outros são leitos de rios reformados.";
-		next;
-		mes "[Panamá]";
-		mes "Alguns canais são criados desviando o curso de rios...";
-		mes "Mas todos esses são chamados";
-		mes "de canais artificiais.";
+		mes "[Panama]";
+		mes "Mas, os canais daqui são apenas para ver. Se nós precisamos transportar alguma coisa, nós apenas usaríamos o serviço de teletransporte da Corporação Kafra!";
 		close;
 		break;
 	case 2:
-		mes "[Panamá]";
-		mes "A água é muito limpa, não é?";
-		mes "Sabe por que? Porque a água vem das mosntanhas...";
-		mes "Afinal... Al de Baran é uma cidade nas montanhas.";
-		mes ". . . . .";
-		mes "Sinta-se em casa!";
+		mes "[Panama]";
+		mes "Eu espero que você aprecie sua estadia em Al De Baran.";
 		close;
 		break;
 	}
 }
 
-aldebaran,67,154,4	script	Jovem Montanhista#alde	98,{
-	mes "[Ricardo Berke]";
-	mes "Dois lugares conhecidos pelos terrenos acidentados";
-	mes "são as Florestas de Payon";
-	mes "e as Montanhas de Mjolnir.";
+aldebaran,67,154,4	script	Homem da Floresta#alde	98,{
+	mes "[Isenberg]";
+	mes "Mt. Mjolnir e Floresta de Payon.";
+	mes "Ambos são lugares difíceis";
+	mes "de atravessar.";
 	next;
-	switch(select("Fale sobe as Montanhas de Mjolnir:Fale sobre as Florestas de Payon.:Sair.")) {
+	switch(select("Mt.Mjolnir?:Floresta Payon...?:Finalizar Conversa")) {
 	case 1:
-		mes "[Ricardo Berke]";
-		mes "Ao sul de Al de Baran,";
-		mes "Exsite uma grande região montanhosa...";
-		mes "que é passagem obrigatória";
-		mes "para todos os viajantes...";
-		mes "Essas são as Montanhas de Mjolnir!";
+		mes "[Isenberg]";
+		mes "Para chegar aqui vindo de Prontera ou Geffen, você tem que atravessar as Montanhas Mjolnir.";
 		next;
-		mes "[Ricardo Berke]";
-		mes "Se você vem a Al de Baran";
-		mes "da Guilda dos Cavaleiros, na capital do Reino de Rune-Midgard,";
-		mes "Prontera,";
-		mes "ou de Geffen,";
-		mes "a Cidade da Magia, conhecida por seus";
+		mes "[Isenberg]";
+		mes "Se você veio até aqui sem usar o serviço de teletransporte da Corporação Kafra,";
+		mes "bom trabalho!";
 		next;
-		mes "[Ricardo Berke]";
-		mes "magos e também,";
-		mes "por seus ferreiros,";
-		mes "você tem que atravessar";
-		mes "as Montanhas de Mjolnir...";
-		mes "E o caminho através delas";
-		mes "é muito tortuoso...";
-		next;
-		mes "[Ricardo Berke]";
-		mes "Os monstros das montanhas são";
-		mes "muito agressivos e perigosos...";
-		mes "Eles costumam atacar em emboscadas...";
-		mes "Seu caminho até aqui deve ter sido difícil!";
+		mes "[Isenberg]";
+		mes "As Montanhas Mjolnir são realmente íngremes, e ela é cheia de monstros agressivos. Então sempre é um risco tentar andar por lá sozinho.";
 		close;
 	case 2:
-		mes "[Ricardo Berke]";
-		mes "Se você deseja viajar para Alberta ou Payon";
-		mes "a partir do deserto de Morroc.";
-		mes "Você precisa atravessar";
-		mes "a Floresta de Payon";
-		mes "para chegar lá.";
+		mes "[Isenberg]";
+		mes "Se você deseja visitar Alberta ou a cidade de Payon, você deve primeiro atravessar a Floresta de Payon.";
 		next;
-		mes "[Ricardo Berke]";
-		mes "Os caminhos através da floresta";
-		mes "entre Payon e Alberta";
-		mes "são bastante confusos...";
-		mes "como um labirinto..";
-		mes "Então, é preciso bastante concentração,";
-		mes "Para não se perder...";
+		mes "[Isenberg]";
+		mes "A Floresta de Payon é um labirinto tortuoso e complexo onde é facil se perder. Ao menos que se concentre no seu caminho, você poderá ficar preso naquele lugar perigoso.";
 		next;
-		mes "[Ricardo Berke]";
-		mes "A razão porque são chamadas de";
-		mes "Florestas de payon";
-		mes "e não de Alberta";
-		mes "é...";
-		next;
-		mes "[Ricardo Berke]";
-		mes "Que a população de Payon mora";
-		mes "afastada da cidade";
-		mes "porque eles têm medo de invasões de outros países.";
-		mes "Então, eles se mudaram para";
-		mes "locais bastante ermos.";
-		next;
-		mes "[Ricardo Berke]";
-		mes "Eu acho que é por essa razão,";
-		mes "que as floresta recebem o nome de Payon...";
-		mes "em vez de Alberta.";
+		mes "[Isenberg]";
+		mes "Payon, a vila dos aqueiros, foi construida dentro dessa floresta para se proteger de invasores. Eu achei uma boa idéia da parte deles.";
 		close;
 	case 3:
-		mes "[Ricardo Berke]";
-		mes "Essas grandes montanhas a sul";
-		mes "desafiam muitos viajantes";
-		mes "de todas as partes do mundo.";
-		mes "Mas graças ao canais e à Alquimia,";
-		mes "essa cidade tem essa agradável atmosfera mística...";
-		mes "...durante todo o ano.";
+		mes "[Isenberg]";
+		mes "As enormes montanhas cercando essa cidade";
+		mes "impede que pessoas de fora venham para essa cidade.";
+		mes "Talvez seja esse o motivo de termos sido capazes de";
+		mes "manter esse canal bonito e limpo";
+		mes "sem nenhuma influência de fora.";
 		close;
 	}
 }
 
-aldebaran,90,170,4	script	Edu#alde	47,{
-	mes "[Edu]";
-	mes "Você sabia que as armas e outros itens";
-	mes "têm vagas?";
-	mes "E que as cartas que conseguimos quando matamos mostros";
-	mes "se encaixam nessas vagas?";
-	mes "Nessas fendas que existem nas armas?";
+aldebaran,90,170,4	script	Homem dos Slots#alde	47,{
+	mes "[Epthiel]";
+	mes "Algumas armas ou amaduras têm slots onde você pode inserir cartas obtidas de monstros.";
 	next;
-	switch(select("Fale mais sobre vagas.:Como funcionam cartas e vagas?:Sair.")) {
+	switch(select("Sobre o número de slots:Relação entre cartas e slots:Finalizar a Conversa")) {
 	case 1:
-		mes "[Edu]";
-		mes "Itens que conseguimos";
-		mes "matando monstros...";
-		mes "Têm mais vagas";
-		mes "que os itens que compramos em lojas.";
+		mes "[Epthiel]";
+		mes "Itens soltos por monstros possuem mais slots que armas ou armaduras comuns vendidas em Lojas de NPCs.";
 		next;
-		mes "[Edu]";
-		mes "a coisa boa disso é ";
-		mes "que com mais vagas,";
-		mes "É possível colocar mais cartas,";
-		mes "assim a arma fica muito mais forte.";
+		mes "[Epthiel]";
+		mes "Eu acho que você pode deduzir que um item com mais Slots tem mais valor do que um mesmo item com menos slots.";
 		close;
 	case 2:
-		mes "[Edu]";
-		mes "Uma vez que cartas forem combinadas com itens...";
-		mes "Não é possível removê-las. Não tem volta.";
-		mes "Então, é preciso sempre pensar muito bem";
-		mes "antes de fazer isso. Saber se isso mesmo que você quer.";
-		mes "É importante ter absoluta certeza !";
+		mes "[Epthiel]";
+		mes "Uma vez que uma carta é inserida num slot, é impossivel removê-la. Então tenha cuidado quando for inserir cartas em armas ou armaduras.";
+		next;
+		mes "[Epthiel]";
+		mes "Além disso, quando você passar o mouse em cima de um equipamento na janela de itens, ou na janela de vendas, o nome do item será seguido do número de slots que ele possui em colchetes.";
+		next;
+		mes "[Epthiel]";
+		mes "Por exemplo, um escudo com 1 slot, quando o cursor passar por cima, vai aparecer o nome 'Escudo [1].'";
+		next;
+		mes "[Epthiel]";
+		mes "Você também pode clicar com o botão direito no item, e checar a janela de slots embaixo da descrição.";
 		close;
 	case 3:
-		mes "[Edu]";
-		mes "Você tem aí alguma carta...";
-		mes "que tenha caído de um monstro?";
+		mes "[Epithiel]";
+		mes "Você alguma vez já conseguiu uma carta de um monstro?";
 		close;
 	}
 }
 
-aldebaran,117,181,4	script	Phracon Juliano#alde	48,{
-	mes "[Juliano]";
-	mes "Alguns metais especias são usado para aprimorar armas.";
-	mes "Quando você quer aprimorar";
-	mes "armas do nível mais baixo,";
-	mes "o metal usado se chama";
-	mes "'Fracon'";
+aldebaran,117,181,4	script	Homem Fracon#alde	48,{
+	mes "[Joy]";
+	mes "Armas de nível 1, que sãos as mais fracas, precisa de um metal chamado ^3355FFFracon^000000 para serem refinadas.";
 	next;
-	switch(select("Fracon???:Eu só consigo Fracons comprando?:Sair.")) {
+	switch(select("Sobre Fracon:Conselho sobre Fracon:Finalizar Conversa")) {
 	case 1:
-		mes "[Juliano]";
-		mes "Fracons são.... bom, um metal";
-		mes "muito utilizado";
-		mes "para aprimorar armas.";
-		mes "Ele é usado";
-		mes "desde tempos antigos.";
+		mes "[Joy]";
+		mes "Fracon é um metal muito comum, e pode ser encontrado por todo o continente de Rune-Midgard.";
 		next;
-		mes "[Juliano]";
-		mes "Ele não é ";
-		mes "tão duro";
-		mes "quanto aço";
-		mes "ou os outros minérios raros,";
+		mes "[Joy]";
+		mes "Apesar de não ter a força dos outros metais, é facil de obter. Você pode conseguir matando monstros ou comprando em Lojas na cidade.";
 		next;
-		mes "[Juliano]";
-		mes "mas como é relativamente";
-		mes "abundante,";
-		mes "é muito popular e muito utilizado.";
-		next;
-		mes "[Juliano]";
-		mes "Esse metal";
-		mes "pode ser encontrado com monstros";
-		mes "ou comprado de ferreiros";
-		mes "que aprimoram armas";
-		mes "em suas oficinas.";
-		next;
-		mes "[Juliano]";
-		mes "Você pode comprar na oficina";
-		mes "e usar imediatamente para aprimorar sua arma.";
-		mes "Até você tiver subido mais de nível...";
-		mes "e puder usar armas mais poderosas.";
-		mes "Mas...";
-		next;
-		mes "[Juliano]";
-		mes "Se você ainda tiver Fracons sobrando,";
-		mes "e eles não forem mais úteis...";
-		mes "não se preocupe.";
-		mes "Você pode vender esses Fracons!";
-		mes "É possível conseguir pelo menos";
-		mes "100 zeny em cada.";
+		mes "[Joy]";
+		mes "Quando você estiver usando armas de alto nível, e não precisar mais deles, você pode vender por alguns zeny!";
 		close;
 	case 2:
-		mes "[Juliano]";
-		mes "Existem certos monstros que";
-		mes "carregam Fracons...";
-		mes "Como é um metal bem comum,";
-		mes "é bem fácil de encontrar.";
-		mes "Por exemplo...";
+		mes "[Joy]";
+		mes "Bem, eu ouvi falar que muitos monstros carregam Fracons e derrubam eles quando mortos. Por que você não vai caça-los?";
 		next;
-		mes "[Juliano]";
-		mes "No último feriado,";
-		mes "Eu saí para caçar com um amigo,";
-		mes "dono do bar ao lado da minha casa...";
-		mes "e nós encontramos muitos Fracons";
-		mes "com os Savage Babes!";
+		mes "[Joy]";
+		mes "Não deve ser muito difícil. Uma vez eu peguei um fracon depois de ter matado um Bebê Selvagem! Mas se você estiver desesperado, você sempre pode comprar na Loja de Forja.";
 		close;
 	case 3:
-		mes "[Juliano]";
-		mes "Espero que você encontre muitos Fracons!";
+		mes "[Joy]";
+		mes "Boa sorte em achar Fracons!";
 		close;
 	}
 }
 
-aldebaran,121,231,4	script	Estudante de Alquimia	49,{
-	mes "[Samir]";
-	mes "Um Alquimista é um tipo de químico";
-	mes "da Al de Baran antiga";
-	mes "que fazia experiências para transformar substâncias comuns";
-	mes "em diversos metais.";
-	mes "Eles eram chamados de cientistas ou químicos.";
+aldebaran,121,231,4	script	Alquimista#alde	49,{
+	mes "[Chemirre]";
+	mes "Alquimistas, uma das 2ª classes, são capazes de criar itens de diversos materiais utilizando o conhecimento da antiga era de Al De Baran.";
 	next;
-	switch(select("Não existe uma alquimia de Payon?:Alquimista?:. . . . .:Sair.")) {
+	switch(select("Sobre Alquimia em Payon:Definição de Alquimia:. . . . .:Finalizar Conversa")) {
 	case 1:
-		mes "[Samir]";
-		mes "Realmente,";
-		mes "existe um tipo de remédio";
-		mes "na tradição";
-		mes "de Payon.";
-		mes "Que permitiria a uma pessoa ficar sempre jovem";
-		mes "e ascender para um mundo espiritual.";
+		mes "[Chemirre]";
+		mes "A Maioria das pessoas não sabe que existia uma forma oriental de alquimia desenvolvida em Payon.";
 		next;
-		mes "[Samir]";
-		mes "Esse remédio é originário de um método";
-		mes "de extração de metais.";
-		mes "A teoria alquímica de Payon";
-		mes "é, na verdade, uma teoria que combina química e alquimia.";
+		mes "[Chemirre]";
+		mes "Os Alquimistas de Payon eram capazes de criar Ouro de diferentes tipos de materiais.Apesar de a alquimia de Payon nunca se desenvolveu tanto como em Al De Baran.";
 		next;
-		mes "[Samir]";
-		mes "Mas essa ciência não é muito avançada";
-		mes "na região de Payon,";
-		mes "bem diferente de Al de Baran.";
-		mes "Não só pelas condições ambientais,";
-		mes "mas também porque os materiais necessários para a pesquisa";
-		mes "alquímica não são abundantes por lá.";
+		mes "[Chemirre]";
+		mes "Os materiais para a Alquimia de payon eram escassos, então o interesse nesse campo eventualmente diminuiu. Agora, você apenas pode estudar Aqluimia aqui.";
 		next;
-		mes "[Samir]";
-		mes "Desse modo, atualmente,";
-		mes "nenhum outro lugar pode ser comparado a";
-		mes "Al de Baran,";
-		mes "quando o assunto é ";
-		mes "Alquimia.";
+		mes "[Chemirre]";
+		mes "Ainda sim, Eu penso que aqueles segredos foram perdidos depois que a Alquimia de Payon desapareceu da face da terra...";
 		close;
 	case 2:
-		mes "[Samir]";
-		mes "Alquimistas";
-		mes "utilizam seus conhecimentos de química,";
-		mes "para misturar vários materiais";
-		mes "e produzir";
-		mes "substâncias com diversas propriedades úteis.";
+		mes "[Chemirre]";
+		mes "Alquimistas se especializam em pesquisas químicas para criar itens úteis de várias outras coisas.";
+		next;
+		mes "[Chemirre]";
+		mes "Eu também ouvi falar que eles podem criar vários tipos de Poções, e até podem sumonar alguns Monstros! Me parece que os estudos deles têm vários tipos de aplicações.";
 		close;
 	case 3:
-		mes "[Samir]";
-		mes "Você parece entediado.";
-		mes "Que tal falarmos sobre";
-		mes "A relação entre cartas de monstros e vagas de equipamento?";
-		mes "Eu acredito que você já saiba";
-		mes "que cada carta de monstro";
+		mes "[Chemirre]";
+		mes "Você está entediado, não é??";
+		mes "Ok então, Eu vou contar uma história sobre cartas de monstro e slots de itens.";
+		mes "Como você já deve saber, se já conseguiu alguma uma carta antes,";
 		next;
-		mes "[Samir]";
-		mes "só pode ser combinada com um tipo específico de equipamento;";
-		mes "isto é, num tipo exato de equipamento com vagas...";
-		mes "Cada carta só pode ser inserida no equipamento correto";
-		mes "para ser eficaz.";
-		mes "Por exemplo, digamos que você tenha uma carta de Poring...";
+		mes "[Chemirre]";
+		mes "você apenas pode inserir cartas em um item";
+		mes "que satisfaça o local requerido pela carta.";
+		mes "Por exemplo, vamos dizer que você obteve uma Carta Poring.";
 		next;
-		mes "[Samir]";
-		mes "Na frente da carta de Poring nós lemos";
-		mes "'efeito: +1 de LUK'";
-		mes "e só pode ser equipada em";
-		mes "'armaduras',";
-		mes "Bem...";
+		mes "[Chemirre]";
+		mes "Quando você clicar com o botão direito na carta, você vai ver";
+		mes "o bônus como SOR+2 e Esquiva Perfeita+1";
+		mes "e o tipo como 'Armadura'. ";
 		next;
-		mes "[Samir]";
-		mes "Isso significa que mesmo que você tente";
-		mes "colocar à força na vaga de uma adaga,";
-		mes "ela não vai entrar.";
-		mes "por que essa carta deve ser colocada em uma vaga de 'armaduras'.";
+		mes "[Chemirre]";
+		mes "Se você tentar inserir essa carta em uma adaga com vários slots,";
+		mes "não vai funcionar porque a carta só pode ser inserida em";
+		mes "armaduras.";
 		next;
-		mes "[Samir]";
-		mes "As armaduras que são";
-		mes "vendidas em lojas";
-		mes "não possuem";
-		mes "nenhuma vaga.";
-		mes "Somente itens";
-		mes "conseguidos através de monstros";
-		mes "têm vagas para cartas.";
+		mes "[Chemirre]";
+		mes "A maioria das armaduras vendidas";
+		mes "em lojas na cidade não possuem slots.";
+		mes "Isso quer dizer, que você só pode obter";
+		mes "Armaduras Slotadas caçando monstros.";
 		next;
-		mes "[Samir]";
-		mes "Ah, sim!";
-		mes "Para inserir uma carta em um equipamento,";
-		mes "primeiro você tem que ter a carta e o equipamento";
-		mes "em seu inventório.";
-		mes "Então você faz um duplo clique";
-		mes "na carta que você quer inserir.";
+		mes "[Chemirre]";
+		mes "Ah, deixe-me dizer como colocar uma carta em um equipamento.";
+		mes "Se quiser inserir uma carta na sua armadura equipadar,";
+		mes "você primeiro deve desequipá-la.";
+		mes "E então, clicar duas vezes na carda que deseja usar.";
+		mes "Então uma lista de armaduras, que você pode inserir cartas, vai aparecer.";
 		next;
-		mes "[Samir]";
-		mes "Vai aparecer uma lista dos equipamentos que você possui";
-		mes "que podem ser combinados com aquela carta.";
-		mes "Dessa maneira, é bem fácil combinar itens e cartas.";
+		mes "[Chemirre]";
+		mes "Não é tão complicado, é?";
 		close;
 	case 4:
-		mes "[Samir]";
-		mes "O maior centro de pesquisas alquímica de todo esse reino...";
-		mes "é a Guilda dos Alquimistas de Al de Baran!!";
-		mes "Viva a Guilda dos Alquimistas!!!";
+		mes "[Chemirre]";
+		mes "Você não pode falar sobre Alquimia de Rune-Midgard";
+		mes "sem falar sobre a Guilda dos Alquimistas de Al De Baran!";
+		mes "Vida Longa aos Alquimistas!";
 		close;
 	}
 }
 
 aldebaran,86,228,4	script	Criança#alde	62,{
-	mes "[Bebealles]";
-	mes "Outro dia eu levei";
-	mes "meu Bebe, chamado";
-	mes "'Bibi piggy'";
-	mes "para passar nas";
-	mes "Montanhas de Mjolnir....";
-	mes "O Bebe é um tipo de Selvagem pequeno.";
-	mes "É muito fofinho,";
-	mes "e tem pelo cor-de-rosa.";
+	mes "[Bebe]";
+	mes "Um tempo atrás quando eu sai para uma caminhada em direção ao Mt. Mjolnir com meu Bebê Selvagem chamado NukNuk,";
+	mes "nós fomos atacados, felizmente não fomos feridos.";
 	next;
-	switch(select("Fale sobre o Bibi piggy.:Como é lá nas Montanhas de Mjolnir?:Sair")) {
+	switch(select("Atacados?:Sobre Mt.Mjolnir:Finalizar Conversa")) {
 	case 1:
-		mes "[Bebealles]";
-		mes "Nós estavamos andando";
-		mes "pelas trilhas,";
-		mes "e nós achamos um flor muito bonita.";
-		mes "Mas a flor era um grande monstro planta,";
-		mes "que tentou comer eu e meu Bibi piggy...";
+		mes "[Bebe]";
+		mes "Eu estava andando por um caminho estreiro e de repente, uma planta grande e feia começou a nos atacar!";
 		next;
-		mes "[Bebealles]";
-		mes "Eu fiquei com medo e fiquei longe,";
-		mes "então eu peguei uma pedra no chão,";
-		mes "e joguei a pedra no monstro! (Mas eu tava com tanto medo.)";
-		mes "Mas ele não sentiu nada!!";
-		mes "Que monstro forte!";
+		mes "[Bebe]";
+		mes "Fiquei tão assustado, começamos a correr. Eu joguei pedras nela, mas acho que não a machuquei.";
 		next;
-		mes "[Bebealles]";
-		mes "O que me deu mais susto";
-		mes "é que o monstro tinha cara de gente!";
-		mes "De verdade!";
-		mes "Não chega perto dele não,";
-		mes "senão ele morde você!";
+		mes "[Bebe]";
+		mes "O que realmente me surpreendeu foi que a planta que me atacou era uma planta gigante com o rosto de uma pessoa!";
+		mes "Então tome cuidado com essas, elas são perigosas!";
 		close;
 	case 2:
-		mes "[Bebealles]";
-		mes "Eu achava que lá nas montanhas tinha todo o tipo de flor bonita,";
-		mes "mas eu não sabia que tinha também...";
-		mes "uns animais e insetões feios e assustadores.";
-		mes "Flores... insetos... e abelhas e borboletas,";
-		mes "Tudo lá dá medo!";
+		mes "[Bebe]";
+		mes "Apesar de que as pessoas são fascinadas pela beleza do Mt. Mjolnir, lá está cheio de monstros perigosos!";
 		next;
-		mes "[Bebealles]";
-		mes "Mas eu vi que a maior parte dos animais e dos insetos";
-		mes "não atacam a gente";
-		mes "se a gente só passar";
-		mes "e não incomodar eles.";
+		mes "[Bebe]";
+		mes "Existem flores, insetos, abelhas, borboletas e mariposas que são grandes o suficiente para matar você se você não for cuidadoso!";
+		next;
+		mes "[Bebe]";
+		mes "Então de novo, a maioria desses monstros não vai machucar você se você não atacá-los primeiro. Mas alguns deles vão atacar você uma vez que eles verem você!";
 		close;
 	case 3:
-		mes "[Bebealles]";
-		mes "Hmm... Ei! Cadê meu Bibi piggy...?";
-		mes "Bibi piggy! Vem cá!";
+		mes "[Bebe]";
+		mes "A propósito, onde está NukNuk...?";
+		mes "NukNuk! Venha aqui!";
 		close;
 	}
 }
 
-aldebaran,159,242,4	script	Tio Inseto#alde	119,{
-	mes "[Stellone]";
-	mes "Se você caminhar";
-	mes "pelas Montanhas de Mjolnir...";
-	mes "Você verá que";
-	mes "Os insetos podem ser classificados em vários tipos";
-	mes "de acordo com seus hábitos e capacidades de sobrevivência.";
-	mes "Você sabia disso?";
+aldebaran,159,242,4	script	Entomólogo#alde	119,{
+	mes "[Stromme]";
+	mes "Até para um forte Espadachim, os insetos no Mt. Mjolnir podem ser considerados ameaças. Você deve conhecer seu inimigo antes de começar uma batalha!";
 	next;
-	if (select("Fale mais sobre insetos.:Sair.") == 1) {
-		mes "[Stellone]";
-		mes "Besouros e borboletas";
-		mes "voam de flor em flor";
-		mes "coletando mel";
-		mes "carregando pólen em suas patas.";
-		mes "E espalhando o pólen,";
-		mes "Eles ajudam as flores a se reproduzir...";
-		mes "Não é simpático?";
+	if (select("Sobre Insetos:Finalizar Conversa") == 1) {
+		mes "[Stromme]";
+		mes "Abelhas, Borboletas e Mariposas parecem criaturas simples, mas isso não significa que você pode subestimá-las.";
 		next;
-		mes "[Stellone]";
-		mes "Oh! Mas você deve prestar atenção em uma coisa.";
-		mes "Nunca os subestime";
-		mes "só porque eles são tão bonitos!";
-		mes "Eles têm seus próprios meios";
-		mes "de se proteger";
-		mes "dos predadores.";
+		mes "[Stromme]";
+		mes "Esses insetos evoluiram através dos tempos, e podem contra-atacar ameaças como vocês Aventureiros!";
 		next;
-		mes "[Stellone]";
-		mes "Existem ainda tipos de insetos carnívoros";
-		mes "que se alimentam de outros insetos.";
-		mes "Estes são o Louva-a-Deus, o Argos,";
-		mes "o Argiope... etc.";
-		mes "Esses são os tipos mais comuns de insetos carnívoros.";
+		mes "[Stromme]";
+		mes "Também existem Insetos carnívoros, como Aranhas, Louva-a-Deus, e Argiopes.";
 		next;
-		mes "[Stellone]";
-		mes "Alguns insetos são, na verdade,";
-		mes "monstros poderosos.";
-		mes "Pode ser muito difícil enfrentar alguns,";
-		mes "como o Argiope ou o Argos,";
-		mes "ou outros ainda, desconhecidos!";
+		mes "[Stromme]";
+		mes "Esses monstros sofreram mutações e são muito fortes para pessoas em certos níveis. Você deve tomar cuidado com Argiopes principalmente.";
 		next;
-		mes "[Stellone]";
-		mes "Tome muito cuidado!";
-		mes "Não bobeie e mova-se rapidamente nas áreas onde esses monstros se encontram!";
-		mes "Felizmente, esses insetos monstros";
-		mes "como Argiope e Argos";
-		mes "Não possuem boa visão.";
-		next;
-		mes "[Stellone]";
-		mes "Então, se você fugir deles bem rápido,";
-		mes "eles não vão conseguir te acompanhar!";
+		mes "[Stromme]";
+		mes "Felizmente, a visão deles é muito ruim, então eles não vão notar você se você andar a uma distância segura deles.";
 		close;
 	}
-	else{
-		mes "[Stellone]";
-		mes "A beleza dos monstros não deve ser subestimada!";
-		mes "Se você não tiver cuidado ao lidar";
-		mes "com insetos bonitos,";
-		mes "você pode ter uma surpresa desagradável.";
-		mes "Nunca subestime";
-		mes "a Natureza das Montanhas de Mjolnir!";
-		close;
-	}
-	mes "[Stellone]";
-	mes "Não importa o quão inofensivos e bonitos os insetos são,";
-	mes "tome cuidado para não tocá-los.";
-	mes "Eles são extremamente fortes, ao contrário seu olhar inocente.";
-	mes "Não menospreze os abitantes do Mt. Mjolnir.";
+	mes "[Stromme]";
+	mes "Não importa quanto inofensivo e bonito os insetos são,";
+	mes "tenha cautela ao tocar neles.";
+	mes "Eles são extremamente fortes ao contrário da sua aparência inocente.";
+	mes "Não desmereça os seres do Mt. Mjolnit.";
 	close;
 }
 
-aldebaran,60,70,4	script	Senhorita#alde	69,{
-	mes "[Senhorita Sylvia]";
-	mes "Eu vim de Prontera";
-	mes "até aqui em Al de Baran,";
-	mes "porque eu ouvi dizer que a Central das Kafras,";
-	mes "fica em algum lugar aqui em Al de Baran.";
-	mes "Mas... mas... *sob*";
+aldebaran,60,70,4	script	Sylvia#alde	69,{
+	mes "[Sylvia]";
+	mes "Eu vim aqui de Prontera poque eu ouvi falar que o Escritório Principal Kafra é em algum lugar aqui em Al De Baran.";
 	next;
-	mes "[Senhorita Sylvia]";
-	mes "Eu estou procurando pela Central das Kafras";
-	mes "já fazem 5 horas...";
-	mes "Não, mais que isso até... Onde fica... oh Deus...";
-	mes "Eu... Eu pareço inteligente,";
-	mes "mas na verdade sou péssima em geografia.";
+	mes "[Sylvia]";
+	mes "Não deve ser difícil achar, mas eu sou horrível com direções. Eu sempre me perco, não importa como!";
 	next;
-	mes "[Senhorita Sylvia]";
-	mes "Ah, Mas eu sei de uma";
-	mes "pequena informação que pode te ajudar.";
-	mes "Quer ouvir?";
+	mes "[Sylvia]";
+	mes "Se isso não fosse ruim o suficiente, eu ainda deixei minhas Lupas em Prontera, agora eu preciso achar alguém para me ajudar com essas armas que tenho que identificar!";
 	next;
-	if (select("Sim sim, diga....:Naaah...") == 1) {
-		mes "[Senhorita Sylvia]";
-		mes "Qunado você consegue";
-		mes "equipamentos";
-		mes "matando monstros,";
+	if (select("Identificar?:Isso é bom.") == 1) {
+		mes "[Sylvia]";
+		mes "Equipamentos que são soltos por monstros não podem ser equipados imediatamente.";
 		next;
-		mes "[Senhorita Sylvia]";
-		mes "apesar de você ver que é um equipamento,";
-		mes "você não pode equipá-lo porque não está identificado.";
-		mes "Nessas horas... existe uma coisa que você pode usar!!!";
-		mes "E isso é um ^3355FFLupa^000000";
+		mes "[Sylvia]";
+		mes "Se você clicar com o botão direito no item equipável, você vai ver que é necessário identificar o item. O que fazer?";
 		next;
-		mes "[Senhorita Sylvia]";
-		mes "Com esse item especial,";
-		mes "você pode identificar itens facilmente,";
-		mes "mesmo que você não tenha nenhum Ferreiro";
-		mes "ou Mercador perto de você!";
+		mes "[Sylvia]";
+		mes "Bom, nesse caso, você tem que usar uma ^3355FFLupa^000000!";
+		next;
+		mes "[Sylvia]";
+		mes "Mesmo sem um Ferreiro, Alquimista ou Mercador no seu grupo, você pode identificar seu equipamento! Claro que uma Lupa é consumida cada vez que você usa...";
 		close;
 	}
-	mes "[Senhorita Sylvia]";
-	mes "Enfim...";
+	mes "[Sylvia]";
+	mes "Hey...";
+	mes "Isso foi um tom de sarcasmo na sua voz quando você falou?";
 	close;
 }
 
 aldebaran,93,80,4	script	Issei#alde	48,{
-	mes "[Chitake]";
-	mes "Sempre tem água limpa em Al de Baran.";
-	mes "É muito bonito!";
-	mes "M-a-s!";
+	mes "[Issei]";
+	mes "Al De Baran é um lugar maravilhoso com seus canais românticos e sua arquitetura clássica. Eu amo passear pela cidade com minha linda namorada.";
 	next;
-	mes "[Chitake]";
-	mes "Ontem à noite, eu estava indo para um encontro secreto com a minha namorada,";
-	mes "e eu acabei pisando em uma fossa de esgoto aberta.";
-	mes "Isso destruiu nosso encontro romântico completamente.";
-	next;
-	if (select("Poxa, que pena isso.:Sim, e daí?") == 1) {
-		mes "[Chitake]";
-		mes "Minha namorada me contou isso.";
-		mes "Ela é a filha mais nova do dono da loja de armaduras.";
-		mes "Comparado com o que você encontra nas";
-		mes "lojas de armas ou armaduras,";
+	if (select("Você tem uma Namorada?:Finalizar Conversa.") == 1) {
+		mes "[Issei]";
+		mes "Ei...";
+		mes "É tão difícil de acreditar?! Pergunte pra qualquer um! Ela existe! Apesar de, algumas vezes, ela fica muita animada com armas e armaduras.";
 		next;
-		mes "[Chitake]";
-		mes "alguns itens que podem ser";
-		mes "conseguidos com monstros";
-		mes "são muito melhores.";
+		mes "[Issei]";
+		mes "Quero dizer, ao invés de aproveitar um jantar romântico, ela começa a falar sobre como equipamentos soltos por monstros têm mais qualidade que aqueles vendidos em lojas...";
 		next;
-		mes "[Chitake]";
-		mes "Eu quero dizer,";
-		mes "eles parecem ter 'mais funções', eu acho.";
-		mes "Apesar de que";
-		mes "eu não estou muito certo que isso seja verdade...";
+		mes "[Issei]";
+		mes "por que devo me preocupar se equipamentos soltos por monstros tendem a ter mais slots?! Eu nem consigo matar um Poring!";
+		next;
+		mes "[Issei]";
+		mes "Como você poder ver,";
+		mes "Eu sou um amante,";
+		mes " não um lutador.";
 		close;
 	}
-	mes "[Chitake]";
-	mes "*sob*";
-	mes "Você deve estar pensando...";
-	mes "que eu sou um idiota.";
+	mes "[Issei]";
+	mes "Então, não me ache estúpido, ok?";
 	close;
 }
 
-aldebaran,180,46,4	script	Oriental#alde	88,{
-	mes "[Hong Lee]";
-	mes "Eu sou um turista vindo de Payon, a cidade da floresta.";
-	mes "Aqui... tem água por todos os lugares...";
-	mes "O clima fica tão fresco.";
+aldebaran,180,46,4	script	Joo Jahk#alde	88,{
+	mes "[Joo Jahk]";
+	mes "Eu sou um turista";
+	mes "de Payon,";
+	mes "A Cidade das Florestas.";
 	next;
-	mes "[Hong Lee]";
-	mes "Mas... será que...";
-	mes "essa água é potável?";
-	mes "Na verdade... Eu já até experimentei.";
+	mes "[Joo Jahk]";
+	mes "A temperatura aqui em Al De Baran é bem fresca, provavelmente por causa dos canais. Você acha que podemos beber?";
 	next;
-	if (select("Continuar.:Sair.") == 1) {
-		mes "[Hong Lee]";
-		mes "Eu tenho viajado por vários lugares de Rune-Midgard.";
-		mes "Eu ouvi isso de um Feiticeiro poderoso";
-		mes "logo antes de chegar a Al de Baran:";
+	mes "[Joo Jahk]";
+	mes "Bem, já é tarde para perguntar, eu já bebi um pouco. Ainda sim, Eu estou um pouco preocupado...";
+	next;
+	if (select("Continar.:Finalizar Conversa.") == 1) {
+		mes "[Joo Jahk]";
+		mes "Em uma das minhas viagens por Rune-Midgard, eu ouvi de um Mago muito poderoso que ataques físicos ou magias de propriedade neutra não funcionam contra monstros da propriedade Fantasma.";
 		next;
-		mes "[Hong Lee]";
-		mes "Se você lutar contra monstros do ^3355FFElemento Fantasma^000000 que não tem corpo físico,";
-		mes "não é posível causar dano neles com armas ou magias normais,";
-		mes "somente com ataques ou armas elementais.";
-		next;
-		mes "[Hong Lee]";
-		mes "Espero que essa informação tenha sido útil!";
-		mes "Bom... então....";
+		mes "[Joo Jahk]";
+		mes "Talvez esse conselho seja útil agora que você sabe. Sempre se lembre da importância das propriedades de suas Habilidades ou Armas, quando estiver lutando contra monstros.";
 		close;
 	}
-	mes "[Hong Lee]";
-	mes "Não sei se é porque o clima de Al de Baran";
-	mes "é tão fresco...";
-	mes "Mas a água tem um sabor tão agradável.";
-	mes "Parece que podemos beber até a água pela qual os barcos passam...";
+	mes "[Joo Jahk]";
+	mes "Por outro lado, a água que tomei era muito boa. Espero que não tivesse nada muito estranho dentro...";
 	close;
 }
 
-aldebaran,212,122,4	script	Cidadão de Al de Baran#1	97,{
-	mes "[Sandro]";
-	mes "Bem vindo! Esta é Al de Baran!";
-	mes "Nós, cidadãos de Al de Baran agradecemos sua visita!";
-	mes ". . . . .";
+aldebaran,212,122,4	script	Cidadão#alde	97,{
+	mes "[Gavin]";
+	mes "Bem-vindo!";
+	mes "A Cidade de";
+	mes "Al De Baran";
+	mes "dá as boas vindas a você!";
 	next;
-	mes "[Sandro]";
-	mes "Hã, você acha que eu sou alguém importante? Representante dos cidadãos... Hã?...";
-	mes "Nada, eu só gosto de fazer isso! Falar em nome da cidade...";
+	mes "[Gavin]";
+	mes "Bem, pode ser exagero. Afinal, sou apenas eu que estou dando as boas vindas a você.";
+	mes "Olá!";
 	next;
-	mes "[Sandro]";
-	mes "Seja bem vindo!";
-	next;
-	if (select("Continuar conversa.:Sair.") == 1) {
-		mes "[Sandro]";
-		mes "Ah, então você também viu uma dessas?";
-		mes "Dessas criaturas engraçadas?";
-		mes "Alguns dias atrás...";
-		mes "Na floresta das Montanhas de Mjolnir";
+	if (select("Agora, me fale sobre monstros.:Finalizar Conversa.") == 1) {
+		mes "[Gavin]";
+		mes "Monstros...?";
+		mes "Não estamos saindo do tema um pouco? Ah, você deve ser um daqueles aventureiros!";
 		next;
-		mes "[Sandro]";
-		mes "Que fica ao redor de Al de baran,";
-		mes "eu vi um Poring com asas de anjo!!!!";
-		mes "Eu juro!";
+		mes "[Gavin]";
+		mes "Não consegue tirar a cabeça do trabalho, é? Certo, existe um monstro que eu vi recentemente...";
 		next;
-		mes "[Sandro]";
-		mes "Ele estava brincando com os outros Porings.";
-		mes "Pulando com eles.";
-		mes "Me disseram que se chama Angeling...";
-		mes "O que será essa criatura...?";
+		mes "[Gavin]";
+		mes "Ah, lembrei! Apenas a alguns dias, Eu vi um monstro muito interessante! Era um Poring com asas de anjo!";
+		next;
+		mes "[Gavin]";
+		mes "Eu juro! Ele estava pulando em volta de algum lugar perto do Mt. Mjolnir com alguns Porings. Eu acho que ele era o líder deles, algo do tipo.";
 		close;
 	}
-}
-
-aldebaran,146,124,4	script	Menina#alde	101,{
-	mes "[Kátia]";
-	mes "Eu ouvi dizer que existe um lugar chamado ^3355FF'Guilda dos Mercenários'^000000.";
-	mes "E que lá eles ensinam as pessoas a matar sem serem descobertos.";
-	mes "Um lugar desses...";
-	next;
-	mes "[Kátia]";
-	mes "deveria ser ilegal, né?";
-	mes ". . . . .";
-	mes "Será que uma escola ilegal cobra mensalidades?";
-	next;
-	if (select("Continuar conversa.:Sair.") == 1) {
-		mes "[Kátia]";
-		mes "Monstros que tem asas podem voar.";
-		mes "A maior parte deles";
-		mes "se movem e atacam muito rápido.";
-		mes "Então é bem difícil";
-		mes "para acertar eles.";
-		next;
-		mes "[Kátia]";
-		mes "Então, quando lutamos contra esses monstros,";
-		mes "é preciso ter uma destreza (DES) alta,";
-		mes "não é??";
-		close;
-	}
-	mes "[Kátia]";
-	mes "Nada é de graça.";
-	mes "É claro que não dá pra ter ensinamentos de graça.";
-	mes "Mas, toda regra tem sua excessão.";
-	mes "Hmm...";
+	mes "[Gavin]";
+	mes "Awww...";
+	mes "Não fique desapontado só porque eu sou a única pessoa a te receber!";
 	close;
 }
 
-aldebaran,143,136,4	script	Guardião do Relógio#A	89,{
-	mes "[Benjamin Hall]";
-	mes "Eu sou o zelador da Torre do Relógio de Al de Baran.";
-	mes "Você parece bem interessado na Torre do Relógio! Quer que eu conte histórias da Torre?";
+aldebaran,146,124,4	script	Garota da Cidade#alde	101,{
+	mes "[Nastasia]";
+	mes "Em algum lugar do mundo existe uma ^3355FFGuilda dos Mercenários^000000, onde eles ensinam pessoas a sutil arte do assassinato.";
 	next;
-	if (select("Sim, conte-me uma história.:Sair.") == 1) {
-		mes "[Benjamin Hall]";
-		mes "Vários relógios são interligados ao relógio principal.";
-		mes "è o que chamamos de 'Sistema de conexão por Teleporte'.";
+	mes "[Nastasia]";
+	mes "Mas matar não é ilegal? E eles ainda chamam aquilo de instutuição de ensino?";
+	next;
+	if (select("Continuar conversa.:Finalizar Conversa.") == 1) {
+		mes "[Nastasia]";
+		mes "Apesar de Assassinos se beneficiarem por serem muito rápidos e ter muita AGI, eles ainda devem ter DES.";
 		next;
-		mes "[Benjamin Hall]";
-		mes "Embora os pontos de teleporte da Torre do Relógio sejam interligados, existem alguns 'dipositivos de teleporte aleatório'. Esses dispositivos levam vocÊ a lugares desconhecidos.";
-		mes "Então se você e seus amigos pretendem visitar a Torre do Relógio, tenham cuidado extra com esses dipositivos de teleporte aleatório...";
+		mes "[Nastasia]";
+		mes "DES é especialmente importante se você quiser atacar monstros voadores. Aqueles monstros são rápidos ao se mover e ao atacar.";
 		next;
-		mes "[Benjamin Hall]";
-		mes "Eu vou te dar uma dica. Os dipositivos de teleporte aleatório aparecem no seu mini-mapa como pontos verdes. Então preste atenção ao seu mini-mapa e tenha cuidado.";
-		mes "Espero que passe bons momentos visitando os relógios. Hahaha....";
+		mes "[Nastasia]";
+		mes "Em geral, se você quiser atacar monstros que são mais rápidos, você vai precisar de DES.";
 		close;
 	}
-	mes "[Benjamin Hall]";
-	mes "Tenha cuidado!! A Torre do relógio é um lugar terrível!";
-	mes "Nem eu sei como a Torre do Relógio funciona hoje em dia...";
+	mes "[Nastasia]";
+	mes "Normalmente se diz que nesse mundo, nada é de graça. Ainda sim, se você não tiver que pagar para aprender a se tornar um Mercenário...";
+	close;
+}
+
+aldebaran,143,136,4	script	Sineiro#A	89,{
+	mes "[Sineiro]";
+	mes "Eu fui ordenado pelo Comitê do 'Céu na Terra' a guardar esse entrada da Torre do Relógio.";
+	next;
+	if (select("Sobre Torre do Relógio.:Sair.") == 1) {
+		mes "[Sineiro]";
+		mes "Cada andar dessa torre é conectado ao outro por um dispositivo que chamamos de 'Engrenagem de Portais.'";
+		next;
+		mes "[Sineiro]";
+		mes "Apesar de exitir portais se conectando por todo o lugar na Torre do Relógio, cuidado com 'Portais Sem Rumo.'";
+		next;
+		mes "[Sineiro]";
+		mes "Os 'Portais Sem Rumo' vão transportar você para um lugar desconhecido do mapa. Esteja atento se não quiser se separar do seu grupo..";
+		next;
+		mes "[Sineiro]";
+		mes "Lembre-se, 'Portais Sem Rumo' serão mostrados em verde no mini-mapa. Então fique com seus olhos abertos, bem como para aqueles perigosos Relógios.";
+		close;
+	}
+	mes "[Sineiro]";
+	mes "Tome cuidado com essa Torre, ela está repleta de monstros perigosos.";
 	close;
 }
 
 // Inside Al De Baran
 //============================================================
-aldeba_in,232,241,4	script	Cidadão de Al de Baran#2	48,{
+aldeba_in,232,241,4	script	RS125#alde	48,{
 	mes "[RS125]";
-	mes "Meu nome pode não parecer humano e minha voz pode parecer monótona";
-	mes "mas, não tenha medo! Eu sou uma pessoa de bom coração!";
+	mes "Eu posso soar muito robótico.";
+	mes "Mas, eu espero que você não tenha medo de mim. Eu sou tão humano quanto você.";
 	next;
 	mes "[RS125]";
-	mes "Eu tenho uma peculiaridade, sim.";
-	mes "Existem 2 motores bi-turbo em meu coração.";
-	mes "O meu coração batendo pode ser barulhento.";
-	mes "Mas, trabalharei com amor a Al de Baran para sempre.";
+	mes "Eu posso ter um coração mecânico e posso incomodar você com barulhos vindos dele,";
+	mes "isso nunca vai me impedir de correr pelo Futuro de Al De Baran.";
 	next;
-	if (select("Continue, por favor...:Sair.") == 1) {
+	if (select("Ouvir a História.:Finalizar Conversa") == 1) {
 		mes "[RS125]";
-		mes "... Já se passaram 3 anos! ..";
-		mes "Meu irmão, 996, era o velocista oficial de Al de Baran...";
-		mes "Naquela época, Todos o chamavam de 'O Pecopeco de Al de Baran'.";
-		mes "ele era muito rápido!";
+		mes "Já faz 3 anos.";
+		mes "Meu irmão 996 costumava ser um atleta de metros rasos no time de Al De Baran.";
+		mes "naquela época, as pessoas deram um apelido a ele,'O Peco Peco de Al De Baran',";
+		mes "por suas pernas incrivelmente rápidas...";
 		next;
 		mes "[RS125]";
-		mes "No 'Grande Prêmio de Al de Baran', que acontece a cada 4 anos em Al de Baran,";
-		mes "muitos fans de atletismo do mundo inteiro vinham para cá, só para ver meu irmão...";
-		mes "O agente dele ficava louco.";
-		mes "Ele era tão amado por seus fans...";
+		mes "Ele se tornou tão popular por suas corridas,";
+		mes "que toda vez que a 'Al De Baran Turbo Track' acontecia de 4 em 4 anos,";
+		mes "muitas pessoas de todo o continente viam a essa cidade apenas para ver meu irmão.";
+		mes "Eu era o empresário dele na época, Eu me estressava muito por causa dos Fãs.";
 		next;
 		mes "[RS125]";
-		mes "Mas... como nada no mundo dura para sempre,";
-		mes "um dia meu irmão perdeu uma corrida...";
-		mes "Uma garota de uma vila na Floresta de Payon o venceu!";
+		mes "Mas, nada é para sempre...";
+		mes "Um dia, uma garota de Payon ganhou do meu irmão numa corrida.";
 		next;
 		mes "[RS125]";
-		mes "Desde então, meu irmão treinava desesperadamente. Ele se forçou tanto que teve um ataque cardíaco.";
-		mes "Agora ele vive na cama e não pode fazer mais nada a não ser me observar...";
+		mes "Meu irmão não aceitava o fato de que tinha perdido";
+		mes "então ele treinou muito e teve uma séria parada cardíaca.";
+		mes "Ele ainda está de cama.";
 		next;
 		mes "[RS125]";
-		mes "Eu sou o futuro de Al de Baran e a esperança de meu irmão!";
-		mes "Espere e verá! Eu derrotarei as pernas mais velozes de Payon, a menina Ivana!";
+		mes "Eu sou a única esperança do meu irmão e do Futuro de Al De Baran!";
+		mes "Me deseje sorte, Eu vou ganhar dela, 'Breezy Havana' de Payon!";
 		close;
 	}
 	mes "[RS125]";
-	mes "Um dia eu viajarei ao redor do mundo!";
-	mes "Imagino como deve ser linda a vista do mar em Alberta...";
-	mes "Quando eu vencer a corrida no próximo ano, vou viajar pelo mundo com meu irmão!";
+	mes "Eu quero viajar pelo mundo em um dia dessess.";
+	mes "Se eu puder ver o oceano do porto de Alberta, deve ser tão maravilhoso.";
+	mes "Depois da próxima competição, Eu vou com meu irmão em um tour ao redor do mundo.";
 	close;
 }
 
-aldeba_in,223,121,4	script	Homem Louco	63,{
-	mes "[Homem Louco]";
-	mes "Ei! Estranho... Como você entrou aqui?";
-	mes "Palhaço...";
-	mes "Como se atreve a falar assim comigo!?";
+aldeba_in,223,121,4	script	Homem Ameaçador	63,{
+	mes "[Homem Ameaçador]";
+	mes "Ei, não se deve entrar na casa de alguem sem permissão.";
+	mes "Isso é ridiculo!";
+	mes "Como ousa entrar na minha casa e falar comigo como se fosse uma coisa normal?";
 	next;
-	mes "[Homem Louco]";
-	mes "HeHe... Imagino que eu deva soar estranho.";
-	mes "Eu me sinto fora da realiadade no momento.";
+	mes "[Homem Ameaçador]";
+	mes "Hahahaha..., Eu apenas estava brincando.";
 	next;
-	if (select("ontinuar a conversa.:Sair (correndo).") == 1) {
-		mes "[Homem Louco]";
-		mes "Ei! Você! Não sei se você sabe disso!";
-		mes "Existe um sistema de recrutamento no mundo.";
-		mes "E, eu sou um dos recrutados.";
+	if (select("Continuar:Sair") == 1) {
+		mes "[Homem Ameaçador]";
+		mes "Você já deve saber disso, mas";
+		mes "nós temos um sistema chamado 'O Sistema de Assistentes'.";
+		mes "Sim, Eu sou um Soldado Assistente.";
 		next;
-		mes "[Homem Louco]";
-		mes "É um sistema muito simples.";
-		mes "Um sistema de recrutamento de mercenários.";
-		mes "Como eles são soldados profissionais, eles custam muito dinheiro...";
+		mes "[Homem Ameaçador]";
+		mes "É simples, você paga para alguém o ajudar na batalha.";
+		mes "Se quiser Soldados Assistentes melhores você deve pagar mais, sabe?";
 		next;
-		mes "[Homem Louco]";
-		mes "vamos para com o papo furado!";
-		mes "Eu vou te contar como...";
-		mes "como recrutar bons novatos.";
+		mes "[Homem Ameaçador]";
+		mes "Vamos parar de falar coisas chatas.";
+		mes "Eu vou te ensinar como escolher um bom Assistente.";
 		next;
-		mes "[Homem Louco]";
-		mes "Primeiro, deve-se olhar o nariz.";
-		mes "Um bom soldado mercenário tem sempre um nariz úmido.";
-		mes "Se estiver seco,";
-		mes "então ele deve estar resfriado...";
+		mes "[Homem Ameaçador]";
+		mes "Cheque o nariz, veja se está limpo e úmido.";
+		mes "Um bom Assistente deve ter o nariz úmido.";
+		mes "Isso mostra que o Assistente está em suas melhores condições.";
+		mes "Se o nariz está seco, significa que ele pegou um resfriado.";
 		next;
-		mes "[Homem Louco]";
-		mes "E os tornozelos... devem ser finos!";
-		mes "Como um mercenário, ele deve ter tornozelos finos e um pescoço branco e limpo!" ;
-		mes "Seria bom acrescentar um cabelo longo e macio, ou então algum dinheiro para uma escova.";
+		mes "[Homem Ameaçador]";
+		mes "e não esqueça de checar o tornozelo.";
+		mes "Os melhores assistentes têm o tornozelo magro e pescoço branco!";
+		mes "Se ele tiver cabelo comprido, é melhor! Se ele tiver cabelo encaracolado, é perfeito!";
 		next;
-		mes "[Homem Louco]";
-		mes "Finalmente, para ser um bom mercenário... Veja bem, é apenas um trabalho!";
-		mes "Para deixar o empregador feliz,";
-		mes "um mercenário de verdade sempre segue as ordens e pode dar bons conselhos!";
-		mes "Sem esquecer, é claro, de uma toalhada oportuna!";
+		mes "[Homem Ameaçador]";
+		mes "Por último, você deve checar se ele está pronto para servir você!";
+		mes "Quero dizer, ele deve fazer o melhor ao ajudar você numa luta!";
 		close;
 	}
-	mes "[Homem Louco]";
-	mes "Ainda aí?";
-	mes "Se você for da polícia me mostre seu mandato!";
-	mes "Se você é da família, me mostre sua marca de nascença!";
+	mes "[Homem Ameaçador]";
+	mes "Saia daqui, agora!";
+	mes "Se você é um policial, me mostre um mandato,";
+	mes "se você é da família, prove com sua marca de nascença!";
 	close;
 }
 
-aldeba_in,219,61,4	script	Homem Gentil#ald	109,{
-	mes "[Homem Gentil]";
-	mes "Não pare para ouvir o que aquele homem louco aqui do lado diz...";
-	mes "Ele é assim porque caiu de uma árvore e bateu a cabeça,";
-	mes "enquanto tentava roubar frutas de uma árvore no campo de treinamento de mercenários...";
+aldeba_in,219,61,4	script	Homem Amigável#ald	109,{
+	mes "[Homem Amigável]";
+	mes "Você não precisa escutar o cara ao lado do meu quarto.";
+	mes "Dois anos atrás, ele estava num centro de treinamento de Assistentes";
+	mes "quando ele caiu de uma árvore tentando pegar uma noz.";
 	next;
-	mes "[Homem Gentil]";
-	mes "Eu nem gosto de falar muito sobre isso...";
-	mes "ai, Deus... que dor de cabeça!";
+	mes "[Homem Amigável]";
+	mes "Agora ele continua falanto alto para si. Isso me dar dor de cabeça...";
+	mes "Meu Deus!";
 	close;
 }
 
-aldeba_in,152,47,4	script	Homem Chateado#alde	97,{
-	mes "[Homem Chateado]";
-	mes "Oh nãããããão!";
-	mes "Meu querido franguinhoooo!";
-	mes "Se foi!!";
+aldeba_in,152,47,4	script	Homem Inquieto#alde	97,{
+	mes "[Homem Inquieto]";
+	mes "Aaaaarrrggghhh...ESTOU COM PROBLEMAS!";
+	mes "Minha pequena galinha me deixou!";
+	mes "Ó Meu Deus! Ó Meu Deus!";
 	next;
-	if (select("Qual o nome do franguinho?:. . . . .") == 1) {
-		mes "[Homem Chateado]";
-		mes "O nome dele é 'O Grande Picky'...";
-		mes "Oh meu Deus... o que eu faço agora?";
-		mes "Por favor, me diz que você vai me ajudar a achar o meu querido Picky";
+	if (select("Como você chama ela?:. . . . .") == 1) {
+		mes "[Homem Inquieto]";
+		mes "Eu costumava chamar de 'Incrível Picky'...";
+		mes "*Sob* O que eu faço! Como isso aconteceu comigo!";
+		mes "Por favor, me ajude a encontrar miha pequena picky!";
 		next;
-		if (select("Poxa! Mas é um nome muito comum!:. . . . .") == 1) {
-			mes "[Homem Chateado]";
-			mes "O que você tá falando!?";
-			mes "Nosso 'O Grande Picky' é único! O melhor do mundo!";
-			mes "Ele é muito muito lindo! Seu... Você não tem coração!";
+		if (select("O quê? Que nome ridículo!:. . . . .") == 1) {
+			mes "[Homem Inquieto]";
+			mes "Não seja ridículo!";
+			mes "'Incrível Picky' é o melhor e mais exclusivo nome";
+			mes "nesse mundo, e minha galinha merece ele!";
 			close;
 		}
-		else{
-			mes "[Homem Chateado]";
-			mes "Não me ridicularize!";
-			mes "Eu não tenho irmãos, então sempre tratei ele como se fosse eu irmãozinho!";
-			mes "Buá aah aahh buáááá!";
+		mes "[Homem Inquieto]";
+		mes "Você não se importa, não é?";
+		mes "Eu sou filho único, então eu sempre pensei nela como uma irmã!";
+		mes "Eu quero ela de volta...*Sob*";
 		close;
-		}
 	}
-	mes "[Homem Chateado]";
-	mes "Não me ridicularize!";
-	mes "Eu não tenho irmãos, então sempre tratei ele como se fosse eu irmãozinho!";
-	mes "Buá aah aahh buáááá!";
+	mes "[Homem Inquieto]";
+	mes "Você não se importa, não é?";
+	mes "Eu sou filho único, então eu sempre pensei nela como uma irmã!";
+	mes "Eu quero ela de volta...*Sob*";
 	close;
 }
 
-aldeba_in,156,179,4	script	Gerente do Bar#alde	61,{
-	mes "[Gerente]";
-	mes "A Central das Kafras fica em Al de Baran.";
-	mes "As meninas de lá às vezes vêm ao nosso bar.";
-	mes "Elas são tão alegres e animadas.";
+aldeba_in,156,179,4	script	Chefe#alde	61,{
+	mes "[Chefe]";
+	mes "A matriz da Corporação Kafra é localizada aqui em Al De Baran.";
+	mes "Você sabe";
+	mes "o que isso significa?";
 	next;
-	mes "[Gerente]";
-	mes "Vamos fazer um joguinho, então!";
-	mes "E o jogo é 'Escolha sua Kafra'! Nós vamos descobrir aqui como é seu parceiro ideal!";
-	mes "Haha... Não importa se você é homem ou mulher.";
+	mes "[Chefe]";
+	mes "Isso significa que aquelas Kafras vêm aqui na hora do almoço! Isso não é legal?!";
 	next;
-	mes "[Gerente]";
-	mes "Basta escolher";
-	mes "uma das Kafras";
-	mes "que você ache gentil e charmosa!";
+	mes "[Chefe]";
+	mes "Certo, então!";
+	mes "Hora do Quiz!";
+	mes "Quem é sua";
+	mes "garota Kafra favorita?";
 	next;
 	if (sex == 0) {
-		mes "[Gerente]";
-		mes "Ah, e não se preocupe. Eu sei que as meninas têm algum tipo de opinião sobre o quão bonita outras meninas são.";
+		mes "[Master]";
+		mes "Ah, não se preocupe. Eu sei que garotas têm um tipo de opinião sobre como as outras garotas são bonitas.";
 		next;
 	}
-	if (select("Opa! Isso deve ser divertido!:Naa... Não quero participar...") == 1) {
-		mes "[Gerente]";
-		mes "Então vamos, escolha com cuidado!";
-		mes "Qual é a sua favorita?";
+	if (select("Legal!:Não, não sou um pervetido.") == 1) {
+		mes "[Chefe]";
+		mes "Certo, aqui vai!";
+		mes "Escolha sua Kafra Favorita!";
 		next;
-		mes "[Gerente]";
-		mes "Número (1) ^3355FF' Denise '^000000 !!";
-		mes "Ela é a nossa kafra original. Tem um lindo e clássico cabelo azul.";
-		mes "Número (2) ^5533FF' Tatiana '^000000 !!";
-		mes "Ela é quieta e com cabelo com rabo-de-cavalo. Ela é a paixão dos adolescentes!";
-		mes "Número (3) ^555555' Marianne '^000000 !!";
-		mes "Cabelos longos e lisos, muito gentil! Ela vem de Payon!";
+		mes "[Chefe]";
+		mes "A mascote original Kafra, a kafra de cabelo azul, nossa Candidata número 1: ^3355FFPavianne^000000!";
 		next;
-		mes "[Gerente]";
-		mes "Número (4) ^1133DD' Bianca '^000000 !!";
-		mes "Ela tem sorriso largo, cabelo curto e é a mais animada de todas!";
-		mes "Número (5) ^33FF55' Gabi '^000000 !!";
-		mes "Calma e madura, ela é muito séria! Prefere homens mais velhos!";
-		mes "Número (6) ^AAAA00' Deborah '^000000 !!";
-		mes "Olha essas tranças! Jeito de menina, mas uma mulher decidida!";
+		mes "[Chefe]";
+		mes "Seu gracioso rabo de cavalo faz é de tirar o fôlego dos homens! Cadidata Número 2: ^5533FFBlossom^000000!";
 		next;
-		mes "[Gerente]";
-		mes "Um oferecimento de: Central de Serviços Kafra...";
-		mes "...de Al de Baran.";
-		mes "Fim da apresentação!";
+		mes "[Chefe]";
+		mes "Seu longo e liso cabelo, como seda do Leste é seu charme. Direto de Payon, Cadidata Número 3: ^555555Jasmine^000000!";
 		next;
-		switch(select("(1) Denise:(2) Tatiana:(3) Marianne:(4) Bianca:(5) Gabi:(6) Deborah")) {
+		mes "[Chefe]";
+		mes "Uma garota com cabelo curto e laranja brilhante. Candidata Número 4: ^1133DDRoxie^000000!";
+		next;
+		mes "[Chefe]";
+		mes "Inteligente, sofisticada e nunca é vista sem seus óculos luxuosos. É a Candidata Número 5: ^33FF55Leilah^000000!";
+		next;
+		mes "[Chefe]";
+		mes "Bonita e graciosa. Apesar de parecer jovem e imatura, ela é a melhor funcionária.!";
+		mes "Candidata Número 6: ^AAAA00Curly Sue^000000 !!";
+		next;
+		switch(select("(1) Pavianne:(2) Blossom:(3) Jasmine:(4) Roxie:(5) Leilah:(6) Curly Sue")) {
 		case 1:
-			mes "[Gerente]";
-			mes "Um saudosista!";
-			mes "Não seja teimoso!";
-			mes "Você deve experimentar coisas novas! Não adianta ficar preso ao passado!";
+			mes "[Chefe]";
+			mes "Oh~";
+			mes "Então você é amante dos clássicos. Eu respeito isso.";
+			next;
+			mes "[Chefe]";
+			mes "Acho que você tende a gostar de Filmes originais mais do que sequências, e odeia imitações ruins. Estou certo?";
 			close;
 		case 2:
-			mes "[Gerente]";
-			mes "Você não consegue ficar quieto?";
-			mes "Se seu parceiro for assim como você, inquieto...";
-			mes "Vocês vão incomodar todo mundo!";
+			mes "[Chefe]";
+			mes "Hmmm...";
+			mes "Blossom me parece o tipo vizinha. Então eu acho que esse é o tipo de garota que atrai você, não é?";
 			close;
 		case 3:
-			mes "[Gerente]";
-			mes "Alguém que vive tão despreocupadamente...";
-			mes "acaba sendo chamado de preguiçoso.";
-			mes "Você tem que traçar objetivos para sua vida, e trabalhar por eles!";
+			mes "[Chefe]";
+			mes "Então...";
+			mes "Cabelo longo e luxuoso é importante para você, hmm? Eu acho que esse tipo de cabelo deixam uma mulher elegante.";
 			close;
 		case 4:
-			mes "[Gerente]";
-			mes "Quando você planeja parar de sonhar?";
-			mes "Você quer procurar pela pessoa ideal somente sonhando?";
-			mes "Encare a realidade!";
+			mes "[Chefe]";
+			mes "Ah, então você gosta do tipo espontâneo e ativo. Eu entendo isso...";
+			next;
+			mes "[Chefe]";
+			mes "Já que Roxie não é exatamente do tipo Dona de Casa, você provavelmente tem uma mente aberta quando se trata de definir feminilidade, certo?";
 			close;
 		case 5:
-			mes "[Gerente]";
-			mes "Eu vou ser franco com você.";
-			mes "Quando você vai abrir seu coração?!";
-			mes "Desista de ser solitário!";
+			mes "[Chefe]";
+			mes "Ah, então você gosta do tipo intelectual. Isso é bom.";
+			next;
+			mes "[Chefe]";
+			mes "Ainda sim, Leilah pode ser fria como pedra as vezes. Eu ja vi ela ignorar muitos homens e despedaçar ainda mais corações!";
 			close;
 		case 6:
-			mes "[Gerente]";
-			mes "Oh~ohoh~!!!";
-			mes "Você gosta de garotinhas!";
-			mes "Seu criminoso!";
+			mes "[Chefe]";
+			mes "Como ééé?!";
+			mes "Ela é muito nova!";
 			close;
 		}
 	}
-	mes "[Gerente]";
-	mes "Mas eu trabalhei tão duro com esse levantamento delicioso! Vinde, pois, ser um esporte! Admirar uma mulher bonita é como apreciar arte.";
+	mes "[Chefe]";
+	mes "Mas eu trabalhei tanto nessa pesquisa! Vamos, leve na esportiva! Admirar uma garota bonita é como apreciar uma peça de arte.";
 	close;
 }
 
-aldeba_in,84,166,4	script	Kafra#alde	117,{
+aldeba_in,84,166,4	script	Serviço Kafra#alde	117,{
 	cutin "kafra_01",2;
-	mes "[Kafra Denise]";
-	mes "Bem vindo! Eu sou da primeira geração de Kafras da Central de Serviços Kafra,";
-	mes "Eu sou 'Denise'! Como vai você?";
-	mes "Prazer em vê-lo!";
+	mes "[Kafra Pavianne]";
+	mes "Bem-vindo! Eu sou Pavianne,";
+	mes "uma das Funcionárias Kafra Senior. A Corporação Kafra sempre está tentando satisfazer 100% das expectativas dos nossos clientes.";
 	next;
-	mes "[Kafra Denise]";
-	mes "Nós da Central de Serviços Kafra trabalhamos para ter nossos clientes sempre satisfeitos.";
-	mes "Nós valorizamos os princípios da Honestidade, Confiança e Integridade...";
-	mes "e trabalhamos duro com treinamento e gerenciamento completos!";
+	mes "[Kafra Pavianne]";
+	mes "Devido à troca da política de suporte ao cliente, nós não aceitamos mais Bilhetes Kafra. Mas, estamos oferecendo reembolso para os que ainda possuem os Bilhetes.";
 	next;
-	mes "[Kafra Denise]";
-	mes "Oh! Mais uma coisa! Houveram algumas mudanças";
-	mes "nos serviços Kafra.";
-	mes "Nós não fornecemos mais Passes Kafra";
-	mes "e, obviamente, também";
-	mes "não os vendemos.";
-	next;
-	mes "[Kafra Denise]";
-	mes "Mas, não se preocupe!";
-	mes "Nós oferecemos uma compensação para";
-	mes "o caso de você ainda possuir um Passe Kafra.";
-	mes "Reembolso total.";
-	mes "Sem prejuízo para você!!!";
-	next;
-	if (select("Preciso de reembolso.:Sair.") == 1) {
+	if (select("Vender Bilhete Kafra:Certo,tchau~") == 1) {
 		if (countitem(1084) == 0) {
-			mes "[Kafra Denise]";
-			mes "Muito obrigado!";
-			mes "Eu sou a Kafra Denise";
+			mes "[Kafra Pavianne]";
+			mes "Me desculpe,";
+			mes "mas você não";
+			mes "tem nenhum Bilhete Kafra.";
 			close2;
 			cutin "",255;
 			end;
@@ -1100,85 +781,89 @@ aldeba_in,84,166,4	script	Kafra#alde	117,{
 			mes "[Kafra Pavianne]";
 			mes "Vamos ver...";
 			if (countitem(1084) == 1) {
-				mes "[Kafra Denise]";
-				mes "O que? Você deve estar brincando! Você não tem nenhum Passe Kafra!";
-				mes "Bem... Eu entendo. Ninguém mais consegue um desses!";
+				mes "Você tem um bilhete Kafra.";
+				mes "Você pode vender esse bilhete para nós por 2000 zeny. Gostaria de vender o bilhete de volta para a Corporação Kafra?";
 			}
 			else {
-				mes "[Kafra Denise]";
-				mes "Bom... Você tem "+ countitem(1084) +" Passes Kafra.";
-				mes "Como reembolso você tem direito a "+ .@kafrapassmoney +" zenys.";
+				mes "Você tem "+ countitem(1084) +" Bilhetes Kafra.";
+				mes "Se você quiser vendê-los para nós, você vai receber "+ .@kafrapassmoney +" zeny. Gostaria de vender o bilhete de volta para a Corporação Kafra?";
 			}
 			next;
-			if (select("Sim!:Não!") == 1) {
+			if (select("Sim:Não") == 1) {
 				if (countitem(1084) == 0) {
-					mes "[Kafra Denise]";
-					mes "Você não tem Passes Kafra!";
-					mes "eu sei que é muito difícil conseguir um...";
+					mes "[Kafra Pavianne]";
+					mes "Me desculpe, mas parece que você não tem nenhum Bilhete Kafra.";
 					close2;
 					cutin "",255;
 					end;
 				}
 				delitem 1084,countitem(1084); //Kapra's_Pass
 				set Zeny,Zeny+.@kafrapassmoney;
-				mes "[Kafra Denise]";
-				mes "Obrigado";
+				mes "[Kafra Pavianne]";
+				mes "Obrigada.";
 			}
 			close2;
 			cutin "",255;
 			end;
 		}
 	}
-	mes "[Kafra Denise]";
-	mes "Você recebeu um reembolso total por seus antigos passes Kafra.";
-	mes "Muito obrigado por utilizar nossos serviços!!";
-	mes "Eu sou a Kafra Denise, responsável pela Divisão de Reembolso.";
+	mes "[Kafra Pavianne]";
+	mes "Obrigada,";
+	mes "tenha um bom dia.";
 	close2;
 	cutin "",255;
 	end;
 }
 
-aldeba_in,83,245,4	script	Kafra#2alde	116,{
+aldeba_in,83,245,4	script	Serviço Kafra#2alde	116,{
 	cutin "kafra_02",2;
-	mes "[Kafra Tatiana]";
-	mes "...Denise é sempre assim!";
-	mes "Ela é tão seletiva.";
-	mes "Deveria haver uma diferença entre a Central e os outros escritórios...";
-	mes "Cada um deveria ter seu próprio estilo.";
+	mes "[Kafra Blossom]";
+	mes "Bem-vindo a";
+	mes "Corporação Kafra.";
+	mes "As Funcionárias Kafras estarão";
+	mes "sempre aqui para servir você.";
 	next;
-	mes "[Kafra Tatiana]";
-	mes "Então! Bem vindo... Eu sou Tatiana!";
-	mes "Por favor, volte sempre a nossa Central de Serviços Kafra!";
-	mes "E não se esqueça de mim! Eu sou a Tatiana...";
+	mes "[Kafra Blossom]";
+	mes "Nós apreciamos o seu contínuo uso do Serviço Kafra. Por favor se sinta livre para perguntar se tiver alguma dúvida.";
 	next;
-	switch(select("Você é linda, Tatiana!:Hehehe...")) {
+	switch(select("Como o Armazém Kafra funciona?:Como você teletransporta as pessoas?")) {
 	case 1:
-		mes "[Kafra Tatiana]";
-		mes "Wow!";
-		mes "Muito obrigada!";
-		mes "por favor assine aqui...";
+		mes "[Kafra Blossom]";
+		mes "Bom, Aventureiros como você pode colocar itens no Armazém Kafra, assim você não vai precisar ficar levando todas as suas coisas.";
 		next;
-		mes "[Kafra Tatiana]";
-		mes "^3355FF- (assinando) -^000000";
+		mes "[Kafra Blossom]";
+		mes "A janela do Armazém Kafra é separada em 3 abas onde os itens são separados automaticamente.";
 		next;
-		mes "[Kafra Tatiana]";
-		mes "HeHe... Sua letra é bonita";
-		mes "Não se preocupe com os itens no seu inventário!";
-		mes "Eu vou cuidar deles como se fossem meus!";
-		close2;
-		cutin "",255;
-		end;
+		mes "[Kafra Blossom]";
+		mes "As ^3355FFItem^000000, ^3355FFEquip^000000, e ^3355FFEtc^000000 abas funcionam do mesmo jeito que as abas no inventário dos itens.";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Múltiplos itens do mesmo tipo vão apenas ocupar um Slot em Item ou em Etc. Por exemplo, 324 Jellopies vão apenas ocupar um Slot, e 22 Poções Vermelhas vão ocupar outro Slot.";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Mas, na aba Equip, cada equipamento ocupa seu próprio Slot. Eu acho que é porque cada equipamento pode ser aprimorado com cartas ou refinamento.";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Exite um total de 300 Slots para todas as categorias de itens no Armazém Kafra, é bom se lembrar disso.";
+		next;
 		break;
 	case 2:
-		mes "[Kafra Tatiana]";
-		mes "Quê?";
-		mes ". . . . .";
-		mes "É tudo que você tem a dizer?";
-		mes "Você deve estar meio entediado, não?";
+		mes "[Kafra Blossom]";
+		mes "Oh, todos me fazem essa pergunta. '^CC0066Oh Blossom, como você faz isso?^000000' Bem...";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Eu não posso entrar em muito detalhes, claro. Isso é informação confidencial. Mas eu posso dizer que nosso teletransporte funciona com uma mistura de mágica e tecnologia.";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Também, as Funcionárias Kafras sozinhas não podem teletransportar os clientes. Nós apenas recebemos e processamos seu pedido de Teletransporte.";
+		next;
+		mes "[Kafra Blossom]";
+		mes "Atrás dos panos, profissionais habilidosos estão trabalhando 24 horas por dia para assegurar que você chegue rápido e seguro no seu destido.";
+		next;
 		break;
 	}
-	mes "[Kafra Tatiana]";
-	mes "De qualquer forma, espero que você goste da sua visita aqui na sede da Corporação Kafra.";
+	mes "[Kafra Blossom]";
+	mes "Em todo caso, espero que você goste da visita  à Sede da Corporação Kafra.";
 	if (rand(1,11) == 9) {
 		next;
 		mes "[Kafra Blossom]";
@@ -1196,46 +881,58 @@ aldeba_in,83,245,4	script	Kafra#2alde	116,{
 	end;
 }
 
-aldeba_in,24,245,4	script	Kafra#alde1	115,{
+aldeba_in,24,245,4	script	Kafra Jasmine#alde	115,{
 	cutin "kafra_03",2;
-	mes "[Kafra Marianne]";
-	mes "Oi! Eu sou a Kafra número 1, Marianne";
-	mes "Bem vido a Central Kafra em Al de Baran!";
+	mes "[Kafra Jasmine]";
+	mes "Bem-vindo!";
+	mes "O Serviço Kafra está";
+	mes "sempre ao seu lado.";
 	next;
-	mes "[Kafra Marianne]";
-	mes "Nós, a Central de Serviços Kafra, estaremos sempre com você!";
-	mes "Nós somos a Central de Serviços Kafra e temos 5800 anos de história";
-	mes "Da Daaaaan!";
+	mes "[Kafra Jasmine]";
+	mes "Obrigada por vir nos visitar na Sede da Corporação Kafra aqui em Al De Baran!";
 	next;
-	switch(select("5800 anos? Eu não acredito!:Ok, ok, não exagere...:Você tem namorado?")) {
+	mes "[Kafra Jasmine]";
+	mes "O Serviço Kafra tem uma reputação com os clientes que foi formada por mais de cinco mil e oitocentos anos...";
+	next;
+	switch(select("O quê?! Não acredito!:Ahh~ Cala boca!:Seus Serviços são ótimos!")) {
 	case 1:
-		mes "[Kafra Marianne]";
-		mes "Escute aqui! Eu passei uma semana in-tei-ra decorando isso!";
-		mes "Eu não sou como as outras kafras... Sou muito esquecidal!";
-		mes "... ah... Do que mesmo estávamos falando...? ...";
+		mes "["+ strcharinfo(0) +"]";
+		mes "O quê?!";
+		mes "Não acredito nisso!";
 		next;
-		mes "[Kafra Marianne]";
-		mes "*hihihi* Isso era só um show...";
-		mes "Sim! Era um show... organizado por nós, para nossos clientes aqui na Central de Serviços Kafra!";
-		mes "Um Show dos Sonhos! (...mas só é permitido um espectador de cada vez.)";
+		mes "["+ strcharinfo(0) +"]";
+		mes "CINCO MIL E OITOCENTOS ANOS?! VOCÊ ESTÁ LOUCA?!";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Arrrrghh! Cala a boca e escuta! Eu levei uma semana para memorizar tudo isso! Minha memória não é tão boa quanto a das outras Funcionárias Kafra...!";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Agora, err...";
+		mes "Como eu estava dizendo, a Corporação Kafra foi fundada há oito mil e quinhentos anos atrás por Emilio Alexander Kafra... Criador da Palavra 'Kafra?'";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Ele...";
+		mes "Ele era um bom homem. Ele...Grr! Não consigo lembrar!";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Ah não...!";
+		mes "Essa não pode ser a história certa! cinco milhões e oitocentos...?! É impossivel!";
 		break;
 	case 2:
-		mes "[Kafra Marianne]";
-		mes ". . . . .";
-		mes "Antes de me juntar à Central de Serviços Kafra,";
-		mes "Eu era parte da Brigada Kafra.";
-		mes "Minha especialidade era socar!";
-		mes "...mas eu decidi que era melhor ser calma e pacífica... ..";
-		mes "então, meu querido cliente... pare de me provocar, por favor...";
+		mes "[Kafra Jasmine]";
+		mes "Escuta...";
+		mes "Cara.";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Eu era uma membra das Tropas Kafra antes de entrar no Time do Serviço Kafra. Minha especialidade era ^990000Impacto Explosivo^000000, então se você sabe o que é bom para você, não mexa comigo.";
+		next;
+		mes "[Kafra Jasmine]";
+		mes "Eu tento ao máximo viver tão feminina e quieta que eu puder, então não me faça quebrar seus ossos! Entendeu?!";
 		break;
 	case 3:
-		mes "[Kafra Marianne]";
-		mes "*ai ai* Nós, Kafras, não podemos ter namorados...";
-		mes "É uma regra muito ridícula!";
-		mes ". . . . .";
-		mes ". . . . . . . . . .";
-		next;
-		mes "É só uma piada! Hahaha!";
+		mes "[Kafra Jasmine]";
+		mes "Oraa!";
+		mes "Boas notícias para ouvir. Nós sempre estamos trabalhando duro para satisfazer nossos clientes com os serviços que nós oferecemos.";
 		break;
 	}
 	close2;
@@ -1243,96 +940,75 @@ aldeba_in,24,245,4	script	Kafra#alde1	115,{
 	end;
 }
 
-aldeba_in,142,238,4	script	Kafra#3alde	114,{
+aldeba_in,142,238,4	script	Serviço Kafra#3alde	114,{
 	cutin "kafra_04",2;
-	mes "[Kafra Bianca]";
-	mes "Bem vindo! Eu sou a Kafra Bianca!";
-	mes "Eu vou te contra um super segredo das kafras que ninguém sabe!";
+	mes "[Kafra Roxie]";
+	mes "Bem-vindo~!";
+	mes "A Corporação Kafra sempre ajudará os aventureiros de Rune-Midgard com os nossos excelentes serviços.";
 	next;
-	mes "[Kafra Bianca]";
-	mes "Na verdade... nossa Central de Serviços Kafra nem sempre foi chamada assim...";
-	mes "Não se chamava Central de Serviços Kafra a um tempo atrás.";
-	mes "Então... sabe como era?";
+	mes "[Kafra Roxie]";
+	mes "Meu nome é Roxie!";
+	mes "Eu espero que você goste";
+	mes "da sua visita a";
+	mes "Sede da Corporação";
+	mes "Kafra.";
 	next;
-	mes "[Kafra Bianca]";
-	mes "Da Daaaan! Está surpreso, não?";
-	mes "Ka! P! (telefone tocando...)";
-	mes "Ah, é o meu celular. Aguarde um momento!";
+	mes "[Kafra Roxie]";
+	mes "Estou aqui para responder qualquer uma das suas dúvidas em relação a Política da Corporação Kafra, assim como registrar qualquer opinião.";
 	next;
-	mes "[Kafra Bianca]";
-	mes "Sim, é a Kafra Bianca.";
-	mes "Ah, o Diretor! Sim! Sim... Sim!";
-	mes "Quê?!";
-	next;
-	mes "[Kafra Bianca]";
-	mes "Ah, não não!";
-	mes "Ah... não é bem assim!";
-	mes "Sim! Entendo perfeitamente!";
-	next;
-	mes "[Kafra Bianca]";
-	mes "*desliga*";
-	mes "Hehehe...";
-	mes ". . . . .";
-	next;
-	mes "[Kafra Bianca]";
-	mes "Erm... por favor...";
-	mes "Por favor, esqueça a nossa conversa anterior.";
-	mes "Por favor esqueça o que eu... hehe...";
-	mes ". . . . .";
-	next;
-	switch(select("Kafra Policies:I love Kafra!")) {
+	switch(select("Política Kafra:Eu amo a Kafra!")) {
 	case 1:
 		mes "[Kafra Roxie]";
-		mes "So, you'd like more details on our policies and eligibility for our services? What would you like me to explain?";
+		mes "Então, você gostaria de mais detalhes sobre nossa política e a elegibilidade dos nossos serviços? O que você gostaria de saber mais sobre?";
 		next;
-		switch(select("Kafra Storage:Cart Rental:Actually, never mind.")) {
+		switch(select("Armazém Kafra:Aluguel de Carrinho:Na verdade, nem importa.")) {
 		case 1:
 			mes "[Kafra Roxie]";
-			mes "As you probably already know, our customers must have at least Basic Skill level 6 in order to use the Kafra Storage.";
+			mes "Como você já sabe, nossos clientes devem ter pelo menos nível 6 em Habilidades Básicas para poder usar o Armazém Kafra.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "As for the reason for this certain policy, we've had problems with young, fresh faced Novices that would put everything into their Storage.";
+			mes "A razão para essa política é que nós tivemos problemas com jovens Aprendizes, que colocariam tudo o quê tem dentro do Armazém.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "Now you remember your days as a Novice. Everything was new and exciting, but zeny was scarce. Well, a lot of Novices would even put their weapons and armor in Kafra Storage.";
+			mes "Lembre-se dos dias de Aprendiz. Tudo era novo e excitante, mas o zeny era escasso. Bem, muitos Aprendizes colocariam até mesmo suas armas e armaduras no Armazém.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "However, by this time, they've already spent what little zeny they had to open their Storage. But they don't have enough to access their Storage again!";
+			mes "Mas, nessa altura, eles já gastaram aquele pouco zeny que tinham para abrir o Armazém. E então eles não vão ter dinheiro para acessar de novo!";
 			next;
 			mes "[Kafra Roxie]";
-			mes "So, these weaponless, armorless Novices must fight monsters with their bare hands until they gather the zeny to open their Kafra Storage again!";
+			mes "Então, esse Aprendiz sem arma e sem armadura vai lutar contra monstros até conseguir zeny suficiente para abrir o Armazém de novo!";
 			next;
 			mes "[Kafra Roxie]";
-			mes "It's a silly mistake, to be sure, but we here at Kafra Corporation value human life, and decided on the Basic Skill Level 6 Requirement to prevent this kind of mishap.";
+			mes "É um pequeno erro, na verdade, mas nós aqui da Corporação Kafra valorizamos a vida humana, então decidimos que nível 6 em Habilidades Básicas é um requerimento para prevenir esse tipo de problema.";
 			break;
 		case 2:
 			mes "[Kafra Roxie]";
-			mes "As you may know, the Kafra Corporation has a special relationship with the Merchant Guild, as well as the Blacksmith and Alchemist guilds in Rune-Midgard.";
+			mes "Como você sabe, a Corporação Kafra tem uma relação especial com o Clã dos Mercadores, assim como o Clã dos Ferreiros e dos Alquimistas.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "The Kafra Corporation only rents Carts to Merchants, Blacksmiths and Alchemists since these job associations have a special contract with us.";
+			mes "A Corporação Kafra apenas aluga Carrinhos para Mercadores, Ferreiros e Alquimistas já que essas classes têm um contrato especial conosco.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "Also, it'd be really impractical to rent carts out to people who couldn't create or sell goods.";
+			mes "Mas também, não teria sentido vender carrinhos para pessoas que não possam vender mercadorias.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "As for Super Novices, well, we're really not supposed to rent carts to them since the Super Novice Society in Al De Baran doesn't have a contract with us.";
+			mes "Para os Super Aprendizes, bem, não devemos alugar carrinhos para eles já que a Sociedade dos Super Aprendizes não tem contrato conosco.";
 			next;
 			mes "[Kafra Roxie]";
-			mes "If a Kafra Employee rented a Cart to a Super Novice, she'd probably get in big trouble with Leilah...";
+			mes "Se uma Funcionária Kafra alugar um carro para um Super Aprendiz, ela provavelmente vai arrumar problemas com Leilah...";
 			break;
 		case 3:
 			mes "[Kafra Roxie]";
-			mes "Oh, alright~!";
-			mes "If you have any questions,";
-			mes "please let me know!";
+			mes "Oh, Ok~!";
+			mes "Se tiver qualquer pergunta,";
+			mes "por favor me diga!";
 			break;
 		}
 		break;
 	case 2:
 		mes "[Kafra Roxie]";
-		mes "Thank you!";
-		mes "It's great to know that we're appreciated by our customers! All of us are working hard to make sure that our service meets your standards of excellence~";
+		mes "Obrigada!";
+		mes "É sempre bom saber que somos apreciadas por nossos clientes! Todas nós trabalhamos duro para assegurar que o nosso serviço esteja ao seus padrões de excelência~";
 		break;
 	}
 	close2;
@@ -1340,31 +1016,27 @@ aldeba_in,142,238,4	script	Kafra#3alde	114,{
 	end;
 }
 
-aldeba_in,91,244,4	script	Kafra#4alde	112,{
+aldeba_in,91,244,4	script	Serviço Kafra#4alde	112,{
 	cutin "kafra_06",2;
-	mes "[Kafra Deborah]";
-	mes "Olá Olá!!";
-	mes "Eu sou a mais linda e mais nova aqui na Central de Serviços Kafra!";
-	mes "Meu nome é Deborah...";
+	mes "[Kafra Curly Sue]";
+	mes "Olá, Olá!!";
+	mes "Eu sou Curly Sue,";
+	mes "a mais nova membra";
+	mes "das Funcionárias Kafra!";
 	next;
-	mes "[Kafra Deborah]";
-	mes "Mas eu sou apenas uma funcionária nova. Ainda estou aprendendo";
-	mes "Mas, estou me esforçando muito para que você tenha o melhor serviço de todo o mundo!";
-	mes "É muito bom conhecer você!";
+	mes "[Kafra Curly Sue]";
+	mes "Eu posso ainda precisar aprender mais sobre como servir nossos clientes, mas eu estou sempre me esforçando!";
 	next;
-	if (select("Quantos anos?:Sair.") == 1) {
-		mes "[Kafra Deborah]";
-		mes ". . . . .";
-		mes "Hmm";
-		mes "Não me trata como criança, táááááá?";
+	if (select("Cadê sua mãe, criança?:Finalizar Conversa.") == 1) {
+		mes "[Kafra Curly Sue]";
+		mes "Waaaaaaah~!";
+		mes "Eu não sou uma criança!";
 		close2;
 		cutin "",255;
 		end;
 	}
-	mes "[Kafra Deborah]";
-	mes "´Nós da Central de Serviços Kafra";
-	mes "Oferecemos os melhores, mais cuidadosos e completos serviços!";
-	mes "Obrigado por sua visita!";
+	mes "[Kafra Curly Sue]";
+	mes "Aqui na Corporação Kafra, nós estamos sempre fazendo o melhor para oferecer o excelente serviço que você espera de nós.";
 	close2;
 	cutin "",255;
 	end;
@@ -1699,128 +1371,114 @@ sF_Spin:
 	if(@input <= 0) return;
 	goto sF_Spin;
 }
-
+//Não traduzi os th
 // Inside Clock Tower
 //============================================================
-c_tower3,10,249,4	script	Gatekeeper#ct	84,{
+c_tower3,10,249,4	script	Porteiro#ct	84,{
 	//Key_Of_Clock_Tower
 	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44; 
 }
 
-alde_dun03,264,16,4	script	Gatekeeper#ct1	101,{
+alde_dun03,264,16,4	script	Porteiro#ct1	101,{
 	//Underground_Key
 	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267; 
 }
-
+//script louco, por favor mais atenção
 function	script	F_ClockTowerGate	{
-	mes "[Riku, o Guardião do Portal]";
+	mes "[Porteiro]";
 	mes "Bem vindo a";
-	mes "Torre Azul Kinase - Gallino.";
-	mes "Uma das grandes atrações turísticas de Al De Baran.";
-	mes "Contudo, Não é permitida a entrada para "+getarg(0)+" Andar dessa Torre.";
-	mes "Por favor, volte por onde veio";
+	mes "Kinase - Blue Gallino";
+	mes "O único com Especialidade Local em Al De baran.";
+	mes "Você não pode passar do Andar "+getarg(0)+",";
+	mes "Por favor volte.";
 	next;
-	switch(select("Fale sobre a Torre do Relógior:Fale sobre o "+getarg(0)+" Andar:Ir para o "+getarg(0)+" Andar:Fim")) {
+	switch(select("Sobre Torre do Relógio:Sobre o Andar "+getarg(0)+":Ir para o Andar "+getarg(0)+":Finalizar Conversa")) {
 	case 1:
-			mes "[Riku, o Guardião do Portal]";
-			mes "Al De Baran, a Terra da Alquimia!";
-			mes "Há muitos anos atrás, aqui viveram";
-			mes "3 Alquimistas lendários... Seus nomes eram";
-			mes "Bruno Seimer,";
-			mes "Philipe Warisez,";
-			mes "E..";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "Romero Specialre!";
-			mes "Esta arquitetura venerável";
-			mes "é a obra de arte desses mestres.";
-			mes "Acredito que você tenha sentido uma atmosfera estranha";
-			mes "enquanto se encaminhava para esse local.";
-			mes "Cada detalhe desta Torre";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "foi criado através de um Poder mágico muito antigo e misterioso.";
-			mes "É uma estrutura...";
-			mes "essencialmente mágica.";
-			mes "Caminhar sem propósito por aqui";
-			mes "pode ser muito perigoso.";
-			mes "Compreende?";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "Se por algum acaso,";
-			mes "Você tiver o infortúnio de encontrar";
-			mes "com alguma das crituras que guardam essa Torre.";
-			mes "Por favor, tenha cuidado...";
-			mes "Por favor...";
-			close;
+		mes "[Porteiro]";
+		mes "Terra da Alquimia, Al De Baran!";
+		mes "Há muito tempo atrás, haviam";
+		mes "3 Alquimistas lendários...Eram eles";
+		mes "Bruke Seimer";
+		mes "Philip Warisez";
+		mes "e...";
+		next;
+		mes "[Porteiro]";
+		mes "Romero Specialre!";
+		mes "Essa arquitetura venerável é";
+		mes "a obra-prima deles.";
+		mes "Eu presumo que você sentiria algo incomum";
+		mes "no caminho desse Andar,";
+		mes "cada característica dessa Torre do Relógio ";
+		next;
+		mes "[Porteiro]";
+		mes "Consiste de Magias Misteriosas Antigas.";
+		mes "Se você vagar por aqui,";
+		mes "sem qualquer intenção";
+		next;
+		mes "[Porteiro]";
+		mes "por qualquer meio,";
+		mes "Você vai encontrar peripécias";
+		mes "de criaturas que guardam o lugar.";
+		mes "Tome cuidado ..";
+		close;
 	case 2:
-			mes "[Riku, o Guardião do Portal]";
-			mes "Alquimistas ancestrais";
-			mes "Selaram o portal para o Quarto Andar através de um dispositivo alquímico";
-			mes "Para evitar que algo,";
-			mes "Como criaturas malignas ou humanos gananciosos,";
-			mes "Cruzassem este portal.";
-			mes "Enfim...";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "É preciso uma Chave.";
-			mes "Existem rumores que esta Chave pode ser conseguida através das Criaturas Guardiãs da Torre";
-			mes "Que vagam por aqui.";
-			mes "Então, você sabe como consegui-la?";
-			mes "Você vai ter que convencê-las a lhe dar uma... Haha.";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "A Chave é a epítome da Alquimia Antiga,";
-			mes "É dito que se usada uma vez,";
-			mes "Magias antigas serão liberadas";
-			mes "E ela desaparecerá.";
-			mes "Saiba disso!";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "Se possuíres";
-			mes "Uma dessas Chaves,";
-			mes "Mostre para mim.";
-			mes "Aquele que possui a Chave";
-			mes "Será permitido atravessar o portal";
-			mes "Se assim desejar!";
-			next;
-			mes "[Riku, o Guardião do Portal]";
-			mes "Serás afortunado se possuíres a Chave!";
-			mes "Eu lhe darei uma oportunidade";
-			mes "de conhecer as maravilhas que se escondem.";
-			mes "além deste Portal!";
-			close;
+		mes "[Porteiro]";
+		mes "Alquimistas Poderosos";
+		mes "Selaram o portão do 4º andar usando um dispositivo químico";
+		mes "para manter algo afastado";
+		mes "de Criaturas Malvadas e Inimigos Humanos.";
+		next;
+		mes "[Porteiro]";
+		mes "Para abrir é necessário uma chave.";
+		mes "Rumores dizem que as Criaturas Guardiãs que possuem a chave";
+		mes "vagam por aqui.";
+		next;
+		mes "[Porteiro]";
+		mes "A Chave é a Intensificação da Alquimia Antiga,";
+		mes "boatos dizem que quando usada uma vez,";
+		mes "Ela será libertada do encantamento";
+		mes "e desaparecerá.";
+		next;
+		mes "[Porteiro]";
+		mes "Se essa chave";
+		mes "vir a ser sua,";
+		mes "Por favor me mostre.";
+		mes "Quem possuir a chave";
+		mes "terá permissão de passar por";
+		mes "esse portão!";
+		next;
+		mes "[Porteiro]";
+		mes "Eu vou te dar uma chance.";
+		mes ". . . . .";
+		close;
 	case 3:
 		if (countitem(getarg(1)) > 0) {
-			mes "[Riku, o Guardião do Portal]";
-			mes "Hmm! Eu já havia pressentido que você não era uma pessoa comum,";
-			mes "Agora parece que meus instintos estavam certos.";
-			mes "Hummm.";
-			mes "A você a entrada é permitida.";
-			mes "E que os Deuses lhe abençoe...";
+			mes "[Porteiro]";
+			mes "Hmm! Eu já senti que você não é uma pessoa comum,";
+			//mes "Now it seems to be successful in Speculation.";
+			mes "Por favor, entre.";
+			mes "Que deus abençoe você..";
 			close2;
 			delitem getarg(1),1; 
 			warp getarg(2),getarg(3),getarg(4);
 			end;
 		}
 		else {
-			mes "[Riku, o Guardião do Portal]";
+			mes "[Porteiro]";
 			mes ". . . . . .";
-			mes "Infelizmente, você não merece o privilégio";
-			mes "de atravessar este Portal..";
-			mes "Não será possível enquanto";
-			mes "os espíritos dos Antigos Alquimistas";
-			mes "Não aprovarem você.";
+			mes "Infelizmente você não tem o privilégio";
+			mes "de entrar nesse Portão ..";
+			mes "Você não será capaz de passar";
+			mes "Enquanto os Alquimistas";
+			mes "não deixarem você ir.";
 			close;
 		}
 	case 4:
-			mes "[Riku, o Guardião do Portal]";
-			mes "Nesta Torre do Relógio,";
-			mes "Os 3 Alquimistas ancestrais que a construíram, ";
-			mes "Deixaram seus espíritos e habilidades.";
-			mes "Por favor, não danifique seu interior.";
-			mes "Por favor...";
-			mes "Respeite os espíritos.";
-			close;
+		mes "[Porteiro]";
+		mes "Essa torre do relógio";
+		mes "É o lugar onde os 3 Alquimistas Lendários";
+		mes "deixaram seus espíritos e habilidades.";
+		mes "Por favor não rabisque ou faça danos ao interior.";
+		close;
 	}
 }

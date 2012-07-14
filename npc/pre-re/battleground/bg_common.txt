@@ -1,564 +1,1341 @@
-//===== rAthena Script ======================================= 
-// BattleGround System - Common NPCs
-//===== By: ================================================== 
-//= ????, L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 1.3
-//===== Compatible With: ===================================== 
-//= rAthena 1.0
-//===== Description: ========================================= 
-//= [AEGIS Conversion]
-//= Battleground NPCs:
-//= - Generals and Aides
-//= - Battleground Warper
-//= - Kafra and Repairman.
-//= - GM Management NPC (disabled by default)
-//= - Badge Exchanger (Tierra and Flavius)
-//===== Additional Comments: ================================= 
-//= 1.0 First Version.
-//= 1.1 Updated several NPCs to Official.
-//= 1.2 Updated Repairman NPC
-//= 1.3 Optimized "Erundek" NPC. [Euphy]
-//============================================================
+// ==============================================================================
+// Batalhas Campais - NPCs em comum
+//===== Changelog: ==============================================================
+//= Removido show [Yum]
+//===============================================================================
 
-// Generals
-//============================================================
-bat_room,161,158,3	script	Gen. Guillaume's Aide#01	419,{ end; }
-bat_room,161,160,3	script	Gen. Guillaume's Aide#03	419,{ end; }
+// MapFlags
+// *********************************************************************
 
-bat_room,160,141,3	script	Prince Croix	416,{
-	cutin "bat_crua1",2;
-	mes "[Prince Croix]";
-	mes "Wise adventurer, why don't you lend us your power for victory?";
+bat_room	mapflag	nomemo
+bat_room	mapflag	nowarpto
+bat_room	mapflag	nobranch
+bat_room	mapflag	nopenalty
+bat_room	mapflag	noteleport
+bat_room	mapflag	nosave	SavePoint
+
+// Teleportador das Batalhas Campais - Entrada
+// *********************************************************************
+
+payon,189,104,3	script	Emissária de Maroll::BatRecruit	728,{
+	mes "[Emissária de Maroll]";
+	mes "Bom dia, aventureiro.";
+	mes "Eu sou uma cavaleira de um país chamado Reino de Maroll.";
 	next;
-	switch(select("What's the reason for the Battle?:Tell me about General Guillaume")) {
-	case 1:
-		cutin "bat_crua2",2;
-		mes "[Prince Croix]";
-		mes "Maroll's great king, Marcel Marollo VII, is very sick lately.";
-		mes "His Majesty has declared that he will be leaving the future of Maroll to me or the 3rd prince, General Guillaume.";
-		next;
-		mes "[Prince Croix]";
-		mes "General Guillaume may have an advantage in this battle as he is the great general of Maroll, but that doesn't automatically mean he'll win.";
-		mes "I want to win this battle so that I can bring prosperity to the people of Maroll. They've suffered enough from war...";
-		next;
-		switch(select("Yes, I want to join you.:End Conversation")) {
-		case 1:
-			cutin "bat_crua1",2;
-			mes "[Prince Croix]";
-			mes "Thank you so much. I feel like I can win with the help of adventurers like you.";
-			mes "Now, please go downstairs and join your comrades in sharpening their skills to fight the enemy!";
-			break;
-		case 2:
-			mes "[Prince Croix]";
-			mes "For Maroll!";
-			break;
-		}
-		break;
-	case 2:
-		cutin "bat_crua2",2;
-		mes "[Prince Croix]";
-		mes "The 3rd Prince Guillaume is the great general of Maroll.";
-		mes "It's a waste of time to explain to you how great a leader or warlord he is, since he commands the great military power of Maroll.";
-		next;
-		mes "[Prince Croix]";
-		mes "Unfortunately, there's something he and his followers are unaware of:";
-		mes "Do the people of Maroll really want them to spend so much money on military power?";
-		mes "We have suffered enough from wars.";
-		mes "I believe weapons aren't the best way to bring prosperity to a nation.";
-		next;
-		mes "[Prince Croix]";
-		mes "I do not wish to shed blood, but I have no choice but to fight for the possibility of peace and for the sake of my people.";
-		next;
-		switch(select("Yes, I want to join you.:End Conversation")) {
-		case 1:
-			cutin "bat_crua1",2;
-			mes "[Prince Croix]";
-			mes "Thank you so much. I feel like I can win with the help of adventurers like you.";
-			mes "Now, please go downstairs and join your comrades in sharpening their skills to fight the enemy!";
-			break;
-		case 2:
-			mes "[Prince Croix]";
-			mes "For Maroll!";
-			break;
-		}
-		break;
-	}
-	close2;
-	cutin "bat_crua1",255;
-	cutin "bat_crua2",255;
-	end;
-}
-
-bat_room,161,140,3	script	Prince Croix's Aide#01	415,{ end; }
-bat_room,161,142,3	script	Prince Croix's Aide#02	415,{ end; }
-
-bat_room,160,159,3	script	General Guillaume	420,{
-	cutin "bat_kiyom2",2;
-	mes "[General Guillaume]";
-	mes "Hot-blooded adventurer, we need your ability to win this battle.";
+	mes "[Emissária de Maroll]";
+	mes "Os príncipes do reino estão batalhando pelo trono de Maroll, e estão precisando de soldados experientes como você. Quer colocar seu poder a serviço de um dos príncipes do Reino de Maroll?";
 	next;
-	switch(select("What's the reason for the Battle?:Tell me about Prince Croix")) {
-	case 1:
-		cutin "bat_kiyom1",2;
-		mes "[General Guillaume]";
-		mes "Our great king, Marcel Marollo VII, is very sick lately.";
-		mes "His Majesty has declared that he has chosen either me or Prince Croix as the next king amongst his 9 sons.";
-		next;
-		mes "[General Guillaume]";
-		mes "Two kings can't share a nation! Only the one victorious from His Majesty's appointed battle will be enthroned.";
-		next;
-		mes "[General Guillaume]";
-		mes "This is, however, not just a battle between us. This battle will determine the future of this country.";
-		mes "I pledge on my honor to prove that I'm the one who can protect this Maroll from outside threats.";
-		next;
-		switch(select("Yes, I want to join you.:End Conversation")) {
-		case 1:
-			cutin "bat_kiyom2",2;
-			mes "[General Guillaume]";
-			mes "Welcome to my army, comrade.";
-			mes "Your eyes tell me that you're a soldier that I can trust.";
-			next;
-			mes "[General Guillaume]";
-			mes "Now, go upstairs and apply for battle with your comrades.";
-			mes "I'm sure they'll welcome you whole-heartedly!";
-			break;
-		case 2:
-			mes "[General Guillaume]";
-			mes "I'll be the one who will capture the flag!";
-			break;
-		}
-		break;
-	case 2:
-		cutin "bat_kiyom1",2;
-		mes "[General Guillaume]";
-		mes "The 5th Prince Croix is currently titled as the Prime Minister of Maroll.";
-		mes "He thinks all national matters of a nation can be discussed and determined on a desk,";
-		mes "and believes in peaceful co-existence with other countries.";
-		next;
-		mes "[General Guillaume]";
-		mes "He's too ignorant to admit that so-called peace is built on countless lives that are sacrificed in wars while normal citizens and upper classes can live, oblivious to the horrors that allow them to live that way.";
-		next;
-		mes "[General Guillaume]";
-		mes "He's too naive to understand the reality....";
-		mes "I can't leave Maroll to someone like him who lives in a dream!";
-		next;
-		mes "[General Guillaume]";
-		mes "His unrealistic beliefs will drown this country in poverty and make the people weak. If he becomes the king, Maroll will never rest from the onslaughts of other countries.";
-		mes "I want to teach him what makes this small country so powerful and prosperous. It's military power!";
-		next;
-		switch(select("I want to join your army!:End Conversation")) {
-		case 1:
-			cutin "bat_kiyom2",2;
-			mes "[General Guillaume]";
-			mes "Welcome to my army, comrade.";
-			mes "Your eyes tell me that you're a soldier that I can trust.";
-			next;
-			mes "[General Guillaume]";
-			mes "Now, go upstairs and apply for battle from your comrades.";
-			mes "I'm sure they'll welcome you whole-heartedly!";
-			break;
-		case 2:
-			mes "[General Guillaume]";
-			mes "I'll be the one who will capture the flag!";
-			break;
-		}
-		break;
-	}
-	close2;
-	cutin "bat_kiyom1",255;
-	cutin "bat_kiyom2",255;
-	end;
-}
-
-// Flags
-//============================================================
-//bat_room,140,160,3	script	Guillaume Base#roomflag1	973,{ end; }
-//bat_room,167,160,3	script	Guillaume Base#roomflag2	973,{ end; }
-//bat_room,140,139,3	script	Croix Base#roomflag1	974,{ end; }
-//bat_room,167,139,3	script	Croix Base#roomflag2	974,{ end; }
-
-// BattleGround Warper
-//============================================================
-bat_room,148,150,5	script	Teleporter#Battlefield	124,{
-	mes "[Teleporter]";
-	mes "Do you wish to leave the battlefield? Use my services to return to town.";
-	next;
-	switch(select("Leave:Don't Leave")) {
-	case 1:
-		mes "[Teleporter]";
-		switch(bat_return) {
-		default:
-		case 1:
-			setarray .@mapname$[0],"Prontera.","prontera";
-			setarray .@xy[0],116,72;
-			break;
-		case 2:
-			setarray .@mapname$[0],"Morroc","moc_ruins";
-			setarray .@xy[0],152,48;
-			break;
-		case 3:
-			setarray .@mapname$[0],"Al De Baran.","aldebaran";
-			setarray .@xy[0],168,112;
-			break;
-		case 4:
-			setarray .@mapname$[0],"Geffen.","geffen";
-			setarray .@xy[0],120,39;
-			break;
-		case 5:
-			setarray .@mapname$[0],"Payon.","payon";
-			setarray .@xy[0],161,58;
-			break;
-		case 6:
-			setarray .@mapname$[0],"Lighthalzen.","lighthalzen";
-			setarray .@xy[0],159,93;
-			break;
-		case 7:
-			setarray .@mapname$[0],"Rachel.","rachel";
-			setarray .@xy[0],115,124;
-			break;
-		}
-		mes "You will be sent back to "+.@mapname$[0]+".";
-		close2;
-		warp .@mapname$[1],.@xy[0],.@xy[1];
-		break;
-	case 2:
-		mes "[Teleporter]";
-		mes "I'll be here whenever you're in need of my services.";
+	if( select("Participar:Não participar") == 2 )
+	{
+		mes "[Emissária de Maroll]";
+		mes "Eu sempre estarei aqui a busca de mais soldados. Sinta-se a vontade para voltar quando estiver interessado.";
 		close;
 	}
+	mes "[Emissária de Maroll]";
+	mes "O Deus da Guerra o abençoará.";
+	close2;
+	warp "bat_room",155,150;
 	end;
 }
 
--	script	Maroll Battle Recruiter::BatRecruit	728,{
-	mes "[Maroll Battle Recruiter]";
-	mes "Good day, adventurer.";
-	mes "I'm a knight from a far country called Maroll Kingdom.";
+prontera,123,83,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit2	728
+rachel,149,138,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit3	728
+moc_ruins,75,162,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit4	728
+aldebaran,146,109,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit5	728
+lighthalzen,153,86,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit6	728
+
+// Teleportador das Batalhas Campais - Saída
+// *********************************************************************
+
+bat_room,148,150,5	script	Teleportadora#bat	124,{
+	mes "[Teleportadora]";
+	mes "Quer deixar o campo de batalha? Use meu serviço para voltar à cidade.";
 	next;
-	mes "[Maroll Battle Recruiter]";
-	mes "The two princes of the kingdom are now battling for the throne of Maroll, and are in need of experienced soldiers like you.";
-	mes "How would you like to lend your power to one of the princes in the Maroll Kingdom?";
-	next;
-	switch(select("Join:Don't Join")) {
-	case 1:
-		mes "[Maroll Battle Recruiter]";
-		mes "May the war god bless you.";
-		close2;
-		getmapxy(.@mapname$,.@x,.@y,1);
-		if (.@mapname$ == "prontera")
-			set bat_return,1;
-		else if (.@mapname$ == "moc_ruins")
-			set bat_return,2;
-		else if (.@mapname$ == "aldebaran")
-			set bat_return,3;
-		else if (.@mapname$ == "geffen")
-			set bat_return,4;
-		else if (.@mapname$ == "payon")
-			set bat_return,5;
-		else if (.@mapname$ == "lighthalzen")
-			set bat_return,6;
-		else if (.@mapname$ == "rachel")
-			set bat_return,7;
-		else
-			set bat_return,1;
-		warp "bat_room",154,150;
-		break;
-	case 2:
-		mes "[Maroll Battle Recruiter]";
-		mes "I'll always be stationed here for more soldiers. Feel free to come back whenever you're interested.";
+	if( select("Ir Embora:Não Ir Embora") == 2 )
+	{
+		mes "[Teleportadora]";
+		mes "Eu estarei aqui quando você precisar dos meus serviços.";
 		close;
 	}
+
+	set .@spoint$, getsavepoint(0);
+	set .@x, getsavepoint(1);
+	set .@y, getsavepoint(2);
+	mes "[Teleportadora]";
+	mes "Você será levado de volta à " + .@spoint$ + ".";
+	close2;
+	warp .@spoint$, .@x, .@y;
 	end;
 }
 
-prontera,123,83,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit1	728
-moc_ruins,75,162,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit2	728
-aldebaran,146,109,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit3	728
-geffen,109,66,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit4	728
-payon,189,105,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit5	728
-lighthalzen,153,86,5	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit6	728
-rachel,149,138,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit7	728
-
-// Additional warps
-// Empty
-bat_room,57,81,0	warp	bat1	1,1,bat_room,154,149
-bat_room,57,90,0	warp	bat2	1,1,bat_room,154,149
-// Empty
-bat_room,85,81,0	warp	bat5	1,1,bat_room,154,149
-bat_room,85,90,0	warp	bat6	1,1,bat_room,154,149
-// Free BG
-bat_room,113,81,0	warp	bat9	1,1,bat_room,154,149
-bat_room,113,90,0	warp	bat10	1,1,bat_room,154,149
-// Free BG
-bat_room,141,81,0	warp	bat13	1,1,bat_room,154,149
-bat_room,141,90,0	warp	bat14	1,1,bat_room,154,149
-// Free BG
-bat_room,169,81,0	warp	bat17	1,1,bat_room,154,149
-bat_room,169,90,0	warp	bat18	1,1,bat_room,154,149
-// Free BG
-bat_room,197,81,0	warp	bat21	1,1,bat_room,154,149
-bat_room,197,90,0	warp	bat22	1,1,bat_room,154,149
-// Free BG
-bat_room,225,81,0	warp	bat25	1,1,bat_room,154,149
-bat_room,225,90,0	warp	bat26	1,1,bat_room,154,149
-// Empty
-bat_room,253,81,0	warp	bat29	1,1,bat_room,154,149
-bat_room,253,90,0	warp	bat30	1,1,bat_room,154,149
-// Empty
-bat_room,253,220,0	warp	bat31	1,1,bat_room,154,149
-bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
-
-// Kafra
-//============================================================
-bat_room,148,147,4	script	Kafra Staff::kaf_bat	861,{
+// Funcionária Kafra
+// *********************************************************************
+bat_room,148,147,5	script	Funcionária Kafra::kaf_bat	861,{
 	cutin "kafra_09",2;
 	callfunc "F_Kafra",0,2,1,150,0;
 }
 
-// Repairman
-//============================================================
-bat_room,138,144,4	script	Repairman#bg	86,{
-	callfunc "repairmain","Repairman";
+// General Guillaume
+// *********************************************************************
+bat_room,160,159,3	script	General Guillaume	420,{
+	cutin "bat_kiyom2",2;
+	mes "[General Guillaume]";
+	mes "Aventureiro de sangue quente, nós precisamos de sua habilidade para ganhar esta batalha.";
+	next;
+	cutin "bat_kiyom1",2;
+	mes "[General Guillaume]";
+	mes "Nosso rei, Marcel Marollo VII, está muito doente. Vossa Majestade declarou que seria eu ou a Príncipe Croix o próximo rei dentre seus 9 filhos.";
+	next;
+	mes "[General Guillaume]";
+	mes "Dois reis não podem dividir uma nação!";
+	mes "Somente o vitorioso desta batalha será coroado.";
+	next;
+	mes "[General Guillaume]";
+	mes "Isto não é apenas uma batalha entre nós. Esta batalha determinará o futuro deste país. Eu jurei por minha honra que serei o único que protegerá Maroll de ameaças vindas de fora.";
+	next;
+	if( select("Sim, eu quero me juntar a você.:Cancelar") == 2 )
+	{
+		mes "[General Guillaume]";
+		mes "Eu serei o único a capturar a bandeira!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	cutin "bat_kiyom2",2;
+	mes "[General Guillaume]";
+	mes "Bem-vindo ao meu exército.";
+	mes "Seus olhos me dizem que você é um soldado em que eu posso confiar.";
+	set Bat_Team,1;
+	next;
+	mes "[General Guillaume]";
+	mes "Agora, suba as escadas e se aliste para a batalha com seus camaradas. Tenho certeza que eles o receberão de coração aberto!";
+	close2;
+	cutin "",255;
 	end;
 }
 
-/*
-// GM Management NPC
-//============================================================
-bat_room,1,151,3	script	Switch#batgnd	81,{
-	input .@input,0,2000;
-	if (.@input == 0) {
-		mes "The command has been cancelled.";
-		close;
-	}
-	else if (.@input == 1854) {
-		mes "May I help ypu?";
-		next;
-		switch(select("Close Battlefield:Open Battlefield:Reset a01:Reset b01:Reset a02:Reset b02")) {
-		case 1:
-			disablenpc "Tierra Gorge Officer#01a";
-			disablenpc "Tierra Gorge Officer#02a";
-			disablenpc "Tierra Gorge Officer#01b";
-			disablenpc "Tierra Gorge Officer#02b";
-			disablenpc "Flavius Officer#01a";
-			disablenpc "Flavius Officer#01b";
-			disablenpc "Flavius Officer#02a";
-			disablenpc "Flavius Officer#02b";
-			break;
-		case 2:
-			enablenpc "Tierra Gorge Officer#01a";
-			enablenpc "Tierra Gorge Officer#02a";
-			enablenpc "Tierra Gorge Officer#01b";
-			enablenpc "Tierra Gorge Officer#02b";
-			enablenpc "Flavius Officer#01a";
-			enablenpc "Flavius Officer#01b";
-			enablenpc "Flavius Officer#02a";
-			enablenpc "Flavius Officer#02b";
-			break;
-		case 3:
-			donpcevent "start#bat_a01::OnEnable";
-			break;
-		case 4:
-			donpcevent "start#bat_b01::OnEnable";
-			break;
-		case 5:
-			donpcevent "start#bat_a02::OnEnable";
-			break;
-		case 6:
-			donpcevent "start#bat_b02::OnEnable";
-			break;
-		}
-		mes "Complete";
-		close;
-	}
-}
-*/
-
-// Badges Exchange
-//============================================================
-bat_room,160,150,3	script	Erundek	109,{
-	if (checkweight(1201,1) == 0) {
-		mes "- Wait a minute !! -";
-		mes "- Currently you're carrying -";
-		mes "- too many items with you. -";
-		mes "- Please try again -";
-		mes "- after you loose some weight. -";
-		close;
-	}
-	mes "[Erundek]";
-	mes "Do you have the battlefield badges?";
-	mes "I can exchange Bravery Badges and Valor Badges for reward items.";
+// Príncipe Croix
+// *********************************************************************
+bat_room,160,140,3	script	Príncipe Croix	416,{
+	cutin "bat_crua1",2;
+	mes "[Príncipe Croix]";
+	mes "Sábio aventureiro, por que não nos empresta seu poder para a vitória?";
 	next;
-	switch(select("Exchange Badges:Check the Catalog")) {
-	case 1:
-		mes "[Erundek]";
-		mes "Which type of items would you like to exchange?";
-		mes "To check more information about the reward items, please use our ^3131FFCatalog^000000.";
-		next;
-		switch(select("Weapon:Armor:Accessory:Consumable")) {
-		case 1:
-			mes "[Erundek]";
-			mes "You chose ^3131FFWeapon^000000.";
-			mes "The following weapons are available for exchange with the battlefield badges.";
-			mes "Please note that items for ^3131FFBravery Badges are indicated as (BB)^000000, and ^3131FFValor Badges as (VB)^000000.";
-			next;
-			switch(select("Dagger/OneSword/TwoSword/TwoSpear:Staff/Mace/TwoAxe/Shuriken:Bow/Katar/Music/Whip:Book/Knuckle:Revolver/Rifle/Gatling/Shotgun/Launcher")) {
-			case 1:
-				mes "[Erundek]";
-				mes "The following items are available in the ^3131FFDagger, One-Handed Sword, Two-Handed Sword, and Two-Handed Spear^000000 category.";
-				next;
-				setarray .@Weapons[0],13036,7828,13037,7829,13411,7828,13410,7829,1183,7828,1184,7829,1425,7828,1482,7829;
-				break;
-			case 2:
-				mes "[Erundek]";
-				mes "The following items are available in the ^3131FFStaff / Mace / Two-Handed Axe / Huuma Shuriken^000000 category.";
-				next;
-				setarray .@Weapons[0],1632,7828,1633,7829,1634,7828,1635,7829,1543,7828,1542,7829,1380,7828,1379,7829,13305,7828,13306,7829;
-				break;
-			case 3:
-				mes "[Erundek]";
-				mes "The following weapons are available in the ^3131FFBow / Katar / Musical Instrument / Whip^000000 category.";
-				next;
-				setarray .@Weapons[0],1739,7828,1738,7829,1279,7828,1280,7829,1924,7828,1923,7829,1978,7828,1977,7829;
-				break;
-			case 4:
-				mes "[Erundek]";
-				mes "The following weapons are available in the ^3131FFBook / Knuckle^000000 category.";
-				next;
-				setarray .@Weapons[0],1574,7828,1575,7829,1824,7828,1823,7829;
-				break;
-			case 5:
-				mes "[Erundek]";
-				mes "The following weapons are available in the ^3131FFRevolver / Rifle / Gatling Gun / Shotgun / Grenade Launcher^000000 category.";
-				next;
-				setarray .@Weapons[0],13108,7828,13171,7829,13172,7828,13173,7829,13174,7829;
-				break;
-			}
-			set .@menu$,"";
-			for(set .@i,0; .@i<getarraysize(.@Weapons); set .@i,.@i+2)
-				set .@menu$, .@menu$+getitemname(.@Weapons[.@i])+((.@Weapons[.@i+1]==7828)?"(BB)":"(VB)")+":";
-			set .@i, (select(.@menu$)-1)*2;
-			set .@type$, ((.@Weapons[.@i+1]==7828)?"(BB)":"(VB)");
-			mes "[Erundek]";
-			mes "You chose ^3131FF"+getitemname(.@Weapons[.@i])+.@type$+"^000000.";
-			mes "You can exchange for this item with ^FF0000100 "+getitemname(.@Weapons[.@i+1])+"^000000.";
-			mes "Would you like to exchange?";
-			next;
-			switch(select("Do not exchange:Exchange")) {
-			case 1:
-				break;
-			case 2:
-				mes "[Erundek]";
-				mes "Would you like to spend ^FF0000100 "+getitemname(.@Weapons[.@i+1])+"^000000 and receive a ^3131FF"+getitemname(.@Weapons[.@i])+.@type$+"^000000?";
-				next;
-				mes "[Erundek]";
-				mes "Remember, Battleground Reward Items are ^FF0000Character Bound^000000. Are you sure you want this item?";
-				next;
-				switch(select("Yes:No")) {
-				case 1:
-					mes "[Erundek]";
-					if (countitem(.@Weapons[.@i+1]) >= 100) {
-						mes "Thank you for exchanging.";
-						delitem .@Weapons[.@i+1],100;
-						getitem .@Weapons[.@i],1;
-					}
-					else mes "I'm sorry, but you don't have enough badges to exchange.";
-					close;
-				case 2:
-					break;
-				}
-				break;
-			}
-			mes "[Erundek]";
-			mes "Do you need more time to check the items?";
-			close;
-		case 2:
-			mes "[Erundek]";
-			mes "You chose ^3131FFArmor^000000.";
-			mes "The following armors are available for exchange with the battlefield badges.";
-			next;
-			switch(select("Garments / Shoes:Armor")) {
-			case 1:
-				setarray .@Items[0],2538,50,2539,50,2540,50,2435,50,2436,50,2437,50;
-				break;
-			case 2:
-				setarray .@Items[0],2376,80,2377,80,2378,80,2379,80,2380,80,2381,80,2382,80;
-				break;
-			}
-			break;
-		case 3:
-			mes "[Erundek]";
-			mes "You chose ^3131FFAccessory^000000.";
-			mes "You can exchange the Medal of Honors with your Badges according to the job classes, as follows:";
-			next;
-			setarray .@Items[0],2733,500,2720,500,2721,500,2722,500,2723,500,2724,500,2725,500;
-			set .@menu1$,"Gunslinger:Swordman/Taekwon Master:Thief:Acolyte:Magician:Archer:Merchant";
-			break;
-		case 4:
-			mes "[Erundek]";
-			mes "You chose ^3131FFConsumable^000000.";
-			mes "The following consumable items are available for exchange with the battlefield badges:";
-			next;
-			setarray .@Items[0],12269,10,12270,10,12271,5,12272,10,12273,10;
-			break;
-		}
-		break;
-	case 2:
-		mes "[Erundek]";
-		mes "We have many items, so please take a look and purchase deliberately.";
+	cutin "bat_crua2",2;
+	mes "[Príncipe Croix]";
+	mes "Eu não quero derramar sangue, mas eu não tenho escolha a não ser lutar pela possibilidade de paz para o amor do meu povo.";
+	next;
+	mes "[Príncipe Croix]";
+	mes "O General Guillaume pode ter uma vantagem nesta batalha e ele é um ótimo general de Maroll, mas isto não quer dizer que ele vá vencer. Eu quero vencer esta batalha para garantir um futuro melhor para o meu povo.";
+	next;
+	if( select("Sim, eu quero me juntar a você!:Cancelar") == 2 )
+	{
+		mes "[Príncipe Croix]";
+		mes "Por Maroll!";
 		close2;
-		ReadBook 11010,1;
+		cutin "",255;
 		end;
 	}
-	set .@menu$,"";
-	if (.@menu1$ != "") set .@menu$, .@menu1$;
-	else for(set .@i,0; .@i<getarraysize(.@Items); set .@i,.@i+2)
-		set .@menu$, .@menu$+getitemname(.@Items[.@i])+":";
-	set .@i, (select(.@menu$)-1)*2;
-	mes "[Erundek]";
-	mes "You chose ^3131FF"+getitemname(.@Items[.@i])+"^000000.";
-	switch(.@Items[.@i]) {
-		case 2720: mes "This item is for Swordman and Taekwon Master Class only."; break;
-		case 2721: mes "This item is for Thief Class only."; break;
-		case 2722: mes "This item is for Acolyte Class only."; break;
-		case 2723: mes "This item is for Magician Class only."; break;
-		case 2724: mes "This item is for Archer Class only."; break;
-		case 2725: mes "This item is for Merchant Class only."; break;
-		case 2733: mes "This item is for Gunslinger only."; break;
-		default: break;
-	}
-	mes "You can exchange for this item with ^FF0000"+.@Items[.@i+1]+" "+getitemname(7828)+" or "+.@Items[.@i+1]+" "+getitemname(7829)+"^000000.";
-	mes "Would you like to exchange?";
+	mes "[Príncipe Croix]";
+	mes "Muito obrigado. Eu sinto que poderei vencer com a ajuda de aventureiros como você. Agora, por favor suba as escadas e se junte a seus camaradas que estão treinando suas habilidades para lutar com o inimigo!";
+	set Bat_Team,2;
+	close2;
+	cutin "",255;
+	end;
+}
+
+// Função de Cálculo de Tempo
+// *********************************************************************
+function	script	Time2Str	{
+	set .@Time_Left, getarg(0) - gettimetick(2);
+	
+	set .@Days, .@Time_Left / 86400;
+	set .@Time_Left, .@Time_Left - (.@Days * 86400);
+	set .@Hours, .@Time_Left / 3600;
+	set .@Time_Left, .@Time_Left - (.@Hours * 3600);
+	set .@Minutes, .@Time_Left / 60;
+	set .@Time_Left, .@Time_Left - (.@Minutes * 60);
+	
+	set .@Time$, "";
+	if( .@Days > 1 )
+		set .@Time$, .@Time$ + .@Days + " dias, ";
+	else if( .@Days > 0 )
+		set .@Time$, .@Time$ + .@Days + " dia, ";
+
+	if( .@Hours > 1 )
+		set .@Time$, .@Time$ + .@Hours + " horas, ";
+	else if( .@Hours > 0 )
+		set .@Time$, .@Time$ + .@Hours + " hora, ";
+
+	if( .@Minutes > 1 )
+		set .@Time$, .@Time$ + .@Minutes + " minutos, ";
+	else if( .@Minutes > 0 )
+		set .@Time$, .@Time$ + .@Minutes + " minuto, ";
+
+	if( .@Time_Left > 1 || .@Time_Left == 0 )
+		set .@Time$, .@Time$ + .@Time_Left + " segundos.";
+	else if( .@Time_Left == 1 )
+		set .@Time$, .@Time$ + .@Time_Left + " segundo.";
+	
+	return .@Time$;
+}
+
+// Cavaleiro de Guillaume - Desfiladeiro
+// *********************************************************************
+bat_room,159,178,5	script	Cavaleiro de Guillaume#1	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "O Desfiladeiro de Tierra é constituido de dois fortes, um no norte e outro no sul.";
 	next;
-	switch(select("Do not exchange:Exchange")) {
-	case 1:
-		mes "[Erundek]";
-		mes "Do you need more time to check the items?";
-		break;
-	case 2:
-		mes "[Erundek]";
-		mes "Which Badge do you want to exchange?";
-		mes "You need ^3131FF"+.@Items[.@i+1]+" Badges^000000 to exchange.";
-		next;
-		if (.@item[0] < 12269 || .@item[0] > 12273 ) {
-			mes "[Erundek]";
-			mes "Remember, Battleground Reward Items are ^FF0000Character Bound^000000. Are you sure you want this item?";
-			next;
-		}
-		set .@j, select("Bravery Badge:Valor Badge:Cancel");
-		mes "[Erundek]";
-		if (.@j == 3) {
-			mes "You cancelled the exchange.";
-			break;
-		}
-		set .@cost, ((.@j==1)?7828:7829);
-		if (countitem(.@cost) >= .@Items[.@i+1]) {
-			mes "Thank you for exchanging.";
-			delitem .@cost, .@Items[.@i+1];
-			getitem .@Items[.@i],1;
-		}
-		else mes "You do not have enough "+getitemname(.@cost)+"s.";
-		break;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Há suprimentos dos exércitos Guillaume e Croix nas direções de 11 e 8 em direções do relógio.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "A batalha começa no navio do seu exército, e o objetivo é avançar e destruir os suprimentos do seu inimigo mais rápido do que eles possam destruir os seus.";
+	mes "";
+	mes "O exército que capturar a bandeira neutra no centro do campo de batalha será recompensado com pontos extras de regeneração, isto significa que seus soldados ressuscitarão mais do que os do outro exército, dando-os uma vantagem.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - Desfiladeiro
+// *********************************************************************
+bat_room,156,178,5	script	Oficial Desfiladeiro#1	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
 	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+	
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Guillaume para estes Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2069,PLAYTIME) == 2 ) erasequest 2069;
+	if( checkquest(2069,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha do Desfiladeiro de Tierra. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha do Desfiladeiro de Tierra até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",85,224;
+	end;
+}
+
+// Cavaleiro de Croix - Desfiladeiro
+// *********************************************************************
+bat_room,159,121,1	script	Cavaleiro de Croix#1	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "O Desfiladeiro de Tierra é constituido de dois fortes, um no norte e outro no sul.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Há suprimentos dos exércitos Guillaume e Croix nas direções de 11 e 8 horas em direções do relógio.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "A batalha começa no navio do seu exército, e o objetivo é avançar e destruir os suprimentos do seu inimigo mais rápido do que eles possam destruir os seus.";
+	mes "";
+	mes "O exército que capturar a bandeira neutra no centro do campo de batalha será recompensado com pontos extras de regeneração, isto significa que seus soldados ressuscitarão mais do que os do outro exército, dando-os uma vantagem.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - Desfiladeiro
+// *********************************************************************
+bat_room,156,121,1	script	Oficial Desfiladeiro#2	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Croix para estes Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2069,PLAYTIME) == 2 ) erasequest 2069;
+	if( checkquest(2069,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha do Desfiladeiro de Tierra. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha do Desfiladeiro de Tierra até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",85,208;
+	end;
+}
+
+// Cavaleiro de Guillaume - Desfiladeiro
+// *********************************************************************
+bat_room,167,178,5	script	Cavaleiro de Guillaume#2	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "O Desfiladeiro de Tierra é constituido de dois fortes, um no norte e outro no sul.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Há suprimentos dos exércitos Guillaume e Croix nas direções de 11 e 8 em direções do relógio.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "A batalha começa no navio do seu exército, e o objetivo é avançar e destruir os suprimentos do seu inimigo mais rápido do que eles possam destruir os seus.";
+	mes "";
+	mes "O exército que capturar a bandeira neutra no centro do campo de batalha será recompensado com pontos extras de regeneração, isto significa que seus soldados ressuscitarão mais do que os do outro exército, dando-os uma vantagem.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - Desfiladeiro
+// *********************************************************************
+bat_room,164,178,5	script	Oficial Desfiladeiro#3	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+	
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Guillaume para estes Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2069,PLAYTIME) == 2 ) erasequest 2069;
+	if( checkquest(2069,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha do Desfiladeiro de Tierra. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha do Desfiladeiro de Tierra até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",57,94;
+	end;
+}
+
+// Cavaleiro de Croix - Desfiladeiro
+// *********************************************************************
+bat_room,167,121,1	script	Cavaleiro de Croix#2	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "O Desfiladeiro de Tierra é constituido de dois fortes, um no norte e outro no sul.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Há suprimentos dos exércitos Guillaume e Croix nas direções de 11 e 8 horas em direções do relógio.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "A batalha começa no navio do seu exército, e o objetivo é avançar e destruir os suprimentos do seu inimigo mais rápido do que eles possam destruir os seus.";
+	mes "";
+	mes "O exército que capturar a bandeira neutra no centro do campo de batalha será recompensado com pontos extras de regeneração, isto significa que seus soldados ressuscitarão mais do que os do outro exército, dando-os uma vantagem.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - Desfiladeiro
+// *********************************************************************
+bat_room,164,121,1	script	Oficial Desfiladeiro#4	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Croix para estes Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2069,PLAYTIME) == 2 ) erasequest 2069;
+	if( checkquest(2069,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha do Desfiladeiro de Tierra. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha do Desfiladeiro de Tierra até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",57,77;
+	end;
+}
+
+// Cavaleiro de Guillaume - Flavius
+// *********************************************************************
+bat_room,175,178,5	script	Cavaleiro de Guillaume#3	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "O objetivo da Batalha de Flavius é marcar 2 pontos antes que seu inimigo, destruindo seu cristal.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Os cristais de ambos exércitos são protegidos por uma barricada especial que não pode ser destruída por ataques diretos.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Mas elas podem ser removidas destruindo o Guardião que protege a base inimiga.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Os cristais são imunes a qualquer tipo de habilidades; seu ataque físico é a única chance de destruir o cristal inimigo.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - Flavius
+// *********************************************************************
+bat_room,172,178,5	script	Oficial de Flavius#1	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Guillaume para esses Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2070,PLAYTIME) == 2 ) erasequest 2070;
+	if( checkquest(2070,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de Flavius. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha de Flavius até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",85,94;
+	end;
+}
+
+// Cavaleiro de Croix - Flavius
+// *********************************************************************
+bat_room,175,121,1	script	Cavaleiro de Croix#3	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "O objetivo da Batalha de Flavius é marcar 2 pontos antes que seu inimigo, destruindo seu cristal.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Os cristais de ambos exércitos são protegidos por uma barricada especial que não pode ser destruída por ataques diretos.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Mas elas podem ser removidas destruindo o Guardião que protege a base inimiga.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Os cristais são imunes a qualquer tipo de habilidades; seu ataque físico é a única chance de destruir o cristal inimigo.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - Flavius
+// *********************************************************************
+bat_room,172,121,1	script	Oficial de Flavius#2	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Croix para esses Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2070,PLAYTIME) == 2 ) erasequest 2070;
+	if( checkquest(2070,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de Flavius. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha de Flavius até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",85,77;
+	end;
+}
+
+// Cavaleiro de Guillaume - Flavius
+// *********************************************************************
+bat_room,151,178,5	script	Cavaleiro de Guillaume#4	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "O objetivo da Batalha de Flavius é marcar 2 pontos antes que seu inimigo, destruindo seu cristal.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Os cristais de ambos exércitos são protegidos por uma barricada especial que não pode ser destruída por ataques diretos.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Mas elas podem ser removidas destruindo o Guardião que protege a base inimiga.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Os cristais são imunes a qualquer tipo de habilidades; seu ataque físico é a única chance de destruir o cristal inimigo.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - Flavius
+// *********************************************************************
+bat_room,148,178,5	script	Oficial de Flavius#3	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Guillaume para esses Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2070,PLAYTIME) == 2 ) erasequest 2070;
+	if( checkquest(2070,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de Flavius. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha de Flavius até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",253,94;
+	end;
+}
+
+// Cavaleiro de Croix - Flavius
+// *********************************************************************
+bat_room,151,121,1	script	Cavaleiro de Croix#4	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "O objetivo da Batalha de Flavius é marcar 2 pontos antes que seu inimigo, destruindo seu cristal.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Os cristais de ambos exércitos são protegidos por uma barricada especial que não pode ser destruída por ataques diretos.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Mas elas podem ser removidas destruindo o Guardião que protege a base inimiga.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Os cristais são imunes a qualquer tipo de habilidades; seu ataque físico é a única chance de destruir o cristal inimigo.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - Flavius
+// *********************************************************************
+bat_room,148,121,1	script	Oficial de Flavius#4	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Croix para esses Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2070,PLAYTIME) == 2 ) erasequest 2070;
+	if( checkquest(2070,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de Flavius. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha de Flavius até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas eu não posso enviar um novato como você para morrer no campo de batalha.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",253,77;
+	end;
+}
+
+// Cavaleiro de Guillaume - KvM
+// *********************************************************************
+bat_room,143,178,5	script	Cavaleiro de Guillaume#5	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - KVM
+// *********************************************************************
+bat_room,140,178,5	script	Oficial de KVM [80-99]#1	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Guillaume para esses Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 80 e 99.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",253,224;
+	end;
+}
+
+// Cavaleiro de Croix - KvM
+// *********************************************************************
+bat_room,143,121,1	script	Cavaleiro de Croix#5	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - KvM
+// *********************************************************************
+bat_room,140,121,1	script	Oficial de KvM [80-99]#2	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Croix para esses Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 80 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 80 e 99.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",253,208;
+	end;
+}
+
+// Cavaleiro de Guillaume - KvM
+// *********************************************************************
+bat_room,135,178,5	script	Cavaleiro de Guillaume#6	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - KvM
+// *********************************************************************
+bat_room,132,178,5	script	Oficial de KVM [60-79]#1	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Guillaume para esses Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 60 || BaseLevel > 79 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 60 e 79.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",225,224;
+	end;
+}
+
+// Cavaleiro de Croix - KvM
+// *********************************************************************
+bat_room,135,121,1	script	Cavaleiro de Croix#6	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - KvM
+// *********************************************************************
+bat_room,132,121,1	script	Oficial de KVM [60-79]#2	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá " + strcharinfo(0) + ", vamos mostrar o poder do Exército Croix para esses Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel < 60 || BaseLevel > 79 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 60 e 79.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",225,208;
+	end;
+}
+
+// Cavaleiro de Guillaume - KvM
+// *********************************************************************
+bat_room,127,178,5	script	Cavaleiro de Guillaume#7	417,{
+	mes "[Cavaleiro de Guillaume]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Guillaume]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Guillaume - KvM
+// *********************************************************************
+bat_room,124,178,5	script	Oficial de KVM [1-59]#1	418,{
+	mes "[Oficial de Guillaume]";
+	if( Bat_Team == 2 )
+	{
+		mes "Dê o fora daqui seu Croix estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Guillaume para esses Croixs estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Guillaume]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial Guillaume]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel > 59 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 1 e 59.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",197,224;
+	end;
+}
+
+// Cavaleiro de Croix - KvM
+// *********************************************************************
+bat_room,127,121,1	script	Cavaleiro de Croix#7	413,{
+	mes "[Cavaleiro de Croix]";
+	mes "Para vencer a Batalha de Kriger Von Midgard você e seu time devem derrotar todos os outros oponentes antes que vocês sejam derrotados.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "O primeiro time a perder todos os seus soldados, perde.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Já que você não pode voltar para a batalha depois de morrer, ter cuidado no campo de batalha é essencial.";
+	next;
+	mes "[Cavaleiro de Croix]";
+	mes "Está pronto para a batalha? Então se aliste com o recrutador perto de mim!";
+	close;
+}
+
+// Oficial de Croix - KVM
+// *********************************************************************
+bat_room,124,121,1	script	Oficial de KVM [1-59]#2	414,{
+	mes "[Oficial de Croix]";
+	if( Bat_Team == 1 )
+	{
+		mes "Dê o fora daqui seu Guillaume estúpido!";
+		close;
+	}
+
+	if( Bat_Team == 0 )
+	{
+		mes "Por favor se aliste para um exército com o Príncipe Croix ou o General Guillaume!";
+		close;
+	}
+
+	mes "Olá "+strcharinfo(0)+", vamos mostrar o poder do Exército Croix para esses Guillaumes estúpidos!";
+	next;
+	if( select("Quero entra em seu exército!:Terminar Conversa") == 2 )
+		close;
+
+	mes "[Oficial de Croix]";
+	if( BG_Delay_Tick >= gettimetick(2) )
+	{
+		mes "Você é um Desertor!!";
+		mes "Por fugir, você precisa esperar ^0000FF" + callfunc("Time2Str",BG_Delay_Tick) + "^000000 para juntar-se novamente a uma Batalha Campal.";
+		close;
+	}
+
+	if( checkquest(2025,PLAYTIME) == 2 ) erasequest 2025;
+	if( checkquest(2025,PLAYTIME) != -1 )
+	{
+		mes "Você recebeu um indicador mostrando que você já participou na Batalha de KvM. Eu não posso deixar você participar de outras batalhas até que este indicador saia.";
+		next;
+		mes "[Oficial de Croix]";
+		mes "Espere pela Batalha de KvM até que o limite de tempo passe.";
+		close;
+	}
+
+	if( BaseLevel > 59 )
+	{
+		mes "Estou muito agredecido que você queria se juntar ao nosso exército, mas esta arena é para jogadores com nível de base entre 1 e 59.";
+		close;
+	}
+
+	mes "Boa sorte!";
+	close2;
+	warp "bat_room",197,208;
+	end;
+}
+
+// Pajens de Croix e Guillaume
+// *********************************************************************
+
+bat_room,161,141,3	script	Pajem de Croix::bat_aid	415,{ end; }
+bat_room,161,139,3	duplicate(bat_aid)	Pajem de Croix::bat_aid2	415
+bat_room,161,160,3	duplicate(bat_aid)	Pajem de Guillaume::bat_aid3	419
+bat_room,161,158,3	duplicate(bat_aid)	Pajem de Guillaume::bat_aid4	419
+
+// Bandeiras de Croix e Guillaume
+// *********************************************************************
+
+-	script	Bandeira Guillaume#bat	973,{ end; }
+-	script	Bandeira Croix#bat	974,{ end; }
+
+// Saída da Sala de Registro
+// *********************************************************************
+-	script	warp2bat_room	-1,{
+	end;
+
+OnTouch:
+	set BG_Delay_Tick, gettimetick(2) + 30;
+	warp "bat_room",154,149;
+	end;
+}
+
+// Flavius bat_b02
+bat_room,57,81,0	duplicate(warp2bat_room)	bat1	45,1,1
+bat_room,57,90,0	duplicate(warp2bat_room)	bat2	45,1,1
+// Free BG
+bat_room,57,220,0	duplicate(warp2bat_room)	bat3	45,1,1
+bat_room,57,211,0	duplicate(warp2bat_room)	bat4	45,1,1
+// Tierra Valley bat_a02
+bat_room,85,81,0	duplicate(warp2bat_room)	bat5	45,1,1
+bat_room,85,90,0	duplicate(warp2bat_room)	bat6	45,1,1
+// Tierra Valley bat_a01
+bat_room,85,220,0	duplicate(warp2bat_room)	bat7	45,1,1
+bat_room,85,211,0	duplicate(warp2bat_room)	bat8	45,1,1
+// Free BG
+bat_room,113,81,0	duplicate(warp2bat_room)	bat9	45,1,1
+bat_room,113,90,0	duplicate(warp2bat_room)	bat10	45,1,1
+// Free BG
+bat_room,113,220,0	duplicate(warp2bat_room)	bat11	45,1,1
+bat_room,113,211,0	duplicate(warp2bat_room)	bat12	45,1,1
+// Free BG
+bat_room,141,81,0	duplicate(warp2bat_room)	bat13	45,1,1
+bat_room,141,90,0	duplicate(warp2bat_room)	bat14	45,1,1
+// Free BG
+bat_room,141,220,0	duplicate(warp2bat_room)	bat15	45,1,1
+bat_room,141,211,0	duplicate(warp2bat_room)	bat16	45,1,1
+// Free BG
+bat_room,169,81,0	duplicate(warp2bat_room)	bat17	45,1,1
+bat_room,169,90,0	duplicate(warp2bat_room)	bat18	45,1,1
+// Free BG
+bat_room,169,220,0	duplicate(warp2bat_room)	bat19	45,1,1
+bat_room,169,211,0	duplicate(warp2bat_room)	bat20	45,1,1
+// Free BG
+bat_room,197,81,0	duplicate(warp2bat_room)	bat21	45,1,1
+bat_room,197,90,0	duplicate(warp2bat_room)	bat22	45,1,1
+// KvM bat_c03
+bat_room,197,220,0	duplicate(warp2bat_room)	bat23	45,1,1
+bat_room,197,211,0	duplicate(warp2bat_room)	bat24	45,1,1
+// Free BG
+bat_room,225,81,0	duplicate(warp2bat_room)	bat25	45,1,1
+bat_room,225,90,0	duplicate(warp2bat_room)	bat26	45,1,1
+// KvM bat_c02
+bat_room,225,220,0	duplicate(warp2bat_room)	bat27	45,1,1
+bat_room,225,211,0	duplicate(warp2bat_room)	bat28	45,1,1
+// Flavius bat_b01
+bat_room,253,81,0	duplicate(warp2bat_room)	bat29	45,1,1
+bat_room,253,90,0	duplicate(warp2bat_room)	bat30	45,1,1
+// KvM bat_c01
+bat_room,253,220,0	duplicate(warp2bat_room)	bat31	45,1,1
+bat_room,253,211,0	duplicate(warp2bat_room)	bat32	45,1,1
+
+// Restaurador
+// *********************************************************************
+
+bat_room,138,144,5	script	Restaurador#bg	99,{
+	callfunc "repairmain","Restaurador";
+	end;
+}
+
+// Troca/Intercâmbio de Emblemas
+// *********************************************************************
+
+bat_room,160,150,3	script	Erundek	109,{
+	mes "[Erundek]";
+	mes "Bem-vind" + (Sex)? "o":"a" + ", poderos" + (Sex)? "o":"a" + " guerreir" + (Sex)? "o":"a" + ".";
+	mes "O que eu posso fazer por você?";
+	next;
+	switch( select("Ver Catálogo","Trocar Emblemas de Bravura","Trocar Emblemas de Valor","Trocar Emblemas de Heroísmo","Hmm, nada.") )
+	{
+		case 1:
+			mes "[Erundek]";
+			mes "Temos muitos itens; fique à vontade para olhar antes de comprar.";
+			close2;
+			Readbook 11010,1;
+			end;
+		case 5:
+			mes "[Erundek]";
+			mes "Como quiser.";
+			mes "Vejo você depois.";
+			close;
+		case 2: // Emblemas de Bravura
+			mes "[Erundek]";
+			mes "Você quer trocar ^0000FFEmblemas de Bravura^000000 da Batalha do Desfiladeiro.";
+			mes "Por quais tipos de itens você quer trocar?";
+			next;
+			deletearray .@Item_DB[0],127;
+			set .@Badge, 7828;
+
+			switch( select("Armas:Capas:Calçados:Armaduras:Acessórios") )
+			{
+				case 1: setarray .@Item_DB[0],13036,13411,1425,1632,1634,1543,1924,1978,1574,1824,1183,1380,13305,1279,1739,13108,13172; set .@Value, 100; break;
+				case 2: setarray .@Item_DB[0],2538,2539,2540; set .@Value, 50; break;
+				case 3: setarray .@Item_DB[0],2435,2436,2437; set .@Value, 50; break;
+				case 4: setarray .@Item_DB[0],2376,2377,2378,2379,2380,2381,2382; set .@Value, 80; break;
+				case 5: setarray .@Item_DB[0],2720,2721,2722,2723,2724,2725,2733; set .@Value, 500; break;
+			}
+			
+			break;
+		case 3: // Emblemas de Valor
+			mes "[Erundek]";
+			mes "Você quer trocar ^FF0000Emblemas de Valor^000000 da Batalha de Flavius.";
+			mes "Por quais tipos de itens você quer trocar?";
+			next;
+			deletearray .@Item_DB[0],127;
+			set .@Badge, 7829;
+
+			switch( select("Armas:Capas:Calçados:Armaduras:Acessórios:Consumíveis") )
+			{
+				case 1: setarray .@Item_DB[0],13037,13410,1633,1635,1542,1923,1977,1575,1823,1184,1482,1379,13306,1280,1738,13171,13173,13174; set .@Value, 100; break;
+				case 2: setarray .@Item_DB[0],2538,2539,2540; set .@Value, 50; break;
+				case 3: setarray .@Item_DB[0],2435,2436,2437; set .@Value, 50; break;
+				case 4: setarray .@Item_DB[0],2376,2377,2378,2379,2380,2381,2382; set .@Value, 80; break;
+				case 5: setarray .@Item_DB[0],2720,2721,2722,2723,2724,2725,2733; set .@Value, 500; break;
+				case 6: setarray .@Item_DB[0],12269,12270,12271,12272,12273; set .@Value, 10; break;
+			}
+			
+			break;
+		case 4: // Emblemas de Heroísmo
+			mes "[Erundek]";
+			mes "Você quer trocar ^FFA500Emblemas de Heroísmo^000000 da Batalha de Kriger Von Midgard.";
+			mes "Esta negociação não está disponível no momento.";
+			close;
+	}
+	
+	mes "[Erundek]";
+	mes "Você gostaria de trocar?";
+	mes "Se você não tem certeza, confira o catálogo.";
+	next;
+
+	set .@Menu$, "";
+	set .@Count, getarraysize(.@Item_DB);
+	for( set .@i, 0; .@i < .@Count; set .@i, .@i + 1 )
+		set .@Menu$, .@Menu$ + getitemname(.@Item_DB[.@i]) + ":";
+
+	set .@Item_ID, .@Item_DB[select(.@Menu$) - 1];
+
+	mes "[Erundek]";
+	mes "Você gostaria de trocar ^FF0000" + .@Value + " " + getitemname(.@Badge) + "^000000 por um(a) ^0000FF" + getitemname(.@Item_ID) + "^000000?";
+	next;
+	mes "[Erundek]";
+	mes "Lembre-se, Itens de Recompensa das Batalhas Campais são ^FF0000Fixos ao Inventário do Personagem^000000.";
+	mes "Você tem certeza que deseja este item?";
+	next;
+	
+	if( select("Sim:Não") == 2 )
+	{
+		mes "[Erundek]";
+		mes "Você precisa de mais tempo para ver os itens?";
+		close;
+	}
+	
+	if( countitem(.@Badge) < .@Value )
+	{
+		mes "[Erundek]";
+		mes "Eu sinto muito, mas você não possui emblemas suficientes para trocar.";
+		close;
+	}
+	
+	delitem .@Badge,.@Value;
+	getitem .@Item_ID,1;
+	mes "[Erundek]";
+	mes "Obrigado pela troca.";
 	close;
 }
