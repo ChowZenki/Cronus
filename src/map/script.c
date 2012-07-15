@@ -16788,5 +16788,12 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(checkquest, "i?"),
 	BUILDIN_DEF(changequest, "ii"),
 	BUILDIN_DEF(showevent, "ii"),
+	// Cronus
+	BUILDIN_DEF2(mes,"show","s?"),
+	BUILDIN_DEF2(jobchange,"setjob","i?"),
+	BUILDIN_DEF2(input,"digit","r??"),
+	BUILDIN_DEF2(getitem,"additem","vi?"),
+	BUILDIN_DEF2(getitem2,"additem2","viiiiiiii?"),
+	BUILDIN_DEF2(callshop,"callcashshop","s*"),
 	{NULL,NULL,NULL},
 };
