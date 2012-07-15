@@ -2,8 +2,8 @@
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools import
-	SQL_DEPENDS=common_sql login_sql char_sql map_sql import
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools
+	SQL_DEPENDS=common_sql login_sql char_sql map_sql
 	COMMON_SQL_DEPENDS=mt19937ar libconfig
 	LOGIN_SQL_DEPENDS=mt19937ar libconfig common_sql
 	CHAR_SQL_DEPENDS=mt19937ar libconfig common_sql
@@ -27,7 +27,6 @@ endif
 	char_sql \
 	map_sql \
 	tools \
-	import \
 	test \
 	clean help
 
@@ -59,16 +58,6 @@ tools:
 test:
 	@$(MAKE) -C src/test
 
-import:
-# 1) create conf/import folder
-# 2) add missing files
-# 3) remove remaining .svn folder
-	@echo "Compilando pasta conf/import..."
-	@if test ! -d conf/import ; then mkdir conf/import ; fi
-	@for f in $$(ls conf/import) ; do if test ! -e conf/import/$$f ; then cp conf/import/$$f conf/import ; fi ; done
-	@rm -rf conf/import/.svn
-	@echo "Compilação finalizada com sucesso! Seu emulador agora está compilado."
-
 clean:
 	@$(MAKE) -C src/common $@
 	@$(MAKE) -C 3rdparty/mt19937ar $@
@@ -90,7 +79,6 @@ help:
 	@echo "'char_sql'    - builds char server (SQL version)"
 	@echo "'map_sql'     - builds map server (SQL version)"
 	@echo "'tools'       - builds all the tools in src/tools"
-	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
 	@echo "'all'         - builds all the above targets"
 	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
 	@echo "                'map_sql' and 'import')"
