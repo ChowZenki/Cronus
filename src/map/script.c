@@ -12257,8 +12257,8 @@ BUILDIN_FUNC(getmapmobs)
 		return 0;
 	}
 
-	for(by=0;by<=(map[m].ys-1)/BLOCK_SIZE;by++)
-		for(bx=0;bx<=(map[m].xs-1)/BLOCK_SIZE;bx++)
+	for(by=0;by<=(map[m].ys-1)/8;by++)
+		for(bx=0;bx<=(map[m].xs-1)/8;bx++)
 			for( bl = map[m].block_mob[bx+by*map[m].bxs] ; bl != NULL ; bl = bl->next )
 				if(bl->x>=0 && bl->x<=map[m].xs-1 && bl->y>=0 && bl->y<=map[m].ys-1)
 					count++;

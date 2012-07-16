@@ -51,6 +51,7 @@ char_sql: $(CHAR_SQL_DEPENDS)
 
 map_sql: $(MAP_SQL_DEPENDS)
 	@$(MAKE) -C src/map sql
+	@echo "Compilação finalizada com sucesso! Agora seu emulador está compilado."
 
 tools:
 	@$(MAKE) -C src/tool
