@@ -12227,6 +12227,47 @@ BUILDIN_FUNC(jump_zero)
 }
 
 /*==========================================
+ * GetMapMobs
+	returns mob counts on a set map:
+	e.g. GetMapMobs("prontera")
+	use "this" - for player's map
+ *------------------------------------------*/
+BUILDIN_FUNC(getmapmobs)
+{
+	const char *str=NULL;
+	int m=-1,bx,by;
+	int count=0;
+	struct block_list *bl;
+
+	str=script_getstr(st,2);
+
+	if(strcmp(str,"this")==0){
+		TBL_PC *sd=script_rid2sd(st);
+		if(sd)
+			m=sd->bl.m;
+		else{
+			script_pushint(st,-1);
+			return 0;
+		}
+	}else
+		m=map_mapname2mapid(str);
+
+	if(m < 0){
+		script_pushint(st,-1);
+		return 0;
+	}
+
+	for(by=0;by<=(map[m].ys-1)/BLOCK_SIZE;by++)
+		for(bx=0;bx<=(map[m].xs-1)/BLOCK_SIZE;bx++)
+			for( bl = map[m].block_mob[bx+by*map[m].bxs] ; bl != NULL ; bl = bl->next )
+				if(bl->x>=0 && bl->x<=map[m].xs-1 && bl->y>=0 && bl->y<=map[m].ys-1)
+					count++;
+
+	script_pushint(st,count);
+	return 0;
+}
+
+/*==========================================
  * movenpc [MouseJstr]
  *------------------------------------------*/
 BUILDIN_FUNC(movenpc)
@@ -16795,5 +16836,6 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(getitem,"additem","vi?"),
 	BUILDIN_DEF2(getitem2,"additem2","viiiiiiii?"),
 	BUILDIN_DEF2(callshop,"callcashshop","s*"),
+	BUILDIN_DEF(getmapmobs,"s"),
 	{NULL,NULL,NULL},
 };
