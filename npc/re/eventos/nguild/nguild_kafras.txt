@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo das Kafras da Guerra do Emperium de Bebês
+//= Kafras da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================
@@ -15,7 +15,7 @@
 //===== Compatível com: ==============================================
 //= Cronus GIT;
 //===== Descrição: ===================================================
-//= Arquivo das Kafras da Guerra do Emperium de Bebês
+//= Kafras da Guerra do Emperium de Bebês
 //===== Comentários Adicionais: ======================================
 //= 1.4 Adicionado diálogos Oficiais da GdE do bRO. [Axl]
 //= - Removido Show.

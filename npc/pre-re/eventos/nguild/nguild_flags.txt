@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo das bandeiras dos Castelos da Guerra do Emperium de Bebês
+//= Bandeiras dos Castelos da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88; Axl;
 //===== Versão Atual: ================================================
@@ -15,7 +15,7 @@
 //===== Compatível com: ==============================================
 //= Cronus GIT;
 //===== Descrição: ===================================================
-//= Mostra o emblema dos detentores dos Castelos 
+//= Bandeiras dos Castelos da Guerra do Emperium de Bebês
 //===== Comentários Adicionais: ======================================
 //= 1.4 Adicionado diálogos Oficiais da GdE do bRO. [Axl]
 //= - Pequena reestruturação;	
