@@ -100,7 +100,11 @@
 #define MAX_GUARDIANS 8	//Local max per castle. [Skotlex]
 #define MAX_QUEST_DB 2000 //Max quests that the server will load
 #define MAX_QUEST_OBJECTIVES 3 //Max quest objectives for a quest
-#define NO-DELAY //Com este atributo ativo, existirá um delay padrão nas habilidades a fim de minimizar o funcionamento de .act scripts. Comente para desativar este delay padrão
+
+//Com este atributo ativo, existirá um delay padrão nas habilidades 
+//a fim de minimizar o funcionamento de .act scripts.
+//Comente para desativar este delay padrão
+#define NODELAY
 
 // for produce
 #define MIN_ATTRIBUTE 0

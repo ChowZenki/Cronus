@@ -475,7 +475,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 	if( skillid == AL_TELEPORT && sd->skillitem == skillid && sd->skillitemlv > 2 )
 		return 0; // Teleport lv 3 bypasses this check.[Inkfish]
 
-#ifdef NO-DELAY
+#ifdef NODELAY
 	// Epoque:
 	// This code will compare the player's attack motion value which is influenced by ASPD before
 	// allowing a skill to be cast. This is to prevent no-delay ACT files from spamming skills such as
