@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo dos Tesouros da Guerra do Emperium de Bebês
+//= Tesouros dos castelos da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================

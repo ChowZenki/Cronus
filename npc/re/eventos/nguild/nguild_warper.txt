@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo de teletransporte para a Guerra do Emperium de Bebês
+//= Teletransportadores da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================

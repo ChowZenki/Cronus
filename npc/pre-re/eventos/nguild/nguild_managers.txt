@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo dos Administradores dos Castelos da Guerra do Emperium de Bebês
+//= Administradores dos Castelos da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88; Axl;
 //===== Versão Atual: ================================================

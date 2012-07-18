@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo de entrada para as cavernas da Guerra do Emperium de Bebês
+//= Entrada para as cavernas da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================

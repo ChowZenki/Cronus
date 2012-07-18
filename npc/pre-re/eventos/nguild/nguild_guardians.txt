@@ -7,7 +7,7 @@
 //                  \/                   \/           \/              
 //                                                               
 //====================== Cronus Script ===============================
-//= Arquivo dos guardiões da Guerra do Emperium de Bebês
+//= Guardiões da Guerra do Emperium de Bebês
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================
