@@ -1,20 +1,25 @@
-//===== eAthena Script =======================================
-//= War of Emperium N Guild Flags
-//===== By: ==================================================
-//= kobra_k88
-//===== Current Version: =====================================
-//= 1.3
-//===== Compatible With: =====================================
-//= eAthena 0.1+; RO Episode 4+
-//===== Description: =========================================
-//= WoE flag scripts.  Display guild emblems on flags.
-//===== Additional Comments: =================================
-// Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-// 1.1 Inner Flags don't teleport you to your HQ anymore [Lupus]
-// 1.2 updated flags to use the new arguments. [L0ne__W0lf]
-// 1.3 Guild flag function added. [L0ne_W0lf]
-// 1.3t Script Adaptado , traduzido e revisado [Minos]
-//============================================================
+//====================================================================
+//          _________                                                 
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
+//           \______  /|__|   \____/|___|  /____//____  >             
+//                  \/                   \/           \/              
+//                                                               
+//====================== Cronus Script ===============================
+//= Arquivo das bandeiras dos Castelos da Guerra do Emperium de Bebês
+//===== Por: =========================================================
+//= kobra_k88; Axl;
+//===== Versão Atual: ================================================
+//= 1.4
+//===== Compatível com: ==============================================
+//= Cronus GIT;
+//===== Descrição: ===================================================
+//= Mostra o emblema dos detentores dos Castelos 
+//===== Comentários Adicionais: ======================================
+//= 1.4 Adicionado diálogos Oficiais da GdE do bRO. [Axl]
+//= - Pequena reestruturação;	
+//====================================================================
 
 /// Flag Function
 //============================================================
@@ -22,42 +27,40 @@ function	script	F_Flags	{
 	set .@GID, GetCastleData(getarg(1),1);
 	if (getarg(5) == 0) return;
 	if (.@GID == 0) {
-		show "[ Marco de Rune Midgard ]";
-		show " ";
-		show "1. Seguindo as regras de Rune Midgard, ";
-		show "Declaramos que não há nenhum";
-		show "dono formal deste castelo.";
-		show " ";
-		show "2. Se sua guild conseguir";
-		show "passar por todos os desafios";
-		show "e destruír o Emperium deste castelo,";
-		show "você será nomeado como o dono deste castelo.";
-		return;
-	}
-	else {
+		mes " [Decreto do Reino de Rune Midgard]";
+		mes " ";
+		mes "1. Conforme o Pacto do Reino de Rune Midgard";
+		mes "declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Ao Clã que for bravo o bastante";
+		mes "e, superarando os terríveis desafios,";
+		mes "quebrar o Emperium,";
+		mes "será dada a posse deste Castelo";
+		mes "apoiado pelo nosso Rei.";
+		close;
+		}
 		if (getcharid(2) == .@GID && getarg(4) == 1) {
-			show "Bravo Guerreiro...";
-			show "Deseja voltar para seu castelo?";
+			mes "[ Voz Ecoante ]";
+			mes "Bravo guerreiro......";
+			mes "Deseja retornar ao seu lugar de glória?";
 			next;
-			if (select("Retornar ao castelo.:nada.") == 1) {
+			if(select("Sim.: Não.") == 2) close;
+				close2;
 				if (getcharid(2) == GetCastleData(getarg(1),1))
 					warp getarg(1),getarg(2),getarg(3);
+					end;
 			}
-			return;
-		}
-		show "[ Marco de Rune Midgard ]";
-		show " ";
-		show "1. Seguindo as regras de";
-		show "Rune Midgard,";
-		show "declaramos que este castelo está sobre";
-		show "a possessão da Guild ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		show " ";
-		show "2. O Mestre da Guild ^ff0000"+ GetGuildName(.@GID) + "^000000 é";
-		show "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		show "Se você é contra o domínio dele neste castelo,";
-		show "Pegue sua espada e honre a si mesmo.";
-		return;
-		return;
+		mes "[Decreto do Reino de Rune Midgard]";
+		mes " ";
+		mes "1. Conforme o Pacto do Reino de Rune Midgard";
+		mes "declaro que este castelo pertence ao Clã ^ff0000" + GetGuildName(.@GID) + "^000000 .";
+		mes " ";
+		mes "2. O Líder do Clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
+		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
+		mes "Se alguém se opõe a este decreto";
+		mes "desembainhe sua espada para fazer valer sua vontade.";
+		close;
+
 	}
 }
 

@@ -1,20 +1,24 @@
-//===== eAthena Script =======================================
-//= War of Emperium - NGuild Wars Events
-//===== By: ==================================================
+//====================================================================
+//          _________                                                 
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
+//           \______  /|__|   \____/|___|  /____//____  >             
+//                  \/                   \/           \/              
+//                                                               
+//====================== Cronus Script ===============================
+//= Arquivo padrão da Guerra do Emperium de Bebês
+//===== Por: =========================================================
 //= kobra_k88
-//===== Current Version: =====================================
+//===== Versão Atual: ================================================
 //= 1.5
-//===== Compatible With: =====================================
-//= eAthena 0.1+; RO Episode 4+
-//===== Description: =========================================
-//= Event Triggers for NGuild Wars
-//===== Additional Comments: =================================
-// Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-//= 1.3 Added code for abandoning captured castles on /breakguild [Lupus]
-//= 1.4 AGIT Functions added, treasure spawning added. [L0ne_W0lf]
-//= 1.5 Emperium should now properly respawn. [L0ne_W0lf]
-//= 1.5t Script Adaptado , traduzido e revisado [Minos]
-//============================================================
+//===== Compatível com: ==============================================
+//= Cronus GIT;
+//===== Descrição: ===================================================
+//= Arquivo padrão da Guerra do Emperium de Bebês 
+//===== Comentários Adicionais: ======================================
+//= 1.6 Announce alterado conforme o oficial da GdE do bRO. [Axl]
+//====================================================================
 
 // Function for OnAgitStart =========================================
 function	script	F_AgitStart	{
@@ -38,7 +42,7 @@ function	script	F_GuildBreak	{
 	killmonsterall .@map$;
 
 	Announce "O Castelo [" + GetCastleName(.@map$) + "] foi abandonado.",0;
-	disablenpc "Kafra Staff#"+.@castle$;
+	disablenpc "Kafra#"+.@castle$;
 
 	SetCastleData .@map$,0,0;
 	return;
@@ -61,11 +65,11 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"A emperium foi estilhaçada.",bc_map,0x00CCFF;
-	Announce "O Castelo [" + GetCastleName(.@map$) + "] foi dominado pelo clã [" + GetGuildName(.@GID) + "].",bc_all;
+	MapAnnounce .@map$,"O Emperium foi quebrado!",bc_map,0x00CCFF;
+	Announce " O Clã [" + GetGuildName(.@GID) + "] conquistou o Castelo [" + GetCastleName(.@map$) + "].",bc_all;
 	GetCastleData .@map$,0,"::OnRecvCastle"+.@castle$;
 
-	disablenpc "Kafra Staff#"+.@castle$;
+	disablenpc "Kafra#"+.@castle$;
 
 	// Remove os investimentos e as kafras
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )

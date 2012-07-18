@@ -1,20 +1,24 @@
-//===== rAthena Script =======================================
-//= War of Emperium - NGuild Wars Events
-//===== By: ==================================================
+//====================================================================
+//          _________                                                 
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
+//           \______  /|__|   \____/|___|  /____//____  >             
+//                  \/                   \/           \/              
+//                                                               
+//====================== Cronus Script ===============================
+//= Arquivo padrão da Guerra do Emperium de Bebês
+//===== Por: =========================================================
 //= kobra_k88
-//===== Current Version: =====================================
+//===== Versão Atual: ================================================
 //= 1.5
-//===== Compatible With: =====================================
-//= rAthena 0.1+; RO Episode 4+
-//===== Description: =========================================
-//= Event Triggers for NGuild Wars
-//===== Additional Comments: =================================
-// Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-//= 1.3 Added code for abandoning captured castles on /breakguild [Lupus]
-//= 1.4 AGIT Functions added, treasure spawning added. [L0ne_W0lf]
-//= 1.5 Emperium should now properly respawn. [L0ne_W0lf]
-//============================================================
-
+//===== Compatível com: ==============================================
+//= Cronus GIT;
+//===== Descrição: ===================================================
+//= Arquivo padrão da Guerra do Emperium de Bebês 
+//===== Comentários Adicionais: ======================================
+//= 1.6 Announce alterado conforme o oficial da GdE do bRO. [Axl]
+//====================================================================
 
 // Function for OnAgitStart =========================================
 function	script	F_AgitStart	{
@@ -37,8 +41,8 @@ function	script	F_GuildBreak	{
 
 	killmonsterall .@map$;
 
-	Announce "Guild Base [" + GetCastleName(.@map$) + "] has been abandoned.",0;
-	disablenpc "Kafra Staff#"+.@castle$;
+	Announce "O Castelo [" + GetCastleName(.@map$) + "] foi abandonado.",0;
+	disablenpc "Kafra#"+.@castle$;
 
 	SetCastleData .@map$,0,0;
 	return;
@@ -61,17 +65,16 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"The emperium has been destroyed.",bc_map,0x00CCFF;
-	Announce "The [" + GetCastleName(.@map$) + "] castle has been conquered by the [" + GetGuildName(.@GID) + "] guild.",bc_all;
-	donpcevent "::OnRecvCastle"+.@castle$;
+	MapAnnounce .@map$,"O Emperium foi quebrado!",bc_map,0x00CCFF;
+	Announce " O Clã [" + GetGuildName(.@GID) + "] conquistou o Castelo [" + GetCastleName(.@map$) + "].",bc_all;
+	GetCastleData .@map$,0,"::OnRecvCastle"+.@castle$;
 
-	disablenpc "Kafra Staff#"+.@castle$;
+	disablenpc "Kafra#"+.@castle$;
 
-	// remove investment data and kafra
+	// Remove os investimentos e as kafras
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
 		SetCastleData .@map$, .@i, 0;
 
-	// if the new guild doesn't have Guardian Research, erase guardians
 	if( getgdskilllv(.@GID,10002) == 0 )
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 )
 			SetCastleData .@map$, .@i, 0;
@@ -86,9 +89,7 @@ function	script	F_AgitEnd	{
 	set .@castle$, getarg(1);
 
 	GvgOff .@map$;
-	// Disable the following if statment to keep empty
-	// castles from being aquired after after WoE ends.
-	if (GetCastleData(.@map$,1) == 0) return;
+    if (GetCastleData(.@map$,1) == 0) return;
 	MapRespawnGuildID .@map$,GetCastleData(.@map$,1),4;
 	KillMonster .@map$,"Agit_"+.@castle$+"::OnAgitBreak";
 	end;
@@ -97,7 +98,7 @@ function	script	F_AgitEnd	{
 // Castle 1 ================================================================
 nguild_alde,0,0,0	script	Agit_N01	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN01";
+	GetCastleData "nguild_alde",0,"::OnRecvCastleN01";
 	end;
 OnRecvCastleN01:
 	RequestGuildInfo GetCastleData("nguild_alde",1);
@@ -124,7 +125,7 @@ OnAgitEnd:
 // Castle 2 ================================================================
 nguild_gef,0,0,0	script	Agit_N02	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN02";
+	GetCastleData "nguild_gef",0,"::OnRecvCastleN02";
 	end;
 OnRecvCastleN02:
 	RequestGuildInfo GetCastleData("nguild_gef",1);
@@ -151,7 +152,7 @@ OnAgitEnd:
 // Castle 3 ================================================================
 nguild_pay,0,0,0	script	Agit_N03	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN03";
+	GetCastleData "nguild_pay",0,"::OnRecvCastleN03";
 	end;
 OnRecvCastleN03:
 	RequestGuildInfo GetCastleData("nguild_pay",1);
@@ -178,7 +179,7 @@ OnAgitEnd:
 // Castle 4 ================================================================
 nguild_prt,0,0,0	script	Agit_N04	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN04";
+	GetCastleData "nguild_prt",0,"::OnRecvCastleN04";
 	end;
 OnRecvCastleN04:
 	RequestGuildInfo GetCastleData("nguild_prt",1);

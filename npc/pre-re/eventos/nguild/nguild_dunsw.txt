@@ -1,41 +1,47 @@
-//===== eAthena Script =======================================
-//= War of Emperium Dungeon Switch for NGuild Castles
-//===== By: ==================================================
+//====================================================================
+//          _________                                                 
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
+//           \______  /|__|   \____/|___|  /____//____  >             
+//                  \/                   \/           \/              
+//                                                               
+//====================== Cronus Script ===============================
+//= Arquivo de entrada para as cavernas da Guerra do Emperium de Bebês
+//===== Por: =========================================================
 //= kobra_k88
-//===== Current Version: =====================================
-//= 1.1
-//===== Compatible With: =====================================
-//= eAthena 0.1+; RO Episode 4+
-//===== Description: =========================================
-//= Switch that warps guild members to the guild dungeon
-//===== Additional Comments: =================================
-//= Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-//= 1.1 Guild Dungeon Switch Fucntion added. [L0ne_W0lf]
-//= 1.1t Script Adaptado , traduzido e revisado [Minos]
-//============================================================
+//===== Versão Atual: ================================================
+//= 1.2
+//===== Compatível com: ==============================================
+//= Cronus GIT;
+//===== Descrição: ===================================================
+//= Leva os membros do Clã detentor para as cavernas do Castelo 
+//===== Comentários Adicionais: ======================================
+//= 2.0 Adicionado diálogos Oficiais da GdE do bRO. [Axl]
+//= - Removido Show.
+//====================================================================
 
 function	script	F_GldDunSw	{
 	set .@GID, GetCastleData(getarg(0),1);
 	if (.@GID == 0) {
-		show "[ Voz Ecoando ]";
-		show " ' Aquele que superar a sua angústia e mostrar bravura... encontrará o caminho...' ";
+		mes "[ Voz Ecoante ]";
+		mes " ' Um Guerreiro que mesmo tendo vencido a batalha, procura vencer a Guerra. Este é o verdadeiro Líder. ' ";
 		close;
 	}
 	else {
-		show "[ Voz Ecoando ]";
-		show " ' Apenas aquele que mostrar bravura poderá passar por este teste. '";
+		mes "[ Voz Ecoante ]";
+		mes " ' Um teste de braveza... '";
 		next;
-		show " ";
-		show "Aqui se encontra uma pequena alavanca , deseja puxá-la?";
+		mes " ";
+		mes "Há uma pequena alavanca, você deseja acioná-la?";
 		next;
-
-		if (select("Puxar:Não.") == 1) {
+		if(select("Acionar.:Não acionar.") == 1) {
 			if (getcharid(2) == .@GID) {
 				warp "gld_dun"+getarg(1),getarg(2),getarg(3);
 				end;
 			}
-			show " ";
-			show " Nada aconteceu.";
+			mes " ";
+			mes " Nada aconteceu.";
 		}
 		return;
 	}
