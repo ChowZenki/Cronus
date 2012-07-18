@@ -2550,7 +2550,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					case GC_ROLLINGCUTTER:
 					break;
 #ifndef RENEWAL_EDP
-					case ASC_BREAKER:       case ASC_METEORASSAULT: break;
+					case ASC_BREAKER:	case ASC_METEORASSAULT:
+					case AS_GRIMTOOTH: // Na renovação a ' Tocaia ' não recebe bonus do EDP 
+					break;
 #else
 					case AS_SONICBLOW:
 					case ASC_BREAKER:
