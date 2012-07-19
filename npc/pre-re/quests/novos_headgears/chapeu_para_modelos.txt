@@ -1,71 +1,79 @@
-//===== Cronus Script ========================================
-//= Quest ChapÈu Para Modelos
-//===== Por: =================================================
-//= Halca (1.0
-//= Mass Zero (1.1
-//===== Vers„o Atual: ========================================
-//= 1.4
-//===== CompatÌvel Com: ======================================
-//= Cronus [777+]; BRO [EpisÛdio: 10]
-//===== DescriÁ„o: ===========================================
-//= Npc que faz a quest do ChapÈu de Ursinho
-//===== Coment·rios Adicionais: ==============================
-//= 1.2 Fixed wrong labels, added missing text
-//=	fixed wrong items ID [Lupus]
-//= 1.3 Fixed possible exploit [Lupus]
+//====================================================================
+//          _________                                                  
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
+//           \______  /|__|   \____/|___|  /____//____  >              
+//                  \/                   \/           \/               
+//                                                               
+//====================== Cronus Script ===============================
+//= Quests Chap√©u para Modelos
+//===== Por: =========================================================
+//= Halca
+//===== Vers√£o Atual: ================================================
+//= 1.5
+//===== Compat√≠vel com: ==============================================
+//= Cronus GIT
+//===== Descri√ß√£o: ===================================================
+//= NPC da quest do Chap√©u para modelos
+//===== Coment√°rios Adicionais: ======================================
+//= 1.1 Scrit original por Halca
+//= 1.2 Labels incorretas arrumadas, texto que faltava adicionado [Lupus]
+//= 1.2b IDs incorretas de itens adicionadas [Lupus]
+//= 1.3 Corrigido poss√≠vel exploit [Lupus]
 //= 1.4 Traduzido para o Cronus [Amandinha]
-//= 1.4 Adaptado para o Cronus [socramjunio]
-//============================================================
+//= 1.5 Adaptado para o Cronus [socramjunio]
+//= 1.6 Script otimizado, coment√°rios traduzidos e gram√°tica revisada [Schrwaizer]
+//====================================================================
 
-payon_in01,143,8,5	script	Nan Hyang	814,{
- if(getequipisequiped(5073)) GOTO L_GOOD;
- if(BaseJob == 0) GOTO L_NOVICE;
+
+payon_in01,143,8,5 script Nan Hyang 814,{
+ if(isequipped(5073)) {
  mes "[Nan Hyang]";
- mes "Tut tut! VocÍ tem uma terrivel postura!";
- mes "VocÍ precisa conserta-la imediatamente!";
+ mes "Oh, isso √© √≥timo! √© bom ver que voc√™ est√° aprendendo r√°pido!";
+ close;
+}
+ if(BaseJob == 0) {
+ mes "Ol√°, voc√™ poderia me visitar na pr√≥xima semana?";
+ close;
+}
+ mes "[Nan Hyang]";
+ mes "Tut tut! Mas que postura terr√≠vel!";
+ mes "Voc√™ precisa consert√°-la imediatamente!";
  next;
  mes "[Nan Hyang]";
- mes "Eu posso conserta por vocÍ mas vocÍ precisar· me d· uns itens para eu fazer um ChapÈu para Modelos.";
+ mes "Eu posso consert√°-la pra voc√™, mas preciso que me d√™ uns itens para que eu fa√ßa um Chap√©u para Modelos.";
  next;
- menu "Por favor, faÁa-me um",-,"O que eu preciso?",M_REQ,"N„o, obrigado!",M_EXIT;
-
- if(countitem(1550) < 1 || countitem(2285) < 1) GOTO L_NOITEM;//Items: Book, Apple o' Archer,
+switch(select("Por favor, fa√ßa-me um!:O que eu preciso?:N√£o, obrigado!")) {
+ case 1:
+ if(countitem(1550) < 1 || countitem(2285) < 1) {//Items: Livro, Ma√ß√£ de Guilherme tell
+ mes "[Nan Hyang]";
+ mes "Ao menos seja s√©rio, voc√™ n√£o tem itens suficientes!";
+ mes "Volte quando quiser consertar sua postura.";
+ close;
+}
  delitem 1550,1;//Items: Livro,
- delitem 2285,1;//Items: Mac„ Guilherme Tell,
+ delitem 2285,1;//Items: Mac√£ Guilherme Tell,
  mes "[Nan Hyang]";
- mes "Ahh enfim uma pessoa seria!";
+ mes "Ahh enfim uma pessoa s√©ria!";
  next;
- getitem 5073,1;//Items: ChapÈu para Modelos,
+ getitem 5073,1;//Items: Chap√©u para Modelos,
  mes "[Nan Hyang]";
- mes "Hehe, bem, talvez vocÍ se torne mas cuidadoso, ou ent„o sua sensibilidade fique balanÁada.";
+ mes "Hehe, bem, talvez voc√™ se torne mas cuidadoso, ou ent√£o sua sensibilidade fique balanceada.";
  close;
 
-M_REQ:
+ case 2:
  mes "[Nan Hyang]";
- mes "O que eu preciso È bem simples";
+ mes "O que eu preciso √© bem simples";
  next;
  mes "[Nan Hyang]";
  mes "1 Livro";
- mes "e 1 MaÁ„ de Guilherme Tell para balanciar ele.";
+ mes "e 1 Ma√ß√£ de Guilherme Tell para balanciar ele.";
  close;
 
-L_NOITEM:
+ case 3:
  mes "[Nan Hyang]";
- mes "Ao menos seja sÈrio, vocÍ n„o tem itens suficiente!";
- mes "Volte quando quiser conserta sua postura.";
+ mes "Bom dia para voc√™.";
  close;
-
-L_GOOD:
- mes "[Nan Hyang]";
- mes "Oh, isso È Ûtimo! È bom ver que vocÍ est· aprendendo r·pido!";
- close;
-
-L_NOVICE:
- mes "Ol·, vocÍ poderia me visitar na prÛxima semana?";
- close;
-
-M_EXIT:
- mes "[Nan Hyang]";
- mes "Bom dia para vocÍ.";
- close;
+ }
 }
