@@ -1,67 +1,81 @@
-//===== Cronus Script ========================================
+//====================================================================
+//          _________                                                  
+//          \_   ___ \_______  ____   ____  __ __  ______             
+//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
+//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
+//           \______  /|__|   \____/|___|  /____//____  >              
+//                  \/                   \/           \/               
+//                                                               
+//====================== Cronus Script ===============================
 //= Quests da Presilha de Tulipa
-//===== Por: ================================================
-//= Halca 1.0
-//= Mass Zero 1.1
-//===== Vers„o Atual: ========================================
-//= 1.4
-//===== CompatÌvel Com: ======================================
-//= Cronus [777+]; BRO [EpisÛdio: 10]
-//===== DescriÁ„o: ===========================================
-//= Npc que faz as Quest da Presilha de Tulipa
-//===== Coment·rios Adicionais: ==============================
-//= 1.2 Fixed wrong labels, added missing text [Lupus]
-//= 1.3 Fixed possible exploit and added missing close; [Lupus]
+//===== Por: =========================================================
+//= Halca
+//===== Vers√£o Atual: ================================================
+//= 1.6
+//===== Compat√≠vel com: ==============================================
+//= Cronus GIT
+//===== Descri√ß√£o: ===================================================
+//= NPC da quest da Presilha de Tulipa
+//===== Coment√°rios Adicionais: ======================================
+//= 1.1 Scrit original por Halca
+//= 1.2 Labels incorretas arrumadas, texto que faltava adicionado [Lupus]
+//= 1.3 Arrumado poss√≠vel exploit e adicionado um close; ausente [Lupus]
 //= 1.4 Traduzido para o Cronus [Amandinha]
-//= 1.4 Adaptado para o Cronus [socramjunio]
-//============================================================
+//= 1.5 Adaptado para o Cronus [socramjunio]
+//= 1.6 Script otimizado, coment√°rios traduzidos e gram√°tica revisada [Schrwaizer]
+//====================================================================
 
-geffen,84,189,6	script	Ses	815,{ 
+
+geffen,84,189,6 script	Ses	815,{ 
  mes "[Ses]";
- if(BaseJob == Job_Novice) GOTO L_NOVICE;
- mes "Woo,”la! fruta fruta!";
- mes "Desculpa, mas È que eu amo flores, frutas e tudo que me faÁa";
+ if(BaseJob == Job_Novice) {
+	mes "Eu amo flores... Voc√™ as ama tamb√©m?";
+	close;
+ }
+ mes "Woo,√ìla! fruta fruta!";
+ mes "Desculpa, mas √© que eu amo flores, frutas e tudo que me fa√ßa";
  mes "paracer mais com elas.";
  next;
- menu "FaÁa-me uma Presilha de Tulipa!",-,"O que eu preciso?",M_REQ,"Adeus!",M_EXIT;
-
+switch(select("Fa√ßa-me uma Presilha de Tulipa!:O que eu preciso?:Adeus!")){
+case 1:
  mes "[Ses]";
- mes "VocÍ j· tem os items?";
+ mes "Voc√™ j√° tem os itens?";
  next;
- menu "Sim!",-,"N„o!",M_EXIT;
-
- if(countitem(2278) < 1 || countitem(975) < 1) GOTO L_NOITEM;//Items: Mr. Smile, Scarlet Dyestuffs,
- delitem 2278,1;//Items: Mr. Smile,
- delitem 975,1;//Items: Scarlet Dyestuffs,
+ if(select("Sim!:N√£o!") == 2) {
+ mes "[Ses]";
+ mes "Okay!";
+ mes "At√™ mais!";
+ close;
+}
+ if(countitem(2278) < 1 || countitem(975) < 1) { // Itens: M√°scara Feliz e Tintura vermelha.
+ mes "[Ses]";
+ mes "Voc√™ n√£o tem itens sufuciente para eu criar uma Presilha de Tulipa!";
+ close;
+ }
+ delitem 2278,1;//Items: M√°scara Feliz
+ delitem 975,1;//Items: Tintura Vermelha
+ next;
  mes "[Ses]";
  mes "Iai! Obrigado! Abacaxi!";
- mes "Aqui est·!";
+ mes "Aqui est√°!";
  next;
- getitem 5077,1;//Items: Tulip Hairpin,
+ getitem 5077,1;//Items: Presilha de Tulipa
  mes "[Ses]";
  mes "Aproveite ele!";
  close;
-
-L_NOITEM:
- mes "[Ses]";
- mes "VocÍ n„o tem itens sufuciente para eu criar uma Presilha de Tulipa!";
- next;
-
-M_REQ:
+ 
+ case 2:
  mes "[Ses]";
  mes "Bem, eu vou precisar de...";
- mes "1 M·scara Feliz para a subst‚ncia";
+ mes "1 M√°scara Feliz para a subst√¢ncia";
  mes "e 1 Tintura Vermelha!";
  mes "Traga eles para eu fazer seu item";
  close;
 
-L_NOVICE:
- mes "Eu amo flores... VocÍ ama tambÈm?";
- close;
-
-M_EXIT:
+ case 3:
  mes "[Ses]";
  mes "Okay!";
- mes "AtÈ mais!";
+ mes "At√™ mais!";
  close;
+}
 }
