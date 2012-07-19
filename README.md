@@ -31,9 +31,12 @@ Equipe
 - Otonii		- Leandro Otoni
 - Sicks 		- Bruno
 - Takyia Genji	- Raphael
-- Wolf SF		- João Vitor
+- Wolf SF		- João Victor
+- mkbu95     - Matheus Macabu
 
 ### Desenvolvedores Script/DB
 - J4ND3RS0N		- Janderson
 - Schrwaizer 	- Thiago Schrwaizer
 - Spike			- Igor
+- Rhulio Victor - Rhúlio Victor
+- Robert M      - Robert
