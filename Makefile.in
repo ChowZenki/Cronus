@@ -51,7 +51,7 @@ char_sql: $(CHAR_SQL_DEPENDS)
 
 map_sql: $(MAP_SQL_DEPENDS)
 	@$(MAKE) -C src/map sql
-	@echo "Compila��o finalizada com sucesso! Agora seu emulador est� compilado."
+	@echo "Compilação finalizada com sucesso! Agora seu emulador está compilado."
 
 tools:
 	@$(MAKE) -C src/tool
@@ -68,11 +68,11 @@ clean:
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/tool $@
 	@$(MAKE) -C src/test $@
-	@echo "Limpeza da compila��o antiga conclu�da com sucesso!"
+	@echo "Limpeza da compilação antiga concluída com sucesso!"
 
 help:
-	@echo "most common targets are 'all' 'sql' 'conf' 'clean' 'help'"
-	@echo "possible targets are:"
+	@echo "alvos mais comuns são 'all' 'sql' 'conf' 'clean' 'help'"
+	@echo "alvos possíveis são:"
 	@echo "'common_sql'  - builds object files used in SQL servers"
 	@echo "'mt19937ar'   - builds object file of Mersenne Twister MT19937"
 	@echo "'libconfig'   - builds object files of libconfig"
@@ -90,7 +90,7 @@ help:
 #####################################################################
 
 needs_mysql:
-	@echo "MySQL not found or disabled by the configure script"
+	@echo "MySQL não foi encontrado ou foi desabilitado pelo script de configuração"
 	@exit 1
 
 #####################################################################
