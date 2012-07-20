@@ -1,79 +1,69 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
-//= Quests ChapÃ©u para Modelos
-//===== Por: =========================================================
+//====================== Cronus Script ===================
+//= Quests Chapéu para Modelos
+//===== Por: =================================================
 //= Halca
-//===== VersÃ£o Atual: ================================================
+//===== Versão Atual: ==========================================
 //= 1.5
-//===== CompatÃ­vel com: ==============================================
+//===== Compatível com: =========================================
 //= Cronus GIT
-//===== DescriÃ§Ã£o: ===================================================
-//= NPC da quest do ChapÃ©u para modelos
-//===== ComentÃ¡rios Adicionais: ======================================
+//===== Descrição: =============================================
+//= NPC da quest do Chapéu para modelos
+//===== Comentários Adicionais: =================================
 //= 1.1 Scrit original por Halca
 //= 1.2 Labels incorretas arrumadas, texto que faltava adicionado [Lupus]
 //= 1.2b IDs incorretas de itens adicionadas [Lupus]
-//= 1.3 Corrigido possÃ­vel exploit [Lupus]
+//= 1.3 Corrigido possível exploit [Lupus]
 //= 1.4 Traduzido para o Cronus [Amandinha]
 //= 1.5 Adaptado para o Cronus [socramjunio]
-//= 1.6 Script otimizado, comentÃ¡rios traduzidos e gramÃ¡tica revisada [Schrwaizer]
+//= 1.6 Script otimizado, comentários traduzidos e gramática revisada [Schrwaizer]
 //====================================================================
-
-
-payon_in01,143,8,5 script Nan Hyang 814,{
- if(isequipped(5073)) {
+payon_in01,143,8,5	script	Nan Hyang	814,{
+if(isequipped(5073)) {
  mes "[Nan Hyang]";
- mes "Oh, isso Ã© Ã³timo! Ã© bom ver que vocÃª estÃ¡ aprendendo rÃ¡pido!";
+ mes "Oh, isso é ótimo! é bom ver que você está aprendendo rápido!";
  close;
 }
  if(BaseJob == 0) {
- mes "OlÃ¡, vocÃª poderia me visitar na prÃ³xima semana?";
+ mes "Olá, você poderia me visitar na próxima semana?";
  close;
 }
  mes "[Nan Hyang]";
- mes "Tut tut! Mas que postura terrÃ­vel!";
- mes "VocÃª precisa consertÃ¡-la imediatamente!";
+ mes "Tut tut! Mas que postura terrível!";
+ mes "Você precisa consertá-la imediatamente!";
  next;
  mes "[Nan Hyang]";
- mes "Eu posso consertÃ¡-la pra vocÃª, mas preciso que me dÃª uns itens para que eu faÃ§a um ChapÃ©u para Modelos.";
+ mes "Eu posso consertá-la pra você, mas preciso que me dê uns itens para que eu faça um Chapéu para Modelos.";
  next;
-switch(select("Por favor, faÃ§a-me um!:O que eu preciso?:NÃ£o, obrigado!")) {
+switch(select("Por favor, faça-me um!:O que eu preciso?:Não, obrigado!")) {
  case 1:
- if(countitem(1550) < 1 || countitem(2285) < 1) {//Items: Livro, MaÃ§Ã£ de Guilherme tell
+ if(countitem(1550) < 1 || countitem(2285) < 1) {//Items: Livro, Maçã de Guilherme tell
  mes "[Nan Hyang]";
- mes "Ao menos seja sÃ©rio, vocÃª nÃ£o tem itens suficientes!";
+ mes "Ao menos seja sério, você não tem itens suficientes!";
  mes "Volte quando quiser consertar sua postura.";
  close;
 }
  delitem 1550,1;//Items: Livro,
- delitem 2285,1;//Items: MacÃ£ Guilherme Tell,
+ delitem 2285,1;//Items: Macã Guilherme Tell,
  mes "[Nan Hyang]";
- mes "Ahh enfim uma pessoa sÃ©ria!";
+ mes "Ahh enfim uma pessoa séria!";
  next;
- getitem 5073,1;//Items: ChapÃ©u para Modelos,
+ getitem 5073,1;//Items: Chapéu para Modelos,
  mes "[Nan Hyang]";
- mes "Hehe, bem, talvez vocÃª se torne mas cuidadoso, ou entÃ£o sua sensibilidade fique balanceada.";
+ mes "Hehe, bem, talvez você se torne mas cuidadoso, ou então sua sensibilidade fique balanceada.";
  close;
 
  case 2:
  mes "[Nan Hyang]";
- mes "O que eu preciso Ã© bem simples";
+ mes "O que eu preciso é bem simples";
  next;
  mes "[Nan Hyang]";
  mes "1 Livro";
- mes "e 1 MaÃ§Ã£ de Guilherme Tell para balanciar ele.";
+ mes "e 1 Maçã de Guilherme Tell para balanciar ele.";
  close;
 
  case 3:
  mes "[Nan Hyang]";
- mes "Bom dia para vocÃª.";
+ mes "Bom dia para você.";
  close;
  }
 }

@@ -1,63 +1,53 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
+//===================== Cronus Script ========================
 //= Quests da Presilha de Tulipa
-//===== Por: =========================================================
+//===== Por: ==============================================
 //= Halca
-//===== VersÃ£o Atual: ================================================
+//===== Versão Atual: ========================================
 //= 1.6
-//===== CompatÃ­vel com: ==============================================
+//===== Compatível com: ======================================
 //= Cronus GIT
-//===== DescriÃ§Ã£o: ===================================================
+//===== Descrição: ===========================================
 //= NPC da quest da Presilha de Tulipa
-//===== ComentÃ¡rios Adicionais: ======================================
+//===== Comentários Adicionais: =============================
 //= 1.1 Scrit original por Halca
 //= 1.2 Labels incorretas arrumadas, texto que faltava adicionado [Lupus]
-//= 1.3 Arrumado possÃ­vel exploit e adicionado um close; ausente [Lupus]
+//= 1.3 Arrumado possível exploit e adicionado um close; ausente [Lupus]
 //= 1.4 Traduzido para o Cronus [Amandinha]
 //= 1.5 Adaptado para o Cronus [socramjunio]
-//= 1.6 Script otimizado, comentÃ¡rios traduzidos e gramÃ¡tica revisada [Schrwaizer]
+//= 1.6 Script otimizado, comentários traduzidos e gramática revisada [Schrwaizer]
 //====================================================================
-
-
-geffen,84,189,6 script	Ses	815,{ 
- mes "[Ses]";
+geffen,84,189,6	script	Ses	815,{
+mes "[Ses]";
  if(BaseJob == Job_Novice) {
-	mes "Eu amo flores... VocÃª as ama tambÃ©m?";
+	mes "Eu amo flores... Você as ama também?";
 	close;
  }
- mes "Woo,Ã“la! fruta fruta!";
- mes "Desculpa, mas Ã© que eu amo flores, frutas e tudo que me faÃ§a";
+ mes "Woo,Óla! fruta fruta!";
+ mes "Desculpa, mas é que eu amo flores, frutas e tudo que me faça";
  mes "paracer mais com elas.";
  next;
-switch(select("FaÃ§a-me uma Presilha de Tulipa!:O que eu preciso?:Adeus!")){
+switch(select("Faça-me uma Presilha de Tulipa!:O que eu preciso?:Adeus!")){
 case 1:
  mes "[Ses]";
- mes "VocÃª jÃ¡ tem os itens?";
+ mes "Você já tem os itens?";
  next;
- if(select("Sim!:NÃ£o!") == 2) {
+ if(select("Sim!:Não!") == 2) {
  mes "[Ses]";
  mes "Okay!";
- mes "AtÃª mais!";
+ mes "Atê mais!";
  close;
 }
- if(countitem(2278) < 1 || countitem(975) < 1) { // Itens: MÃ¡scara Feliz e Tintura vermelha.
+ if(countitem(2278) < 1 || countitem(975) < 1) { // Itens: Máscara Feliz e Tintura vermelha.
  mes "[Ses]";
- mes "VocÃª nÃ£o tem itens sufuciente para eu criar uma Presilha de Tulipa!";
+ mes "Você não tem itens sufuciente para eu criar uma Presilha de Tulipa!";
  close;
  }
- delitem 2278,1;//Items: MÃ¡scara Feliz
+ delitem 2278,1;//Items: Máscara Feliz
  delitem 975,1;//Items: Tintura Vermelha
  next;
  mes "[Ses]";
  mes "Iai! Obrigado! Abacaxi!";
- mes "Aqui estÃ¡!";
+ mes "Aqui está!";
  next;
  getitem 5077,1;//Items: Presilha de Tulipa
  mes "[Ses]";
@@ -67,7 +57,7 @@ case 1:
  case 2:
  mes "[Ses]";
  mes "Bem, eu vou precisar de...";
- mes "1 MÃ¡scara Feliz para a substÃ¢ncia";
+ mes "1 Máscara Feliz para a substância";
  mes "e 1 Tintura Vermelha!";
  mes "Traga eles para eu fazer seu item";
  close;
@@ -75,7 +65,7 @@ case 1:
  case 3:
  mes "[Ses]";
  mes "Okay!";
- mes "AtÃª mais!";
+ mes "Atê mais!";
  close;
 }
 }
