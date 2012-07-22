@@ -1,15 +1,14 @@
-//===== rAthena Script =======================================
-//= Mail Boxes
-//===== By: ==================================================
+//===== Cronus Script ========================================
+//= Caixa de Email
+//===== Por: =================================================
 //= L0ne_W0lf
-//===== Current Version: =====================================
-//= 1.7
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Pickup and write mail from/to players in game.
-//===== Additional Comments: =================================
+//===== Versão: ==============================================
+//= 1.8
+//===== Compatível com: ======================================
+//= Cronus GIT
+//===== Descrição: ===========================================
+//= Permite ler/enviar email para player in-game.
+//===== Comentários adicionais: ==============================
 //= 1.0 First version, place holders only. [L0ne_W0lf]
 //= 1.1 Dialog updated to Official. [L0ne_W0lf]
 //= 1.2 Swapped "atcommand" for "Openmail". [L0ne_W0lf]
@@ -19,38 +18,34 @@
 //= 1.5 Moved Morroc Mail boxes to Morroc Ruins. [L0ne_W0lf]
 //= 1.6 Duplicates now spawn from floating NPCs. [L0ne_W0lf]
 //= 1.7 Updated Script from the Official. [Elias]
-//============================================================
+//= 1.8 NPC Traduzido e Otimizado. [Matheus]
+//============================================================ 
+// mesc function
+function	script	mesc	{ mes getarg(0); mes getarg(1); close; }
 
-// Floating mailbox npc that all NPCs duplicate from.
-//============================================================
 -	script	Mailbox#dummy::MailBox	-1,{
-	mes "[Mailbox]";
-	mes "To use the mailbox service, you are required";
-	mes "to pay 130 zeny.";
-	mes "Would you like to use the service?";
+
+	mes "[Caixa de Email]";
+	mes "Para usar o sistema de email, é preciso";
+	mes "pagar 130 zeny.";
+	mes "Você gostaria de usar o serviço?";
 	next;
-	switch(select("Yes.","No.")) {
-	case 1:
-		if (Zeny < 130) {
-			mes "[Mailbox]";
-			mes "I am sorry, but you do not have enough money.";
-			mes "To use the mailbox service, you are required";
-			mes "to pay 130 zeny.";
-			break;
-		} else {
-			mes "[Mailbox]";
-			mes "Thank you, please come again.";
-			set Zeny,(Zeny - 130);
-			openmail;
-			break;
-		}
-		
-	case 2:
-		mes "[Mailbox]";
-		mes "Thank you, please come again.";
-		break;
+	if( select( "Sim.:Não." ) == 2 )
+		mesc "[Caixa de Email]", "Certo, volte outas vezes novamente!";
+	if( Zeny < 130 )
+	{
+		mes "[Caixa de Email]";
+		mes "Me desculpe, mas você não possui dinheiro suficiente.";
+		mes "Para usar o sistema de email, você precisa pagar 130 Zeny.";
+		close;
 	}
-close;
+	else
+	{
+		set Zeny, Zeny - 130;
+		openmail;
+		mesc "[Caixa de Email]", "Obrigado, volte outras vezes!";
+	}
+	
 }
 
 // Prontera
