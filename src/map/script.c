@@ -4053,6 +4053,10 @@ int script_reload() {
 	userfunc_db->clear(userfunc_db, db_script_free_code_sub);
 	db_clear(scriptlabel_db);
 
+	// @commands (script based)
+	// Clear bindings
+	memset(atcmd_binding,0,sizeof(atcmd_binding));
+
 	if(sleep_db) {
 		struct linkdb_node *n = (struct linkdb_node *)sleep_db;
 		while(n) {
@@ -7354,10 +7358,11 @@ BUILDIN_FUNC(bonus)
 		case SP_ADD_SKILL_BLOW:
 		case SP_CASTRATE:
 		case SP_ADDEFF_ONSKILL:
-		case SP_SP_RATE_SKILL:
+		case SP_SKILL_USE_SP_RATE:
 		case SP_SKILL_COOLDOWN:
 		case SP_SKILL_FIXEDCAST:
 		case SP_SKILL_VARIABLECAST:
+		case SP_SKILL_USE_SP:
 			// these bonuses support skill names
 			val1 = ( script_isstring(st,3) ? skill_name2id(script_getstr(st,3)) : script_getnum(st,3) );
 			break;
@@ -16387,6 +16392,170 @@ BUILDIN_FUNC(freeloop) {
 
 	return 0;
 }
+
+/**
+ * @commands (script based)
+ **/
+BUILDIN_FUNC(bindatcmd)
+{
+	const char* atcmd;
+	const char* eventName;
+	int i = 0, level = 0, level2 = 0;
+
+	atcmd = script_getstr(st,2);
+	eventName = script_getstr(st,3);
+
+	if( script_hasdata(st,4) ) level = script_getnum(st,4);
+	if( script_hasdata(st,5) ) level2 = script_getnum(st,5);
+
+	// check if event is already binded
+	ARR_FIND(0, MAX_ATCMD_BINDINGS, i, strcmp(atcmd_binding[i].command,atcmd) == 0);
+	if( i < MAX_ATCMD_BINDINGS )
+	{
+		safestrncpy(atcmd_binding[i].npc_event, eventName, 50);
+		atcmd_binding[i].level = level;
+		atcmd_binding[i].level2 = level2;
+	}
+	else
+	{ // make new binding
+		ARR_FIND(0, MAX_ATCMD_BINDINGS, i, atcmd_binding[i].command[0] == '\0');
+		if( i < MAX_ATCMD_BINDINGS )
+		{
+			safestrncpy(atcmd_binding[i].command, atcmd, 50);
+			safestrncpy(atcmd_binding[i].npc_event, eventName, 50);
+			atcmd_binding[i].level = level;
+			atcmd_binding[i].level2 = level2;
+		}
+	}
+
+	return 0;
+}
+
+BUILDIN_FUNC(unbindatcmd)
+{
+	const char* atcmd;
+	int i =  0;
+
+	atcmd = script_getstr(st, 2);
+
+	ARR_FIND(0, MAX_ATCMD_BINDINGS, i, strcmp(atcmd_binding[i].command, atcmd) == 0);
+	if( i < MAX_ATCMD_BINDINGS )
+		memset(&atcmd_binding[i],0,sizeof(atcmd_binding[0]));
+
+	return 0;
+}
+
+BUILDIN_FUNC(useatcmd)
+{
+	TBL_PC dummy_sd;
+	TBL_PC* sd;
+	int fd;
+	const char* cmd;
+
+	cmd = script_getstr(st,2);
+
+	if( st->rid )
+	{
+		sd = script_rid2sd(st);
+		fd = sd->fd;
+	}
+	else
+	{ // Use a dummy character.
+		sd = &dummy_sd;
+		fd = 0;
+
+		memset(&dummy_sd, 0, sizeof(TBL_PC));
+		if( st->oid )
+		{
+			struct block_list* bl = map_id2bl(st->oid);
+			memcpy(&dummy_sd.bl, bl, sizeof(struct block_list));
+			if( bl->type == BL_NPC )
+				safestrncpy(dummy_sd.status.name, ((TBL_NPC*)bl)->name, NAME_LENGTH);
+		}
+	}
+
+	// compatibility with previous implementation (deprecated!)
+	if( cmd[0] != atcommand_symbol )
+	{
+		cmd += strlen(sd->status.name);
+		while( *cmd != atcommand_symbol && *cmd != 0 )
+			cmd++;
+	}
+
+	is_atcommand(fd, sd, cmd, 1);
+	return 0;
+}
+
+BUILDIN_FUNC(checkre)
+{
+	int num;
+
+	num=script_getnum(st,2);
+	switch(num){
+		case 0:
+			#ifdef RENEWAL
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 1:
+			#ifdef RENEWAL_CAST
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 2:
+			#ifdef RENEWAL_DROP
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 3:
+			#ifdef RENEWAL_EXP
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 4:
+			#ifdef RENEWAL_LVDMG
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 5:
+			#ifdef RENEWAL_CAST_VMIN
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 6:
+			#ifdef RENEWAL_EDP
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+		case 7:
+			#ifdef RENEWAL_ASPD
+				script_pushint(st, 1);
+			#else
+				script_pushint(st, 0);
+			#endif
+			break;
+
+		default:
+			ShowWarning("buildin_checkre: unknown parameter.\n");
+			break;
+	}
+	return 0;
+}
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -16822,6 +16991,13 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(is_function,"s"),
 	BUILDIN_DEF(get_revision,""),
 	BUILDIN_DEF(freeloop,"i"),
+	/**
+	 * @commands (script based)
+	 **/
+	BUILDIN_DEF(bindatcmd, "ss??"),
+	BUILDIN_DEF(unbindatcmd, "s"),
+	BUILDIN_DEF(useatcmd, "s"),
+
 	//Quest Log System [Inkfish]
 	BUILDIN_DEF(setquest, "i"),
 	BUILDIN_DEF(erasequest, "i"),

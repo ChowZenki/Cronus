@@ -200,7 +200,7 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct delay_damage *dat = (struct delay_damage *)data;
 
-	if ( dat && dat->target && dat->target->prev != NULL && !status_isdead(dat->target) ) {
+	if ( dat && dat->target && map_id2bl(id) == dat->src && dat->target->prev != NULL && !status_isdead(dat->target) )	{
 		if( dat->src && dat->src->prev != NULL && id == dat->src->id &&
 			dat->target->m == dat->src->m &&
 			(dat->target->type != BL_PC || ((TBL_PC*)dat->target)->invincible_timer == INVALID_TIMER) &&
@@ -5312,7 +5312,9 @@ static const struct _battle_data {
 	{ "buyer_name",                         &battle_config.buyer_name,                      1,      0,      1,              },
 	{ "skill_wall_check",                   &battle_config.skill_wall_check,                1,      0,      1,              },
 	{ "cell_stack_limit",                   &battle_config.cell_stack_limit,                1,      1,      255,            },
-// eAthena additions
+	{ "dancing_weaponswitch_fix",			&battle_config.dancing_weaponswitch_fix,		1,      0,      1,              },
+
+	// eAthena additions
 	{ "item_logarithmic_drops",             &battle_config.logarithmic_drops,               0,      0,      1,              },
 	{ "item_drop_common_min",               &battle_config.item_drop_common_min,            1,      1,      10000,          },
 	{ "item_drop_common_max",               &battle_config.item_drop_common_max,            10000,  1,      10000,          },

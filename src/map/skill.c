@@ -2040,7 +2040,7 @@ int skill_blown(struct block_list* src, struct block_list* target, int count, in
 		dy = -diry[direction];
 	}
 
-	return unit_blown(target, dx, dy, count, flag&0x1);
+	return unit_blown(target, dx, dy, count, flag);	// send over the proper flag
 }
 
 
@@ -2522,7 +2522,6 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		int direction = -1; // default
 		switch(skillid) {//direction
 			case MG_FIREWALL:
-			case WZ_STORMGUST:
 			case PR_SANCTUARY:
 			case SC_TRIANGLESHOT:
 			case LG_OVERBRAND:
@@ -2530,6 +2529,10 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			case GN_WALLOFTHORN:
 			case EL_FIRE_MANTLE:				
 				direction = unit_getdir(bl);// backwards
+				break;
+			// This ensures the storm randomly pushes instead of exactly a cell backwards per official mechanics.
+			case WZ_STORMGUST:
+				direction = rand()%8;
 				break;
 			case WL_CRIMSONROCK:
 				direction = map_calc_dir(bl,skill_area_temp[4],skill_area_temp[5]);
@@ -12796,10 +12799,13 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 		req.sp += (status->max_sp * (-sp_rate))/100;
 	if( sd->dsprate != 100 )
 		req.sp = req.sp * sd->dsprate / 100;
-
-	ARR_FIND(0, ARRAYLENGTH(sd->sprateskill), i, sd->sprateskill[i].id == skill);
-	if( i < ARRAYLENGTH(sd->sprateskill) )
-		sp_skill_rate_bonus += sd->sprateskill[i].val;
+	
+	ARR_FIND(0, ARRAYLENGTH(sd->skillusesprate), i, sd->skillusesprate[i].id == skill);
+	if( i < ARRAYLENGTH(sd->skillusesprate) )
+		sp_skill_rate_bonus += sd->skillusesprate[i].val;
+	ARR_FIND(0, ARRAYLENGTH(sd->skillusesp), i, sd->skillusesp[i].id == skill);
+	if( i < ARRAYLENGTH(sd->skillusesp) )
+		req.sp -= sd->skillusesp[i].val;
 	
 	req.sp = cap_value(req.sp * sp_skill_rate_bonus / 100, 0, SHRT_MAX);
 	
