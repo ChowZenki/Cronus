@@ -16457,17 +16457,44 @@ BUILDIN_FUNC(bindatcmd) {
 	return 0;
 }
 
-BUILDIN_FUNC(unbindatcmd)
-{
+BUILDIN_FUNC(unbindatcmd) {
 	const char* atcmd;
 	int i =  0;
 
 	atcmd = script_getstr(st, 2);
 
-	ARR_FIND(0, MAX_ATCMD_BINDINGS, i, strcmp(atcmd_binding[i].command, atcmd) == 0);
-	if( i < MAX_ATCMD_BINDINGS )
-		memset(&atcmd_binding[i],0,sizeof(atcmd_binding[0]));
+	if( *atcmd == atcommand_symbol || *atcmd == charcommand_symbol )
+		atcmd++;
+	
+	if( atcmd_binding_count == 0 ) {
+		script_pushint(st, 0);
+		return 0;
+	}
+	
+	ARR_FIND(0, atcmd_binding_count, i, strcmp(atcmd_binding[i]->command, atcmd) == 0);
+	if( i < atcmd_binding_count ) {
+		int cursor = 0;
+		aFree(atcmd_binding[i]);
+		atcmd_binding[i] = NULL;
+		/* compact the list now that we freed a slot somewhere */
+		for( i = 0, cursor = 0; i < atcmd_binding_count; i++ ) {
+			if( atcmd_binding[i] == NULL )
+				continue;
+			
+			if( cursor != i ) {
+				memmove(&atcmd_binding[cursor], &atcmd_binding[i], sizeof(struct atcmd_binding_data*));
+			}
+			
+			cursor++;
+		}
 
+		if( (atcmd_binding_count = cursor) == 0 )
+			aFree(atcmd_binding);
+				
+		script_pushint(st, 1);
+	} else
+		script_pushint(st, 0);/* not found */
+	
 	return 0;
 }
 
