@@ -2401,7 +2401,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	default:
 		if( flag&SD_ANIMATION && dmg.div_ < 2 ) //Disabling skill animation doesn't works on multi-hit.
 			type = 5;
-		dmg.dmotion = clif_skill_damage((bl->type==BL_PC)?dsrc:src,bl,tick, dmg.amotion, dmg.dmotion, damage, dmg.div_, skillid, flag&SD_LEVEL?-1:skilllv, type);
+		dmg.dmotion = clif_skill_damage(dsrc,bl,tick, dmg.amotion, dmg.dmotion, damage, dmg.div_, skillid, flag&SD_LEVEL?-1:skilllv, type);
 		break;
 	}
 
@@ -11893,11 +11893,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			case HT_SKIDTRAP:     case HT_LANDMINE:     case HT_ANKLESNARE:     case HT_SHOCKWAVE:
 			case HT_SANDMAN:      case HT_FLASHER:      case HT_FREEZINGTRAP:   case HT_BLASTMINE:
 			case HT_CLAYMORETRAP: case HT_SPRINGTRAP:   case RA_DETONATOR:      case RA_CLUSTERBOMB:
+			case HT_TALKIEBOX:	  case RA_FIRINGTRAP:	case RA_ICEBOUNDTRAP:
 			case RA_WUGDASH:      case RA_WUGRIDER:		case RA_WUGSTRIKE:
 				break;
 			default: // in official there is no message.
 				return 0;
 		}
+
 	}
 	if( pc_ismadogear(sd) ) {
 		switch( skill ) { //None Mado skills are unusable when Mado is equipped. [Jobbie]
