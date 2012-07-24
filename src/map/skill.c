@@ -14689,7 +14689,7 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 			case UNT_SANDMAN:
 			case UNT_FLASHER:
 			case UNT_FREEZINGTRAP:
-#ifdef RENEWAL
+#ifndef RENEWAL
 			case UNT_CLAYMORETRAP:
 #endif
 			case UNT_TALKIEBOX:
