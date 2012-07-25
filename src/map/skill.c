@@ -5014,7 +5014,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if (sd)
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0);
 			if (skill_break_equip(bl, EQP_WEAPON, 10000, BCT_PARTY) && sd && sd != dstsd)
-				clif_displaymessage(sd->fd,"You broke target's weapon");
+				clif_displaymessage(sd->fd, msg_txt(669));
 		}
 		break;
 
@@ -7248,6 +7248,19 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				skill_castend_nodamage_id);
 		}
 		break;
+	case ALL_PARTYFLEE:
+		if( sd  && !(flag&1) )
+		{
+			if( !sd->status.party_id ) 
+			{
+				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0);
+				break;
+			}
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		}
+		else 
+			clif_skill_nodamage(src,bl,skillid,skilllv,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+		break;
 	case NPC_TALK:
 	case ALL_WEWISH:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -7580,6 +7593,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_STEALTHFIELD_MASTER: case SC_STEALTHFIELD:
 				case SC_LEADERSHIP:		case SC_GLORYWOUNDS:	case SC_SOULCOLD:
 				case SC_HAWKEYES:		case SC_GUILDAURA:	case SC_PUSH_CART:
+				case SC_PARTYFLEE:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -10352,6 +10366,7 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
 			return NULL;
 		val2 = sc->data[SC_POISONINGWEAPON]->val2; // Type of Poison
+		val3 = sc->data[SC_POISONINGWEAPON]->val1;
 		limit = 4000 + 2000 * skilllv;
 		break;
 	case GD_LEADERSHIP:
@@ -11205,7 +11220,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		 **/
 		case UNT_POISONSMOKE:
 			if( battle_check_target(ss,bl,BCT_ENEMY) > 0 && !(tsc && tsc->data[sg->val2]) && rnd()%100 < 20 )
-				sc_start(bl,sg->val2,100,sg->val1,skill_get_time2(GC_POISONINGWEAPON, 1));
+				sc_start(bl,sg->val2,100,sg->val3,skill_get_time2(GC_POISONINGWEAPON, 1));
 			break;
 
 		case UNT_EPICLESIS:
