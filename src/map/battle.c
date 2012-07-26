@@ -890,6 +890,7 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 	return damage;
 }
 
+
 /*==========================================
  * Calculates GVG related damage adjustments.
  *------------------------------------------*/
@@ -915,11 +916,12 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 			}
 		}
 		if(src->type != BL_MOB) {
-			struct guild *g=guild_search(status_get_guild_id(src));
-			if (!g) return 0;
-			if (class_ == MOBID_EMPERIUM && guild_checkskill(g,GD_APPROVAL) <= 0)
+			struct guild *g = guild_search(status_get_guild_id(src));
+
+			if (class_ == MOBID_EMPERIUM && (!g || guild_checkskill(g,GD_APPROVAL) <= 0 ))
 				return 0;
-			if (battle_config.guild_max_castles && guild_checkcastles(g)>=battle_config.guild_max_castles)
+			
+			if (g && battle_config.guild_max_castles && guild_checkcastles(g)>=battle_config.guild_max_castles)
 				return 0; // [MouseJstr]
 		}
 	}
@@ -4874,7 +4876,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	}
 	
 	switch( target->type ) { // Checks on actual target
-			case BL_PC: {
+		case BL_PC: {
 				struct status_change* sc = status_get_sc(src);
 				if (((TBL_PC*)target)->invincible_timer != INVALID_TIMER || pc_isinvisible((TBL_PC*)target))
 					return -1; //Cannot be targeted yet.
@@ -5012,6 +5014,10 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 				}
 			}
 			break;
+		case BL_MER:
+			if (t_bl->type == BL_MOB && ((TBL_MOB*)t_bl)->class_ == MOBID_EMPERIUM && flag&BCT_ENEMY)
+				return 0; //mercenary may not attack Emperium
+			break;
 	}
 
 	switch( s_bl->type )
@@ -5034,8 +5040,8 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 						return 0; // You can't target anything out of your duel
 				}
 			}
-			if( map_flag_gvg(m) && !sd->status.guild_id && t_bl->type == BL_MOB && ((TBL_MOB*)t_bl)->guardian_data )
-				return 0; //If you don't belong to a guild, can't target guardians/emperium.
+			if( map_flag_gvg(m) && !sd->status.guild_id && t_bl->type == BL_MOB && ((TBL_MOB*)t_bl)->class_ == MOBID_EMPERIUM )
+				return 0; //If you don't belong to a guild, can't target emperium.
 			if( t_bl->type != BL_PC )
 				state |= BCT_ENEMY; //Natural enemy.
 			break;
