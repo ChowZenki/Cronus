@@ -2627,6 +2627,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					case ASC_BREAKER:
 					case GC_COUNTERSLASH:
 					case GC_CROSSIMPACT:
+					case AS_GRIMTOOTH:
 						ATK_RATE(50); // only modifier is halved but still benefit with the damage bonus
 						break;
 #endif
