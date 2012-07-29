@@ -77,6 +77,12 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 
 
 
+/// Print extended information.
+void Sql_PrintExtendedInfo(Sql* self);
+
+
+
+
 /// Retrieves the timeout of the connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR

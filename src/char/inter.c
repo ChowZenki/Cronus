@@ -786,6 +786,9 @@ int inter_init_sql(const char *file)
 		if( SQL_ERROR == Sql_SetEncoding(sql_handle, default_codepage) )
 			Sql_ShowDebug(sql_handle);
 	}
+	
+	ShowStatus("Conectado ao banco de dados principal '%s'.\n", char_server_db);
+	Sql_PrintExtendedInfo(sql_handle);
 
 	wis_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	inter_guild_sql_init();

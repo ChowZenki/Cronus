@@ -105,7 +105,14 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 	return SQL_SUCCESS;
 }
 
-
+/// Print extended information.
+void Sql_PrintExtendedInfo(Sql* self)
+{
+	ShowInfo("MySQL client info: %s\n", mysql_get_client_info());
+	ShowInfo("MySQL server info: %s\n", mysql_get_server_info(&self->handle));
+	ShowInfo("MySQL host info: %s\n", mysql_get_host_info(&self->handle));
+	ShowInfo("Compilado com: %s %s\n", MYSQL_COMPILATION_COMMENT, MYSQL_SERVER_VERSION);
+}
 
 /// Retrieves the timeout of the connection.
 int Sql_GetTimeout(Sql* self, uint32* out_timeout)
