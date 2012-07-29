@@ -2617,10 +2617,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			// FIX ME: Should Rolling Cutter be affected by EDP?
 				switch(skill_num){
 					case AS_SPLASHER:       case AS_VENOMKNIFE:
-					case AS_GRIMTOOTH:	case GC_ROLLINGCUTTER:
+					case GC_ROLLINGCUTTER:
 					break;
 #ifndef RENEWAL_EDP
 					case ASC_BREAKER:       case ASC_METEORASSAULT: break;
+					case AS_GRIMTOOTH: // Na renovação a 'Tocaia' não recebe bônus EDP [Axl]
 #else
 					case AS_SONICBLOW:
 					case ASC_BREAKER:
