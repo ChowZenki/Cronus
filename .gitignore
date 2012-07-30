@@ -20,3 +20,4 @@
 /vcproj-10/char-server_sql
 /vcproj-10/login-server_sql
 *.opensdf
+/vcproj-10/mapcache
