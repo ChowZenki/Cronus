@@ -1,18 +1,27 @@
-// Item Stacking Restriction File
-// Prevents an item to be stacked more than x times in given
-// inventory types. Generally used by 3rd class related skill items.
-// Format: <item id>,<stack limit amount>,<type>
-// Type mask values:
-//  &1: Character inventory restriction
-//  &2: Character cart restriction
-//  &4: Account storage restriction
-//  &8: Guild storage restriction
-// Example:
-//  512,4,12  // Will not allow more than 4 Apples in storages.
-// Note:
-//  Stack limit of 0 will disable a restriction.
+//--------------------------------------------------------------
+// _________                                    
+// \_   ___ \_______  ____   ____  __ __  ______
+// /    \  \/\_  __ \/    \ /    \|  |  \/  ___/
+// \     \____|  | \(  ( ) )   |  \  |  /\___ \ 
+//  \______  /|__|   \____/|___|  /____//____  >
+//         \/                   \/           \/  
+//--------------------------------------------------------------
+// Arquivo de Restrição de Acumulação de Itens
+//--------------------------------------------------------------
+// Previne que o jogador possua mais do que x itens.
+// Geralmente usado por classes 3 em suas habilidades.
+// Formato: <id do item>,<quantidade limite>,<tipo>
+// Tipo:
+// 	1: Restrição pelo inventário do jogador
+// 	2: Restrição pelo carrinho do jogador
+//	4: Restrição pelo armazém da conta
+//	8: Restrição pelo armazém do clã
+// Exemplo:
+//  512,4,12  // Não irá permitir mais de 4 Maçã no Armazém.
+// Nota:
+//  Limite definido como 0 irá desabilitar a função.
 
-// Rune Knight
+// Cavaleiro Rúnico
 12725,20,1  // Nauthiz Rune
 12726,20,1  // Raido Rune
 12727,20,1  // Berkana Rune
@@ -23,5 +32,5 @@
 12732,20,1  // Wyrd Rune
 12733,20,1  // Hagalaz Rune
 
-// Arch Bishop
+// Arcebispo
 12333,3,1  // Ancilla
