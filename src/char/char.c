@@ -2069,14 +2069,14 @@ int parse_fromlogin(int fd)
 
 			if (RFIFOB(fd,2)) {
 				//printf("connect login server error : %d\n", RFIFOB(fd,2));
-				ShowError("Can not connect to login-server.\n");
-				ShowError("The server communication passwords (default s1/p1) are probably invalid.\n");
-				ShowError("Also, please make sure your login db has the correct communication username/passwords and the gender of the account is S.\n");
-				ShowError("The communication passwords are set in map_athena.conf and char_athena.conf\n");
+				ShowError("Não foi possível se conectar ao servidor de login.\n");
+				ShowError("As senhas de comunicação com o servidor (padrão s1/p1) provavelmente estão incorretas.\n");
+				ShowNotice("Por favor, altere a tabela 'login' para criar uma conexão funcional. (Coloque account_id com o valor '1' e gender 'S')\n");
+				ShowNotice("E após, troque os dados da comunicação em conf/map_athena.conf e conf/char_athena.conf.\n");
 				set_eof(fd);
 				return 0;
 			} else {
-				ShowStatus("Connected to login-server (connection #%d).\n", fd);
+				ShowStatus("Não foi possível conectar-se ao login-server (conexão #%d).\n", fd);
 				loginif_on_ready();
 			}
 			RFIFOSKIP(fd,3);
@@ -4695,9 +4695,11 @@ int do_init(int argc, char **argv)
 	sql_config_read(SQL_CONF_NAME);
 
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowWarning("SECURITY WARNING - Using the default user/password s1/p1 is not recommended.\n");
-		ShowNotice("Please edit your 'login' table to create a proper inter-server user/password (gender 'S')\n");
-		ShowNotice("And then change the user/password to use in conf/char_athena.conf (or conf/import/char_conf.txt)\n");
+		ShowError("Não foi possível iniciar o emulador.\n");
+		ShowError("O servidor está utilizando senhas de comunicação s1/p1. Isto é inválido e o servidor não irá iniciar.\n");
+		ShowNotice("Por favor, altere a tabela 'login' para criar uma conexão funcional. (Coloque account_id com o valor '1' e gender 'S')\n");
+		ShowNotice("E após, troque os dados da comunicação em conf/map_athena.conf e conf/char_athena.conf.\n");
+		return 0;
 	}
 
 	ShowInfo("Finished reading the char-server configuration.\n");
