@@ -98,7 +98,6 @@ function	script	F_GldManager	{
 		mes "A Funcionária Kafra trabalhará pra nós durante um mês, depois desse período será necessário pagar uma taxa adicional por mês.";
 		mes "É bom ter uma carinha bonita por aqui, e ainda mais uma que ofereça tantos serviços! *lv*";
 		close;
-		}
 	Case 2:
 		mes "[Administrador do Castelo]";
 		mes "Vossa Alteza deseja ir aos Aposentos do Líder?";
@@ -116,7 +115,6 @@ function	script	F_GldManager	{
 			mes "A cada dia, haverá um novo item no Tesouro. Você precisa retirá-los todo dia para que o próximo item surja.";
 			mes "Assim, para o crescimento do Clã, você deve investir no tesouro e recolher os itens todos os dias.";
 			close;
-		}
 	Case 3:
 		mes "[Administrador do Castelo]";
 		mes "Como você desejar.";
@@ -143,5 +141,5 @@ nguild_pay,120,58,4	script	Dundar	55,{
 nguild_prt,112,181,0	script	Thefton	55,{
 	callfunc "F_GldManager","Thefton","nguild_prt",15,209,"N04";
 	close;
-
+}
 //===========================================================================================

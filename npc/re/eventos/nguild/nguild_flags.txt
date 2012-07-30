@@ -60,8 +60,6 @@ function	script	F_Flags	{
 		mes "Se alguém se opõe a este decreto";
 		mes "desembainhe sua espada para fazer valer sua vontade.";
 		close;
-
-	}
 }
 
 //============================================================================//
