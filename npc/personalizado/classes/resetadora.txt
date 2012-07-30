@@ -16,32 +16,24 @@
 
 prontera,158,193,6	script	Resetadora	77,{
 
-//===== Configurações: =======================================
-set .@atrib, 5000;	// Reset de Atributos
-set .@habil, 5000;	// Reset de Habilidades
-set .@ambos, 9000;	// Reset de Ambos
-//============================================================
+	// == Configuração dos Preços ==
+	// O primeiro valor é o preço para atributos, o segundo para habilidades,
+	// e o terceiro é para ambos. Coloque apenas número inteiros e positivos.
+	setarray .reset[0], 5000, 5000, 9000;
 
 	mes "[Resetadora]";
-	mes "Olá, posso resetar seus pontos.";
-	mes "Qual você deseja resetar?";
+	mes "Olá, "+strcharinfo(0)+", o que você deseja resetar?";
 	next;
-	if (select ("Resetar Atributos ["+.@atrib+"z]:Resetar Habilidades ["+.@habil+"z]:Resetar Ambos ["+.@ambos+"z]:Cancelar") == 4) close;
+	if (select ("Resetar Atributos ["+.reset[0]+"z]:Resetar Habilidades ["+.reset[1]+"z]:Resetar Ambos ["+.reset[2]+"z]:Cancelar") == 4) close;
 	mes "[Resetadora]";
-	if (@menu == 1) callsub F_Reset, .@atrib, 1, 0;
-	if (@menu == 2) callsub F_Reset, .@habil, 0, 1;
-	if (@menu == 3) callsub F_Reset, .@ambos, 1, 1;
+	if (Zeny < .reset[(@menu - 1)])
+	{
+		mes "Me desculpe, mas você não possui o Zeny necessário.";
+		close;
+	}
+	set Zeny, Zeny - .reset[(@menu - 1)];
+	if (@menu == 1 || @menu == 3) resetstatus;
+	if (@menu >= 2) resetskill;
 	mes "Pronto, resetado. Fale comigo mais vezes se precisar!";
 	close;
-
-	F_Reset:
-		if (Zeny < getarg(0))
-		{
-			mes "Me desculpe, mas você não possui o Zeny necessário.";
-			close;
-		}
-		set Zeny, Zeny - getarg(0);
-		if (getarg(1)) resetstatus;
-		if (getarg(2)) resetskill;
-	return;
 }

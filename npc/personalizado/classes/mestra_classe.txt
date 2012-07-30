@@ -27,13 +27,16 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 		mes "Que bom te ver de novo "+strcharinfo(0)+"!";
 		mes "O dia está lindo, não acha?";
 		close;
-	} if (SkillPoint) {
+	}
+	if (SkillPoint) {
 		mes "Você precisa utilizar todos os seus pontos de habilidade antes de mudar de classe.";
 		close;
-	} if (checkcart() && checkfalcon() && checkriding()) {
+	}
+	if (checkcart() && checkfalcon() && checkriding()) {
 		mes "Você não pode mudar de classe enquanto estiver utilizando Falcão, Carrinho ou PecoPeco.";
 		close;
-	} if (!Class || Class == 4023) {
+	}
+	if (!Class || Class == 4023) {
 		callsub F_ReqBaseJobLevel, 10, 0;
 		mes "Olá "+strcharinfo(0)+", vejo que você é apenas um "+jobname(Class)+"!";
 		mes "Você está apto a mudar de classe. Qual deseja se tornar?";
@@ -46,7 +49,8 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 			set .@chg, ((@menu == 7) ? 4045 : (4023+@menu));
 		}
 		callsub F_ChangeJob, set (lastjob1, .@chg);
-	} else if (Class > 0 && (Class < 7 || Class == 4046)) {
+	}
+	else if (Class > 0 && (Class < 7 || Class == 4046)) {
 		callsub F_ReqBaseJobLevel, 40, 0;
 		mes "Vejo que você voltou; e mais forte!";
 		mes "Pois bem, que classe deseja seguir agora?";
@@ -60,10 +64,7 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 					break;
 					
 			case 3:
-					if (Sex)
-						setarray .@c[0],11,19;
-					else
-						setarray .@c[0],11,20;
+					setarray .@c[0],11, (Sex) ? 19 : 20;
 					break;
 					
 			case 4:
@@ -85,7 +86,8 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 		next;
 		select (jobname(.@c[0])+"",""+jobname(.@c[1]));
 		callsub F_ChangeJob, set(lastjob, .@c[(@menu-1)]);
-	} else if (Class > 6 && Class < 22) {
+	}
+	else if (Class > 6 && Class < 22) {
 		callsub F_ReqBaseJobLevel, 50, 1;
 		mes "Vejo que você está bastante forte!";
 		mes "Gostaria de renascer?";
@@ -102,12 +104,14 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 		mes "Você ganhará 100 Pontos de Atributo, e algumas habilidades";
 		mes "para ajudar-lhe em sua jornada.";
 		close;
-	} else if (Class == 4001) {
+	}
+	else if (Class == 4001) {
 		callsub F_ReqBaseJobLevel, 10, 0;
 		mes "Você voltou tão rápido e está evoluindo muito ^^ ...";
 		next;
 		callsub F_ChangeJob, (lastjob1+4001);
-	} else if (Class > 4001 && Class < 4008) {
+	}
+	else if (Class > 4001 && Class < 4008) {
 		callsub F_ReqBaseJobLevel, 40, 0;
 		mes "Você está quase chegando ao grau máximo de evolução.";
 		mes "E então...";
@@ -130,10 +134,7 @@ prontera,153,193,4	script	Mestra das Classes	864,{
 				break;
 				
 			case 4026:
-				if (Sex)
-					setarray .@c[0], 4034, 4042;
-				else
-					setarray .@c[0], 4034, 4043;
+				setarray .@c[0], 4034, (Sex) ? 4042 : 4043;
 				break;
 				
 			case 4027:

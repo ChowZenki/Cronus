@@ -1,39 +1,33 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
+//===== Cronus Script ========================================
 //= Habilidades Platina
-//===== Por: =========================================================
+//===== Por: =================================================
 //= Mehah
-//===== Vers„o Atual: ================================================
-//= 1.4
-//===== CompatÌvel com: ==============================================
-//= Cronus GIT
-//===== DescriÁ„o: ===================================================
+//===== Vers√£o Atual: ========================================
+//= 1.3a
+//===== Descri√ß√£o: ===========================================
 //= Recebe as habilidade de Quest
-//===== Coment·rios Adicionais: ======================================
-//= 1.4 Pequena ModificaÁıes. [Axl]
-//====================================================================
+//===== Changelog: ===========================================
+//= 1.1 Adicionado suporte as novas habilidades de Quest [Mehah]
+//= 1.2 Removido Fingir de Morto das Classes Extendeds [Pudim]
+//= 1.2a Pequenas corre√ß√µes e mudan√ßas. [RoM]
+//= 1.3 Removida a vari√°vel do npc_athena.conf (ele n√£o existe mais). [RoM]
+//= 1.3a Removido show [Keoy]
+//============================================================
 
 prontera,128,200,6	script	Habilidades de Platina	94,{
 
-//========== ConfiguraÁ„o: ==========
+//========== Configura√ß√£o: ==========
 // Custo para receber as habilidades:
 set .@custo,0;
 //===================================
 
-	mes "["+strnpcinfo(1)+"]";
-	mes "Ol·, vocÍ deseja receber suas habilidades extras?";
-	if(.@custo) mes "Ir· custar "+.@custo+" Zeny.";
-	next;
-	if(select("Sim","N„o") == 2) close;
 	mes "[Habilidades de Platina]";
-	switch(BaseJob) {		
+	mes "Ol√°, voc√™ deseja receber suas habilidades extras?";
+	if(.@custo) mes "Ir√° custar "+.@custo+" Zeny.";
+	next;
+	if(select("Sim","N√£o") == 2) close;
+	mes "[Habilidades de Platina]";
+	switch(BaseJob){		
 		case Job_Novice: callfunc("skill:add",.@custo,2,142,143);			
 		case Job_Swordman: callfunc("skill:add",.@custo,3,144,145,146);
 		case Job_Mage: callfunc("skill:add",.@custo,1,157);

@@ -14,48 +14,48 @@
 //= 1.5b Adicionado algumas variáveis, algumas opções para melhor entendimento e corrigido alguns BUGs [Heaven]
 //= 1.5c Adicionado mais algumas opções para melhorar o entendimento e feitas algumas otimizações [Heaven]
 //= 1.5d Removido show e digit [Keoy]
-//= 1.5e Mais otimizações [Mara]
+//= 1.5e Mais otimizações [mkbu95]
 //============================================================ 
 
 prontera,132,217,5	script	Banqueiro	109,{
 
 //========== Configurações: ==================================
-set .@custo,	0;			//Custo de cada transferência.
+set .@custo,	0;			//Custo de cada operação.
 set .@depmax,	10000000;	//Valor máximo para depósito.
 set .@saqmax,	10000000;	//Valor máximo para saque.
 set .@trasfmax,	10000000;	//Valor máximo para transferência.
+set .@magic$, "0xB00B5";	//Número mágico
 //============================================================
 
 	mes "[Banqueiro]";
-	if(getd("$banco_"+getcharid(3)))
+	if (getd ("$banco_"+getcharid(3)))
 	{
 		
 		mes "A sua conta recebeu uma transferência de "+getd("$banco_"+getcharid(3))+"z.";
-		set #bancoZ,(#bancoZ+getd("$banco_"+getcharid(3)));
+		set #bancoZ, (#bancoZ + getd("$banco_"+getcharid(3)));
 		setd "$banco_"+getcharid(3), 0;
 		mes "Seu saldo agora é de "+#bancoZ+"z.";
 		next;
 		mes "[Banqueiro]";
 	}
-	mes "Bem-vindo ao Banco de Prontera, como posso ajudá-lo?";
+	mes "Bem-vind"+((Sex)?"o":"a")+" ao Banco de Prontera, como posso ajudá-lo?";
 	next;
-	switch(select ("Realizar depósito:Efetuar saque:Verificar saldo:Efetuar transferência:Cancelar"))
+	switch (select ("Realizar depósito:Efetuar saque:Verificar saldo:Efetuar transferência:Cancelar"))
 	{
 		mes "[Banqueiro]";
 		
 		case 1:
-			callsub F_SacDep, "depositar",Zeny,.@depmax,#bancoZ;
+			callsub F_SacDep, "depositar", Zeny, .@depmax, #bancoZ;
 
 		case 2:
-			callsub F_SacDep, "sacar",#bancoZ,.@saqmax,Zeny;
+			callsub F_SacDep, "sacar", #bancoZ, .@saqmax, Zeny;
 	
 		case 3:
 			mes "Um momento, deixe-me checar as papeladas...";
 			next;
 			mes "[Banqueiro]";
 			mes "Você possui atualmente em a quantia de "+#bancoZ+"z.";
-			mes "O número de sua conta é "+(getcharid(3) - 2000000)+".";
-			close;
+			callsub F_MesThenClose, "O número de sua conta é "+(getcharid(3) + axtoi(.@magic$))+".";
 
 		case 4:
 			mes "Para que conta deseja realizar a transferência?";
@@ -85,8 +85,7 @@ set .@trasfmax,	10000000;	//Valor máximo para transferência.
 						mes "[Banqueiro]";
 						if(@zeny < 1 || @zeny > .@trasfmax || @zeny > Zeny)
 						{
-							mes "Desculpe, mas o valor que você digitou não é valido.";
-							close;
+							callsub F_MesThenClose, "Desculpe, mas o valor que você digitou não é valido.";
 						}
 						mes "Deseja que a transferência seja feita com o dinheiro no banco ou seu próprio dinheiro?";
 						next;
@@ -95,16 +94,18 @@ set .@trasfmax,	10000000;	//Valor máximo para transferência.
 						else
 							callsub F_Transf, Zeny;
 					case 3:
-						mes "Tudo bem, obrigado por utilizar nossos serviços.";
-						close;
+						callsub F_MesThenClose, "Tudo bem, obrigado por utilizar nossos serviços.";
 				}
 			}
 			
 		case 5:
-			mes "Até mais!";
-			close;
-			
+			callsub F_MesThenClose, "Até mais!";	
 	}
+	
+	F_MesThenClose:
+		mes getarg(0);
+		close;
+	return;	
 	
 	F_SacDep:
 		mes "Bem, quanto você gostaria de "+getarg(0)+"? O valor máximo é de "+((getarg(1) > getarg(2))?getarg(2):getarg(1))+"z.";
@@ -112,28 +113,20 @@ set .@trasfmax,	10000000;	//Valor máximo para transferência.
 		input .@zeny;
 		mes "[Banqueiro]";
 		if (!.@zeny || .@zeny > getarg(2) || .@zeny > getarg(1))
-		{
-			mes "Desculpe, mas o valor que você digitou não é valido.";
-			close;
-		}
+			callsub F_MesThenClose, "Desculpe, mas o valor que você digitou não é valido.";
 		set getarg(1), getarg(1) - .@zeny;
 		set getarg(3), getarg(3) + .@zeny;
-		mes "Seus Zenys estão em boas mãos, obrigado por utilizar nossos serviços!";
-		close;
+		callsub F_MesThenClose, "Seus Zenys estão em boas mãos, obrigado por utilizar nossos serviços!";
 	return;
 	
 	F_Transf:
 		mes "[Banqueiro]";
 		if((@zeny+@custo) > getarg(0))
-		{
-			mes "Desculpe, mas você não possui "+(@zeny+@custo)+"z em sua conta no banco.";
-			close;
-		}
-		set .@acc_transf, (@conta+2000000);
-		set getarg(0), getarg(0) - (@zeny+@custo);
+			callsub F_MesThenClose, "Desculpe, mas você não possui "+(@zeny+@custo)+"z em sua conta no banco.";
+		set .@acc_transf, (@conta - axtoi(.@magic$));
+		set getarg(0), getarg(0) - (@zeny + @custo);
 		setd "$banco_"+.@acc_transf, (getd("$banco_"+.@acc_transf)+@zeny);
 		mes "Operação concluída. Você transferiu "+@zeny+"z para a conta "+@conta+".";
-		mes "Obrigado por utilizar nossos serviços!";
-		close;
+		callsub F_MesThenClose, "Obrigado por utilizar nossos serviços!";
 	return;
 }

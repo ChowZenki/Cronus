@@ -1,56 +1,72 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
+//===== Cronus Script ========================================
 //= Teletransportadora
-//===== Por: =========================================================
+//===== Por: =================================================
 //= Kamper
-//===== Vers„o Atual: ================================================
-//= 2.8
-//===== CompatÌvel com: ==============================================
-//= Cronus GIT
-//===== DescriÁ„o: ===================================================
+//===== Vers√£o Atual: ========================================
+//= 2.7
+//===== Compat√≠vel Com: ======================================
+//= Emulador [3010+]; Cliente [EP 12.1]
+//===== Descri√ß√£o: ===========================================
 //= Move um personagem para o local escolhido pelo mesmo.
-//= (Nota 1): 0 equivale a N„o e 1 equivale a Sim.
-//===== Coment·rios Adicionais: ======================================
-//= 2.8 Pequena ModificaÁıes. [Axl]
-//====================================================================
+//= (Nota 1): 0 equivale a N√£o e 1 equivale a Sim.
+//===== Coment√°rios Adicionais: ==============================
+//= 1.0 Iniciado o Npc [Kamper]
+//= 1.1 Usado as cordenadas do Warp NPC feito pelo eA Dev Team
+//= 1.2 Modificado a sprite [Kamper]
+//= 1.3 Corrigido a coordenada, era da Payon Nova [Kamper]
+//= 1.3.1 Corrigido a coordenada para Payon Nova [Kamper]
+//= 1.4 Voltado para a coordenada da nova Payon [Kamper]
+//= 1.5 Adicionado teleportes para Ayothaya e LouYang [Kamper]
+//= 1.6 Adicionado teleportes para Einbroch e Einbech [Kamper]
+//= 1.7 Adicionado novos teleportes, organizado e otimizado [S4suk3]
+//= 1.8 Adicionado novos warps [Kamper
+//= 1.8a Corrigido pequeno erro de digita√ß√£o [Page]
+//= 1.9 Adicionados Rachel & Veins aos Warps [MaxDragon]
+//= 2.0 Reestruturado o npc [Kamper]
+//= 2.1 Corrigido erros do script. [SoulBlaker]
+//= 2.2 Corrigido erro e adicionados os mapas Ilha esquecida e Monast√©rio [Minos]
+//= 2.3 Adicionado Mosc√≥via e Floresta Encantada. [RoM]
+//= 2.4 Corrigido o mapa e coordenada para o Formigueiro Infernal. [RoM]
+//= 2.5 Movida a entrada do Formigueiro Infernal e da Teletransportadora de l√°. [RoM]
+//= 2.6 Removido um duplicate duplicado de hugel. [Puncker]
+//= 2.7 Otimizado, adicionado fun√ß√µes e mapas. [Mara]
+//============================================================ 
 
 -	script	Teletransportadora#01::cWarp	-1,{
 
-//===== ConfiguraÁıes: ======================================= 
-set @lwarp,	0;	// Habilitar ˙ltimo warp gravado? (Nota 1)
-set @sdung,	1;	// Exibir calabouÁos no menu? (Nota 1)
+//===== Configura√ß√µes: ======================================= 
+set @lwarp,	0;	// Habilitar √∫ltimo warp gravado? (Nota 1)
+set @sdung,	1;	// Exibir calabou√ßos no menu? (Nota 1)
 //============================================================ 
 
-	mes "["+strnpcinfo(1)+"]";
-	mes "Ol· "+strcharinfo(0)+", seja bem-vindo ao ServiÁo de Teletransporte!";
-	mes "Para onde vocÍ gostaria de ir?";
+	mes "[Teletransportadora]";
+	mes "Ol√° "+strcharinfo(0)+", seja bem-vindo ao Servi√ßo de Teletransporte!";
+	mes "Para onde voc√™ gostaria de ir?";
 	next;
-	switch (select (((@lwarp)?"⁄ltimo Destino":"")+"","Cidades",""+((@sdung)?"Outros Lugares":""))) {
+	switch (select (((@lwarp)?"√öltimo Destino":"")+"","Cidades",""+((@sdung)?"Outros Lugares":"")))
+	{
 		case 1:
-			if (lwarpx) {
+			if (lwarpx)
+			{
 				warp lwarp$, lwarpx, lwarpy;
 				end;
-			} else {
+			}
+			else
+			{
 				next;
 				mes "[Teletransportadora]";
-				mes "VocÍ ainda n„o utilizou nosso serviÁo!";
+				mes "Voc√™ ainda n√£o utilizou nosso servi√ßo!";
 				close;
 			}
 		
 		case 2:	
-			mes "["+strnpcinfo(1)+"]";
+			mes "[Teletransportadora]";
 			mes "Selecione o seu destino:";
 			next;
 			switch (select ("Prontera","Alberta","Aldebaran","Amatsu","Ayothaya","Brasilis","Comodo","Einbech","Einbroch","Esplendor","Geffen","Gonryun",
 							"Hugel","Izlude","Jawaii","Juno","Lighthalzen","Louyang","Lutie","Manuka","Morroc","Moscovia","Ilha Esquecida","Niflheim",
-							"Payon","Rachel","Umbala","Veins")) {
+							"Payon","Rachel","Umbala","Veins"))
+			{
 			
 				case 1: callsub F_DoWarp, "prontera", 156, 191;	
 				case 2: callsub F_DoWarp, "alberta", 192, 147;
@@ -83,26 +99,28 @@ set @sdung,	1;	// Exibir calabouÁos no menu? (Nota 1)
 			}
 		
 		case 3:
-			mes "["+strnpcinfo(1)+"]";
+			mes "[Teletransportadora]";
 			mes "Selecione o seu destino:";
 			next;
-			switch (select ("MonastÈrio","Lago do Abismo","Labirinto de Tatames","Formigueiro Infernal","Labirinto do Santu·rio Ancestral","Ilha de Byalan","Caverna de Comodo","Torre do RelÛgio","Mina de Carv„o",
-							"CalabouÁo da Mina","Gefenia","CalabouÁo de Geffen","Glast Heim","Santu·rio de Xi Wang Mu","Labirinto da Floresta","Caverna de Gelo","RuÌnas de Juperos","F·brica de RobÙs","BiolaboratÛrio de Somatologia",
-							"A Tumba Real","CalabouÁo de Magma","Floresta Encantada","Campos de Niflheim","Santu·rio de Odin","Caverna dos Orcs","Caverna de Payon","Esgoto de Prontera",
-							"Pir‚mide","Santu·rio de Rachel","Esfinge","Navio Fantasma","Torre de Thanatos","Vulc„o de Thor","F·brica de Brinquedos","Ilha da Tartaruga","Loja de Carpintaria","Caverna das Cataratas",
-							"Poringl‚ndia","Praia das Focas")) {
+			switch (select ("Monast√©rio","Lago do Abismo","Labirinto de Tatames","Formigueiro Infernal","Labirinto do Santu√°rio Ancestral","Ilha de Byalan","Caverna de Comodo","Torre do Rel√≥gio","Mina de Carv√£o",
+							"Calabou√ßo da Mina","Gefenia","Calabou√ßo de Geffen","Glast Heim","Santu√°rio de Xi Wang Mu","Labirinto da Floresta","Caverna de Gelo","Ru√≠nas de Juperos","F√°brica de Rob√¥s","Biolaborat√≥rio de Somatologia",
+							"A Tumba Real","Calabou√ßo de Magma","Floresta Encantada","Campos de Niflheim","Santu√°rio de Odin","Caverna dos Orcs","Caverna de Payon","Esgoto de Prontera",
+							"Pir√¢mide","Santu√°rio de Rachel","Esfinge","Navio Fantasma","Torre de Thanatos","Vulc√£o de Thor","F√°brica de Brinquedos","Ilha da Tartaruga","Loja de Carpintaria","Caverna das Cataratas",
+							"Poringl√¢ndia","Praia das Focas"))
+			{
 			
 				case 1: callsub F_DoWarp, "nameless_n", 164, 184;
 				case 2: callsub F_DoWarp, "abyss_01", 264, 271;
 				case 3: callsub F_DoWarp, "ama_dun01", 229, 10;
-				case 4: callsub F_DoWarp, "cmd_fild08", 328, 357;
+				case 4: callsub F_DoWarp, "moc_fild20", 163, 145;
 				case 5: callsub F_DoWarp, "ayo_fild02", 277, 150;
 				case 6: callsub F_DoWarp, "izlu2dun", 107, 89;
 				case 7: 
-					mes "["+strnpcinfo(1)+"]";
-					mes "Por favor, seja mais especÌfico:";
+					mes "[Teletransportadora]";
+					mes "Por favor, seja mais espec√≠fico:";
 					next;
-					switch (select ("Caverna do Oeste:Caverna do Norte:Caverna do Leste")) {
+					switch (select ("Caverna do Oeste:Caverna do Norte:Caverna do Leste"))
+					{
 						case 1: callsub F_DoWarp, "comodo", 30, 215;
 						case 2: callsub F_DoWarp, "comodo", 176, 352;
 						case 3: callsub F_DoWarp, "comodo", 327, 175;
@@ -144,7 +162,8 @@ set @sdung,	1;	// Exibir calabouÁos no menu? (Nota 1)
 	}
 	
 	F_DoWarp:
-		if (@lwarp) {
+		if (@lwarp)
+		{
 			set lwarp$, getarg(0);
 			set lwarpx, getarg(1);
 			set lwarpy, getarg(2);
@@ -154,7 +173,7 @@ set @sdung,	1;	// Exibir calabouÁos no menu? (Nota 1)
 	return;
 }
 
-//===== DuplicaÁıes: =========================================
+//===== Duplica√ß√µes: =========================================
 //Cidades 
 alberta,187,147,4	duplicate(cWarp)	Teletransportadora#02	721
 aldebaran,145,118,4	duplicate(cWarp)	Teletransportadora#03	721
@@ -171,7 +190,7 @@ hugel,88,151,5	duplicate(cWarp)	Teletransportadora#13	721
 lighthalzen,155,79,6	duplicate(cWarp)	Teletransportadora#14	721
 louyang,210,106,4	duplicate(cWarp)	Teletransportadora#15	721
 morocc,154,97,4	duplicate(cWarp)	Teletransportadora#16	721
-prontera,160,192,4	duplicate(cWarp)	Teletransportadora#17	721
+prontera,161,192,4	duplicate(cWarp)	Teletransportadora#17	721
 payon,182,110,4	duplicate(cWarp)	Teletransportadora#18	721
 umbala,132,130,4	duplicate(cWarp)	Teletransportadora#19	721
 xmas,150,136,4	duplicate(cWarp)	Teletransportadora#20	721

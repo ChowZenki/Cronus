@@ -1,24 +1,27 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
+//===== Cronus Script ========================================
 //= Mestra das Classes
-//===== Por: =========================================================
+//===== Por: =================================================
 //= Reply.
-//===== Versão Atual: ================================================
-//= 1.5a
-//===== Compatível com: ==============================================
-//= Cronus GIT
-//===== Descrição: ===================================================
+//===== Versão: ==============================================
+//= 1.5b
+//===== Descrição: ===========================================
 //= Muda a classe do personagem.
-//===== Comentários Adicionais: ======================================
-//= 1.5 Pequenas modificações [Axl]
-//= 1.5a Comandos de checagem corrigidos [Axl]
+//===== Changelog: ===========================================
+//= 1.0 - NPC Criado. [Reply.]
+//= 1.1 - Corrigido alguns erros. [Reply.]
+//= 1.2 - Corrigido a checagem de job para Baby Aprendiz. [RoM]
+//=     - Corrigido onde mostra o nome na função.
+//= 1.3 - Adicionada uma verificação de peso ao rebornar para não perder itens. [RoM]
+//= 1.3a - Algumas correções de gramática. [Puncker]
+//= 1.3b - Uma pequena correção. [RoM]
+//= 1.3c - Corrigido erro de "Frase desnecessária" [Heaven]
+//= 1.3d - Não há necessidade de usar uma variável no nome do npc, retirado. [Mooka]
+//= 1.3e - Corrição no if() da função checkconditions(), problema com classes baby. [Mooka]
+//= 1.3f - Removido show [Keoy]
+//= 1.4 - Refeito NPC. [mkbu95]
+//= 1.5 - Adicionada classes 3-1 e 3-2. [mkbu95]
+//= 1.5a - Pequenas modificações [Axl]
+//= 1.5b - Comandos de checagem corrigidos [Axl]
 //====================================================================
 
 prontera,153,193,4	script	Mestra das Classes	864,{

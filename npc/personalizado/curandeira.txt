@@ -1,63 +1,66 @@
-//====================================================================
-//          _________                                                  
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/              
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \               
-//           \______  /|__|   \____/|___|  /____//____  >              
-//                  \/                   \/           \/               
-//                                                               
-//====================== Cronus Script ===============================
+//===== Cronus Script ======================================== 
 //= Curandeira
-//===== Por: =========================================================
+//===== Por: =================================================
 //= DennyLoko
-//===== Vers„o Atual: ================================================
-//= 1.4
-//===== CompatÌvel com: ==============================================
-//= Cronus GIT
-//===== DescriÁ„o: ===================================================
+//===== Vers√£o Atual: ======================================== 
+//= 1.3a
+//===== Descri√ß√£o: =========================================== 
 //= Recupera HP e SP gratuitamente
-//===== Coment·rios Adicionais: ======================================
-//= 1.4 Removido HealHomun [Axl]
-//====================================================================
+//= Usado as cordenadas do NPC do eAthena
+//===== Changelog: =========================================== 
+//= 1.0 Iniciado o Npc [DennyLoko]
+//= 1.1 Organizado o NPc [Kamper]
+//= 1.1b corrigindo erro na duplicate de rachel [Tiu Skan]
+//= - Removidos ".gat" 
+//= Script Reestruturado [Mehah]
+//= 1.2 Removido falas, adicionado cura de Homunculo e Mosc√≥via. [RoM]
+//= 1.3 Adicionado a op√ß√£o paga. [RoM]
+//= 1.3a Removido show [Keoy]
+//============================================================
 
 prontera,150,184,5	script	Curandeira#hG1-1::HealerG	91,{
 
-//======== ConfiguraÁ„o ===========
-set .@pago,0; //0 = gr·tis, 1 = pago
+//======== Configura√ß√£o ===========
+set .@pago,0; //0 = gr√°tis, 1 = pago
 //=================================
 
 	if(.@pago) {
 		if(MaxHp-Hp && MaxSp-Sp) {
-			switch(select("Curar HP ["+(MaxHp-Hp)+"z]","Curar SP ["+(MaxSp-Sp)+"z]","Curar ambos ["+(MaxHp-Hp+MaxSp-Sp)+"z]","Cancelar")){
-				case 1: CallSub cura,Hp,(MaxHp-Hp);
-				case 2: CallSub cura,Sp,(MaxSp-Sp);
-				case 3: CallSub cura,(Hp+Sp),(MaxHp-Hp+MaxSp-Sp);
+			switch (select ("Curar HP ["+(MaxHp-Hp)+"z]:Curar SP ["+(MaxSp-Sp)+"z]:Curar Ambos ["+(MaxHp-Hp+MaxSp-Sp)+"z]:Cancelar")) {
+				case 1: CallSub cura, Hp, (MaxHp-Hp);
+				case 2: CallSub cura, Sp, (MaxSp-Sp);
+				case 3: CallSub cura, (Hp+Sp), (MaxHp-Hp+MaxSp-Sp);
 				case 4: close;
 			}
 		}
-		if(MaxHp-Hp){
-			if(select("Curar HP ["+(MaxHp-Hp)+"z]","Cancelar") == 2) close;
-			CallSub cura,Hp,(MaxHp-Hp);
+		if(MaxHp-Hp) {
+			if (select ("Curar HP ["+(MaxHp-Hp)+"z]:Cancelar") == 2) close;
+			CallSub cura, Hp, (MaxHp-Hp);
 		}
-		if(MaxSp-Sp){
-			if(select("Curar SP ["+(MaxSp-Sp)+"z]","Cancelar") == 2) close;
-			CallSub cura,Sp,(MaxSp-Sp);
+		if(MaxSp-Sp) {
+			if (select ("Curar SP ["+(MaxSp-Sp)+"z]:Cancelar") == 2) close;
+			CallSub cura, Sp, (MaxSp-Sp);
 		}
 	}
-	percentheal 100,100;
+	percentheal 100, 100;
+	if (gethominfo(1)) healhomun 100, 100;
 	end;
 
-cura:
-	if (Zeny < getarg(1)){
-		mes "["+strnpcinfo(1)+"]";
-		mes "Oh, vocÍ n„o tem todo o dinheiro necess·rio.";
-		mes "Desculpe, mas n„o posso cur·-lo.";
-		close;	
-	}else set Zeny,Zeny-getarg(1);
-	if(getarg(0) == (Hp+Sp)) percentheal 100,100;
-	if(getarg(0) == Hp) percentheal 100,0;
-	if(getarg(0) == Sp) percentheal 0,100;
-	close;
+	cura:
+		if (Zeny < getarg(1)) {
+			mes "[Curandeira]";
+			mes "Oh, voc√™ n√£o possui todo o dinheiro necess√°rio.";
+			mes "Desculpe, mas n√£o posso cur√°-lo.";
+			close;	
+		}
+		else {
+			set Zeny, Zeny - getarg(1);
+		}
+		if (getarg(0) == (Hp+Sp)) percentheal 100, 100;
+		if (getarg(0) == Hp) percentheal 100, 0;
+		if (getarg(0) == Sp) percentheal 0, 100;
+		close;
+	return;
 }
 
 morocc,159,96,5	duplicate(HealerG)	Curandeira#hG2-2	91
