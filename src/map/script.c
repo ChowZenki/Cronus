@@ -16593,6 +16593,46 @@ BUILDIN_FUNC(checkre)
 	return 0;
 }
 
+/*==========================================
+ * [SoulBlaker] makehomun <homunid>;
+ *------------------------------------------*/
+BUILDIN_FUNC(makehomun)
+{
+	TBL_PC* sd;
+	int homunid;
+ 
+	homunid = script_getnum(st,2);
+	sd = script_rid2sd(st);
+
+	if (sd == NULL || homunid < HM_CLASS_BASE || homunid > (HM_CLASS_BASE + MAX_HOMUNCULUS_CLASS - 1) )
+		return 0;
+
+	merc_create_homunculus_request(sd,homunid);
+	return 0;
+}
+
+/*==========================================
+ * [SoulBlaker] healhomun <percenthp,percentsp>;
+ *------------------------------------------*/
+BUILDIN_FUNC(healhomun)
+{
+	TBL_HOM * hd;
+	TBL_PC* sd;
+
+	sd = script_rid2sd(st);
+
+	if (sd == NULL) // Para evitar crashes [Keoy]
+		return 0;
+
+	hd = sd->hd; // ??
+	if(merc_is_hom_active(sd->hd))
+		status_percent_heal(&hd->bl,
+							script_getnum(st,2),	// Hp
+							script_getnum(st,3)		// SP
+							);
+	return 0;
+}
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -16981,6 +17021,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(buyingstore,"i"),
 	BUILDIN_DEF(searchstores,"ii"),
 	BUILDIN_DEF(showdigit,"i?"),
+	BUILDIN_DEF(getmapmobs,"s"),
 	// WoE SE
 	BUILDIN_DEF(agitstart2,""),
 	BUILDIN_DEF(agitend2,""),
@@ -17049,6 +17090,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(getitem,"additem","vi?"),
 	BUILDIN_DEF2(getitem2,"additem2","viiiiiiii?"),
 	BUILDIN_DEF2(callshop,"callcashshop","s*"),
-	BUILDIN_DEF(getmapmobs,"s"),
+	BUILDIN_DEF(makehomun,"i"),		//[SoulBlaker]
+	BUILDIN_DEF(healhomun,"ii"),	//[SoulBlaker]
 	{NULL,NULL,NULL},
 };
