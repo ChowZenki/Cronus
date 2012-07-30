@@ -28,7 +28,6 @@ function	script	F_GldDunSw	{
 		mes " ' Um Guerreiro que mesmo tendo vencido a batalha, procura vencer a Guerra. Este é o verdadeiro Líder. ' ";
 		close;
 	}
-	else {
 		mes "[ Voz Ecoante ]";
 		mes " ' Um teste de braveza... '";
 		next;
@@ -42,9 +41,8 @@ function	script	F_GldDunSw	{
 			}
 			mes " ";
 			mes " Nada aconteceu.";
+			close;
 		}
-		return;
-	}
 }
 
 // Castle 1 ===============================================

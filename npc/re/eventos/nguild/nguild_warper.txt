@@ -58,7 +58,7 @@ prontera,146,163,6	script	Castelos Novatos	729,{
 	}
 	mes "Eu sou o porteiro para os castelos";
 	next;
-	if(!(eaclass()&(EAJL_2|EAJL_UPPER)) && BaseLevel<60)
+	if(!(eaclass() & (EAJL_2|EAJL_UPPER)) && BaseLevel < 60)
 		if(select("Entrar nos castelos novatos","Nada") == 2) close;
 		//remove several unallowed buffs
 		sc_end SC_ASSUMPTIO;
