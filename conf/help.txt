@@ -275,4 +275,3 @@ reloadscript: "Reload all scripts."
 gat: "For debugging (you inspect around gat)"
 send: "For debugging (packet variety)"
 nuke: "Params: <char name>\n" "Blow somebody up, including those surrounding them."
-
