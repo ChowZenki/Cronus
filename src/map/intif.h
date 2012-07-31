@@ -31,7 +31,7 @@ int intif_request_guild_storage(int account_id, int guild_id);
 int intif_send_guild_storage(int account_id, struct guild_storage *gstor);
 
 
-int intif_create_party(struct party_member *member,char *name,int item,int item2);
+bool intif_create_party(struct party_member* member, const char* name, int item, int item2);
 int intif_request_partyinfo(int party_id, int char_id);
 
 int intif_party_addmember(int party_id,struct party_member *member);
@@ -107,6 +107,6 @@ int intif_elemental_save(struct s_elemental *ele);
 /* @accinfo */
 void intif_request_accinfo( int u_fd, int aid, int group_id, char* query );
 
-int CheckForCharServer(void);
+bool CheckForCharServer(void);
 
 #endif /* _INTIF_H_ */

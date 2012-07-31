@@ -3798,6 +3798,12 @@ int parse_char(int fd)
 				WFIFOSET(fd,3);
 				break;
 			}
+			
+			// Send party to map
+			if( cd->party_id != 0 && !inter_party_update(cd) )
+			{
+				// TODO something went wrong, auto remove from party?
+			}
 
 			//Send player to map
 			WFIFOHEAD(fd,28);
