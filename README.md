@@ -17,17 +17,16 @@ Special thanks to all rAthena and eAthena team for the development of the emulat
 Equipe
 ------
 ### Administradores
-- JAF			- João Angelo
-- GreenBox		- Jonathan
+- Cainho		- Caio Mateus
+- GreenBox		- Jonathan Lima
 - Matheus		- Matheus Freitas
 
 ### Coordenadores
 - Raizen		- Carlos
 - Devliz		- Fernando
-- Roberto		- Roberto
 
 ### Desenvolvedores Core
-- Sicks 		- Bruno
+- Sicks 		- Bruno Sgambato
 - Wolf			- João Victor
 - Axl			- José Góis
 - Otonii		- Leandro Otoni
@@ -36,5 +35,5 @@ Equipe
 ### Desenvolvedores Script/DB
 - Spike			- Igor
 - J4ND3RS0N		- Janderson
-- Rhulio Victor - Rhúlio Victor
-- Schrwaizer 	- Thiago Schrwaizer
+- Rhulio Victor		- Rhúlio Victor
+- Schrwaizer 		- Thiago Schrwaizer
