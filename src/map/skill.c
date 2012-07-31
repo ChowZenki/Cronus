@@ -4917,7 +4917,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0);
 				break;
 			}
-			class_ = skillid==SA_MONOCELL?1002:mob_get_random_id(4, 1, 0);
+			class_ = skillid==SA_CLASSCHANGE?mob_get_random_id(4, 1, 0):1002; // Issue 354 [ Sicks ]
+
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			mob_class_change(dstmd,class_);
 			if( tsc && dstmd->status.mode&MD_BOSS )

@@ -11,7 +11,7 @@
 //===== Por: =========================================================
 //= kobra_k88
 //===== Versão Atual: ================================================
-//= 1.5
+//= 1.6
 //===== Compatível com: ==============================================
 //= Cronus GIT;
 //===== Descrição: ===================================================
@@ -65,7 +65,7 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"The emperium has been destroyed.",bc_map,0x00CCFF;
+	MapAnnounce .@map$,"O Emperium foi quebrado!",bc_map,0x00CCFF;
 	Announce "O Clã [" + GetGuildName(.@GID) + "] conquistou o Castelo [" + GetCastleName(.@map$) + "].",bc_all;
 	donpcevent "::OnRecvCastle"+.@castle$;
 
