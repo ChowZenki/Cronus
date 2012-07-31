@@ -1,89 +1,64 @@
-//===== rAthena Script ======================================= 
-//= Brasilis Guide
-//===== By: ================================================== 
-//= L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 1.2
-//===== Compatible With: ===================================== 
-//= rAthena  SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Guide for the city of Brasilis
-//===== Additional Comments: ================================= 
-//= 1.0 First Version, Renewal guide.
-//= 1.1 Added a missing close.
-//= 1.2 Traduzido [J4ND3RS0N]
-//============================================================ 
+//===== Cronus Script ========================================
+//= Guia de Brasilis
+//===== Por: =================================================
+//= RoM
+//===== Versão Atual: ========================================
+//= 1.0
+//===== Compatível com: ====================================== 
+//= Cronus SVN
+//===== Changelog: ===========================================
+//= 1.0 Versão Inicial. [RoM]
+//============================================================
 
-brasilis,219,97,3	script	Guia de Brasilis	478,{
-	mes "[Guia Brasilis]";
-	mes "Bem-vindo ao ^ 8B4513Brasilis ^ 000000, um país tão apaixonado como o sol.";
-	mes "Se você tiver alguma dúvida, por favor me perguntar.";
+brasilis,219,97,3	script	Guia de Brasilis#bra	478,{
+	mes "[Guia de Brasilis]";
+	mes "Boas-vindas a todos que vieram a Brasilis, uma terra apaixonada e";
+	mes "quente como o sol que nos banha.";
+	mes "Se tiver alguma pergunta, é só falar.";
 	next;
-	mes "[Guia Brasilis]";
-	mes "Onde posso guiá-lo?";
-	while(1)
+	switch(select("Perguntar sobre os locais da cidade.:Apagar todas as marcas no mapa.:Não, obrigado."))
 	{
+	case 1:
+		mes "[Guia de Brasilis]";
+		mes "No que você quer que eu lhe guie?";
 		next;
-		switch (select ("[Hotel]: [cabo Selva]: [Museu de Arte]: [Mercado]: [Verass Monumento]: Remova marcas de Mini-Mapa: Cancelar"))
+		switch(select("Pousada:Teleférico da Selva:Museu de Arte:Feirinha de Brasilis"))
 		{
-			case 1:
-				mes "[Guia Brasilis]";
-				mes "O Hotel Brasilis está localizado logo acima, ^ FF3355 + ^ 000000.";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 1,274,151,2,0xFF3355;
-				next;
-				break;
-
-			case 2:
-				mes "[Guia Brasilis]";
-				mes "Você quer atravessar a selva áspera Você pode pegar um cabo da selva aqui ^ CE6300 + ^ 000000?";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 1,308,335,3,0xCE6300;
-				next;
-				break;
-
-			case 3:
-				mes "[Guia Brasilis]";
-				mes "O orgulho do Brasilis, o mundo Museu de Arte escala é em A5BAAD ^ + ^ 000000.";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 1,137,167,4,0x00FF00;
-				next;
-				break;
-
-			case 4:
-				mes "[Guia Brasilis]";
-				mes "Você pode comprar itens para a caça no Mercado aqui ^ 55FF33 + ^ 000000.";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 1,254,248,5,0x55FF33;
-				next;
-				break;
-			case 5:
-				mes "[Guia Brasilis]";
-				mes "O monumento emblemático do Brasilis, o Monumento Verass está em ^ 3355FF + ^ 000000.";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 1,195,235,6,0x3355FF;
-				next;
-				break;
-
-			case 6:
-				mes "[Guia Brasilis]";
-				mes "Eu vou remover todas as marcas do seu mini-mapa.";
-				mes "Existe alguma coisa que eu posso fazer por você?";
-				viewpoint 0,274,151,2,0x00FF00;
-				viewpoint 0,308,335,3,0x00FF00;
-				viewpoint 0,137,167,4,0x00FF00;
-				viewpoint 0,254,248,5,0x00FF00;
-				viewpoint 0,195,235,6,0x00FF00;
-				next;
-				break;
-
-			case 7:
-				mes "[Guia Brasilis]";
-				mes "Vagando em seu próprio país é sempre a melhor maneira de explorar todo o caso, tome cuidado.";
-				close;
+		case 1:
+			mes "[Guia de Brasilis]";
+			mes "A Pousada está logo aqui em frente, ^FF0000+^000000.";
+			viewpoint 1,273,149,2,0xFF0000;
+			close;
+		case 2:
+			mes "[Guia de Brasilis]";
+			mes "Quer passear pela selva? Você pode";
+			mes "tomar o teleférico em ^CC6600+^000000.";
+			viewpoint 1,308,333,3,0xCC6600;
+			close;
+		case 3:
+			mes "[Guia de Brasilis]";
+			mes "O Museu de Arte, o orgulho de Brasilis, está em ^00FF00+^000000.";
+			viewpoint 1,133,167,4,0x00FF00;
+			close;
+		case 4:
+			mes "[Guia de Brasilis]";
+			mes "Você pode comprar itens diversos em ^00FF00+^000000.";
+			viewpoint 1,238,248,5,0x00FF00;
+			close;
 		}
+	case 2:
+		viewpoint 2,273,149,2,0xFF0000;
+		viewpoint 2,308,333,3,0xCC6600;
+		viewpoint 2,133,167,4,0x00FF00;
+		viewpoint 2,238,248,5,0x00FF00;
+		mes "[Guia de Brasilis]";
+		mes "Apaguei todas as marcas do mapa.";
+		mes "Se quiser as marcas de novo, é só pedir.";
 		close;
-		break;
+	case 3:
+		mes "[Guia de Brasilis]";
+		mes "Saber das coisas daqui por conta própria também pode ser divertido.";
+		mes "De qualquer forma, se cuide.";
+		close;
 	}
 }

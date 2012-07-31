@@ -5,9 +5,9 @@
 //===== Versão Atual: ========================================
 //= 1.0
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 13.3]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //============================================================
 
 // mag_dun01 - Calabouço de Magma
@@ -24,10 +24,3 @@ mag_dun02,0,0,0,0	monster	Exterminador	1384,38,5000,0,0
 mag_dun02,0,0,0,0	monster	Labareda	1367,20,5000,0,0
 mag_dun02,0,0,0,0	monster	Diabolik	1382,15,5000,0,0
 mag_dun02,0,0,0,0	monster	Ferrão	1387,10,5000,0,0
-
-
-
-
-
-
-

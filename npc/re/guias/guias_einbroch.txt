@@ -5,14 +5,12 @@
 //===== Versão: ============================================== 
 //= 1.0
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 NPC traduzido [João Pedro]
+//= 1.0 Versão inicial [João Pedro]
 //============================================================ 
 
-einbroch,72,202,4	script	Guide#ein::EinGuide	852,{
+einbroch,72,202,4	script	Guia#ein::EinGuide	852,{
 	cutin "ein_soldier",2;
 	mes "[Guia de Einbroch]";
 	mes "Bem-vindo";
@@ -197,5 +195,5 @@ einbroch,72,202,4	script	Guide#ein::EinGuide	852,{
 	end;
 }
 
-einbroch,155,43,4	duplicate(EinGuide)	Guide#2ein	852
-einbroch,162,317,4	duplicate(EinGuide)	Guide#3ein	852
+einbroch,155,43,4	duplicate(EinGuide)	Guia#2ein	852
+einbroch,162,317,4	duplicate(EinGuide)	Guia#3ein	852

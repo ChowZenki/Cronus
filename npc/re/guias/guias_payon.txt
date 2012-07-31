@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
 payon,162,67,4	script	Guia#pay1	708,{
-
 	cutin "pay_soldier", 2;
 	mes "[Guia de Payon]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à Payon, a cidade das montanhas.";
@@ -32,7 +29,7 @@ payon,162,67,4	script	Guia#pay1	708,{
 				{
 					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 					next;
-    					if (select ("Sim.","Não.") == 1)
+    				if (select ("Sim.","Não.") == 1)
 						set .@compass_check, 1;
 				}
 				while (1)
@@ -120,7 +117,6 @@ payon,162,67,4	script	Guia#pay1	708,{
 }
 
 pay_arche,85,30,2	script	Guia#pay2	708,{
-
 	cutin "pay_soldier", 2;
 	mes "[Guia de Payon]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à Payon, a cidade das montanhas.";
@@ -138,7 +134,7 @@ pay_arche,85,30,2	script	Guia#pay2	708,{
 				{
 					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 					next;
-    					if (select ("Sim.","Não.") == 1)
+    				if (select ("Sim.","Não.") == 1)
 						set .@compass_check, 1;
 				}
 				while (1)
@@ -182,10 +178,10 @@ pay_arche,85,30,2	script	Guia#pay2	708,{
 				break;
 				
 			case 2:
-                    		viewpoint 2,144,164,0,0xFF0000;
-                    		viewpoint 2,71,156,1,0xFF00FF;
-                    		viewpoint 2,34,132,2,0xFFFFFF;
-                    		set .@compass_check, 0;
+				viewpoint 2,144,164,0,0xFF0000;
+				viewpoint 2,71,156,1,0xFF00FF;
+				viewpoint 2,34,132,2,0xFFFFFF;
+				set .@compass_check, 0;
 				break;
 				
 			case 3:

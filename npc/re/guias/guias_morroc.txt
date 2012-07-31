@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================
 
 morocc,153,286,6	script	Guia#moc1::gMoc	105,{
-
 	mes "[Guia de Morroc]";
 	mes "Bem vindo à Morroc, a cidade do deserto.";
 	mes "Nós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";

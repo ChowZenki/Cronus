@@ -1,13 +1,13 @@
 //===== Cronus Script ========================================
 //= Spawns de Monstros de Valhalla
 //===== Por: =================================================
-//= Mara
+//= mkbu95
 //===== Versão Atual: ========================================
 //= 1.0
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 13.3]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [Mara]
+//= 1.0 Versão inicial [mkbu95]
 //============================================================
 
 // sec_in02 - Interior do Valhalla

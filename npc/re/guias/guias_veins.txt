@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
 veins,210,345,5	script	Guia de Veins#ve1::gVe	934,{
-
 	mes "[Guia de Veins]";
 	mes "A Cidade Desértica de Veins dá as boas-vindas aos aventureiros que buscam abrigo das terríveis tempestades de areia.";
 	mes "Se essa é a primeira vez que você usa nossos Serviços de guia, por que não consulta antes o menu ''Aviso''?";
@@ -39,9 +36,9 @@ veins,210,345,5	script	Guia de Veins#ve1::gVe	934,{
 				while (1)
 				{
    					if (.@wait_button_chk == 0)
-							set .@wait_button_chk, 1;
-						else
-	   						next;
+						set .@wait_button_chk, 1;
+					else
+	   					next;
   					switch (select ("Templo","Pousada","Loja de Armas","Loja de Utilidades","Aeroplano","Taverna","Instituto de Pesquisas Geológicas","Cancelar"))
 					{
   						case 1:
@@ -116,7 +113,7 @@ veins,210,345,5	script	Guia de Veins#ve1::gVe	934,{
 				viewpoint 2,272,292,6,0xCE9CFF;
 				viewpoint 2,140,227,7,0xCECE31;
 				viewpoint 2,149,184,8,0xFF9C00;
-          			set .@compass_check, 0;
+          		set .@compass_check, 0;
 				mes "[Guia de Veins]";
 				mes "Pronto, elas já sumiram. Se você quiser informações sobre outros lugares, é só falar comigo.";
 				mes "Aproveite sua estada em Veins.";

@@ -5,11 +5,9 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
@@ -31,7 +29,7 @@ prontera,154,187,4	script	Guia#prt1::gPrt	105,{
 					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 					if (select ("Sim.","Não.") == 1)
     						set .@compass_check, 1;
-    					else
+    				else
 						set .@compass_check, 0;
 				}
 				while (1)

@@ -1,24 +1,16 @@
-//==========================================================
-//  ___  ___       ___   ____    ____  ___      
-// |   \/   |     /   \  \   \  /   / /   \     
-// |  \  /  |    /  ^  \  \   \/   / /  ^  \    
-// |  |\/|  |   /  /_\  \  \_    _/ /  /_\  \   
-// |  |  |  |  /  _____  \   |  |  /  _____  \  
-// |__|  |__| /__/     \__\  |__| /__/     \__\ 
-//
-//==========================================================
+//===== Cronus Script ========================================
 //= Quest do Ninja
-//===== Por: =========================================================
-//= rA dev Team; LyDe
-//===== Versão Atual: ================================================
+//===== Por: =================================================
+//= rAthena Dev Team
+//===== Versão Atual: ========================================
 //= 1.0
-//===== Compatível com: ==============================================
+//===== Compatível com: ======================================
 //= eAthena; rAthena; Cronus; brAthena; Maya SVN.
-//===== Descrição: ===================================================
+//===== Descrição: ===========================================
 //= Mudança de Classe para Ninja
-//===== Comentários Adicionais: ======================================
+//===== Comentários Adicionais: ==============================
 //= 1.0 Traduzido. [LyDe]
-//====================================================================
+//============================================================
 
 alberta,30,65,3	script	Akagi	730,{
 	if (Class == Job_Novice) {
@@ -31,7 +23,7 @@ alberta,30,65,3	script	Akagi	730,{
 			mes "Diga-me, você procura";
 			mes "o caminho da paciência?";
 			next;
-			if(select("No:Yes") == 1) {
+			if(select("Não:Sim") == 1) {
 				mes "[Akagi]";
 				mes "Tudo bem.";
 				mes "Cada um tem seu modo de pensar,";
@@ -69,7 +61,7 @@ alberta,30,65,3	script	Akagi	730,{
 		mes "Hmm...";
 		mes "Você e eu...";
 		mes "Estamos razoavelmente iguais em";
-		mes "termos de capacidade decombate.";
+		mes "termos de capacidade de combate.";
 		mes "Talvez possamos praticar";
 		mes "juntos um dia.";
 		close;

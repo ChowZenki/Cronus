@@ -1,25 +1,17 @@
-//==========================================================
-//  ___  ___       ___   ____    ____  ___      
-// |   \/   |     /   \  \   \  /   / /   \     
-// |  \  /  |    /  ^  \  \   \/   / /  ^  \    
-// |  |\/|  |   /  /_\  \  \_    _/ /  /_\  \   
-// |  |  |  |  /  _____  \   |  |  /  _____  \  
-// |__|  |__| /__/     \__\  |__| /__/     \__\ 
-//
-//==========================================================
+//===== Cronus Script ========================================
 //= Batalha Campal - KvM 1-59
-//===== Por: =========================================================
+//===== Por: =================================================
 //= L0ne_W0lf
-//===== Versão Atual: ================================================
+//===== Versão Atual: ========================================
 //= 1.4
-//===== Compatível com: ==============================================
+//===== Compatível com: ======================================
 //= eAthena; rAthena; Cronus; brAthena; Maya SVN.
-//===== Descrição: ===================================================
+//===== Descrição: ===========================================
 //= [Conversão do Aegis]
 //= Batalha Campal - KvM 1-59
 //= - Equipe Vencedora: 1 emblemas
 //= - Equipe Perdedora: 0 emblemas
-//===== Comentários Adicionais: ======================================
+//===== Comentários Adicionais: ==============================
 //= 1.0 First Version.
 //= 1.1 Updated using official Aegis files. [L0ne_W0lf]
 //= 1.2 Upated some announces and dialogs from iRO.
@@ -28,7 +20,7 @@
 //= 1.3 Fixed wrong names for disablenpc/enablenpc. [Ai4rei]
 //=     Fixed points in text and actual points differing.
 //= 1.4 Traduzido. [mkbu95]
-//====================================================================
+//============================================================
 
 // Waiting Room NPCs
 //============================================================
@@ -36,7 +28,7 @@ bat_room,197,226,5	script	KVM Waiting Room#a2::KvM02R_Guillaume	418,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station 5 Players",5,"KvM02_BG::OnGuillaumeJoin",1;
+	waitingroom "Estação de Batalha 5 Jogadores",5,"KvM02_BG::OnGuillaumeJoin",1;
 	end;
 	
 OnEnterBG:
@@ -50,7 +42,7 @@ bat_room,197,205,3	script	KVM Waiting Room#b2::KvM02R_Croix	414,{
 	end;
 
 OnInit:
-	waitingroom "Battle Station 5 Players",5,"KvM02_BG::OnCroixJoin",1;
+	waitingroom "Estação de Batalha 5 Jogadores",5,"KvM02_BG::OnCroixJoin",1;
 	end;
 
 OnEnterBG:

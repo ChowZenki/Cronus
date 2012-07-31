@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
 hugel,98,56,3	script	Vovó Guia de Hugel	863,{
-
 	mes "[Vovó Guia de Hugel]";
 	mes "Oh, olá! Você é um aventureiro com muita energia.";
 	mes "Bem-vindo a Hugel. Eu recebi a honra de ser a sua guia em sua visita a essa bela vila.";

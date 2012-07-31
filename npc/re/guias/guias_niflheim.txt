@@ -5,16 +5,13 @@
 //===== Versão Atual: ========================================
 //= 1.1
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 12.1]
-//===== Descrição: ===========================================
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [Cainho]
+//= 1.0 Versão inicial [Cainho]
 //= 1.1 Revisado [mkbu95]
 //============================================================
 
 niflheim,186,190,6	script	Homem Nervoso	798,{
-	
 	mes "[Lee karl]";
 	mes "Por que você veio a um lugar tão horrível como este? Acho que você acabou se perdendo, isso sim.";
 	mes "Eu fui atraído pelas altas árvores deste lugar. Demorou um bom tempo até eu perceber que eu estava perdido. E que não havia mais volta.";

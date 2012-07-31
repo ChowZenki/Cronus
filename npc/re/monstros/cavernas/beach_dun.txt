@@ -5,9 +5,9 @@
 //===== Versão Atual: ========================================
 //= 1.0
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 13.3]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //============================================================
 
 // beach_dun - Karu, a Caverna do Oeste

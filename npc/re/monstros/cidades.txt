@@ -1,13 +1,13 @@
 //===== Cronus Script ========================================
 //= Spawns de Monstros Rosa Selvagem nas Cidades
 //===== Por: =================================================
-//= Mara
+//= mkbu95
 //===== Versão Atual: ========================================
 //= 1.0
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 13.3]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [Mara]
+//= 1.0 Versão inicial [mkbu95]
 //============================================================
 
 // Spawns de Rosa Selvagem nas Cidades

@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================
 
 lighthalzen,207,310,5	script	Guia#lhz1::gLhz1	852,{
-
 	cutin "ein_soldier", 2;
 	mes "[Guia de Lighthalzen]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à Lighthalzen,";
@@ -240,7 +237,6 @@ lighthalzen,207,310,5	script	Guia#lhz1::gLhz1	852,{
 }
 
 lighthalzen,220,311,3	script	Guia#lhz3::gLhz2	852,{
-
 	cutin "ein_soldier", 2;	
 	mes "[Guia de Lighthalzen]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à Lighthalzen,";

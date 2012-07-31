@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
 alberta,23,238,4	script	Guia#alb1::gAlb	105,{
-
 	mes "[Guia de Alberta]";
 	mes "Bem-vind"+(Sex?"o":"a")+" à Alberta, a cidade portuária.";
 	mes "Nós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";
@@ -30,7 +27,7 @@ alberta,23,238,4	script	Guia#alb1::gAlb	105,{
 				if (!.@compass_check)
 				{
 					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
-    					if (select ("Sim.:Não.") == 1) set .@compass_check, 1;
+    				if (select ("Sim.:Não.") == 1) set .@compass_check, 1;
 				}	
 				while(1)
 				{

@@ -5,16 +5,13 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [mkbu95]
+//= 1.0 Versão inicial [mkbu95]
 //= 1.1 Revisado e otimizado [mkbu95]
 //============================================================ 
 
 rachel,138,146,5	script	Guia de Rachel	934,{
-
 	mes "[Guia de Rachel]";
 	mes "Bem-vindo à capital de Arunafeltz, Rachel, onde contamos com a proteção de nossa deusa Freya.";
 	mes "Se essa é a primeira vez que você usa nossos Serviços de guia, por que não consulta o menu \"Aviso\" primeiro?";

@@ -1,22 +1,18 @@
 //===== Cronus Script ======================================== 
-//= NPCs de Ayothaya
+//= Guia de Ayothaya
 //===== Por: ================================================= 
 //= Minos
 //===== Versão: ============================================== 
 //= 1.2
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
-//= NPCs da cidade de Ayothaya
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [Minos]
+//= 1.0 Versão inicial [Minos]
 //= 1.1 Revisado e otimizado [mkbu95]
 //= 1.2 Otimizado [J4ND3RS0N]
 //============================================================ 
 
 ayothaya,203,169,3	script	Noi	839,{
-	
 	mes "[Noi]";
 	mes "Bem-vind"+(Sex?"o":"a")+" a Ayothaya!";
 	mes "Ayothaya foi construída sobre a água e você pode ver a floresta densa cercando a cidade ao fundo.";
@@ -81,7 +77,7 @@ ayothaya,203,169,3	script	Noi	839,{
 				
 						case 5:
 							mes "[Noi]";
-							mes " Ayothaya tornou-se o local favorito dos pescadores,";
+							mes "Ayothaya tornou-se o local favorito dos pescadores,";
 							mes "já que foi construída sobre a água e fica próxima à praia.";
 							mes "O Pesqueiro localizado em ^00FF00+^000000 é, de longe, o lugar mais famoso da cidade.";
 							mes "Se estiver interessado em pescar, que tal pegarmos alguns peixes hoje à noite?";

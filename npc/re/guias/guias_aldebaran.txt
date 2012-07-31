@@ -5,17 +5,14 @@
 //===== Versão: ============================================== 
 //= 1.2
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [Minos]
+//= 1.0 Versão inicial [Minos]
 //= 1.1 Revisado e otimizado [mkbu95]
 //= 1.2 Pequena otimização [J4ND3RS0N]
 //============================================================ 
 
 aldebaran,139,63,4	script	Soldado#ald1	105,{
-	
 	mes "[Guarda de Al de Baran]";
 	mes "Eu não sou um guarda comum que protege vilarejos.";
 	mes "Sou um membro da Guarda de Al de Baran. Eu sou responsável por guiar os turistas.";
@@ -44,7 +41,6 @@ aldebaran,139,63,4	script	Soldado#ald1	105,{
 }
 
 aldebaran,241,136,4	script	Soldado#ald2	105,{
-	
 	mes "[Guarda de Al de Baran]";
 	mes "Eu não sou um guarda comum que protege vilarejos.";
 	mes "Sou um membro da Guarda de Al de Baran. Eu sou responsável por guiar os turistas.";

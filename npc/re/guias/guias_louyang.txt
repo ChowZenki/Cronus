@@ -5,17 +5,14 @@
 //===== Versão Atual: ========================================
 //= 1.2
 //===== Compatível Com: ======================================
-//= Emulador [3010+]; Cliente [EP 12.1]
-//===== Descrição: ===========================================
-//= [Conversão do Aegis]
+//= Cronus SVN
 //===== Comentários Adicionais: ==============================
-//= 1.0 Conversão do Aegis [Minos]
+//= 1.0 Versão inicial [Minos]
 //= 1.1 Revisado e otimizado [mkbu95]
 //= 1.2 Otimizado [J4ND3RS0N]
 //============================================================
 
 louyang,213,213,3	script	Soldado#lou1::gLou	825,{
-	
 	mes "[Soldado]";
 	mes "Este é o castelo do Dragão.";
 	mes "Um lugar como esse possui uma longa história de orgulho e espírito de guerra.";

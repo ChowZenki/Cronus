@@ -5,33 +5,26 @@
 //===== Versão: ============================================== 
 //= 1.1
 //===== Compatível com: ====================================== 
-//= Emulador [3010]; Cliente [EP 12.1]
-//===== Descrição: =========================================== 
-//= [Conversão do Aegis]
-//= Todos os Guias da cidade de Comodo
+//= Cronus SVN
 //===== Comentários adicionais: ============================== 
-//= 1.0 Conversão do Aegis [DoJo]
+//= 1.0 Versão inicial [DoJo]
 //= 1.1 Corrigido [Vianna]
 //= 1.2 Otimizado [J4ND3RS0N]
 //============================================================ 
 
 comodo,322,178,4	script	Guia Turístico#01::CmdGuide	700,{
-
 	callfunc "F_CmdGuide:Aborígene Kokomo";
 }
 
 comodo,176,350,4	script	Guia Turístico#02	700,{
-
 	callfunc "F_CmdGuide:Aborígene Nukoko";
 }
 
 comodo,37,219,4	script	Guia Turístico#03	700,{
-
 	callfunc "F_CmdGuide:Aborígine Papaya";
 }
 
 function	script	F_CmdGuide	{
-
 	mes "["+getarg(0)+"]";
 	mes "A Cidade da Alegria, Capital da Diversão...";
 	mes "Terra dos Sonhos e da Fantasia!";
