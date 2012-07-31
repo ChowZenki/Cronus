@@ -9,7 +9,7 @@
 // Banco de Dados de Tempo de Atraso (delay) em Itens
 //--------------------------------------------------------------
 // Estrutura: ItemID,Tempo_em_Milisegundos
-// NOTA: O m√°ximo de entradas √© definido em MAX_ITEMDELAYS
+// NOTA: O m·ximo de entradas È definido em MAX_ITEMDELAYS
 //		 no arquivo itemdb.h
 //--------------------------------------------------------------
 

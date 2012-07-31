@@ -6,7 +6,7 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados de Monstros Invoc√°veis pela Bolsa Vermelha
+// Banco de Dados de Monstros Invoc·veis pela Bolsa Vermelha
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // MobID,Nome,Chance

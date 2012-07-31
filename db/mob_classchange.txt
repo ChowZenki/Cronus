@@ -6,7 +6,7 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados de Monstros Invoc√°veis por SA_CLASSCHANGE
+// Banco de Dados de Monstros Invoc·veis por SA_CLASSCHANGE
 //--------------------------------------------------------------
 // Estrutura do Banco de Dados:
 // MobID,DummyName,Rate

@@ -6,22 +6,22 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Arquivo de Restri√ß√£o de Acumula√ß√£o de Itens
+// Arquivo de RestriÁ„o de AcumulaÁ„o de Itens
 //--------------------------------------------------------------
 // Previne que o jogador possua mais do que x itens.
 // Geralmente usado por classes 3 em suas habilidades.
 // Formato: <id do item>,<quantidade limite>,<tipo>
 // Tipo:
-// 	1: Restri√ß√£o pelo invent√°rio do jogador
-// 	2: Restri√ß√£o pelo carrinho do jogador
-//	4: Restri√ß√£o pelo armaz√©m da conta
-//	8: Restri√ß√£o pelo armaz√©m do cl√£
+// 	1: RestriÁ„o pelo invent·rio do jogador
+// 	2: RestriÁ„o pelo carrinho do jogador
+//	4: RestriÁ„o pelo armazÈm da conta
+//	8: RestriÁ„o pelo armazÈm do cl„
 // Exemplo:
-//  512,4,12  // N√£o ir√° permitir mais de 4 Ma√ß√£ no Armaz√©m.
+//  512,4,12  // N„o ir· permitir mais de 4 MaÁ„ no ArmazÈm.
 // Nota:
-//  Limite definido como 0 ir√° desabilitar a fun√ß√£o.
+//  Limite definido como 0 ir· desabilitar a funÁ„o.
 
-// Cavaleiro R√∫nico
+// Cavaleiro R˙nico
 12725,20,1  // Nauthiz Rune
 12726,20,1  // Raido Rune
 12727,20,1  // Berkana Rune

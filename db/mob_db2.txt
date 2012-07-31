@@ -9,11 +9,11 @@
 // Banco de Dados de Monstros Adicionais
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
-// ID,Sprite_Name,kROName,iROName,NV,HP,SP,EXP,JEXP,Alcance1,ATQ1,ATQ2,DEF,MDEF,FOR,AGI,VIT,INT,DES,SOR,Alcance2,Alcance3,Tamanho,RaÃ§a,Elemento,Modo,Velocidade,aDelay,aMotion,dMotion,MEXP,ExpPer,
+// ID,Sprite_Name,kROName,iROName,NV,HP,SP,EXP,JEXP,Alcance1,ATQ1,ATQ2,DEF,MDEF,FOR,AGI,VIT,INT,DES,SOR,Alcance2,Alcance3,Tamanho,Raça,Elemento,Modo,Velocidade,aDelay,aMotion,dMotion,MEXP,ExpPer,
 // MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,MVP3per,Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,Drop8per,Drop9id,Drop9per,DropCardid,DropCardper
 //
-// NOTA: Mantenha o Sprite_Name do jeito que estÃ¡ (no client do jogo).
-//		 VocÃª pode alterar o Name,JName.
+// NOTA: Mantenha o Sprite_Name do jeito que está (no client do jogo).
+//		 Você pode alterar o Name,JName.
 //--------------------------------------------------------------
 
 // rAthena Dev Team

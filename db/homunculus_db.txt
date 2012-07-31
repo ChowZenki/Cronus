@@ -9,21 +9,21 @@
 // Banco de Dados dos Homunculus
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
-// Class,EvoClass,Name,FoodID,DelayFome,TamanhoBase,EvoSize,Ra√ßa,Elemento,bASPD,bHP,bSP,bSTR,bAGI,bVIT,bINT,bDEX,bLUK,gnHP,gxHP,gnSP,gxSP,gnSTR,gxSTR,gnAGI,gxAGI,gnVIT,gxVIT,gnINT,gxINT,gnDEX,gxDEX,gnLUK,gxLUK,enHP,exHP,enSP,exSP,enSTR,exSTR,enAGI,exAGI,enVIT,exVIT,enINT,exINT,enDEX,exDEX,enLUK,exLUK
+// Class,EvoClass,Name,FoodID,DelayFome,TamanhoBase,EvoSize,RaÁa,Elemento,bASPD,bHP,bSP,bSTR,bAGI,bVIT,bINT,bDEX,bLUK,gnHP,gxHP,gnSP,gxSP,gnSTR,gxSTR,gnAGI,gxAGI,gnVIT,gxVIT,gnINT,gxINT,gnDEX,gxDEX,gnLUK,gxLUK,enHP,exHP,enSP,exSP,enSTR,exSTR,enAGI,exAGI,enVIT,exVIT,enINT,exINT,enDEX,exDEX,enLUK,exLUK
 //
 // 01. Class        ID do Homunculus.
-// 02. EvoClass     ID do Homunculus na vers√£o evolu√≠da.
+// 02. EvoClass     ID do Homunculus na vers„o evoluÌda.
 // 03. Name         Nome do Homunculus.
 // 04. FoodID       ID do item que serve de alimento para o Homunculus.
-// 05. DelayFome    Intervalo em milisegundos no qual a fome do homunculus √© modificada.
+// 05. DelayFome    Intervalo em milisegundos no qual a fome do homunculus È modificada.
 // 06. TamanhoBase  Tamanho base do homunculus (0 = pequeno, 1 = normal, 2 = grande).
-// 07. EvoSize      Tamanho base do homunculus evolu√≠do (0 = pequeno, 1 = normal, 2 = grande).
-// 08. Ra√ßa         Ra√ßa do homunculus (0 = amorfo, 1 = morto-vivo, 2 = bruto, 3 = planta, 4 = inseto, 5 = peixe, 6 = dem√¥nio, 7 = humanoide, 8 = anjo, 9 = drag√£o).
-// 09. Elemento     Element of the homunculus (0 = neutro, 1 = √°gua, 2 = terra, 3 = fogo, 4 = vento, 5 = veneno, 6 = sagrado, 7 = sombrio, 8 = fantasma, 9 = undead).
+// 07. EvoSize      Tamanho base do homunculus evoluÌdo (0 = pequeno, 1 = normal, 2 = grande).
+// 08. RaÁa         RaÁa do homunculus (0 = amorfo, 1 = morto-vivo, 2 = bruto, 3 = planta, 4 = inseto, 5 = peixe, 6 = demÙnio, 7 = humanoide, 8 = anjo, 9 = drag„o).
+// 09. Elemento     Element of the homunculus (0 = neutro, 1 = ·gua, 2 = terra, 3 = fogo, 4 = vento, 5 = veneno, 6 = sagrado, 7 = sombrio, 8 = fantasma, 9 = undead).
 //                  The element level is always 1.
 //
 // Legenda: b: base, gn: growth min, gx: growth max, en: evolution min, ex: evolution max
-// NOTA: Somente o valor de growth √© numa escala 1/10, os outros status s√£o 1/1 (ex.: 5 gmAGI significa 0.5 agi)
+// NOTA: Somente o valor de growth È numa escala 1/10, os outros status s„o 1/1 (ex.: 5 gmAGI significa 0.5 agi)
 //--------------------------------------------------------------
 
 6001,6009,Lif,537,60000,0,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3

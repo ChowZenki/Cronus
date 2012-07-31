@@ -6,14 +6,14 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados para CorreÃ§Ã£o de Dano com Armamento por Tamanho 
+// Banco de Dados para Correção de Dano com Armamento por Tamanho 
 //--------------------------------------------------------------
 // Colunas: Tipo de armamento.
 // Linhas:	Tamanho do alvo.
 //
 // Estrutura:
-// Desarmado, Adaga, Espada1M, Espada2M, LanÃ§a1M, LanÃ§a2M, Machado1M, Machado2M, MaÃ§a, MaÃ§a2M, Cajado, Arco, Soqueira,
-// Instrumento, Chicote, Livro, Katar, Revolve, Rifle, Shotgun, Gatling Gun, LanÃ§ador de Granada, Fuuma Shuriken, Cajado2M
+// Desarmado, Adaga, Espada1M, Espada2M, Lança1M, Lança2M, Machado1M, Machado2M, Maça, Maça2M, Cajado, Arco, Soqueira,
+// Instrumento, Chicote, Livro, Katar, Revolve, Rifle, Shotgun, Gatling Gun, Lançador de Granada, Fuuma Shuriken, Cajado2M
 //--------------------------------------------------------------
 
 100,100, 75, 75, 75, 75, 50, 50, 75,100,100,100,100, 75, 75,100, 75,100,100,100,100,100,100,100	// Size: Small
