@@ -6,17 +6,17 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados da √Årvore de Habilidades dos Homunculus
+// Banco de Dados da ¡rvore de Habilidades dos Homunculus
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // Class,SkillID,MaxLv[,JobLevel],PrereqSkillID1,PrereqSkillLv1,PrereqSkillID2,PrereqSkillLv2,PrereqSkillID3,PrereqSkillLv3,PrereqSkillID4,PrereqSkillLv4,PrereqSkillID5,PrereqSkillLv5 //SKILLNAME#Nome da Habilidade#
 //
 // 01. Class             ID do Homunculus.
 // 02. SkillID           ID da habilidade do homunculus.
-// 03. MaxLv             N√≠vel m√°ximo da habilidade. do homunculus.
-// 04. JobLevel          N√≠vel de classe necess√°rio para liberar a habilidade (opcional, reservado, n√£o usado).
-// 05. PrereqSkillID     ID da habilidade necess√°ria para esta ser habilitada. 
-// 06. PrereqSkillLv     N√≠vel da PrereqSkillID para liberar a habilidade.
+// 03. MaxLv             NÌvel m·ximo da habilidade. do homunculus.
+// 04. JobLevel          NÌvel de classe necess·rio para liberar a habilidade (opcional, reservado, n„o usado).
+// 05. PrereqSkillID     ID da habilidade necess·ria para esta ser habilitada. 
+// 06. PrereqSkillLv     NÌvel da PrereqSkillID para liberar a habilidade.
 //--------------------------------------------------------------
 
 //Lif

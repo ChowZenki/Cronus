@@ -6,19 +6,19 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Database de bÃ´nus de atributos por nÃ­vel de classe
+// Database de bônus de atributos por nível de classe
 //--------------------------------------------------------------
 // Estrutura da Database:
 // ClasseID,NvClasse1,NvClasse2,NvClasse3,...
 //
 // Legenda para os campos 'NvClasseN':
-// 0 = Nenhum bÃ´nus nesse nÃ­vel de classe.
-// 1 = FOR Ã© aumentada em 1 nesse nÃ­vel de classe
-// 2 = AGI Ã© aumentada em 1 nesse nÃ­vel de classe
-// 3 = VIT Ã© aumentada em 1 nesse nÃ­vel de classe
-// 4 = INT Ã© aumentada em 1 nesse nÃ­vel de classe
-// 5 = DES Ã© aumentada em 1 nesse nÃ­vel de classe
-// 6 = SOR Ã© aumentada em 1 nesse nÃ­vel de classe
+// 0 = Nenhum bônus nesse nível de classe.
+// 1 = FOR é aumentada em 1 nesse nível de classe
+// 2 = AGI é aumentada em 1 nesse nível de classe
+// 3 = VIT é aumentada em 1 nesse nível de classe
+// 4 = INT é aumentada em 1 nesse nível de classe
+// 5 = DES é aumentada em 1 nesse nível de classe
+// 6 = SOR é aumentada em 1 nesse nível de classe
 //--------------------------------------------------------------
 
 // Novice

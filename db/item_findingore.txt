@@ -6,15 +6,15 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados de Itens Adquir√≠veis pela Habilidade Encontrar Min√©rio
+// Banco de Dados de Itens AdquirÌveis pela Habilidade Encontrar MinÈrio
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // GroupID,ItemID,Chance
 //--------------------------------------------------------------
 
 6,714,3	 	//Emperium
-6,756,20	//Min√©rio de Oridecon
-6,757,20	//Min√©rio de Elunium
+6,756,20	//MinÈrio de Oridecon
+6,757,20	//MinÈrio de Elunium
 6,969,2	 	//Ouro
 6,984,10	//Oridecon
 6,985,10	//Elunium
@@ -22,13 +22,13 @@
 6,991,30	//Cristal Azul
 6,992,30	//Frescor do Vento
 6,993,30	//Vida Verdejante
-6,994,15	//Cora√ß√£o Flamejante
-6,995,15	//Gelo M√≠stico
+6,994,15	//CoraÁ„o Flamejante
+6,995,15	//Gelo MÌstico
 6,996,15	//Vento Bruto
 6,997,15	//Natureza Grandiosa
 6,998,80	//Ferro
-6,999,50	//A√ßo
-6,1002,100	//Min√©rio de Ferro
-6,1003,60	//Carv√£o
+6,999,50	//AÁo
+6,1002,100	//MinÈrio de Ferro
+6,1003,60	//Carv„o
 6,1010,95	//Fracon
 6,1011,55	//Emveretarcon

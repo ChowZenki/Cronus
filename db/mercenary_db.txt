@@ -9,7 +9,7 @@
 // Banco de Dados de Assistentes
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
-// ID,Nome_Sprite,Nome,NV,HP,SP,Alcance1,ATQ1,ATQ2,DEF,MDEF,FOR,AGI,VIT,INT,DES,SOR,Alcance2,Alcance3,Tamanho,RaÃ§a,Elemento,Velocidade,aDelay,aMotion,dMotion
+// ID,Nome_Sprite,Nome,NV,HP,SP,Alcance1,ATQ1,ATQ2,DEF,MDEF,FOR,AGI,VIT,INT,DES,SOR,Alcance2,Alcance3,Tamanho,Raça,Elemento,Velocidade,aDelay,aMotion,dMotion
 //--------------------------------------------------------------
 
 // Assistentes Monstro

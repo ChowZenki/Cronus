@@ -6,37 +6,37 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados dos Bichinhos de Estima√ß√£o
+// Banco de Dados dos Bichinhos de EstimaÁ„o
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // MobID,Nome,JNome,CapturaID,OvoID,EquipID,ComidaID,Fullness,DelayFome,R_Hungry,R_Full,LInicial,LMorte,Captura,Velocidade,S_Performance,OpcaoFala,ChanceAtaque,ChanceDefesa,ChanceMudarAlvo,PetScript,LealScript
 //
-// 01. MobID				ID do bicho de estima√ß√£o.
+// 01. MobID				ID do bicho de estimaÁ„o.
 // 02. Nome					Nome do bichinho a ser definido no banco de dados.
-// 03. JNome				O nome de exibi√ß√£o ap√≥s o ovo ser chocado.
+// 03. JNome				O nome de exibiÁ„o apÛs o ovo ser chocado.
 // 04. CapturaID			ID do Item de Captura.
-// 05. OvoID				ID do Ovo de Estima√ß√£o.
-// 06. EquipID				ID do Acess√≥rio do Bichinho.
+// 05. OvoID				ID do Ovo de EstimaÁ„o.
+// 06. EquipID				ID do AcessÛrio do Bichinho.
 // 07. ComidaID				ID da Comida.
 // 08. Fullness				A quantidade de Fome decrescida a cada [HungryDelay] segundos.
-// 09. DelayFome			Tempo para que a Fome seja reduzida em [Fullness] ap√≥s alimentar o bichinho. (Padr√£o: 60s)
-// 10. R_Hungry				Quantidade de Lealdade acrescida ap√≥s alimentar.
-// 11. R_Full				Quantidade de Lealdade descrescida ap√≥s alimentar exageradamente.
+// 09. DelayFome			Tempo para que a Fome seja reduzida em [Fullness] apÛs alimentar o bichinho. (Padr„o: 60s)
+// 10. R_Hungry				Quantidade de Lealdade acrescida apÛs alimentar.
+// 11. R_Full				Quantidade de Lealdade descrescida apÛs alimentar exageradamente.
 // 12. LInicial				Quantidade de Lealdade inicial do bichinho.
 // 13. LMorte				Quantidade de Lealdade decrescida quando o dono morre.
 // 14. Captura				Chance de captura (100 = 1%).
-// 15. Velocidade			Velocidade de movimento. (Padr√£o: 150)
-// 16. S_Performance		Performance Especial. (Sim = 1, N√£o = 0)
-// 17. OpcaoFala			Desabilita fala do animal (inv√©s de falar eles usam o emotion /!.)
+// 15. Velocidade			Velocidade de movimento. (Padr„o: 150)
+// 16. S_Performance		Performance Especial. (Sim = 1, N„o = 0)
+// 17. OpcaoFala			Desabilita fala do animal (invÈs de falar eles usam o emotion /!.)
 // 18. ChanceAtaque			Chance de que o bichinho ataque (exige pelo menos lealdade de [pet_support_min_friendly (definido na battle)].
 // 19. ChanceDefesa			Chance de que o bichinho revide quando o dono esteje sendo atacado (exige pelo menos lealdade de [pet_support_min_friendly (definido na battle)].
 // 20. ChanceMudarAlvo		Chance de que o bichinho mude seu alvo de ataque.
-// 21. PetScript			Script ao ser executado quando o ovo do bichinho √© chocado.
-// 22. LealScript			Script ao ser executado quando o bichinho atinge certo n√≠vel de lealdade (exige pelo menos lealdade de [pet_support_min_friendly (definido na battle)]).
+// 21. PetScript			Script ao ser executado quando o ovo do bichinho È chocado.
+// 22. LealScript			Script ao ser executado quando o bichinho atinge certo nÌvel de lealdade (exige pelo menos lealdade de [pet_support_min_friendly (definido na battle)]).
 //
 // NOTA: The max value (100%) of attack_rate, defense_rate & change_target_rate is 10000.
 //
-// Em teoria, pode-se usar qualquer script, mas √© recomendado que se use um destes:
+// Em teoria, pode-se usar qualquer script, mas È recomendado que se use um destes:
 //	petskillattack skillid, skilllv, rate, bonusrate
 //		Skill attack that triggers while the pet is attacking. Rate is the base
 //		chance of execution per attack. Bonusrate is an additional success rate when

@@ -12,9 +12,9 @@
 // ItemID,SpriteID
 //
 // 01. ItemID       ID do item a mudar.
-// 02. SpriteID     ID do item que ser√° enviado ao client ao inv√©s do ItemID.
-//                  Se for 0, se torna inacess√≠vel. Se item_check estiver habilitado,
-//					e o jogador tiver o item, este ser√° removido ap√≥s teleportar/relogar.
+// 02. SpriteID     ID do item que ser· enviado ao client ao invÈs do ItemID.
+//                  Se for 0, se torna inacessÌvel. Se item_check estiver habilitado,
+//					e o jogador tiver o item, este ser· removido apÛs teleportar/relogar.
 //--------------------------------------------------------------
 
-2240,2241 //Barba - Barba do Vov√¥
+2240,2241 //Barba - Barba do VovÙ

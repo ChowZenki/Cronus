@@ -10,12 +10,12 @@
 //--------------------------------------------------------------
 // Formato: <MobID>,<SpriteID>,<Equip #>
 // Utiliza a sprite de outro monstro. O valor 0 desabilita o monstro.
-// O monstro deve possuir um equipamento que possa usar ou ent√£o causar√° problemas.
-// Caso n√£o deseje equipamentos, use 0.
+// O monstro deve possuir um equipamento que possa usar ou ent„o causar· problemas.
+// Caso n„o deseje equipamentos, use 0.
 //
 // Formato (caso o sprite seja de jogador):
 // MobID,SpriteID,Sexo,EstiloCabelo,CorCabelo,Armamento,Escudo,Topo,Meio,Baixo,Option,CorRoupa
-// Utilize ItemID para Armamento e Escudo, n√£o ViewID.
+// Utilize ItemID para Armamento e Escudo, n„o ViewID.
 //--------------------------------------------------------------
 //1002,1039	//Poring,Baphomet (Make Porings look like Baphomet)
 //1970,1002,10013	// new mob that looks like a Poring with a backpack

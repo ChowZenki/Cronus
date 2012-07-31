@@ -21,30 +21,30 @@
 //	loot		= pega itens
 //	attack		= ataca de volta
 //	angry		= ataca sem que o jogador ataque antes
-//	chase		= segue o alvo apÃ³s ser atacado
-//	follow		= segue o alvo mesmo que nÃ£o seja atacado
+//	chase		= segue o alvo após ser atacado
+//	follow		= segue o alvo mesmo que não seja atacado
 //	anytarget	= attack + angry + chase + follow
 //
 // 04. SkillID			ID da habilidade a ser usada.
-// 05. SkillLv			NÃ­vel da habilidade a ser usada.
+// 05. SkillLv			Nível da habilidade a ser usada.
 // 06. Chance			Chance da habilidade ser usada (100 = 1%).
-// 07. CastTime			Tempo de conjuraÃ§Ã£o.
-// 08. Delay			Tempo entre conjuraÃ§Ãµes em milisegundos.
+// 07. CastTime			Tempo de conjuração.
+// 08. Delay			Tempo entre conjurações em milisegundos.
 // 09. Cancelavel		A habilidade pode ser cancelada (yes / no).
 // 10. Alvo
 //	target			= alvo atual
 //	self			= ele mesmo
 //	friend			= amigo
-//	master			= lÃ­der
+//	master			= líder
 //	randomtarget	= qualquer inimigo no raio da habilidade
-//	around1			= Ã¡rea 3x3 ao redor do monstro
-//	around2			= Ã¡rea 5x5 ao redor do monstro
-//	around3			= Ã¡rea 7x7 ao redor do monstro
-//	around4			= Ã¡rea 9x9 ao redor do monstro
-//	around5			= Ã¡rea 3x3 ao redor do alvo
-//	around6			= Ã¡rea 5x5 ao redor do alvo
-//	around7			= Ã¡rea 7x7 ao redor do alvo
-//	around8			= Ã¡rea 9x9 ao redor do alvo
+//	around1			= área 3x3 ao redor do monstro
+//	around2			= área 5x5 ao redor do monstro
+//	around3			= área 7x7 ao redor do monstro
+//	around4			= área 9x9 ao redor do monstro
+//	around5			= área 3x3 ao redor do alvo
+//	around6			= área 5x5 ao redor do alvo
+//	around7			= área 7x7 ao redor do alvo
+//	around8			= área 9x9 ao redor do alvo
 //	around			= around4
 //
 // 11. TipoCondicao
@@ -83,7 +83,7 @@
 // hiding condition of being in hidden state
 // sight condition of being in unhidden state
 //
-// 12. ValorCondicao	valor que satisfaÃ§a a condiÃ§Ã£o.
+// 12. ValorCondicao	valor que satisfaça a condição.
 //--------------------------------------------------------------
 
 // rAthena Dev Team

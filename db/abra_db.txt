@@ -6,14 +6,14 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados das Habilidades Conjur√°veis por Abracadabra
+// Banco de Dados das Habilidades Conjur·veis por Abracadabra
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // SkillID,NomeHabilidade,NivelRequerido,Taxa
 //
 // 01. SkillID            ID da habilidade a ser conjurada.
-// 02. NomeHabilidade     Nome da habilidade (informativo, n√£o utilizada pelo server).
-// 03. NivelRequerido     N√≠vel m√≠nimo da habilidade Abracadabra para ser executado.
+// 02. NomeHabilidade     Nome da habilidade (informativo, n„o utilizada pelo server).
+// 03. NivelRequerido     NÌvel mÌnimo da habilidade Abracadabra para ser executado.
 // 04. Taxa               Chance da habilidade ser selecionada (1 = 0.01%, 10000 = 100%).
 //--------------------------------------------------------------
 

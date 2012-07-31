@@ -6,7 +6,7 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de dados para habilidades que podem ser convocadas atrav√©s de Magia Randonizada/M√∫sica Improvisada (Trovador/Musa - Skills).
+// Banco de dados para habilidades que podem ser convocadas atravÈs de Magia Randonizada/M˙sica Improvisada (Trovador/Musa - Skills).
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // SkillID,Rate
@@ -15,28 +15,28 @@
 // Habilidades de Mago
 10,5000	// Chama Reveladora
 11,5000	// Ataque Espiritual
-12,5000	// Escudo M√°gico
-13,5000	// Esp√≠ritos Anci√µes
-14,5000	// Lan√ßas de Gelo
+12,5000	// Escudo M·gico
+13,5000	// EspÌritos Anciıes
+14,5000	// LanÁas de Gelo
 15,5000	// Rajada Congelante
 16,5000	// Petrificar
 17,5000	// Bola de Fogo
 18,5000	// Barreira de Fogo
-19,5000	// Lan√ßas de Fogo
-20,5000	// Rel√¢mpago
+19,5000	// LanÁas de Fogo
+20,5000	// Rel‚mpago
 21,5000	// Tempestade de Raios
 
 // Habilidades de Bruxo
 80,2500	// Coluna de Fogo
 81,2500	// Supernova
 83,2500	// Chuva de Meteoros
-84,2500	// Trov√£o de J√∫piter
+84,2500	// Trov„o de J˙piter
 85,2500	// Ira de Thor
-86,2500	// Esfera d'√Ågua
+86,2500	// Esfera d'¡gua
 87,2500	// Barreira de Gelo
 88,2500	// Congelar
 89,2500	// Nevasca
 90,2500	// Coluna de Pedra
-91,2500	// F√∫ria da Terra
-92,2500	// P√¢ntano dos Mortos
+91,2500	// F˙ria da Terra
+92,2500	// P‚ntano dos Mortos
 93,2500	// Sentido Sobrenatural

@@ -6,19 +6,19 @@
 //  \______  /|__|   \____/|___|  /____//____  >
 //         \/                   \/           \/  
 //--------------------------------------------------------------
-// Banco de Dados de Produ√ß√£o de Itens
+// Banco de Dados de ProduÁ„o de Itens
 //--------------------------------------------------------------
 // Estrutura do banco de dados:
 // ProduceItemID,ItemLV,RequireSkill,RequireSkillLv,MaterialID1,MaterialAmount1,...
 //
 // 01. ProduceItemID	ID do item a ser produzido.
-// 02. ItemLV			N√≠vel do item a ser produzido.
+// 02. ItemLV			NÌvel do item a ser produzido.
 // 03. RequireSkill		ID da habilidade exigida.
-// 04. RequireSkillLv	N√≠vel da habilidade exigida.
+// 04. RequireSkillLv	NÌvel da habilidade exigida.
 // 05. MaterialID		ID do material a ser usado.
 // 06. MaterialAmount	Quantidade do material a ser usado.
 //
-// NOTA: Se MaterialAmount = 0, ent√£o apenas ser√° necess√°rio ter o item no invent√°rio (livros)
+// NOTA: Se MaterialAmount = 0, ent„o apenas ser· necess·rio ter o item no invent·rio (livros)
 //--------------------------------------------------------------
 
 
