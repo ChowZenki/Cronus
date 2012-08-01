@@ -16211,13 +16211,17 @@ void clif_parse_MoveItem(int fd, struct map_session_data *sd) {
 		return;
 	}
 
-	index = RFIFOW(fd,2)-2; 
+	index = RFIFOW(fd,2)-2;
+	
 	if (index < 0 || index >= MAX_INVENTORY)
 		return;
-	if ( sd->status.inventory[index].favorite )
-			sd->status.inventory[index].favorite = 0;
-		else
-			sd->status.inventory[index].favorite = 1;
+
+	if ( sd->status.inventory[index].favorite && RFIFOB(fd, 4) == 1 )
+		sd->status.inventory[index].favorite = 0;
+	else if( RFIFOB(fd, 4) == 0 )
+		sd->status.inventory[index].favorite = 1;
+	else
+		return; //do nothing
 
 	clif_favorite_item(sd, index);
 #endif
