@@ -111,7 +111,7 @@ unsigned int auction_create(struct auction_data *auction)
 
 		auction->auction_id = (unsigned int)SqlStmt_LastInsertId(stmt);
 		auction->auction_end_timer = add_timer( gettick() + tick , auction_end_timer, auction->auction_id, 0);
-		ShowInfo("New Auction %u | time left %u ms | By %s.\n", auction->auction_id, tick, auction->seller_name);
+		ShowInfo("Novo Leilão %u | tempo restante %u ms | Por %s.\n", auction->auction_id, tick, auction->seller_name);
 
 		CREATE(auction_, struct auction_data, 1);
 		memcpy(auction_, auction, sizeof(struct auction_data));
@@ -148,7 +148,7 @@ static int auction_end_timer(int tid, unsigned int tick, int id, intptr_t data)
 		else
 			mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "No buyers have been found for your auction.", 0, &auction->item);
 		
-		ShowInfo("Auction End: id %u.\n", auction->auction_id);
+		ShowInfo("Leilão Finalizado: id %u.\n", auction->auction_id);
 
 		auction->auction_end_timer = INVALID_TIMER;
 		auction_delete(auction);

@@ -123,7 +123,7 @@ int inter_party_tosql(struct party *p, int flag, int index)
 	party_id = p->party_id;
 
 #ifdef NOISY
-	ShowInfo("Save party request ("CL_BOLD"%d"CL_RESET" - %s).\n", party_id, p->name);
+	ShowInfo("Pedido para salvar grupo ("CL_BOLD"%d"CL_RESET" - %s).\n", party_id, p->name);
 #endif
 	Sql_EscapeStringLen(sql_handle, esc_name, p->name, strnlen(p->name, NAME_LENGTH));
 
@@ -181,7 +181,7 @@ int inter_party_tosql(struct party *p, int flag, int index)
 	}
 
 	if( save_log )
-		ShowInfo("Party Saved (%d - %s)\n", party_id, p->name);
+		ShowInfo("Grupo Salvo (%d - %s)\n", party_id, p->name);
 	return 1;
 }
 
@@ -197,7 +197,7 @@ struct party_data *inter_party_fromsql(int party_id)
 	int i;
 
 #ifdef NOISY
-	ShowInfo("Load party request ("CL_BOLD"%d"CL_RESET")\n", party_id);
+	ShowInfo("Carregando pedido de grupo ("CL_BOLD"%d"CL_RESET")\n", party_id);
 #endif
 	if( party_id <= 0 )
 		return NULL;
@@ -248,7 +248,7 @@ struct party_data *inter_party_fromsql(int party_id)
 	Sql_FreeResult(sql_handle);
 
 	if( save_log )
-		ShowInfo("Party loaded (%d - %s).\n", party_id, p->party.name);
+		ShowInfo("Grupo carregado (%d - %s).\n", party_id, p->party.name);
 	//Add party to memory.
 	CREATE(p, struct party_data, 1);
 	memcpy(p, party_pt, sizeof(struct party_data));
@@ -264,16 +264,16 @@ int inter_party_sql_init(void)
 	party_db_ = idb_alloc(DB_OPT_RELEASE_DATA);
 	party_pt = (struct party_data*)aCalloc(sizeof(struct party_data), 1);
 	if (!party_pt) {
-		ShowFatalError("inter_party_sql_init: Out of Memory!\n");
+		ShowFatalError("inter_party_sql_init: Memia Insuficiente!\n");
 		exit(EXIT_FAILURE);
 	}
 
-	/* Uncomment the following if you want to do a party_db cleanup (remove parties with no members) on startup.[Skotlex]
-	ShowStatus("cleaning party table...\n");
+	// party_db cleanup (remove parties with no members) on startup.[Skotlex]
+	ShowStatus("varrendo tabela de grupos...\n");
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` USING `%s` LEFT JOIN `%s` ON `%s`.leader_id =`%s`.account_id AND `%s`.leader_char = `%s`.char_id WHERE `%s`.account_id IS NULL",
 		party_db, party_db, char_db, party_db, char_db, party_db, char_db, char_db) )
 		Sql_ShowDebug(sql_handle);
-	*/
+
 	return 0;
 }
 
@@ -348,7 +348,7 @@ static void mapif_party_noinfo(int fd, int party_id, int char_id)
 	WFIFOL(fd,4) = char_id;
 	WFIFOL(fd,8) = party_id;
 	WFIFOSET(fd,12);
-	ShowWarning("int_party: info not found (party_id=%d char_id=%d)\n", party_id, char_id);
+	ShowWarning("int_party: informa鈬o n縊 encontrada (party_id=%d char_id=%d)\n", party_id, char_id);
 }
 // パーティ情報まとめ送り
 static void mapif_party_info(int fd, struct party* p, int char_id)
@@ -773,7 +773,7 @@ int inter_party_CharOnline(int char_id, int party_id)
 	
 	p = inter_party_fromsql(party_id);
 	if(!p) {
-		ShowError("Character %d's party %d not found!\n", char_id, party_id);
+		ShowError("Grupo %d da personagem %d n縊 foi encotrado!\n", party_id, char_id);
 		return 0;
 	}
 
