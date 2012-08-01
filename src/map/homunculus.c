@@ -242,10 +242,13 @@ int merc_hom_levelup(struct homun_data *hd)
 	char output[256] ;
 	int m_class;
 
-	m_class = hom_class2mapid(hd->homunculus.class_);
+	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
+		ShowError("merc_hom_levelup: Classe inválida %d. \n", hd->homunculus.class_);
+		return 0;
+	}
 
 	if((m_class&HOM_REG) && (hd->homunculus.level >= battle_config.hom_max_level || ((m_class&HOM_S) && hd->homunculus.level >= battle_config.hom_S_max_level) || !hd->exp_next || hd->homunculus.exp < hd->exp_next))
-		return 0 ;
+		return 0;
 
 	hom = &hd->homunculus;
 	hom->level++ ;
@@ -325,7 +328,7 @@ int merc_hom_evolution(struct homun_data *hd)
 		return 0;
 	
 	if (!merc_hom_change_class(hd, hd->homunculusDB->evo_class)) {
-		ShowError("merc_hom_evolution: Can't evolve homunc from %d to %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
+		ShowError("merc_hom_evolution: Não foi possível evoluir o homunculu de %d para %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
 		return 0;
 	}
 
@@ -371,7 +374,7 @@ int hom_mutate(struct homun_data *hd, int homun_id)
 	m_class = hom_class2mapid(hd->homunculus.class_);
 	m_id    = hom_class2mapid(homun_id);
 	
-	if( !(m_class&HOM_EVO) || !(m_id&HOM_S) ) {
+	if( m_class == -1 || m_id == -1 || !(m_class&HOM_EVO) || !(m_id&HOM_S) ) {
 		clif_emotion(&hd->bl, E_SWT);
 		return 0;
 	}
@@ -381,7 +384,7 @@ int hom_mutate(struct homun_data *hd, int homun_id)
 		return 0;
 
 	if (!merc_hom_change_class(hd, homun_id)) {
-		ShowError("hom_mutate: Can't evolve homunc from %d to %d", hd->homunculus.class_, homun_id);
+		ShowError("hom_mutate: Não foi possível evoluir o homunculu de %d para %d", hd->homunculus.class_, homun_id);
 		return 0;
 	}
 
@@ -411,7 +414,10 @@ int merc_hom_gainexp(struct homun_data *hd,int exp)
 	if(hd->homunculus.vaporize)
 		return 1;
 
-	m_class = hom_class2mapid(hd->homunculus.class_);
+	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
+		ShowError("merc_hom_gainexp: Classe inválida %d. \n", hd->homunculus.class_);
+		return 0;
+	}
 	
 	if( hd->exp_next == 0 || 
 	   ((m_class&HOM_REG) && hd->homunculus.level >= battle_config.hom_max_level) ||

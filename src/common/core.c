@@ -96,7 +96,7 @@ static BOOL WINAPI console_handler(DWORD c_event)
 static void cevents_init()
 {
 	if (SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
-		ShowWarning ("Unable to install the console handler!\n");
+		ShowWarning ("Não foi possível instalar o manipulador do console!\n");
 }
 #endif
 
@@ -127,7 +127,7 @@ static void sig_proc(int sn)
 #ifndef _WIN32
 	case SIGXFSZ:
 		// ignore and allow it to set errno to EFBIG
-		ShowWarning ("Max file size reached!\n");
+		ShowWarning ("Tamanho máximo do arquivo alcançado!\n");
 		//run_flag = 0;	// should we quit?
 		break;
 	case SIGPIPE:
@@ -173,7 +173,7 @@ const char* get_svn_revision(void)
 			{
 				// XML File format
 				while (fgets(line,sizeof(line),fp))
-					if (strstr(line,"revision=")) break;
+					if (strstr(line,"revisão=")) break;
 				if (sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) {
 					snprintf(rA_svn_version, sizeof(rA_svn_version), "%d", rev);
 				}
@@ -214,7 +214,7 @@ const char* get_svn_revision(void)
 	 * we definitely didn't find it.
 	 **/
 	if(!(*rA_svn_version))
-		snprintf(rA_svn_version, sizeof(rA_svn_version), "Unknown");
+		snprintf(rA_svn_version, sizeof(rA_svn_version), "Desconhecido");
 
 	return rA_svn_version;
 }
@@ -241,7 +241,7 @@ static void display_title(void)
 	ShowMessage(""CL_XXBL"          ("CL_BOLD"                                                         "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_WTBL"          (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
-	ShowInfo("Revisao SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
+	ShowInfo("Revisão SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
 }
 
 // Warning if executed as superuser (root)
