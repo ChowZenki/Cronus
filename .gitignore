@@ -20,6 +20,7 @@
 /vcproj-10/char-server_sql
 /vcproj-10/login-server_sql
 *.opensdf
+*.sdf
 /vcproj-10/mapcache
 
 # Linux
@@ -29,3 +30,4 @@ map-server_sql
 config.log
 config.status
 Makefile
+
