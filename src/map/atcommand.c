@@ -1952,13 +1952,13 @@ ACMD_FUNC(hair_color)
  * @go [city_number or city_name] - Updated by Harbin
  *------------------------------------------*/
 ACMD_FUNC(go)
+#ifdef RENEWAL
 {
 	int i;
 	int town;
 	char map_name[MAP_NAME_LENGTH];
 	int m;
  
-#ifdef RENEWAL	
 	const struct {
 		char map[MAP_NAME_LENGTH];
 		int x, y;
@@ -2000,43 +2000,7 @@ ACMD_FUNC(go)
 		{ MAP_MALAYA,   242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,   110, 39 }, // 35=Eclage
 	};
-#else
-		const struct {
-		char map[MAP_NAME_LENGTH];
-		int x, y;
-	} data[] = {
-		{ MAP_PRONTERA,    156, 191 }, //  0=Prontera
-		{ MAP_MORROC,      156,  93 }, //  1=Morroc
-		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
-		{ MAP_PAYON,       162, 233 }, //  3=Payon
-		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
-		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
-		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
-		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
-		{ MAP_COMODO,      209, 143 }, //  8=Comodo
-		{ MAP_YUNO,        157,  51 }, //  9=Yuno
-		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
-		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
-		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
-		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
-		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
-		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
-		{ MAP_JAIL,         23,  61 }, // 16=Prison
-		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
-		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
-		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
-		{ MAP_LIGHTHALZEN, 158,  92 }, // 20=Lighthalzen
-		{ MAP_EINBECH,      70,  95 }, // 21=Einbech
-		{ MAP_HUGEL,        96, 145 }, // 22=Hugel
-		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
-		{ MAP_VEINS,       216, 123 }, // 24=Veins
-		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
-		{ MAP_MIDCAMP,    180, 240 }, // 26=Midgard Camp
-		{ MAP_MANUK,       282, 138 }, // 27=Manuk
-		{ MAP_BRASILIS,    182, 239 }, // 28=Brasilis
-	};
-#endif
-
+ 
 	nullpo_retr(-1, sd);
  
 	if( map[sd->bl.m].flag.nogo && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE) ) {
@@ -2073,7 +2037,6 @@ ACMD_FUNC(go)
 	for (i = 0; map_name[i]; i++)
 		map_name[i] = TOLOWER(map_name[i]);
 	// try to identify the map name
-#ifdef RENEWAL
 	if (strncmp(map_name, "prontera", 3) == 0) {
 		town = 0;
 	} else if (strncmp(map_name, "morocc", 3) == 0) {
@@ -2160,7 +2123,109 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "eclage", 3) == 0) {
 		town = 35;
 	}
+
+	if (town >= 0 && town < ARRAYLENGTH(data))
+	{
+		m = map_mapname2mapid(data[town].map);
+		if (m >= 0 && map[m].flag.nowarpto && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) {
+			clif_displaymessage(fd, msg_txt(247));
+			return -1;
+		}
+		if (sd->bl.m >= 0 && map[sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) {
+			clif_displaymessage(fd, msg_txt(248));
+			return -1;
+		}
+		if (pc_setpos(sd, mapindex_name2id(data[town].map), data[town].x, data[town].y, CLR_TELEPORT) == 0) {
+			clif_displaymessage(fd, msg_txt(0)); // Warped.
+		} else {
+			clif_displaymessage(fd, msg_txt(1)); // Map not found.
+			return -1;
+		}
+	} else { // if you arrive here, you have an error in town variable when reading of names
+		clif_displaymessage(fd, msg_txt(38)); // Invalid location number or name.
+		return -1;
+	}
+ 
+	return 0;
+}
 #else
+{
+	int i;
+	int town;
+	char map_name[MAP_NAME_LENGTH];
+	int m;
+
+	const struct {
+		char map[MAP_NAME_LENGTH];
+		int x, y;
+	} data[] = {
+		{ MAP_PRONTERA,    156, 191 }, //  0=Prontera
+		{ MAP_MORROC,      156,  93 }, //  1=Morroc
+		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
+		{ MAP_PAYON,       162, 233 }, //  3=Payon
+		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
+		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
+		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
+		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
+		{ MAP_COMODO,      209, 143 }, //  8=Comodo
+		{ MAP_YUNO,        157,  51 }, //  9=Yuno
+		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
+		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
+		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
+		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
+		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
+		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
+		{ MAP_JAIL,         23,  61 }, // 16=Prison
+		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
+		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
+		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
+		{ MAP_LIGHTHALZEN, 158,  92 }, // 20=Lighthalzen
+		{ MAP_EINBECH,      70,  95 }, // 21=Einbech
+		{ MAP_HUGEL,        96, 145 }, // 22=Hugel
+		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
+		{ MAP_VEINS,       216, 123 }, // 24=Veins
+		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
+		{ MAP_MIDCAMP,    180, 240 }, // 26=Midgard Camp
+		{ MAP_MANUK,       282, 138 }, // 27=Manuk
+		{ MAP_BRASILIS,    182, 239 }, // 28=Brasilis
+	};
+
+	nullpo_retr(-1, sd);
+ 
+	if( map[sd->bl.m].flag.nogo && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE) ) {
+		clif_displaymessage(sd->fd,"You can not use @go on this map.");
+		return 0;
+	}
+ 
+	memset(map_name, '\0', sizeof(map_name));
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+ 
+	// get the number
+	town = atoi(message);
+ 
+	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || town >= ARRAYLENGTH(data))
+	{// no value matched so send the list of locations
+		const char* text;
+
+		// attempt to find the text help string
+		text = atcommand_help_string( command );
+
+		// Invalid location number, or name.
+		clif_displaymessage(fd, msg_txt(38));
+
+		if( text )
+		{// send the text to the client
+			clif_displaymessage( fd, text );
+		}
+		
+		return -1;
+	}
+
+	// get possible name of the city
+	map_name[MAP_NAME_LENGTH-1] = '\0';
+	for (i = 0; map_name[i]; i++)
+		map_name[i] = TOLOWER(map_name[i]);
+	// try to identify the map name
 		if (strncmp(map_name, "prontera", 3) == 0) {
 		town = 0;
 	} else if (strncmp(map_name, "morocc", 3) == 0) {
@@ -2233,7 +2298,6 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "brasilis", 3) == 0) {
 		town = 28;
 	}
-#endif
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
 	{
@@ -2259,6 +2323,7 @@ ACMD_FUNC(go)
  
 	return 0;
 }
+#endif
 
 /*==========================================
  *
