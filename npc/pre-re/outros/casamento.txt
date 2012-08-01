@@ -1,27 +1,19 @@
-//====================================================================
-//          _________                                                 
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
-//           \______  /|__|   \____/|___|  /____//____  >             
-//                  \/                   \/           \/              
-//                                                               
-//====================== Cronus Script ===============================
-//= Casamenteira
-//===== Por: =========================================================
+//===== Cronus Script ========================================
+//= Script de Casamento
+//===== Por: =================================================
 //= L0ne_W0lf
-//===== Versão Atual: ================================================
-//= 1.2
-//===== Compatível com: ==============================================
-//= Cronus GIT;
-//===== Descrição: ===================================================
+//===== Versão Atual: ========================================
+//= 1.1e
+//===== Descrição: ===========================================
+//= [Conversão do Aegis]
 //= Script de casamento Oficial.
 //= Adicionado isloggedin() check, Até mesmo Aegis não faça isso.
 //= Atualmente não suporta casamento de mesmo sexo.
+//= Old script located in: npc/custom/marriage.txt
 //= - Variável em uso: wedding_sign (max 1)
 //= - Variável em uso: $Wedding (max 1) 
 //= - Variável em uso: $wed_groom$ $wed_bride$
-//===== Comentários Adicionais: ======================================
+//===== Comentários Adicionais: ==============================
 //= 1.0 Primeira Versão. [L0ne_W0lf]
 //= 1.1 Fixed a missing ")" [L0ne_W0lf]
 //= 1.1a Traduzido. [Sensei]
@@ -29,11 +21,8 @@
 //= 1.1c Corrigido nomes invisíveis dos NPC's nos eventos. [SoulBlaker]
 //= 1.1d Revisado. [RoM]
 //= 1.1e Removido strsex [Keoy]
-//= 1.2 Pequena Otimização. [Axl]
-//====================================================================
+//============================================================
 
-function	script	mescutin	{ mes getarg(0); cutin "",255; close; }
-function	script	cutinend	{ close2; cutin "",255; end; }
 prt_church,97,100,4	script	Casamenteira#w	71,{
 	cutin "wedding_marry01",2;
 	if (Upper == 2) {
@@ -52,7 +41,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 			mes "se casar.";
 			mes "Por que você não desfruta";
 			mes "os prazeres simples da";
-			mescutin "infância?";
+			mes "infância?";
+			goto L_End;
 		}
 		mes "[Casamenteira]";
 		mes "Oh, claro não, você é";
@@ -60,7 +50,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		mes "não pode se casar-- ";
 		mes "há muitas leis contra";
 		mes "isso~ Você não é a";
-		mescutin "coisa pequena mais adorável?";
+		mes "coisa pequena mais adorável?";
+		goto L_End;
 	}
 	mes "[Casamenteira]";
 	mes "Casamento é a bela união";
@@ -102,7 +93,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		mes "que você realmente quer para";
 		mes "passar o resto de sua vida,";
 		mes "pode perguntar ao Papa. Eu";
-		mescutin "espero que todo o mundo encontre seu par perfeito.";
+		mes "espero que todo o mundo encontre seu par perfeito.";
+		break;
 	case 2:
 		mes "[Casamenteira]";
 		mes "A primeira parte do procedimento";
@@ -160,7 +152,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 			mes "suavemente quanto possível.";
 			mes "Se houver algo que você não";
 			mes "entendeu, sinta à vontade";
-			mescutin "para perguntar de novo.";
+			mes "para perguntar de novo.";
+			goto L_End;
 		}
 		mes "[Casamenteira]";
 		mes "O modo mais fácil para escrever";
@@ -188,7 +181,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		mes "decidir se casar, volte";
 		mes "a mim e submeta sua";
 		mes "candidatura. Verei você";
-		mescutin "depois aventureiro.";
+		mes "depois aventureiro.";
+		break;
 	case 3:
 		cutin "wedding_marry02",2;
 		if (sex) {
@@ -198,7 +192,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 			mes "^3377FF1 Smoking^000000 e pagar ^3377FF1,300,000 zeny^000000.";
 			mes "Noivas têm que prover os próprios Vestidos de Noiva e pagar uma taxa";
 			mes "de 1,200,000 zeny.";
-		} else {
+		}
+		else {
 			mes "[Casamenteira]";
 			mes "Então você gostaria de se casar?";
 			mes "Noivas têm que obter os próprios";
@@ -232,7 +227,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 				mes "casamento! Eu não posso permitir";
 				mes "que traia sua esposa igual a isso,";
 				mes "e por outro lado, poligamia não";
-				mescutin "é legal aqui em Rune-Midgard.";
+				mes "é legal aqui em Rune-Midgard.";
+				break;
 			}
 			else if (wedding_sign == 1) {
 				mes "[Casamenteira]";
@@ -241,7 +237,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 				mes "certeza que s"+(Sex?"ua":"eu")+" companheir"+(Sex?"o":"a");
 				mes "também terminou o processo";
 				mes "de solicitação, e então";
-				mescutin "fale com Bispo Vomars.";
+				mes "fale com Bispo Vomars.";
+				break;
 			}
 			else if (BaseLevel < 45) {
 				mes "[Casamenteira]";
@@ -250,7 +247,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 				mes "pessoa que você ama antes de";
 				mes "poder considerar o matrimônio.";
 				mes "Depois que você tornar mais";
-				mescutin "forte, vem e fale novamente comigo.";
+				mes "forte, vem e fale novamente comigo.";
+				goto L_End;
 			}
 			else if (countitem(2613) < 1) {
 				mes "[Casamenteira]";
@@ -259,7 +257,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 				mes "com seu companheiro durante a";
 				mes "cerimônia de casamento? Procure-o";
 				mes "cuidadosamente e volte depois";
-				mescutin "que você achá-lo, certo?";
+				mes "que você achá-lo, certo?";
+				goto L_End;
 			}
 			else if (sex) {
 				if (zeny < 1300000) {
@@ -268,7 +267,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 					mes "os 1,300,000 zeny";
 					mes "que todos os noivos precisam pagar";
 					mes "para a cerimônia de casamento.";
-					mescutin "Você esqueceu seu dinheiro?";
+					mes "Você esqueceu seu dinheiro?";
+					goto L_End;
 				}
 				else if (countitem(7170) < 1) {
 					mes "[Casamenteira]";
@@ -277,7 +277,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 					mes "usá-lo durante a cerimônia";
 					mes "de casamento! Encontre-o, traga-o";
 					mes "para mim, e então nós finalmente poderemos";
-					mescutin "começar o casamento, certo?";
+					mes "começar o casamento, certo?";
+					goto L_End;
 				}
 			}
 			else if (sex == 0) {
@@ -288,7 +289,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 					mes "zeny para continuar com a cerimônia de";
 					mes "casamento. Talvez";
 					mes "você poderia pedir para seu companheiro";
-					mescutin "te ajudar com o dinheiro?";
+					mes "te ajudar com o dinheiro?";
+					goto L_End;
 				}
 				else if (countitem(2338) < 1) {
 					mes "[Casamenteira]";
@@ -297,7 +299,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 					mes "Corra e encontre-o, então";
 					mes "traga-o para mim você";
 					mes "precisa absolutamente";
-					mescutin "dele para o casamento!";
+					mes "dele para o casamento!";
+					goto L_End;
 				}
 			}
 			mes "[Casamenteira]";
@@ -325,7 +328,7 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 					next;
 				}
 				else 
-					cutinend;
+					break;
 			}
 			mes "[Casamenteira]";
 			mes "Ótimo, parece que nós";
@@ -366,7 +369,7 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 			}
 			delitem 2613,1; //Anel de Diamante
 			set wedding_sign,1;
-			cutinend;
+			goto L_End;
 		}
 		mes "[Casamenteira]";
 		mes "Não...?";
@@ -374,7 +377,9 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		mes "para o matrimônio,";
 		mes "sinta-se livre para voltar";
 		mes "a mim de forma que você possa aceitar,";
-		mescutin "certo? Tenha um bom dia!";
+		mes "certo? Tenha um bom dia!";
+		break;
+
 	case 4:
 		cutin "wedding_marry02",2;
 		donpcevent "Exército de Solteiros#Pr::OnEnable";
@@ -421,6 +426,8 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		mes "^669900...Nós somos livres! nós somos";
 		mes "o Invencível Exército de Solteiros!^000000";
 		donpcevent "Exército de Solteiros#Gn::OnEmote";
+		close2;
+		cutin "wedding_marry01",255;
 		Emotion e_swt;
 		donpcevent "Exército de Solteiros#Pr::OnInit";
 		donpcevent "Exército de Solteiros#Gf::OnInit";
@@ -428,8 +435,16 @@ prt_church,97,100,4	script	Casamenteira#w	71,{
 		donpcevent "Exército de Solteiros#Pa::OnInit";
 		donpcevent "Exército de Solteiros#Am::OnInit";
 		donpcevent "Exército de Solteiros#Gn::OnInit";
-		cutinend;
+		end;
 	}
+	close2;
+	cutin "wedding_marry01",255;
+	end;
+
+L_End:
+	close2;
+	cutin "",255;
+	end;
 }
 
 prt_church,97,102,0	script	Exército de Solteiros#Pr	105,{
@@ -567,7 +582,10 @@ prt_church,100,128,4	script	Bispo#w	60,{
 		mes "Saudações, criança.";
 		mes "você está perdido? Hum.";
 		mes "Você sabe onde sua";
-		mescutin "mamãe e seu papai estão?";
+		mes "mamãe e seu papai estão?";
+		close2;
+		cutin "wedding_bomars01",255;
+		end;
 	}
 
 	if (!getpartnerid()) {
@@ -610,8 +628,10 @@ prt_church,100,128,4	script	Bispo#w	60,{
 						mes "noiva fazer";
 						mes "seu voto de casamento.";
 						mes "Que ela venha aqui na frente...";
+						close2;
 						mapannounce "prt_church","O noivo, Senhor " + strcharinfo(0) + ", fez seus votos para a Senhorita " + $wed_bride$ + "...",bc_map;
-						cutinend;
+						cutin "",255;
+						end;
 					}
 					mes "[Vomars]";
 					mes "Sinto muito, mas o noivo";
@@ -619,7 +639,8 @@ prt_church,100,128,4	script	Bispo#w	60,{
 					mes "ordem para começar o casamento.";
 					mes "É um antigo protocolo formado,";
 					mes "mas eu admito que ele mantém";
-					mescutin "que as coisas corram suavemente.";
+					mes "que as coisas corram suavemente.";
+					goto L_End;
 				}
 				mes "[Vomars]";
 				mes "Antes que você possa";
@@ -627,7 +648,8 @@ prt_church,100,128,4	script	Bispo#w	60,{
 				mes "fazer um grupo de";
 				mes "de dois com sua companheira.";
 				mes "Assim, nós poderemos prosseguir";
-				mescutin "com a cerimônia.";
+				mes "com a cerimônia.";
+				goto L_End;
 			}
 			mes "[Vomars]";
 			mes "Vocês precisam acertar";
@@ -635,7 +657,8 @@ prt_church,100,128,4	script	Bispo#w	60,{
 			mes "antes que vocês consigam casar.";
 			mes "A Casamenteira dirá";
 			mes "o que vocês precisam fazer";
-			mescutin "para preparar o matrimônio.";
+			mes "para preparar o matrimônio.";
+			goto L_End;
 		}
 		else if ($wedding == 1) {
 			if (wedding_sign == 1) {
@@ -646,10 +669,10 @@ prt_church,100,128,4	script	Bispo#w	60,{
 						if (strcharinfo(0) == $wed_bride$) {
 							mes "[Vomars]";
 							mes "Jovens Apaixonados, por favor";
-						    mes "lembrem se desde momento pelo";
-						    mes "resto das suas vidas. Que o futuro de vocês seja abençoado com paz";
-						    mes "e alegria. Que o amor de vocês possa";
-						    mes "crescer mais a cada dia que passa.";
+						        mes "lembrem se desde momento pelo";
+						        mes "resto das suas vidas. Que o futuro de vocês seja abençoado com paz";
+						        mes "e alegria. Que o amor de vocês possa";
+						        mes "crescer mais a cada dia que passa.";
 							next;
 							mapannounce "prt_church","Vamos ouvir o que a noiva, Senhorita "+$wed_bride$+", tem a dizer...",bc_map;
 							mes "[Vomars]";
@@ -669,8 +692,10 @@ prt_church,100,128,4	script	Bispo#w	60,{
 								mes "Eu sinto profudamente por";
 								mes "este mal entendido...";
 								set $wedding,0;
+								close2;
 								stopnpctimer;
-								cutinend;
+								cutin "",255;
+								end;
 							}
 							mes "[Vomars]";
 							mes "Você jura verdadeiramente";
@@ -709,9 +734,11 @@ prt_church,100,128,4	script	Bispo#w	60,{
 										set $wed_groom$,"";
 										set $wed_bride$,"";
 										set $wedding,0;
+										close2;
 										stopnpctimer;
+										cutin "",255;
 										detachrid;
-										cutinend;
+										end;
 									}
 								}
 								cutin "wedding_bomars03",2;
@@ -720,7 +747,8 @@ prt_church,100,128,4	script	Bispo#w	60,{
 								mes "noivo saiu antes da";
 								mes "cerimônia termina.";
 								mes "Por favor tente novamente assim que ele";
-								mescutin "retornar.";
+								mes "retornar.";
+								goto L_End;
 							}
 							else {
 								cutin "wedding_bomars03",2;
@@ -736,8 +764,10 @@ prt_church,100,128,4	script	Bispo#w	60,{
 							set $wed_groom$,"";
 							set $wed_bride$,"";
 							set $wedding,0;
+							close2;
 							stopnpctimer;
-							cutinend;
+							cutin "",255;
+							end;
 						}
 						callsub S_Busy;
 					}
@@ -752,7 +782,8 @@ prt_church,100,128,4	script	Bispo#w	60,{
 				mes "recebeu sua solitação de";
 				mes "matrimônio. Por favor fale";
 				mes "com ela assim nós poderemos";
-				mescutin "começar a cerimônia de casamento.";
+				mes "começar a cerimônia de casamento.";
+				goto L_End;
 			}
 			callsub S_Busy;
 		}
@@ -764,7 +795,12 @@ prt_church,100,128,4	script	Bispo#w	60,{
 	mes "como escuro o presente possa ser,";
 	mes "sempre fique ao lado";
 	mes "de sua amada e olhe";
-	mescutin "para o futuro com esperança.";
+	mes "para o futuro com esperança.";
+
+L_End:
+	close2;
+	cutin  "",255;
+	end;
 
 S_Busy:
 	if ($wed_groom$ != "" && $wed_bride$ != "") {
@@ -773,13 +809,15 @@ S_Busy:
 		mes "Senhorita "+ $wed_bride$ +" e do";
 		mes "Senhor "+ $wed_groom$;
 		mes "está em andamento.";
-		mescutin "Por favor controle sua voz.";
+		mes "Por favor controle sua voz.";
+		goto L_End;
 	}
 	mes "[Vomars]";
 	mes "^FFFFFFEstou conduzindo um casamento";
 	mes "para outro casal agora, então";
 	mes "por favor espere pacientimente por sua";
-	mescutin "vez. Obrigado pela compreensão...^000000";
+	mes "vez. Obrigado pela compreensão...^000000";
+	goto L_End;
 
 OnInit:
 	set $wedding,0;
