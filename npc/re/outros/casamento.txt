@@ -765,7 +765,7 @@ prt_church,100,128,4	script	Bispo#w	60,{
 	mes "sempre fique ao lado";
 	mes "de sua amada e olhe";
 	mescutin "para o futuro com esperança.";
-
+	
 S_Busy:
 	if ($wed_groom$ != "" && $wed_bride$ != "") {
 		mes "[Vomars]";

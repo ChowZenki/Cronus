@@ -15,25 +15,25 @@
 //===== Compatível com: ==============================================
 //= Cronus GIT;
 //===== Descrição: ===================================================
-//= Divorciador
+//= Divorciador oficial do bRO
 //===== Comentários Adicionais: ======================================
 //= 1.0 Versão Inicial [Axl]
 //====================================================================
 nif_in,190,112,5	script	Advogado Sombrio#cr	738,{
-		if(getpartnerid() == 0) {
-		if(rand(2)) {
-			mes "[Deviruchi]";
-			mes "Mwahaha! Quer dizer que aquela promessa de amor eterno,";
-			mes "de viverem felizes para sempre, acabou? Ou... Mwahaha...";
-			mes "Será que aquele amor todo nunca existiu, nem no começo? ";
-			mes "Eu estou te falando: casamento é uma ilusão...";
-			close;
-		}
+		if (wedding_sign == 0) {
 			mes "[Deviruchi]";
 			mes "Mwahaha, eu te disse. Os humanos nasceram para";
 			mes "terminarem sozinhos. Solidão é o seu destino.";
 			mes "Mas, quer saber? Quem precisa de casamento?";
 			mes "Arranje um cachorro! Ou eu, um Deviruchi, sabe...";
+			close;
+		}
+		if(getpartnerid() == 0) {
+			mes "[Deviruchi]";
+			mes "Mwahaha! Quer dizer que aquela promessa de amor eterno,";
+			mes "de viverem felizes para sempre, acabou? Ou... Mwahaha...";
+			mes "Será que aquele amor todo nunca existiu, nem no começo? ";
+			mes "Eu estou te falando: casamento é uma ilusão...";
 			close;
 		}
 			mes "[Deviruchi]";
@@ -80,7 +80,7 @@ nif_in,190,112,5	script	Advogado Sombrio#cr	738,{
 					close2;
 					warp "niflheim",169,162;
 					end;
-				}
+			}
 					mes "[Deviruchi]";
 					mes "Um humano inteligente! Coisa rara, você sabe.";
 					mes "Tudo o que preciso é de 2,500,000 zeny.";
@@ -110,6 +110,7 @@ nif_in,190,112,5	script	Advogado Sombrio#cr	738,{
 								mes "Mwahahaha, você está livre agora!";
 								mes "Enterre de vez este amor ridículo! ";
 								mes "Vamos, me agradeça por esse grande favor! ";
+								set wedding_sign,0;
 								close;
 								}
 								mes "[Deviruchi]";
