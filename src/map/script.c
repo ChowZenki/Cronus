@@ -17076,5 +17076,6 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF2(callshop,"callcashshop","s*"),
 	BUILDIN_DEF(makehomun,"i"),		//[SoulBlaker]
 	BUILDIN_DEF(healhomun,"ii"),	//[SoulBlaker]
+	BUILDIN_DEF(checkre,"i"),	//Issue 360
 	{NULL,NULL,NULL},
 };
