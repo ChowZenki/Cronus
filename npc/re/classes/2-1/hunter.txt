@@ -34,7 +34,7 @@
 //= 2.3a 7 official sets of Demon Hunter,thx to Dr.Evil [Lupus]
 //= 2.4a Added missing next;, missing NPC names [Lupus]
 //= 2.5 "strcharinfo" -> "strcharinfo(0)" [FlavioJS]
-//= 2.6 Fixed 3� Test. [Samuray22]
+//= 2.6 Fixed 3rd Test. [Samuray22]
 //	-Changed Timers from 3 to 1 minute.
 //	-Changed "Job Change Monsters".
 //	-Thanks to ultradamage.
@@ -503,15 +503,16 @@ hu_in01,382,382,4	script	Guild Receptionist#hnt	732,{
 		mes "[Demon Hunter]";
 		mes "You see, we're having some financial problems. Let's see, we're short on these items...";
 		next;
+		if(checkre(0)) set .@i,1;
 		switch(rand(1,7)) {
-		//Insect_Feeler, Wooden_Block, White_Herb
-		case 1: setarray .@items[0], 928,5, 1019,5, 509,3, 3; changequest 4001,4002; break;
+		//Insect_Feeler/Claw_Of_Desert_Wolf, Wooden_Block, White_Herb
+		case 1: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 3; changequest 4001,4002; break;
 		//Bill_Of_Birds, Skel_Bone, Green_Herb
 		case 2: setarray .@items[0], 925,3, 932,5, 511,3, 4; changequest 4001,4003; break;
-		//Colorful_Shell, Animal's_Skin, Red_Herb
-		case 3: setarray .@items[0], 1013,3, 919,3, 507,5, 5; changequest 4001,4004; break;
-		//Horn, Poison_Spore, Fluff
-		case 4: setarray .@items[0], 947,3, 7033,3, 914,10, 6; changequest 4001,4005; break;
+		//Colorful_Shell/Posionous_Canine, Animal's_Skin, Red_Herb
+		case 3: setarray .@items[0], (.@i?1013:937),3, 919,3, 507,5, 5; changequest 4001,4004; break;
+		//Horn/Dokkaebi_Horn, Poison_Spore/Piece_Of_Egg_Shell, Fluff
+		case 4: setarray .@items[0], (.@i?947:1021),3, (.@i?7033:7032),3, 914,10, 6; changequest 4001,4005; break;
 		//Shell, Worm_Peelings, Yellow_Herb
 		case 5: setarray .@items[0], 935,9, 955,9, 508,9, 7; changequest 4001,4006; break;
 		//Tooth_Of_Bat, Sticky_Mucus, Bear's_Foot
@@ -534,14 +535,14 @@ hu_in01,382,382,4	script	Guild Receptionist#hnt	732,{
 	}
 	else if (HNTR_Q >= 3 && HNTR_Q <= 9) {
 		switch(HNTR_Q) {
-		//Insect_Feeler, Wooden_Block, White_Herb
-		case 3: setarray .@items[0], 928,5, 1019,5, 509,3, 10; break;
+		//Insect_Feeler/Claw_Of_Desert_Wolf, Wooden_Block, White_Herb
+		case 3: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 10; break;
 		//Bill_Of_Birds, Skel_Bonem Green_Herb
 		case 4: setarray .@items[0], 925,3, 932,5, 511,3, 10; break;
-		//Colorful_Shell, Animal's_Skin, Red_Herb
-		case 5: setarray .@items[0], 1013,3, 919,3, 507,5, 10; break;
-		//Horn, Poison_Spore, Fluff
-		case 6: setarray .@items[0], 947,3, 7033,3, 914,10, 10; break;
+		//Colorful_Shell/Posionous_Canine, Animal's_Skin, Red_Herb
+		case 5: setarray .@items[0], (.@i?1013:937),3, 919,3, 507,5, 10; break;
+		//Horn/Dokkaebi_Horn, Poison_Spore/Piece_Of_Egg_Shell, Fluff
+		case 6: setarray .@items[0], (.@i?947:1021),3, (.@i?7033:7032),3, 914,10, 10; break;
 		//Shell, Worm_Peelings, Yellow_Herb
 		case 7: setarray .@items[0], 935,9, 955,9, 508,9, 11; break;
 		//Tooth_Of_Bat, Sticky_Mucus, Bear's_Foot
