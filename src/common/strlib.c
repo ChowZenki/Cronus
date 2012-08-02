@@ -850,7 +850,7 @@ size_t sv_unescape_c(char* out_dest, const char* src, size_t len)
 		{
 			++i;// '\\'
 			if( i >= len )
-				ShowWarning("sv_unescape_c: empty escape sequence\n");
+				ShowWarning("sv_unescape_c: sequência de escape vazia\n");
 			else if( src[i] == 'x' )
 			{// hex escape sequence
 				unsigned char c = 0;
@@ -1027,7 +1027,7 @@ bool sv_readdb(const char* directory, const char* filename, char delim, int minc
 
 	aFree(fields);
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", entries, path);
+	ShowStatus("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' entradas em '"CL_WHITE"%s"CL_RESET"'.\n", entries, path);
 
 	return true;
 }

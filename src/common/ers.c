@@ -195,8 +195,8 @@ static void *ers_obj_alloc_entry(ERS self)
 	} else { // allocate a new block
 		if (obj->num == obj->max) { // expand the block array
 			if (obj->max == UINT32_MAX) { // No more space for blocks
-				ShowFatalError("ers::alloc : maximum number of blocks reached, increase ERS_BLOCK_ENTRIES.\n"
-						"exiting the program...\n");
+				ShowFatalError("ers::alloc : máximo número de blocos alcançado, aumente ERS_BLOCK_ENTRIES.\n"
+						"fechando o programa...\n");
 				exit(EXIT_FAILURE);
 			}
 			obj->max = (obj->max*4)+3; // left shift bits '11' - overflow won't happen

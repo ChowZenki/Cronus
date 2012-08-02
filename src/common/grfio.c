@@ -557,7 +557,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 
 				if( strlen(fname) > sizeof(aentry.fn) - 1 )
 				{
-					ShowFatalError("GRF file name %s is too long\n", fname);
+					ShowFatalError("Nome da GRF %s é muito longo\n", fname);
 					aFree(grf_filelist);
 					exit(EXIT_FAILURE);
 				}
@@ -624,7 +624,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 
 			if( strlen(fname) > sizeof(aentry.fn)-1 )
 			{
-				ShowFatalError("GRF file name %s is too long\n", fname);
+				ShowFatalError("Nome da GRF %s é muito longo\n", fname);
 				aFree(grf_filelist);
 				exit(EXIT_FAILURE);
 			}
@@ -729,7 +729,7 @@ static void grfio_resourcecheck(void)
 		}
 
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", i, "resnametable.txt");
+		ShowStatus("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' entradas em '"CL_WHITE"%s"CL_RESET"'.\n", i, "resnametable.txt");
 		return;	// we're done here!
 	}
 	
@@ -751,7 +751,7 @@ static void grfio_resourcecheck(void)
 		}
 
 		aFree(buf);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", i, "data\\resnametable.txt");
+		ShowStatus("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' entradas em '"CL_WHITE"%s"CL_RESET"'.\n", i, "data\\resnametable.txt");
 		return;
 	}
 }
@@ -836,11 +836,11 @@ void grfio_init(const char* fname)
 		}
 
 		fclose(data_conf);
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", fname);
+		ShowStatus("Fianlizada leitura de '"CL_WHITE"%s"CL_RESET"'.\n", fname);
 	}
 
 	if( grf_num == 0 )
-		ShowInfo("No GRF loaded, using default data directory\n");
+		ShowInfo("Nenhuma GRF carregada, usando pasta data padrão\n");
 
 	// Unneccessary area release of filelist
 	filelist_compact();

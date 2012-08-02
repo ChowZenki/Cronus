@@ -117,7 +117,7 @@ static void rdtsc_calibrate(){
 	uint64 t1, t2;
 	int32 i;
 	
-	ShowStatus("Calibrating Timer Source, please wait... ");
+	ShowStatus("Calibrando Timer da Source, por favor aguarde... ");
 	
 	RDTSC_CLOCK = 0;
 	
@@ -131,7 +131,7 @@ static void rdtsc_calibrate(){
 	
 	RDTSC_BEGINTICK = _rdtsc();
 	
-	ShowMessage(" done. (Frequency: %u Mhz)\n", (uint32)(RDTSC_CLOCK/1000) );
+	ShowMessage(" finalizado. (Frequência: %u Mhz)\n", (uint32)(RDTSC_CLOCK/1000) );
 }
 
 #endif

@@ -435,7 +435,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port){
 	s->type = NST_LISTENER;
 	s->onRecv = _network_accept;
 
-	ShowStatus("Added Listener on '%s':%u\n", addr, port, (v6==true ? "(ipv6)":"(ipv4)") );
+	ShowStatus("Adicionado Escuta em '%s':%u\n", addr, port, (v6==true ? "(ipv6)":"(ipv4)") );
 
 	return fd;
 }//end: network_addlistener()
@@ -491,7 +491,7 @@ static bool _network_connect_establishedHandler(int32 fd){
 		
 		s->onSend = NULL;
 		
-		ShowStatus("#%u connection successfull!\n", fd);	
+		ShowStatus("#%u conexão estabilizada!\n", fd);	
 	}
 
 	return true;	
@@ -662,7 +662,7 @@ int32 network_connect(bool v6,
 
 
 	// ! The Info Message :~D
-	ShowStatus("network_connect fd#%u (%s:%u) in progress.. \n", fd, addr, port);
+	ShowStatus("network_connect fd#%u (%s:%u) em progresso.. \n", fd, addr, port);
 
 return fd;	
 }//end: network_connect()

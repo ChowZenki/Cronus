@@ -303,7 +303,7 @@ void setsocketopts(int fd)
 	opt.l_onoff = 0; // SO_DONTLINGER
 	opt.l_linger = 0; // Do not care
 	if( sSetsockopt(fd, SOL_SOCKET, SO_LINGER, (char*)&opt, sizeof(opt)) )
-		ShowWarning("setsocketopts: Unable to set SO_LINGER mode for connection #%d!\n", fd);
+		ShowWarning("setsocketopts: Não foi possível definir modo SO_LINGER para conexão #%d!\n", fd);
 	}
 }
 
@@ -533,11 +533,11 @@ int make_connection(uint32 ip, uint16 port)
 	remote_address.sin_addr.s_addr = htonl(ip);
 	remote_address.sin_port        = htons(port);
 
-	ShowStatus("Connecting to %d.%d.%d.%d:%i\n", CONVIP(ip), port);
+	ShowStatus("Conectando-se a %d.%d.%d.%d:%i\n", CONVIP(ip), port);
 
 	result = sConnect(fd, (struct sockaddr *)(&remote_address), sizeof(struct sockaddr_in));
 	if( result == SOCKET_ERROR ) {
-		ShowError("make_connection: connect failed (socket #%d, %s)!\n", fd, error_msg());
+		ShowError("make_connection: conexão falhou (soquete #%d, %s)!\n", fd, error_msg());
 		do_close(fd);
 		return -1;
 	}
@@ -655,7 +655,7 @@ int WFIFOSET(int fd, size_t len)
 	if(s->wdata_size+len > s->max_wdata)
 	{	// actually there was a buffer overflow already
 		uint32 ip = s->client_addr;
-		ShowFatalError("WFIFOSET: Write Buffer Overflow. Connection %d (%d.%d.%d.%d) has written %u bytes on a %u/%u bytes buffer.\n", fd, CONVIP(ip), (unsigned int)len, (unsigned int)s->wdata_size, (unsigned int)s->max_wdata);
+		ShowFatalError("WFIFOSET: Estouro da Buffer na Escrita. Conexão %d (%d.%d.%d.%d) escreveu %u bytes num buffer de %u/%u bytes.\n", fd, CONVIP(ip), (unsigned int)len, (unsigned int)s->wdata_size, (unsigned int)s->max_wdata);
 		ShowDebug("Likely command that caused it: 0x%x\n", (*(uint16*)(s->wdata + s->wdata_size)));
 		// no other chance, make a better fifo model
 		exit(EXIT_FAILURE);
@@ -665,7 +665,7 @@ int WFIFOSET(int fd, size_t len)
 	{
 		// dynamic packets allow up to UINT16_MAX bytes (<packet_id>.W <packet_len>.W ...)
 		// all known fixed-size packets are within this limit, so use the same limit
-		ShowFatalError("WFIFOSET: Packet 0x%x is too big. (len=%u, max=%u)\n", (*(uint16*)(s->wdata + s->wdata_size)), (unsigned int)len, 0xFFFF);
+		ShowFatalError("WFIFOSET: Pacote 0x%x é muito longo. (len=%u, max=%u)\n", (*(uint16*)(s->wdata + s->wdata_size)), (unsigned int)len, 0xFFFF);
 		exit(EXIT_FAILURE);
 	}
 	else if( len == 0 )
@@ -673,14 +673,14 @@ int WFIFOSET(int fd, size_t len)
 		// abuses the fact, that the code that did WFIFOHEAD(fd,0), already wrote
 		// the packet type into memory, even if it could have overwritten vital data
 		// this can happen when a new packet was added on map-server, but packet len table was not updated
-		ShowWarning("WFIFOSET: Attempted to send zero-length packet, most likely 0x%04x (please report this).\n", WFIFOW(fd,0));
+		ShowWarning("WFIFOSET: Tentativa de envio de pacote sem tamanho, mais provavelmente 0x%04x (favor reporte isso).\n", WFIFOW(fd,0));
 		return 0;
 	}
 
 	if( !s->flag.server ) {
 
 		if( len > socket_max_client_packet ) {// see declaration of socket_max_client_packet for details
-			ShowError("WFIFOSET: Dropped too large client packet 0x%04x (length=%u, max=%u).\n", WFIFOW(fd,0), len, socket_max_client_packet);
+			ShowError("WFIFOSET: Descartado pacote muito longo do cliente 0x%04x (tamanho=%u, max=%u).\n", WFIFOW(fd,0), len, socket_max_client_packet);
 			return 0;
 		}
 
@@ -742,7 +742,7 @@ int do_sockets(int next)
 	{
 		if( sErrno != S_EINTR )
 		{
-			ShowFatalError("do_sockets: select() failed, %s!\n", error_msg());
+			ShowFatalError("do_sockets: select() falhou, %s!\n", error_msg());
 			exit(EXIT_FAILURE);
 		}
 		return 0; // interrupted by a signal, just loop and try again
@@ -946,7 +946,7 @@ static int connect_check_(uint32 ip)
 				if( hist->count++ >= ddos_count )
 				{// DDoS attack detected
 					hist->ddos = 1;
-					ShowWarning("connect_check: DDoS Attack detected from %d.%d.%d.%d!\n", CONVIP(ip));
+					ShowWarning("connect_check: Ataque DDoS detectado de %d.%d.%d.%d!\n", CONVIP(ip));
 					return (connect_ok == 2 ? 1 : 0);
 				}
 				return connect_ok;
@@ -1111,7 +1111,7 @@ int socket_config_read(const char* cfgName)
 		else if (!strcmpi(w1, "import"))
 			socket_config_read(w2);
 		else
-			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+			ShowWarning("Configuração '%s' desconhecida no arquivo %s\n", w1, cfgName);
 	}
 
 	fclose(fp);

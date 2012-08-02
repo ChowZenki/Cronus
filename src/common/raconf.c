@@ -50,7 +50,7 @@ static struct conf_value *makeValue(const char *key, char *val, size_t val_len){
 	
 	v = (struct conf_value*)aCalloc(1, sizeof(struct conf_value));
 	if(v == NULL){
-		ShowFatalError("raconf: makeValue => Out of Memory while allocating new node.\n");
+		ShowFatalError("raconf: makeValue => Memória Insuficiente ao alocar novo nó.\n");
 		return NULL;
 	}
 	
@@ -404,7 +404,7 @@ raconf  raconf_parse(const char *file_name){
 	
 	rc = aCalloc(1, sizeof(struct raconf) );
 	if(rc == NULL){
-		ShowFatalError("raconf_parse: failed to allocate memory for new handle\n");
+		ShowFatalError("raconf_parse: falha ao alocar memória para o novo handle\n");
 		return NULL;
 	}
 
@@ -412,7 +412,7 @@ raconf  raconf_parse(const char *file_name){
 	//
 	
 	if(configParse(rc, file_name) != true){
-		ShowError("Failed to Parse Configuration file '%s'\n", file_name);
+		ShowError("Falha ao ler arquivo de configuração '%s'\n", file_name);
 	}
 	
 	return rc;

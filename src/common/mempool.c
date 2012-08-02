@@ -168,7 +168,7 @@ void mempool_init(){
 void mempool_final(){
 	mempool p, pn;
 	
-	ShowStatus("Mempool: Terminating async. allocation worker and remaining pools.\n");
+	ShowStatus("Mempool: Finalizando async. allocation worker e pools restantes.\n");
 
 	// Terminate worker / wait until its terminated.
 	InterlockedIncrement(&l_async_terminate);
