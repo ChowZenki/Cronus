@@ -59,7 +59,7 @@ prontera,130,196,5	script	Garota Negociante	90,{
 						close;
 					}
 				} else {
-					if( !chekcart() ) {
+					if( !checkcart() ) {
 						setcart;
 					} else {
 						mes "Desculpe, mas não posso ajudar você.";
@@ -77,9 +77,9 @@ prontera,130,196,5	script	Garota Negociante	90,{
 				close;
 			}
 		} else if( !checkriding() && ( getskilllv(63) || getskilllv(2007) ) ) {
-			if( Class == 4073 || Class == 4066 ) {
+			if( Class != 4060 || Class != 4054 ) {
 				setriding;
-			} else if( Class == 4060 || Class == 4054 ) {
+			} else {
 				setdragon;
 			}
 		} else if( BaseClass == 3 || BaseClass == 11 ) {
