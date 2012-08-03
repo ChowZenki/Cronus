@@ -106,8 +106,8 @@ prontera,153,193,4	script	Mestra das Classes#re	864,{
 		if (select ("Não:Sim") == 1)
 			close;
 		mes "["+strnpcinfo(1)+"]";
-		if (Weight > 1500)
-			callsub S_MesClose, "Você está acima do peso permitido, você precisa ter menos que 1500.";
+		if (Weight > 0)
+			callsub S_MesClose, "Para renascer você deve estar livre de todos os seus equipamentos.";
 		jobchange 4001;
 		resetlvl(1);
 		mes "Você ganhará 100 Pontos de Atributo, e algumas habilidades";
