@@ -4701,12 +4701,13 @@ int do_init(int argc, char **argv)
 	char_lan_config_read((argc > 3) ? argv[3] : LAN_CONF_NAME);
 	sql_config_read(SQL_CONF_NAME);
 
-	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
+	if (strcmp(userid, "s1") == 0 && strcmp(passwd, "p1") == 0)
+	{
 		ShowError("Não foi possível iniciar o emulador.\n");
 		ShowError("O servidor está utilizando senhas de comunicação s1/p1. Isto é inválido e o servidor não irá iniciar.\n");
 		ShowNotice("Por favor, altere a tabela 'login' para criar uma conexão funcional. (Coloque account_id com o valor '1' e gender 'S')\n");
 		ShowNotice("E após, troque os dados da comunicação em conf/map_athena.conf e conf/char_athena.conf.\n");
-		//return 0;
+		return 0;
 	}
 
 	ShowInfo("Finalizada leitura da configuração do char-server.\n");
