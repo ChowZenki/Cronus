@@ -58,6 +58,14 @@ prontera,130,196,5	script	Garota Negociante	90,{
 					if( checkcart() ) {
 						close;
 					}
+				} else {
+					if( !chekcart() ) {
+						setcart;
+					} else {
+						mes "Desculpe, mas não posso ajudar você.";
+						mes "Verifique se você já possui a habilidade necessária ou se já está com algo alugado!";
+						close;
+					}
 				}
 			} else if( !checkcart() && getskilllv(39) ) {
 				setcart;
