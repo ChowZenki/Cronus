@@ -708,32 +708,32 @@ L_MES:
 	mes "Escute com atenção!";
 	next;
 	mes "[Wutao]";
-	show @monk_str0$;
+	mes @monk_str0$;
 	next;
 	mes "[Wutao]";
-	show @monk_str1$;
+	mes @monk_str1$;
 	next;
 	mes "[Wutao]";
-	show @monk_str2$;
+	mes @monk_str2$;
 	next;
 	mes "[Wutao]";
-	show @monk_str3$;
+	mes @monk_str3$;
 	next;
 	mes "[Wutao]";
-	show @monk_str4$;
+	mes @monk_str4$;
 	next;
 	mes "[Wutao]";
-	show @monk_str5$;
+	mes @monk_str5$;
 	next;
 	mes "[Wutao]";
-	show @monk_str6$;
+	mes @monk_str6$;
 	next;
 	mes "[Wutao]";
-	show @monk_str7$;
+	mes @monk_str7$;
 	if(@JOB_MONK_C2 < 3) goto L_MES_1;
 	next;
 	mes "[Wutao]";
-	show @monk_str8$;
+	mes @monk_str8$;
 
 L_MES_1:
 	next;
@@ -1302,7 +1302,7 @@ L_START:
 	mes "Área de Treino dos Monges.";
 	next;
 	mes "[Guarda ChaoLi]";
-	show strcharinfo(0) + "... Correto?!";
+	mes strcharinfo(0) + "... Correto?!";
 	next;
 	mes "[Guarda ChaoLi]";
 	mes "Vá em frene! Rápido!";
@@ -1383,7 +1383,7 @@ monk_test,387,347,4	script	Musha	110,{
 
 		mapannounce "monk_test","Musha: " + strcharinfo(0) + "desistiu do teste...! Ele desistiu do testa da Maratona... Não... Não tem força de vontade... Hahahahahaha!",8;
 		mes "[Musha]";
-		show strcharinfo(0) + "desistiu... desistiu do teste...";
+		mes strcharinfo(0) + "desistiu... desistiu do teste...";
 		mes "Desistiu do teste da Maratona";
 		mes "Sem força de vontade... sem força.... Hahahahahahaha!!!";
 		next;

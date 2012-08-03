@@ -51,7 +51,7 @@ alberta,188,64,4	script	Açucar	91,{
 		}
 		mes "[Açúcar]";
 		mes "O preço é de";
-		show .@maplePrice + " Zeny cada.";
+		mes .@maplePrice + " Zeny cada.";
 		mes "Quantos você deseja comprar?";
 		next;
 		input .@maplenum;

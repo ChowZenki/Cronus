@@ -1589,7 +1589,7 @@ OnTouch:
 	mes "É ele que será encarregado de promover você para a classe Mercenário.";
 	next;
 	mes "[Mestre da Guilda]";
-	show strcharinfo(0) + " escolheu o caminho do Mercenário.  Você pode aprender a resistir aos sofrimentos que todos os Mercenários devem enfrentar.";
+	mes strcharinfo(0) + " escolheu o caminho do Mercenário.  Você pode aprender a resistir aos sofrimentos que todos os Mercenários devem enfrentar.";
 	getitem 1008, 1;
 	next;
 	mes "[Mestre da Guilda]";

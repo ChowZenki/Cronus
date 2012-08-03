@@ -244,20 +244,20 @@ bra_in01,27,24,3	script	Recepcionista#bra	478,{
 
 //----------------------- Funções da Hospedagem ---------------------
 function	script	F_InnMaid	{
-	show getarg(0);
+	mes getarg(0);
 	mes "Bem-vindo à";
-	show getarg(1) + ".";
+	mes getarg(1) + ".";
 	mes "Como posso ajudá-lo?";
 	next;
 	switch(select("Salvar:Descansar - 5.000z:Cancelar")){
 	case 1:
-		show getarg(0);
+		mes getarg(0);
 		mes "Seu Ponto de Retorno foi salvo.";
 		mes "Obrigado e volte sempre.";
 		savepoint getarg(2),getarg(3),getarg(4);
 		close;
 	case 2:
-		show getarg(0);
+		mes getarg(0);
 		if(Zeny < 5000){
 			mes "A taxa de serviço é 5.000 zeny.";
 			mes "Por favor, tenha certeza de que tem a quantidade necessária";

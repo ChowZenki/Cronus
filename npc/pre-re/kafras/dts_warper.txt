@@ -505,36 +505,36 @@ function	script	F_DTS_Warp	{
 	Lelection: 							//Explicação da razão de eleição
 		switch(getarg(0)){
 		case 0:
-			show "[CEI - Assistente da Eleição]";
-			show "A Corporação Eventos Incríveis tem planejado prover um novo Serviço de Teletransporte aos Calabouços para seus clientes, um serviço que não é feito pela Corporação Kafra. Porém...";
+			mes "[CEI - Assistente da Eleição]";
+			mes "A Corporação Eventos Incríveis tem planejado prover um novo Serviço de Teletransporte aos Calabouços para seus clientes, um serviço que não é feito pela Corporação Kafra. Porém...";
 			next;
-			show "[CEI - Assistente da Eleição]";
-			show "A Corporação Kafra que já monopoliza o mercado de teletransporte público, atualmente também teve planos para prover um serviço semelhante.";
+			mes "[CEI - Assistente da Eleição]";
+			mes "A Corporação Kafra que já monopoliza o mercado de teletransporte público, atualmente também teve planos para prover um serviço semelhante.";
 			next;
-			show "[CEI - Assistente da Eleição]";
-			show "Por causa de limitações tecnológicas, só uma compania pode ser escolhida como o provedor deste Serviço de Teletransporte aos Calabouços. Consequentemente, nós deixaremos os clientes decidirem por estas eleições.";
+			mes "[CEI - Assistente da Eleição]";
+			mes "Por causa de limitações tecnológicas, só uma compania pode ser escolhida como o provedor deste Serviço de Teletransporte aos Calabouços. Consequentemente, nós deixaremos os clientes decidirem por estas eleições.";
 			next;
-			show "[CEI - Assistente da Eleição]";
-			show "Serão seguradas eleições múltiplas de forma que nossos clientes possam testar os serviços especiais de cada compania para eles. Porém, lembre-se de que você deve ser qualificado para votar.";
+			mes "[CEI - Assistente da Eleição]";
+			mes "Serão seguradas eleições múltiplas de forma que nossos clientes possam testar os serviços especiais de cada compania para eles. Porém, lembre-se de que você deve ser qualificado para votar.";
 			next;
-			show "[CEI - Assistente da Eleição]";
-			show "Para elegibilidade de eleitor detalhada, por favor visite nossa sede na cidade de Lighthalzen localizada na República de Schwarzwald. Obrigada por seu tempo.";
+			mes "[CEI - Assistente da Eleição]";
+			mes "Para elegibilidade de eleitor detalhada, por favor visite nossa sede na cidade de Lighthalzen localizada na República de Schwarzwald. Obrigada por seu tempo.";
 			break;
 		case 1:
-			show "[Kafra Assistente da Eleição]";
-			show "A Corporação Eventos Incríveis e a Corporação Kafra que ambos têm planejado prover um Serviço de Teletransporte aos Calabouços.";
+			mes "[Kafra Assistente da Eleição]";
+			mes "A Corporação Eventos Incríveis e a Corporação Kafra que ambos têm planejado prover um Serviço de Teletransporte aos Calabouços.";
 			next;
-			show "[Kafra Assistente da Eleição]";
-			show "Mas devido a limitações tecnológicas, só uma compania pode servir de cada vez como provedor para este Serviço de Teletransporte aos Calabouço. Então, ambas as corporações concordaram em organizar uma eleição especial.";
+			mes "[Kafra Assistente da Eleição]";
+			mes "Mas devido a limitações tecnológicas, só uma compania pode servir de cada vez como provedor para este Serviço de Teletransporte aos Calabouço. Então, ambas as corporações concordaram em organizar uma eleição especial.";
 			next;
-			show "[Kafra Assistente da Eleição]";
-			show "Cada corporação tem suas próprias políticas e garantias com respeito ao Serviço de Teletransporte aos Calabouços, e nesta eleição, os clientes decidirão e escolherão o que é melhor para eles.";
+			mes "[Kafra Assistente da Eleição]";
+			mes "Cada corporação tem suas próprias políticas e garantias com respeito ao Serviço de Teletransporte aos Calabouços, e nesta eleição, os clientes decidirão e escolherão o que é melhor para eles.";
 			next;
-			show "[Kafra Assistente da Eleição]";
-			show "Para agora, o Serviço de Teletransporte aos Calabouços será provido em uma série de períodos de testes. Deste modo, os clientes podem ver os benefícios de ambas as companias antes de fazer a decisão final.";
+			mes "[Kafra Assistente da Eleição]";
+			mes "Para agora, o Serviço de Teletransporte aos Calabouços será provido em uma série de períodos de testes. Deste modo, os clientes podem ver os benefícios de ambas as companias antes de fazer a decisão final.";
 			next;
-			show "[Kafra Assistente da Eleição]";
-			show "Se você está qualificado, por favor vote em cada eleição para decidir qual compania proverá o Serviço de Teletransporte aos Calabouços do próximo período de testes. Obrigada por seu apoio.";
+			mes "[Kafra Assistente da Eleição]";
+			mes "Se você está qualificado, por favor vote em cada eleição para decidir qual compania proverá o Serviço de Teletransporte aos Calabouços do próximo período de testes. Obrigada por seu apoio.";
 			break;
 		}
 		goto Lend;
