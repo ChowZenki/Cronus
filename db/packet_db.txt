@@ -1,38 +1,35 @@
-// Client<->Map Packet Database
+//--------------------------------------------------------------
+// _________                                    
+// \_   ___ \_______  ____   ____  __ __  ______
+// /    \  \/\_  __ \/    \ /    \|  |  \/  ___/
+// \     \____|  | \(  ( ) )   |  \  |  /\___ \ 
+//  \______  /|__|   \____/|___|  /____//____  >
+//         \/                   \/           \/  
+//--------------------------------------------------------------
+// Banco de Dados de Pacotes (Client<->Map Packet)
+//--------------------------------------------------------------
+// Estrutura do banco de dados:
+// TipoPacket,TamanhoPacket[,Nome,IndiceCampo1:IndiceCampo2:...]
 //
-// Structure of Database:
-// PacketType,PacketLength[,Name,FieldIndex1:FieldIndex2:FieldIndex3:...]
-//
-// 01. PacketType       ID of the packet.
-// 02. PacketLength     Length of the packet. If 0, packet is disabled in current packet version. If -1, packet has variable size.
-// 03. Name             Name of the packet parser function (optional, for incoming packets only).
-// 04. FieldIndex       Specifies the offset of a packet field in bytes from the begin of the packet (only specified when Name is given).
+// 01. TipoPacket       ID of the packet.
+// 02. TamanhoPacket    Length of the packet. If 0, packet is disabled in current packet version. If -1, packet has variable size.
+// 03. Nome             Name of the packet parser function (optional, for incoming packets only).
+// 04. IndiceCampo      Specifies the offset of a packet field in bytes from the begin of the packet (only specified when Name is given).
 //                      Can be 0, when the layout is not known.
-// ...
 //
-// NOTE: Up to MAX_PACKET_POS (typically 20) field indexes may be used.
+// NOTA: valores até MAX_PACKET_POS (tipicamente 20) índices de campo podem ser usados.
 //
-// The packet database allows you to add support for new clients,
-// because packets change every release.
+// O banco de dados de packets permite você adicionar suporte a novos clients,
+// já que os packets mudam a cada lançamento.
 //
-// Note: Every packet version needs a wanttoconnection specification, since
-// that is the packet used to identify a client's version.
-// If multiple versions have the same connection packet, the higher version
-// will be used (unless the lower one is specified as the default)
-//
-// Incoming packets have their parser function and layout specified, which enables
-// them for the current and all higher versions, unless explicitely disabled.
-//
-// Outgoing packets must be specified in order to enable them for the current
-// and all higher versions, unless explicitely disabled. Packets that are not
-// enabled for a packet version are silently discarded when sent as multicast.
-//
-// Every packet version inherits packet definitions from the previous (lower)
-// packet version.
-//
-// Main packet version of the DB to use (default = max available version)
-// Client detection is faster when all clients use this version.
-// Version 23 is the latest Sakexe (above versions are for Renewal clients)
+// Nota: Toda versão de packets precisa da especificação wanttoconnection, já que
+// este é o packet usado para identificar a versão do client.
+// Se múltiplas versões tiverem o mesmo packet de conexão, a maior versão
+// será usada (ao menos que a menor seja especificada para ser usada)
+// Se você deseja usar a última versão possível, coloque default.
+// A versão 23 é o último Sakexe, versão mais recentes remetem ao RagexeRE
+//--------------------------------------------------------------
+
 //packet_db_ver: 25
 packet_db_ver: default
 
