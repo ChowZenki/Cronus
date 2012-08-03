@@ -265,11 +265,11 @@ int do_init(int argc, char** argv)
 	grfio_init(grf_list_file);
 
 	// Attempt to open the map cache file and force rebuild if not found
-	ShowStatus("Abrindo cachê de mapas: %s\n", map_cache_file);
+	ShowStatus("Abrindo cache de mapas: %s\n", map_cache_file);
 	if(!rebuild) {
 		map_cache_fp = fopen(map_cache_file, "rb");
 		if(map_cache_fp == NULL) {
-			ShowNotice("Cachê de mapas existente não funciona, forçando o modo de recompilação\n");
+			ShowNotice("Cache de mapas existente não funciona, forçando o modo de recompilação\n");
 			rebuild = 1;
 		} else
 			fclose(map_cache_fp);
@@ -279,7 +279,7 @@ int do_init(int argc, char** argv)
 	else
 		map_cache_fp = fopen(map_cache_file, "r+b");
 	if(map_cache_fp == NULL) {
-		ShowError("Falha enquanto abria o arquivo de cachê de mapas %s\n", map_cache_file);
+		ShowError("Falha enquanto abria o arquivo de cache de mapas %s\n", map_cache_file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -317,10 +317,10 @@ int do_init(int argc, char** argv)
 		name[MAP_NAME_LENGTH_EXT-1] = '\0';
 		remove_extension(name);
 		if(find_map(name))
-			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' já está no cachê.\n", name);
+			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' já está no cache.\n", name);
 		else if(read_map(name, &map)) {
 			cache_map(name, &map);
-			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' adicionado ao cachê com sucesso.\n", name);
+			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' adicionado ao cache com sucesso.\n", name);
 		} else
 			ShowError("Mapa '"CL_WHITE"%s"CL_RESET"' não funciona.!\n", name);
 
@@ -330,7 +330,7 @@ int do_init(int argc, char** argv)
 	fclose(list);
 
 	// Write the main header and close the map cache
-	ShowStatus("Fechando cachê de mapas: %s\n", map_cache_file);
+	ShowStatus("Fechando cache de mapas: %s\n", map_cache_file);
 	fseek(map_cache_fp, 0, SEEK_SET);
 	fwrite(&header, sizeof(struct main_header), 1, map_cache_fp);
 	fclose(map_cache_fp);
@@ -338,7 +338,7 @@ int do_init(int argc, char** argv)
 	ShowStatus("Fianlizando I/O da GRF\n");
 	grfio_final();
 
-	ShowInfo("%d mapas em cachê agora\n", header.map_count);
+	ShowInfo("%d mapas em cache agora\n", header.map_count);
 
 	return 0;
 }

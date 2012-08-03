@@ -15,7 +15,7 @@
 // Diretório para a sua 'data.grf'
 // ex.: -> grf: C:\Arquivos de Programas\Gravity\RO\data.grf
 // Você pode adicionar mais caso precise
-//grf: <caminho para a pasta data>
+//grf: C:\Program Files (x86)\Gravity\bRO\data.grf
 
 //--------------------------------------------------------------
 // Outros (Pastas)
