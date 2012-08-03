@@ -6883,6 +6883,7 @@ ACMD_FUNC(mobinfo)
 	struct mob_db *mob, *mob_array[MAX_SEARCH];
 	int count;
 	int i, j, k;
+	int poring_flag=0; //workaround para issue #374
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	memset(atcmd_output2, '\0', sizeof(atcmd_output2));
@@ -6890,6 +6891,10 @@ ACMD_FUNC(mobinfo)
 	if (!message || !*message) {
 		clif_displaymessage(fd, "Please, enter a Monster/ID (usage: @mobinfo <monster_name_or_monster_ID>).");
 		return -1;
+	}
+	
+	if ((strcasecmp(message, "poring") == 0) || (atoi(message) == 1002)) {
+		poring_flag = 1;
 	}
 
 	// If monster identifier/name argument is a name
@@ -6941,8 +6946,16 @@ ACMD_FUNC(mobinfo)
 				continue;
 			droprate = mob->dropitem[i].p;
 #ifdef RENEWAL_DROP
-			if( battle_config.atcommand_mobinfo_type )
-				droprate = droprate * party_renewal_drop_mod(sd->status.base_level - mob->lv) / 100;
+#if PACKETVER >= 20110609
+if( !poring_workaround ) {
+#endif
+			if( battle_config.atcommand_mobinfo_type ) {
+				int get_diff = (int)party_renewal_drop_mod((int)sd->status.base_level - (int)mob->lv);
+				droprate = droprate * get_diff / 100;
+			}
+#if PACKETVER >= 20110609
+}
+#endif
 #endif
 			if (item_data->slot)
 				sprintf(atcmd_output2, " - %s[%d]  %02.02f%%", item_data->jname, item_data->slot, (float)droprate / 100);

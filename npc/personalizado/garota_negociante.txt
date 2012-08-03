@@ -93,8 +93,14 @@ prontera,130,196,5	script	Garota Negociante	90,{
 				next;
 				if( select("Falcão:Warg") == 1 ) {
 					setfalcon;
-				} else if( !countitem(6124) ) {
-					getitem 6124, 1;
+				} else {
+					if( !countitem(6124) ) {
+						getitem 6124, 1;
+					} else {
+						mes "Desculpe, mas não posso ajudar você.";
+						mes "Verifique se você já possui a habilidade necessária ou se já está com algo alugado!";
+						close;
+					}
 				}
 			} 
 			else if( getskilllv(127) && !checkfalcon() && Class < 4054 ) {
