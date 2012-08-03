@@ -24,7 +24,7 @@
 //= 1.5b - Comandos de checagem corrigidos [Axl]
 //====================================================================
 
-prontera,153,193,4	script	Mestra das Classes	864,{
+prontera,153,193,4	script	Mestra das Classes#re	864,{
 
 	mes "["+strnpcinfo(1)+"]";
 	if (Class > 22 && Class < 26 || Class > 4029 && Class < 4046 || Class > 4046 && Class < 4080) {
