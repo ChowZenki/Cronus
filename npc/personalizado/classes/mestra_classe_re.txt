@@ -22,7 +22,7 @@
 //= 1.5 - Adicionada classes 3-1 e 3-2. [mkbu95]
 //= 1.5a - Pequenas modificações [Axl]
 //= 1.5b - Comandos de checagem corrigidos [Axl]
-//====================================================================
+//============================================================
 
 prontera,153,193,4	script	Mestra das Classes#re	864,{
 

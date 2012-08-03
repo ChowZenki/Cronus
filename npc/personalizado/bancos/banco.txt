@@ -17,7 +17,7 @@
 //= 1.5e Mais otimizações [mkbu95]
 //============================================================ 
 
-prontera,132,217,5	script	Banqueiro	109,{
+prontera,130,215,5	script	Banqueiro	109,{
 
 //========== Configurações: ==================================
 set .@custo,	0;			//Custo de cada operação.

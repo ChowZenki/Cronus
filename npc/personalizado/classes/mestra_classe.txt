@@ -18,10 +18,10 @@
 //= 1.3d - Não há necessidade de usar uma variável no nome do npc, retirado. [Mooka]
 //= 1.3e - Corrição no if() da função checkconditions(), problema com classes baby. [Mooka]
 //= 1.3f - Removido show [Keoy]
-//= 1.4 - Refeito NPC. [Mara]
+//= 1.4 - Refeito NPC. [mkbu95]
 //============================================================
-prontera,153,193,4	script	Mestra das Classes	864,{
 
+prontera,153,193,4	script	Mestra das Classes	864,{
 	mes "[Mestra das Classes]";
 	if (Class > 22 && Class < 26 || Class > 4007 && Class < 4023 || Class > 4029 && Class < 4046 || Class > 4046 && Class <= 4049) {
 		mes "Que bom te ver de novo "+strcharinfo(0)+"!";
