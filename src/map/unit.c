@@ -132,7 +132,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 	if(ud == NULL) return 0;
 
 	if(ud->walktimer != tid){
-		ShowError("unit_walk_timer errado %d != %d\n",ud->walktimer,tid);
+		ShowError("unit_walk_timer difere %d != %d\n",ud->walktimer,tid);
 		return 0;
 	}
 	ud->walktimer = INVALID_TIMER;
@@ -788,17 +788,17 @@ int unit_warp(struct block_list *bl,short m,short x,short y,clr_type type)
 	if (x<0 || y<0)
   	{	//Random map position.
 		if (!map_search_freecell(NULL, m, &x, &y, -1, -1, 1)) {
-			ShowWarning("unit_warp falhou. Id da unidade:%d/Tipo:%d, posição no mapa %d (%s) a [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+			ShowWarning("unit_warp falhou. Id da unidade:%d/Tipo:%d, posição do alvo no mapa %d (%s) em [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
 			return 2;
 			
 		}
 	} else if (map_getcell(m,x,y,CELL_CHKNOREACH))
 	{	//Invalid target cell
-		ShowWarning("unit_warp: Celula não valida para movimentos: %d (%s) at [%d,%d]\n", m, map[m].name, x,y);
+		ShowWarning("unit_warp: Célula não válida para movimentação: %d (%s) at [%d,%d]\n", m, map[m].name, x,y);
 		
 		if (!map_search_freecell(NULL, m, &x, &y, 4, 4, 1))
 	 	{	//Can't find a nearby cell
-			ShowWarning("unit_warp falhou. Id da unidade:%d/Tipo:%d, posição no mapa %d (%s) a [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+			ShowWarning("unit_warp falhou. Id da unidade:%d/Tipo:%d, posição do alvo no mapa %d (%s) em [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
 			return 2;
 		}
 	}
@@ -2089,10 +2089,10 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 					sd->debug_line = 0;
 					sd->debug_func = "";
 				}
-				ShowDebug("unit_remove_map: estadp inesperado durante a remoção de jogador AID/CID:%d/%d"
-					" (ativo=%d coneção nova=%d novo warp=%d mudança de mapa=%d debug_remove_map=%d)"
-					" do mapa=%s (users=%d)."
-					" Ultima chamada de %s:%d(%s), Chamada atual de %s:%d(%s)."
+				ShowDebug("unit_remove_map: estado inesperado durante a remoção de jogador AID/CID:%d/%d"
+					" (ativo=%d connect_new=%d rewarp=%d changemap=%d debug_remove_map=%d)"
+					" do mapa=%s (jogadores=%d)."
+					" Última chamada de %s:%d(%s), chamada atual de %s:%d(%s)."
 					" Por favor reporte isso!!!\n",
 					sd->status.account_id, sd->status.char_id,
 					sd->state.active, sd->state.connect_new, sd->state.rewarp, sd->state.changemap, sd->state.debug_remove_map,
