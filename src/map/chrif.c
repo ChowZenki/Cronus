@@ -566,6 +566,9 @@ void chrif_authreq(struct map_session_data *sd)
 		set_eof(sd->fd);
 		return;
 	}
+	
+	if( !chrif_isconnected() )
+		return;
 
 	WFIFOHEAD(char_fd,19);
 	WFIFOW(char_fd,0) = 0x2b26;
