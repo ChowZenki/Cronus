@@ -7969,7 +7969,6 @@ int pc_removecombo(struct map_session_data *sd, struct item_data *data ) {
 
 		sd->combos.bonus[x] = NULL;
 		sd->combos.id[x] = 0;
-		
 		retval++;
 		for( j = 0, cursor = 0; j < sd->combos.count; j++ ) {
 			if( sd->combos.bonus[j] == NULL )
@@ -8228,8 +8227,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
  * 1 - calculate status after unequipping
  * 2 - force unequip
  *------------------------------------------*/
-int pc_unequipitem(struct map_session_data *sd,int n,int flag)
-{
+int pc_unequipitem(struct map_session_data *sd,int n,int flag) {
 	int i;
 	bool status_cacl = false;
 	nullpo_ret(sd);
