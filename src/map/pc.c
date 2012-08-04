@@ -8330,8 +8330,6 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 
 	sd->status.inventory[n].equip=0;
 
-	if(flag&1) {
-
 	/* check for combos (MUST be before status_calc_pc) */
 	if ( sd->inventory_data[n] ) {
 		struct item_data *data;
