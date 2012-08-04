@@ -1,12 +1,4 @@
-//====================================================================
-//          _________                                                 
-//          \_   ___ \_______  ____   ____  __ __  ______             
-//          /    \  \/\_  __ \/    \ /    \|  |  \/  ___/             
-//          \     \____|  | \(  ( ) )   |  \  |  /\___ \              
-//           \______  /|__|   \____/|___|  /____//____  >             
-//                  \/                   \/           \/              
-//                                                               
-//====================== Cronus Script ===============================
+//======= Cronus Script ==============================================
 //= Quests de Comodo
 //===== Por: =========================================================
 //= kobra_k88; Axl;
@@ -35,7 +27,7 @@ comodo,227,158,4	script	Menina dos Enfeites	700,{
 	switch(select("-Cruz:-Lâmpada:-Faixa Listrada:-Faixa Azul:-Terminar Conversa")) {
 	case 1:
 		set @BAND$, "Cruz";
-		set @ITEMS$, " ^5555FF1 Rosário^000000 and ^5555FF500 Armaduras Destruídas^000000.";
+		set @ITEMS$, " ^5555FF1 Rosário^000000 e ^5555FF500 Armaduras Destruídas^000000.";
 		if (countitem(2608)>=1 && countitem(7069)>=500) set @GETBAND, 1; break;
 	case 2:
 		set @BAND$, "Lâmpada";
@@ -71,12 +63,12 @@ comodo,227,158,4	script	Menina dos Enfeites	700,{
 				mes "Traga-me esses itens e eu poderei fazer a "+@BAND$+".";
 				close;
 				}
-				if (@GETBAND == 1) {delitem 2608,1; delitem 7069,500; getitem 5036,1; next;} 
-				if (@GETBAND == 2) {delitem 2233,1; delitem 746,20; getitem 5034,1; next;}
-				if (@GETBAND == 3) {delitem 1099,1500; getitem 5049,1; next;}
-				if (@GETBAND == 4) {delitem 2211,1; delitem 978,1; delitem 7003,300; getitem 5052,1; next;}
+				if (@GETBAND == 1) { delitem 2608,1; delitem 7069,500; getitem 5036,1;}
+				else if (@GETBAND == 2) { delitem 2233,1; delitem 746,20; getitem 5034,1; }
+				else if (@GETBAND == 3) { delitem 1099,1500; getitem 5049,1; }
+				else if (@GETBAND == 4) { delitem 2211,1; delitem 978,1; delitem 7003,300; getitem 5052,1; }
 				mes "[Menina dos Enfeites]";
-				mes "Aqui esta a "+@BAND$+".  Obrigado.";
+				mes "Aqui esta a "+@BAND$+". Obrigado.";
 				set @GETBAND, 0;
 				close;
 }
@@ -1117,3 +1109,4 @@ beach_dun3,30,220,4	script	Bruxo Nigirboran	704,{
 	mes "Se vocô não tem nada a falar, por favor não me interrompa! Estou muito ocupado.";
 	close;
 }
+
