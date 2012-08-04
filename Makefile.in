@@ -68,7 +68,7 @@ clean:
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/tool $@
 	@$(MAKE) -C src/test $@
-	@echo "Limpeza da compilação antiga concluí­da com sucesso!"
+	@echo "Limpeza da compilação antiga concluída com sucesso!"
 
 help:
 	@echo "alvos mais comuns são 'all' 'sql' 'conf' 'clean' 'help'"
@@ -85,7 +85,7 @@ help:
 	@echo "                'map_sql' and 'import')"
 	@echo "'test'        - builds tests"
 	@echo "'clean'       - cleans builds and objects"
-	@echo "'help'        - outputs this message"
+	@echo "'help'        - exibe esta mensagem"
 
 #####################################################################
 
@@ -97,7 +97,7 @@ needs_mysql:
 # TODO
 
 install:	conf/%.conf conf/%.txt
-	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	$(shell read -p "ALERTA: Este alvo ainda não funciona corretamente. Aperte Ctrl+C para cancelar ou Enter para continuar.")
 	$(shell mkdir -p /opt/cronus/bin/)
 	$(shell mkdir -p /opt/cronus/etc/cronus/)
 	$(shell mkdir -p /opt/cronus/var/log/cronus/)
@@ -119,7 +119,7 @@ bin-clean:
 	$(shell rm /opt/cronus/bin/map-server*)
 
 uninstall:
-	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	$(shell read -p "ALERTA: Este alvo ainda não funciona corretamente. Aperte Ctrl+C para cancelar ou Enter para continuar.")
 	bin-clean
 	$(shell rm /opt/cronus/bin/save)
 	$(shell rm /opt/cronus/bin/db)

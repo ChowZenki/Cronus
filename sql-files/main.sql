@@ -663,11 +663,11 @@ CREATE TABLE IF NOT EXISTS `storage` (
 ) ENGINE=MyISAM;
 
 --
---- Logs
----
+-- Logs
+--
 
 --
---- Table structure for table `picklog`
+-- Table structure for table `picklog`
 -- PickLog types (M)onsters Drop, (P)layers Drop/Take, Mobs Drop (L)oot Drop/Take,
 -- Players (T)rade Give/Take, Players (V)ending Sell/Take, (S)hop Sell/Take, (N)PC Give/Take,
 -- (C)onsumable Items, (A)dministrators Create/Delete, Sto(R)age, (G)uild Storage,
@@ -692,7 +692,7 @@ CREATE TABLE `picklog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `zenylog`
+-- Table structure for table `zenylog`
 -- ZenyLog types (M)onsters,(T)rade,(V)ending Sell/Buy,(S)hop Sell/Buy,(N)PC Change amount,(A)dministrators,(E)Mail,(B)uying Store
 --
 CREATE TABLE `zenylog` (
@@ -708,7 +708,7 @@ CREATE TABLE `zenylog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `branch`
+-- Table structure for table `branch`
 --
 CREATE TABLE `branchlog` (
   `branch_id` mediumint(9) unsigned NOT NULL auto_increment,
@@ -723,7 +723,7 @@ CREATE TABLE `branchlog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `mvplog`
+-- Table structure for table `mvplog`
 --
 CREATE TABLE `mvplog` (
   `mvp_id` mediumint(9) unsigned NOT NULL auto_increment,
@@ -737,7 +737,7 @@ CREATE TABLE `mvplog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `mvplog`
+-- Table structure for table `mvplog`
 --
 CREATE TABLE `atcommandlog` (
   `atcommand_id` mediumint(9) unsigned NOT NULL auto_increment,
@@ -753,7 +753,7 @@ CREATE TABLE `atcommandlog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `npclog`
+-- Table structure for table `npclog`
 --
 CREATE TABLE `npclog` (
   `npc_id` mediumint(9) unsigned NOT NULL auto_increment,
@@ -769,7 +769,7 @@ CREATE TABLE `npclog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `chatlog`
+-- Table structure for table `chatlog`
 -- ChatLog types Gl(O)bal,(W)hisper,(P)arty,(G)uild,(M)ain chat
 --
 CREATE TABLE `chatlog` (
@@ -790,7 +790,7 @@ CREATE TABLE `chatlog` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 --
---- Table structure for table `loginlog`
+-- Table structure for table `loginlog`
 --
 CREATE TABLE `loginlog` (
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
