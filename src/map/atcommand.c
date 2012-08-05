@@ -6003,7 +6003,7 @@ ACMD_FUNC(autoloot)
 
 	sd->state.autoloot = rate;
 	if (sd->state.autoloot) {
-		snprintf(atcmd_output, sizeof atcmd_output, "Autolooting items with drop rates of %0.02f%% and below.",((double)sd->state.autoloot)/100.);
+		snprintf(atcmd_output, sizeof atcmd_output, "Autolooting items with drop rates of %f %% and below.",((float)sd->state.autoloot)/100.);
 		clif_displaymessage(fd, atcmd_output);
 	}else
 		clif_displaymessage(fd, "Autoloot is now off.");
